@@ -23,6 +23,9 @@ export const initGame = (store) => {
 
 const onStateChange = (store) => {
 	const state = store.getState();
+	// i'm guessing we won't end up using listeners
+	// instead, we should have this be the central place which handles state changes, and passes the relevant info to the board
+	// i'll leave it just in case tho
 	Object.keys(stateListeners).forEach(id => {
 		stateListeners[id](state);
 	});
