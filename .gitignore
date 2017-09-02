@@ -2,6 +2,7 @@
 
 # vim files
 *~
+*.swp
 
 # dependencies
 /node_modules
