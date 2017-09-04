@@ -1,3 +1,5 @@
+import { loadLevel } from './actions/levelActions';
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -19,10 +21,14 @@ export const initGame = (store) => {
 	store.subscribe(onStateChange.bind(null, store));
 	onStateChange(store);
 	window.requestAnimationFrame(animationLoop);
+	store.dispatch(loadLevel("pack1", "0"));
 }
 
 const onStateChange = (store) => {
 	const state = store.getState();
+	// i'm guessing we won't end up using listeners
+	// instead, we should have this be the central place which handles state changes, and passes the relevant info to the board
+	// i'll leave it just in case tho
 	Object.keys(stateListeners).forEach(id => {
 		stateListeners[id](state);
 	});
