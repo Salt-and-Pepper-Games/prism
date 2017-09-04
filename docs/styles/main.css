@@ -1,0 +1,91 @@
+html {
+  font-family: "Work Sans", sans-serif;
+  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s;
+  -o-animation: fadein 2s;
+  animation: fadein 2s; }
+
+.header {
+  text-align: center; }
+
+.game-info {
+  display: flex;
+  padding: 5em; }
+
+.game-description {
+  flex: 2; }
+
+.prism-gif {
+  flex: 1; }
+
+.prism-gif-image {
+  border-radius: 2em;
+  width: 75%; }
+
+.prism {
+  display: inline-block;
+  font-weight: 300;
+  font-size: 10em; }
+  .prism .P {
+    color: red; }
+  .prism .R {
+    color: cyan; }
+  .prism .I {
+    color: green; }
+  .prism .S {
+    color: magenta; }
+  .prism .M {
+    color: blue; }
+
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-moz-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-ms-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-o-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+.prism:hover {
+  cursor: default; }
+  .prism:hover .P {
+    color: blue; }
+  .prism:hover .R {
+    color: red; }
+  .prism:hover .I {
+    color: cyan; }
+  .prism:hover .S {
+    color: green; }
+  .prism:hover .M {
+    color: magenta; }
+
+.letter {
+  padding-left: 5px;
+  padding-right: 5px;
+  transition: all .125s; }
+
+.subtitle {
+  font-size: 1em;
+  opacity: .5; }
+
+.subtitle:hover {
+  cursor: default; }
+
+/*# sourceMappingURL=main.css.map */
