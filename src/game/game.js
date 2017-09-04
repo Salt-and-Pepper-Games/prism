@@ -1,3 +1,5 @@
+import { loadLevel } from './actions/levelActions';
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -19,6 +21,7 @@ export const initGame = (store) => {
 	store.subscribe(onStateChange.bind(null, store));
 	onStateChange(store);
 	window.requestAnimationFrame(animationLoop);
+	store.dispatch(loadLevel("pack1", "0"));
 }
 
 const onStateChange = (store) => {

@@ -14,3 +14,9 @@ export default class Board {
 
 	}
 }
+
+export const blockTypes = {
+	BLOCK: "BLOCK",
+	SWITCH: "SWITCH",
+	EMPTY: "EMPTY"
+}
