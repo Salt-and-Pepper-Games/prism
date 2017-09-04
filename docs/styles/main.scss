@@ -1,3 +1,9 @@
+@mixin mobile {
+  @media only screen and (orientation: portrait) {
+    @content;
+  }
+}
+
 html {
 	font-family: "Work Sans", sans-serif;
 	-webkit-animation: fadein 2s;
@@ -5,9 +11,21 @@ html {
 	-ms-animation: fadein 2s;
 	-o-animation: fadein 2s;
 	animation: fadein 2s;
+	@include mobile {
+		font-size: 1.5vmin;
+	}
 }
 .header {
 	text-align: center;
+	padding: 1em;
+}
+.blog-link {
+	text-decoration: none;
+	color: #79aaf3;
+	transition: opacity .125s;
+}
+.blog-link:hover {
+	opacity: .75;
 }
 
 .game-info {
@@ -16,13 +34,27 @@ html {
 }
 .game-description {
 	flex: 2;
+	height: 15em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	@include mobile {
+		padding-left: 3em;
+		height: 20em;
+	}
+	a, p {
+		margin: 0;
+	}
 }
 .prism-gif {
 	flex: 1;
 }
 .prism-gif-image {
     border-radius: 2em;
-    width: 75%;
+    height: 15em;
+    @include mobile {
+    	height: 20em;
+    }
 }
 .prism {
 	display: inline-block;
@@ -93,6 +125,9 @@ html {
 .subtitle {
 	font-size: 1em;
 	opacity: .5;
+	@include mobile {
+		font-size: 2em;
+	}
 }
 .subtitle:hover {
 	cursor: default;
