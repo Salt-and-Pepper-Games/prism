@@ -40,8 +40,9 @@ export default (state=defaultState, action) => {
 		case types.LOAD_LEVEL:
 			console.log("Loading level");
 			const board = parseBoard(action.data);
-			console.log(board);
-			return Object.assign({}, state, board);
+			const newState = Object.assign({}, state, board); 
+			Object.assign(newState, { loaded: true });
+			return newState;
 		default:
 			return state;
 	}
@@ -80,7 +81,6 @@ const parseBoard = lines => {
 			height: parseInt(data[2][1])
 		}
 
-		// TODO: keep working on this
 		const blocks = [];
 		const rowOffset = 3;
 		for (let i=0; i<size.width; i++) {

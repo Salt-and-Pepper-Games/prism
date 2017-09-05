@@ -1,3 +1,4 @@
+import BoardManager from './boardManager';
 import { loadLevel } from './actions/levelActions';
 
 const canvas = document.getElementById('canvas');
@@ -11,6 +12,8 @@ let nextStateListenerId = 0;
 
 let startTime = null;
 
+let boardManager;
+
 /**
  * Initialize the game and start listening to the redux store
  * @function
@@ -18,6 +21,14 @@ let startTime = null;
  * @return {None}
  */
 export const initGame = (store) => {
+	// gotta do this first so that the board manager is ready and listening
+	// when we load a level
+	// i don't like this syntax because it doesn't say what it's doing at all
+	// just saying new BoardManager() is enough to get the whole game started but you wouldn't know
+	// from just seeing this line
+	// maybe add a start() function to boardManager
+	boardManager = new BoardManager();
+
 	store.subscribe(onStateChange.bind(null, store));
 	onStateChange(store);
 	window.requestAnimationFrame(animationLoop);

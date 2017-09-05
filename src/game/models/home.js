@@ -1,4 +1,4 @@
-export default class Switch {
+export default class Home {
 	constructor(type, color, x, y) {
 		this.type = type;
 		this.color = color;
