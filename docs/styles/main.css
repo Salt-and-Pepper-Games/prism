@@ -5,7 +5,7 @@ html {
   -ms-animation: fadein 2s;
   -o-animation: fadein 2s;
   animation: fadein 2s; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
     html {
       font-size: 1.5vmin; } }
 
@@ -21,7 +21,7 @@ html {
   text-decoration: none;
   color: #3568b3;
   transition: opacity .125s; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
     .blog-link {
       font-size: 2em; } }
 
@@ -40,7 +40,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-around; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
     .game-description {
       padding-left: 2em;
       height: 25em;
@@ -55,14 +55,14 @@ html {
 .prism-gif-image {
   border-radius: 1em;
   height: 15em; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
     .prism-gif-image {
       height: 25em; } }
 
 .above-screenshots {
   padding: 2em 5em;
   line-height: 1.5em; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
     .above-screenshots {
       padding: 1em 2em;
       font-size: 2em; } }
@@ -137,7 +137,7 @@ html {
 .subtitle {
   font-size: 1em;
   opacity: .5; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
     .subtitle {
       font-size: 2em; } }
 

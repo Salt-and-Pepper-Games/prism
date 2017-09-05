@@ -1,5 +1,5 @@
 @mixin mobile {
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
     @content;
   }
 }
