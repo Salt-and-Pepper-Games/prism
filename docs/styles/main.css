@@ -96,15 +96,15 @@ body {
   font-weight: 300;
   font-size: 10em; }
   .prism .P {
-    color: red; }
+    color: #FF6978; }
   .prism .R {
-    color: cyan; }
+    color: #4CEDDE; }
   .prism .I {
-    color: green; }
+    color: #94EA54; }
   .prism .S {
-    color: magenta; }
+    color: #C85ED8; }
   .prism .M {
-    color: blue; }
+    color: #3885F9; }
 
 @keyframes fadein {
   from {
@@ -134,15 +134,15 @@ body {
 .prism:hover {
   cursor: default; }
   .prism:hover .P {
-    color: blue; }
+    color: #3885F9; }
   .prism:hover .R {
-    color: red; }
+    color: #FF6978; }
   .prism:hover .I {
-    color: cyan; }
+    color: #4CEDDE; }
   .prism:hover .S {
-    color: green; }
+    color: #94EA54; }
   .prism:hover .M {
-    color: magenta; }
+    color: #C85ED8; }
 
 .letter {
   padding-left: 5px;

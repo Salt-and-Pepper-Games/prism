@@ -8,7 +8,16 @@ context.canvas.height = window.innerHeight;
 paperInstance.setup(canvas);
 const pathArray = [];
 const directions = ['up', 'left', 'down', 'right'];
-const colors = ['#FF6978', '#94EA54', '#3885F9', '#F4EE36', '#C85ED8', '#4CEDDE', '#464B63', '#FFF8F4'];
+const colors = [
+	'#FF6978', // red
+	'#94EA54', // green
+	'#3885F9', // blue
+	'#F4EE36', // yellow
+	'#C85ED8', // magenta
+	'#4CEDDE', // cyan
+	'#464B63', // black
+	'#FFF8F4' // white
+];
 
 // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 const hexToRgb = hex => {
@@ -34,7 +43,6 @@ for (let i = 0; i < 50; i++) {
     const centY = rand.y * paperInstance.view.size.height;
     const center = new paperInstance.Point(centX, centY);
     const rectangleSize = Math.random() * 25 + 25;
-    console.log(rectangleSize);
 	const rectangle = new paperInstance.Rectangle(new paperInstance.Point(centX, centY), new paperInstance.Point(centX + rectangleSize, centY + rectangleSize));
 	const cornerSize = new paperInstance.Size(7.5, 7.5);
 	const path = new paperInstance.Path.RoundRectangle(rectangle, cornerSize);
