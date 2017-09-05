@@ -39,13 +39,14 @@ const hexToRgb = hex => {
 const mq = window.matchMedia("(orientation: portrait)");
 const count = mq.matches ? 20 : 50;
 
-// Place the instances of the symbol:
+// Place the instances of the square:
 for (let i = 0; i < count; i++) {
 	// The center position is a random point in the view:
     const rand = paperInstance.Point.random();
     const centX = rand.x * paperInstance.view.size.width;
     const centY = rand.y * paperInstance.view.size.height;
     const center = new paperInstance.Point(centX, centY);
+    // random size for rectangle size
     const rectangleSize = Math.random() * 25 + 25;
 	const rectangle = new paperInstance.Rectangle(new paperInstance.Point(centX, centY), new paperInstance.Point(centX + rectangleSize, centY + rectangleSize));
 	const cornerSize = new paperInstance.Size(7.5, 7.5);

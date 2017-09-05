@@ -34,7 +34,7 @@ body {
 
 .blog-link {
   text-decoration: none;
-  color: #3568b3;
+  color: #3885F9;
   transition: opacity .125s; }
   @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
     .blog-link {
