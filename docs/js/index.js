@@ -59,7 +59,7 @@ const mq = window.matchMedia("(orientation: portrait)");
 // 	}
 // }
 // floating blocks version
-const count = mq.matches ? 20 : 50;
+const count = mq.matches ? 15 : 40;
 // Place the instances of the square:
 for (let i = 0; i < count; i++) {
 	// The center position is a random point in the view:
