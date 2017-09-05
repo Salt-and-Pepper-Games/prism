@@ -35,6 +35,7 @@ const hexToRgb = hex => {
     } : null;
 };
 
+// adjust square count for mobile
 const mq = window.matchMedia("(orientation: portrait)");
 const count = mq.matches ? 20 : 50;
 
@@ -52,6 +53,7 @@ for (let i = 0; i < count; i++) {
 	const randomColorHex = colors[Math.floor(Math.random()*colors.length)];
 	const colorRGB = hexToRgb(randomColorHex);
 	path.fillColor = new paperInstance.Color(colorRGB.r/255,colorRGB.g/255,colorRGB.b/255,.5);
+	// assign random direction, speed to each square
 	const pathObj = {
 		path: path,
 		direction: directions[Math.floor(Math.random()*directions.length)],
