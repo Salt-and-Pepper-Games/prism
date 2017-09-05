@@ -3,8 +3,17 @@
     @content;
   }
 }
-
+#paper-canvas {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	overflow: visible;
+}
 html {
+	height: 100%;
+	width: 100%;
+	margin: 0;
 	font-family: "Work Sans", sans-serif;
 	-webkit-animation: fadein 2s;
 	-moz-animation: fadein 2s;
@@ -14,6 +23,11 @@ html {
 	@include mobile {
 		font-size: 1.5vmin;
 	}
+}
+body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
 }
 .header {
 	text-align: center;
@@ -153,7 +167,6 @@ html {
 }
 .subtitle {
 	font-size: 1em;
-	opacity: .5;
 	@include mobile {
 		font-size: 2em;
 	}

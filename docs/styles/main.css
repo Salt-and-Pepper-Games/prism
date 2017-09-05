@@ -1,4 +1,14 @@
+#paper-canvas {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  overflow: visible; }
+
 html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
   font-family: "Work Sans", sans-serif;
   -webkit-animation: fadein 2s;
   -moz-animation: fadein 2s;
@@ -8,6 +18,11 @@ html {
   @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
     html {
       font-size: 1.5vmin; } }
+
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%; }
 
 .header {
   text-align: center;
@@ -135,8 +150,7 @@ html {
   transition: all .125s; }
 
 .subtitle {
-  font-size: 1em;
-  opacity: .5; }
+  font-size: 1em; }
   @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
     .subtitle {
       font-size: 2em; } }
