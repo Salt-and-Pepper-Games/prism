@@ -95,6 +95,9 @@ body {
   display: inline-block;
   font-weight: 300;
   font-size: 10em; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
+    .prism {
+      font-weight: 400; } }
   .prism .P {
     color: #FF6978; }
   .prism .R {

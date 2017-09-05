@@ -103,6 +103,9 @@ body {
 	display: inline-block;
     font-weight: 300;
     font-size: 10em;
+    @include mobile {
+    	font-weight: 400;
+    }
     .P {
         color: #FF6978;
     }
