@@ -19,10 +19,17 @@ html {
 	text-align: center;
 	padding: 1em;
 }
+.blog-link-container {
+	text-align: center;
+	padding: 2em;
+}
 .blog-link {
 	text-decoration: none;
 	color: #79aaf3;
 	transition: opacity .125s;
+	@include mobile {
+		font-size: 2em;
+	}
 }
 .blog-link:hover {
 	opacity: .75;
@@ -30,17 +37,21 @@ html {
 
 .game-info {
 	display: flex;
-	padding: 5em;
+	padding: 2em 5em 0 5em;
+	p {
+		line-height: 1.5em;
+	}	
 }
 .game-description {
-	flex: 2;
-	height: 15em;
+	flex: 3;
+	height: 30em;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-around;
 	@include mobile {
-		padding-left: 3em;
-		height: 20em;
+		padding-left: 2em;
+	    height: 25em;
+	    font-size: 2em;
 	}
 	a, p {
 		margin: 0;
@@ -48,13 +59,31 @@ html {
 }
 .prism-gif {
 	flex: 1;
+	padding-right: 2em;
 }
 .prism-gif-image {
-    border-radius: 2em;
+    border-radius: 1em;
     height: 15em;
     @include mobile {
-    	height: 20em;
+    	height: 25em;
     }
+}
+.above-screenshots {
+	padding: 2em 5em;
+	line-height: 1.5em;
+	@include mobile {
+		padding: 1em 2em;
+		font-size: 2em;
+	}
+}
+.screenshots {
+	display: flex;
+    padding: 0 5em;
+    justify-content: space-between;
+}
+.prism-screenshot {
+	border-radius: 1em;
+	height: 10em;
 }
 .prism {
 	display: inline-block;
