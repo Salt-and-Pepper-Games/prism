@@ -35,8 +35,11 @@ const hexToRgb = hex => {
     } : null;
 };
 
+const mq = window.matchMedia("(orientation: portrait)");
+const count = mq.matches ? 20 : 50;
+
 // Place the instances of the symbol:
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < count; i++) {
 	// The center position is a random point in the view:
     const rand = paperInstance.Point.random();
     const centX = rand.x * paperInstance.view.size.width;
