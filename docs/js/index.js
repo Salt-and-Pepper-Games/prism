@@ -78,7 +78,7 @@ for (let i = 0; i < count; i++) {
 	const pathObj = {
 		path: path,
 		direction: directions[Math.floor(Math.random()*directions.length)],
-		speed: Math.random() * 500 + 500
+		speed: Math.random() * 500 + (mq.matches ? 100 : 500)
 	};
 	pathArray.push(pathObj);
 }
