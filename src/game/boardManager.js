@@ -1,4 +1,4 @@
-import types from './actions/types';
+import types from '../actionCreators/levelActionNames.js';
 import { addAnimationListener, addStateListener } from './game';
 import Board from './models/board';
 

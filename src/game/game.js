@@ -1,5 +1,5 @@
 import BoardManager from './boardManager';
-import { loadLevel } from './actions/levelActions';
+import { loadLevel } from '../actionCreators/levelActionCreators';
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');

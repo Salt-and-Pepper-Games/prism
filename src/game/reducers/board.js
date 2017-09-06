@@ -1,4 +1,4 @@
-import types from '../actions/types';
+import types from '../../actionCreators/levelActionNames.js';
 import { blockTypes } from '../models/board';
 
 const charMap = {
@@ -35,7 +35,7 @@ export const defaultState = {
 	enemies: null,
 }
 
-export default (state=defaultState, action) => {
+export default (state = defaultState, action) => {
 	switch (action.type) {
 		case types.LOAD_LEVEL:
 			console.log("Loading level");

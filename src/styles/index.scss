@@ -1,0 +1,70 @@
+@mixin mobile {
+  @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", sans-serif;
+}
+
+.header {
+	text-align: center;
+}
+.prism {
+	display: inline-block;
+    font-weight: 300;
+    font-size: 7.5em;
+    @include mobile {
+    	font-weight: 400;
+    }
+    .P {
+        color: #FF6978;
+    }
+    .R {
+        color: #4CEDDE;
+    }
+    .I {
+        color: #94EA54;
+    }
+    .S {
+        color: #C85ED8;
+    }
+    .M {
+        color: #3885F9;
+    }
+}
+.prism:hover {
+	cursor: default;
+    .P {
+        color: #3885F9;
+    }
+    .R {
+        color: #FF6978;
+    }
+    .I {
+        color: #4CEDDE;
+    }
+    .S {
+        color: #94EA54;
+    }
+    .M {
+        color: #C85ED8;
+    }
+}
+.letter {
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: all .125s;
+}
+.subtitle {
+	font-size: 1em;
+	@include mobile {
+		font-size: 1em;
+	}
+}
+.subtitle:hover {
+	cursor: default;
+}

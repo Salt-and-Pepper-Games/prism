@@ -1,4 +1,4 @@
-import types from './types';
+import types from './levelActionNames';
 
 export const loadLevel = (pack, number) => {
 	// in the future, we don't want this port number
