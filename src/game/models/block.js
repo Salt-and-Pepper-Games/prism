@@ -6,7 +6,7 @@ export default class Block {
 		this.y = y;
 	}
 
-	render(ctx, time) {
+	render(ctx, time, dimensions) {
 	}
 }
 

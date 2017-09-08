@@ -9,7 +9,7 @@ import Board from './models/board';
  * It then delegates to the current board instance to render the changes
  */
 export default class BoardManager {
-	board = null
+	board = null;
 
 	constructor() {
 		this.stopStateListener = addStateListener(this.onStateChange.bind(this));
@@ -18,7 +18,13 @@ export default class BoardManager {
 
 	render(ctx, time) {
 		if (this.board) {
-			this.board.render(ctx, time);
+			dimensions = {
+				screenWidth: ctx.canvas.width,
+				screenHeight: ctx.canvas.height,
+				width: this.board.width,
+				height: this.board.height
+			};
+			this.board.render(ctx, time, dimensions);
 		}
 	}
 

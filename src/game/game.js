@@ -100,6 +100,3 @@ export const addStateListener = (listener) => {
 	return deleteStateListener.bind(null, id);
 }
 
-
-
-
