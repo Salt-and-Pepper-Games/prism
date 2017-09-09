@@ -1,5 +1,6 @@
+import Konva from 'konva';
 import types from '../actionCreators/levelActionNames.js';
-import { addAnimationListener, addStateListener } from './game';
+import { addStateListener } from './game';
 import Board from './models/board';
 
 /**
@@ -11,21 +12,15 @@ import Board from './models/board';
 export default class BoardManager {
 	board = null;
 
-	constructor() {
+	constructor(stage) {
 		this.stopStateListener = addStateListener(this.onStateChange.bind(this));
-		this.stopAnimationListener = addAnimationListener(this.render.bind(this));
-	}
 
-	render(ctx, time) {
-		if (this.board) {
-			dimensions = {
-				screenWidth: ctx.canvas.width,
-				screenHeight: ctx.canvas.height,
-				width: this.board.width,
-				height: this.board.height
-			};
-			this.board.render(ctx, time, dimensions);
-		}
+		// where we will put background and blocks
+		this.boardLayer = new Konva.Layer();
+		// where we will put switches
+		this.switchLayer = new Konva.Layer();
+		// where we will put player and enemies
+		this.playerLayer = new Konva.Layer();
 	}
 
 	onStateChange({ game, action }) {
@@ -33,6 +28,13 @@ export default class BoardManager {
 			console.log("New board state");
 			console.log(game.board);
 			this.board = new Board(game.board);
+		}
+		else if (this.board) {
+			// handle other actions here
+		}
+		else {
+			// receiving an action without a level loaded
+			// could be a ui action or something, just ignore it
 		}
 	}
 }

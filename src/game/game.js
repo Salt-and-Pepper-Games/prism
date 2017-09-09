@@ -1,11 +1,9 @@
+import Konva from 'konva';
 import BoardManager from './boardManager';
 import { loadLevel } from '../actionCreators/levelActionCreators';
 
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-
-const animationListeners = {};
-let nextAnimationListenerId = 0;
+// const animationListeners = {};
+// let nextAnimationListenerId = 0;
 
 const stateListeners = {};
 let nextStateListenerId = 0;
@@ -31,7 +29,15 @@ export const initGame = (store) => {
 
 	store.subscribe(onStateChange.bind(null, store));
 	onStateChange(store);
-	window.requestAnimationFrame(animationLoop);
+	// window.requestAnimationFrame(animationLoop);
+
+	// initialize konva stage
+	const stage = new Konva.Stage({
+		container: 'game-root',
+		width: window.innerWidth,
+		height: window.innerHeight
+	});
+
 	store.dispatch(loadLevel("pack1", "0"));
 }
 
