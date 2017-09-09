@@ -1,5 +1,6 @@
 import types from '../../actionCreators/levelActionNames.js';
 import { blockTypes } from '../models/board';
+import { colorIndices } from '../colors';
 
 const charMap = {
 	EMPTY: 'e',
@@ -13,17 +14,6 @@ const charMap = {
 	RED_SWITCH: 'R',
 	GREEN_SWITCH: 'G',
 	BLUE_SWITCH: 'B'
-}
-
-const colorMap = {
-	BLACK: 0,
-	RED: 1,
-	GREEN: 2,
-	YELLOW: 3,
-	BLUE: 4,
-	MAGENTA: 5,
-	CYAN: 6,
-	WHITE: 7
 }
 
 // TODO: Figure out if this should be separated into four reducers, or if it's ok to have it all here
@@ -124,43 +114,43 @@ const parseBoardChar = c => {
 			break;
 		case charMap.RED_BLOCK:
 			type = blockTypes.BLOCK;
-			color = colorMap.RED;
+			color = colorIndices.RED;
 			break;
 		case charMap.GREEN_BLOCK:
 			type = blockTypes.BLOCK;
-			color = colorMap.GREEN;
+			color = colorIndices.GREEN;
 			break;
 		case charMap.BLUE_BLOCK:
 			type = blockTypes.BLOCK;
-			color = colorMap.BLUE;
+			color = colorIndices.BLUE;
 			break;
 		case charMap.YELLOW_BLOCK:
 			type = blockTypes.BLOCK;
-			color = colorMap.YELLOW;
+			color = colorIndices.YELLOW;
 			break;
 		case charMap.CYAN_BLOCK:
 			type = blockTypes.BLOCK;
-			color = colorMap.CYAN;
+			color = colorIndices.CYAN;
 			break;
 		case charMap.MAGENTA_BLOCK:
 			type = blockTypes.BLOCK;
-			color = colorMap.MAGENTA;
+			color = colorIndices.MAGENTA;
 			break;
 		case charMap.WHITE_BLOCK:
 			type = blockTypes.BLOCK;
-			color = colorMap.WHITE;
+			color = colorIndices.WHITE;
 			break;
 		case charMap.RED_SWITCH: 
 			type = blockTypes.SWITCH;
-			color = colorMap.RED;
+			color = colorIndices.RED;
 			break;
 		case charMap.GREEN_SWITCH: 
 			type = blockTypes.SWITCH;
-			color = colorMap.GREEN;
+			color = colorIndices.GREEN;
 			break;
 		case charMap.BLUE_SWITCH:
 			type = blockTypes.SWITCH;
-			color = colorMap.BLUE;
+			color = colorIndices.BLUE;
 			break;
 		default:
 			// invalid block character

@@ -17,21 +17,26 @@ export const blockTypes = {
 export default class Board {
 	constructor({ bgColor=0, blocks, player, enemies, home }, { boardLayer, playerLayer, switchLayer }) {
 		this.blocks = [];
+		this.width = blocks.length;
+		this.height = blocks[0].length;
 		for (let i=0; i<blocks.length; i++) {
-			this.blocks.push([]);
+			this.blocks[i] = [];
 			for (let j=0; j<blocks[i].length; j++) {
 				let block = blocks[i][j];
 				if (block.type === blockTypes.SWITCH) {
-					this.blocks[i].push(new Switch(blocks[i][j].type, blocks[i][j].color, i, j, switchLayer));
+					this.blocks[i][j] = new Switch(blocks[i][j].color, i, j, this.width, this.height, switchLayer);
 				}
-				else {
-					this.blocks[i].push(new Block(blocks[i][j].type, blocks[i][j].color, i, j, boardLayer));
+				else if (block.type === blockTypes.BLOCK) {
+					this.blocks[i][j] = new Block(blocks[i][j].color, i, j, this.width, this.height, boardLayer);
 				}
+				// else {
+				// 	this.blocks[i][j] = null;
+				// }
 			}
 		}
-		this.player = new Player(player.x, player.y, playerLayer);
+		this.player = new Player(player.x, player.y, this.width, this.height, playerLayer);
 		this.enemies = enemies;
-		this.home = new Home(home.x, home.y, boardLayer);
+		this.home = new Home(home.x, home.y, this.width, this.height, boardLayer);
 		this.bgColor = bgColor;
 	}
 }

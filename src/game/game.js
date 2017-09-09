@@ -25,10 +25,6 @@ export const initGame = (store) => {
 	// just saying new BoardManager() is enough to get the whole game started but you wouldn't know
 	// from just seeing this line
 	// maybe add a start() function to boardManager
-	boardManager = new BoardManager();
-
-	store.subscribe(onStateChange.bind(null, store));
-	onStateChange(store);
 	// window.requestAnimationFrame(animationLoop);
 
 	// initialize konva stage
@@ -38,6 +34,10 @@ export const initGame = (store) => {
 		height: window.innerHeight
 	});
 
+	boardManager = new BoardManager(stage);
+
+	store.subscribe(onStateChange.bind(null, store));
+	onStateChange(store);
 	store.dispatch(loadLevel("pack1", "0"));
 }
 

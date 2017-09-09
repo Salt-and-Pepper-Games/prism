@@ -21,15 +21,20 @@ export default class BoardManager {
 		this.switchLayer = new Konva.Layer();
 		// where we will put player and enemies
 		this.playerLayer = new Konva.Layer();
+
+		stage.add(this.boardLayer);
+		stage.add(this.switchLayer);
+		stage.add(this.playerLayer);
+
+		this.stage = stage;
 	}
 
 	onStateChange({ game, action }) {
 		if (action.type === types.LOAD_LEVEL) {
-			console.log("New board state");
-			console.log(game.board);
 			this.board = new Board(game.board, { boardLayer: this.boardLayer,
 				playerLayer: this.playerLayer,
 				switchLayer: this.switchLayer });
+			this.stage.draw();
 		}
 		else if (this.board) {
 			// handle other actions here
