@@ -27,7 +27,9 @@ export default class BoardManager {
 		if (action.type === types.LOAD_LEVEL) {
 			console.log("New board state");
 			console.log(game.board);
-			this.board = new Board(game.board);
+			this.board = new Board(game.board, { boardLayer: this.boardLayer,
+				playerLayer: this.playerLayer,
+				switchLayer: this.switchLayer });
 		}
 		else if (this.board) {
 			// handle other actions here

@@ -51,16 +51,16 @@ const onStateChange = (store) => {
 	});
 }
 
-const animationLoop = (time) => {
-	if (startTime === null) {
-		startTime = time;
-	}
-	const elapsedTime = time - startTime;
-	Object.keys(animationListeners).forEach(id => {
-		animationListeners[id](ctx, elapsedTime);
-	})
-	window.requestAnimationFrame(animationLoop);
-}
+// const animationLoop = (time) => {
+// 	if (startTime === null) {
+// 		startTime = time;
+// 	}
+// 	const elapsedTime = time - startTime;
+// 	Object.keys(animationListeners).forEach(id => {
+// 		animationListeners[id](ctx, elapsedTime);
+// 	})
+// 	window.requestAnimationFrame(animationLoop);
+// }
 
 /**
  * Remove a animation frame listener by id
@@ -68,9 +68,9 @@ const animationLoop = (time) => {
  * @param {Object} id - the id of the listener to remove
  * @return {None}
  */
-export const deleteAnimationListener = (id) => {
-	delete animationListeners[id];
-}
+// export const deleteAnimationListener = (id) => {
+// 	delete animationListeners[id];
+// }
 
 /**
  * Add a listener to get called each animation frame
@@ -78,11 +78,11 @@ export const deleteAnimationListener = (id) => {
  * @param {Function} listener - The listener callback function
  * @return {Function} the callback function to remove the added listener
  */
-export const addAnimationListener = (listener) => {
-	const id = nextAnimationListenerId++;
-	animationListeners[id] = listener;
-	return deleteAnimationListener.bind(null, id);
-}
+// export const addAnimationListener = (listener) => {
+// 	const id = nextAnimationListenerId++;
+// 	animationListeners[id] = listener;
+// 	return deleteAnimationListener.bind(null, id);
+// }
 
 /**
  * Remove a state listener by id
