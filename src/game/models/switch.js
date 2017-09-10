@@ -6,6 +6,7 @@ export default class Switch {
 	constructor(color, x, y, width, height, layer) {
 		this.type = blockTypes.SWITCH;
 		this.color = color;
+		this.hasAltColor = false;
 		this.x = x;
 		this.y = y;
 
@@ -44,18 +45,20 @@ export default class Switch {
 		if (color === this.color && !this.hasAltColor) {
 			let tween = new Konva.Tween({
 				node: this.model,
-				fill: altColorValues[color],
+				fill: altColorValues[this.color],
 				duration: .35,
 			});
 			tween.play();
+			this.hasAltColor = true;
 		}
-		else if (this.hasAltColor) {
+		else if (color !== this.color && this.hasAltColor) {
 			let tween = new Konva.Tween({
 				node: this.model,
-				fill: colorValues[color],
+				fill: colorValues[this.color],
 				duration: .35,
 			});
 			tween.play();
+			this.hasAltColor = false;
 		}
 	}
 }
