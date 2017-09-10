@@ -1,8 +1,11 @@
 import Konva from 'konva';
-import { colorIndices, colorValues } from '../colors';
+import { altColorValues, colorIndices, colorValues } from '../colors';
 
 export default class Player {
 	constructor(x, y, width, height, layer) {
+		this.color = colorIndices.PLAYER;
+		this.hasAltColor = false;
+
 		this.x = x;
 		this.y = y;
 
@@ -33,7 +36,7 @@ export default class Player {
 			x: this.cellWidth * (x + .5),
 			y: this.cellHeight * (y + .5),
 			radius: this.width / 2,
-			fill: colorValues[colorIndices.WHITE]
+			fill: colorValues[this.color]
 		});
 
 		layer.add(this.model);
@@ -71,7 +74,7 @@ export default class Player {
 		if (this.closeToTarget()) {
 			this.dx = 0;
 			this.dy = 0;
-			return;
+			return false;
 		}
 
 		// simulating spring force to targetX, targetY
@@ -91,6 +94,28 @@ export default class Player {
 	closeToTarget() {
 		const tolerance = .05;
 		return Math.abs(this.x - this.targetX) < tolerance && Math.abs(this.y - this.targetY) < tolerance;
+	}
+
+	onBackgroundColor(color) {
+		const playerColor = colorIndices.WHITE;
+		if (color === playerColor && !this.hasAltColor) {
+			let tween = new Konva.Tween({
+				node: this.model,
+				fill: altColorValues[this.color],
+				duration: .35,
+			});
+			tween.play();
+			this.hasAltColor = true;
+		}
+		else if (color !== playerColor && this.hasAltColor) {
+			let tween = new Konva.Tween({
+				node: this.model,
+				fill: colorValues[this.color],
+				duration: .35,
+			});
+			tween.play();
+			this.hasAltColor = false;
+		}
 	}
 }
 

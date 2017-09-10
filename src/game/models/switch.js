@@ -1,6 +1,6 @@
 import Konva from 'konva';
 import { blockTypes } from './board';
-import { colorValues } from '../colors';
+import { altColorValues, colorValues } from '../colors';
 
 export default class Switch {
 	constructor(color, x, y, width, height, layer) {
@@ -38,6 +38,25 @@ export default class Switch {
 		// });
 
 		layer.add(this.model);
+	}
+
+	onBackgroundColor(color) {
+		if (color === this.color && !this.hasAltColor) {
+			let tween = new Konva.Tween({
+				node: this.model,
+				fill: altColorValues[color],
+				duration: .35,
+			});
+			tween.play();
+		}
+		else if (this.hasAltColor) {
+			let tween = new Konva.Tween({
+				node: this.model,
+				fill: colorValues[color],
+				duration: .35,
+			});
+			tween.play();
+		}
 	}
 }
 

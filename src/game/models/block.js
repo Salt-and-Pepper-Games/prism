@@ -1,11 +1,14 @@
 import Konva from 'konva';
 import { blockTypes } from './board';
-import { colorValues } from '../colors';
+import { colorValues, altColorValues } from '../colors';
 
 export default class Block {
 
 	constructor(color, x, y, width, height, layer) {
 		this.type = blockTypes.BLOCK;
+		this.color = color;
+		this.hasAltColor = false;
+		
 		this.x = x;
 		this.y = y;
 
@@ -36,5 +39,25 @@ export default class Block {
 	}, 0);
 	}
 
+	onBackgroundColor(color) {
+		if (color === this.color && !this.hasAltColor) {
+			let tween = new Konva.Tween({
+				node: this.model,
+				fill: altColorValues[this.color],
+				duration: .35,
+			});
+			tween.play();
+			this.hasAltColor = true;
+		}
+		else if (color !== this.color && this.hasAltColor) {
+			let tween = new Konva.Tween({
+				node: this.model,
+				fill: colorValues[this.color],
+				duration: .35,
+			});
+			tween.play();
+			this.hasAltColor = false;
+		}
+	}
 }
 

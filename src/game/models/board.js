@@ -48,6 +48,14 @@ export default class Board {
 
 	setBackgroundColor(color) {
 		this.background.setColor(color);
+		for (let i=0; i<this.blocks.length; i++) {
+			for (let j=0; j<this.blocks[i].length; j++) {
+				if (this.blocks[i][j]) {
+					this.blocks[i][j].onBackgroundColor(color);
+				}
+			}
+		}
+		this.player.onBackgroundColor(color);
 	}
 
 	hasSwitch(x, y) {
