@@ -54,9 +54,17 @@ function getStateFromMovement(oldBoard, x, y) {
 	if (oldBoard.blocks[x] && oldBoard.blocks[x][y] &&
 			(oldBoard.blocks[x][y].type !== blockTypes.BLOCK || 
 			oldBoard.blocks[x][y].color === oldBoard.background)) {
-		return Object.assign({}, oldBoard, {
+		let newBoard;
+		if (oldBoard.blocks[x][y].type === blockTypes.SWITCH) {
+			newBoard = getStateFromBgColor(oldBoard, oldBoard.background ^ oldBoard.blocks[x][y].color);
+		}
+		else {
+			newBoard = Object.assign({}, oldBoard);
+		}
+		Object.assign(newBoard, {
 			player: { x, y }
 		});
+		return newBoard;
 	}
 	else {
 		return oldBoard;

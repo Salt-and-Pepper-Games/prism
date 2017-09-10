@@ -12,6 +12,8 @@ let startTime = null;
 
 let boardManager;
 
+let prevState;
+
 /**
  * Initialize the game and start listening to the redux store
  * @function
@@ -19,6 +21,7 @@ let boardManager;
  * @return {None}
  */
 export const initGame = (store) => {
+	prevState = store.getState();
 	// gotta do this first so that the board manager is ready and listening
 	// when we load a level
 	// i don't like this syntax because it doesn't say what it's doing at all
@@ -49,8 +52,9 @@ const onStateChange = (store) => {
 	// instead, we should have this be the central place which handles state changes, and passes the relevant info to the board
 	// i'll leave it just in case tho
 	Object.keys(stateListeners).forEach(id => {
-		stateListeners[id](state);
+		stateListeners[id](state, prevState);
 	});
+	prevState = state;
 }
 
 // const animationLoop = (time) => {

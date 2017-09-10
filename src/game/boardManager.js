@@ -33,7 +33,8 @@ export default class BoardManager {
 		this.stage = stage;
 	}
 
-	onStateChange({ game, action }) {
+	onStateChange({ game, action }, prevState) {
+		let prevGame = prevState.game;
 		if (action.type === types.LOAD_LEVEL) {
 			this.board = new Board(game.board, { boardLayer: this.boardLayer,
 				playerLayer: this.playerLayer,
@@ -44,15 +45,19 @@ export default class BoardManager {
 			// handle other actions here
 			const px = game.board.player.x;
 			const py = game.board.player.y;
+			const prevPx = prevGame.board.player.x;
+			const prevPy = prevGame.board.player.y;
+			const didMove = (px !== prevPx) || (py !== prevPy);
+
+			const bg = game.board.background;
+			const prevBg = prevGame.board.background;
+			const didBgChange = bg !== prevBg;
+
 			// Check if the player actually moved before changing switch color.
-			const didMove = this.board.setPlayerPosition(px, py);
-			if (didMove && this.board.hasSwitch(px, py) && action.type !== backgroundTypes.SET_COLOR) {
-				// need to dispatch a SET_COLOR action
-				const newColor = game.board.background ^ this.board.blocks[px][py].color;
-				// console.log(newColor);
-				this.dispatch(setBackgroundColor(newColor));
+			if (didMove) {
+				this.board.setPlayerPosition(px, py);
 			}
-			else if (action.type === backgroundTypes.SET_COLOR) {
+			if (didBgChange) {
 				this.board.setBackgroundColor(game.board.background);
 			}
 		}
