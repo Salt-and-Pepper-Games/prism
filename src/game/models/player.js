@@ -47,15 +47,8 @@ export default class Player {
 
 	// Returns a boolean indicating is position actually changed.
 	moveTo(x, y) {
-		if (x == this.targetX && y == this.targetY) {
-			this.targetX = x;
-			this.targetY = y;
-			return false;
-		} else {
-			this.targetX = x;
-			this.targetY = y;
-			return true;
-		}
+		this.targetX = x;
+		this.targetY = y;
 		// this.x = x;
 		// this.y = y;
 		// let tween = new Konva.Tween({
