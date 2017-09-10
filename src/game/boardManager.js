@@ -38,6 +38,7 @@ export default class BoardManager {
 		}
 		else if (this.board) {
 			// handle other actions here
+			this.board.setPlayerPosition(game.board.player.x, game.board.player.y);
 		}
 		else {
 			// receiving an action without a level loaded

@@ -2,6 +2,7 @@ import Block from './block';
 import Player from './player';
 import Switch from './switch';
 import Home from './home';
+import Background from './background';
 
 export const blockTypes = {
 	BLOCK: "BLOCK",
@@ -37,6 +38,10 @@ export default class Board {
 		this.player = new Player(player.x, player.y, this.width, this.height, playerLayer);
 		this.enemies = enemies;
 		this.home = new Home(home.x, home.y, this.width, this.height, boardLayer);
-		this.bgColor = bgColor;
+		this.background = new Background(bgColor, boardLayer);
+	}
+
+	setPlayerPosition(x, y) {
+		this.player.moveTo(x, y);
 	}
 }

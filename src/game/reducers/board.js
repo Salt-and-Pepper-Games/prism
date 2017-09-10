@@ -1,4 +1,5 @@
-import types from '../../actionCreators/levelActionNames.js';
+import levelActions from '../../actionCreators/levelActionNames';
+import playerActions from '../../actionCreators/playerActionNames';
 import { blockTypes } from '../models/board';
 import { colorIndices } from '../colors';
 
@@ -27,14 +28,39 @@ export const defaultState = {
 
 export default (state = defaultState, action) => {
 	switch (action.type) {
-		case types.LOAD_LEVEL:
+		case levelActions.LOAD_LEVEL:
 			console.log("Loading level");
 			const board = parseBoard(action.data);
 			const newState = Object.assign({}, state, board); 
 			Object.assign(newState, { loaded: true });
 			return newState;
+		case playerActions.MOVE_UP:
+			return getStateFromMovement(state, state.player.x, state.player.y - 1);
+		case playerActions.MOVE_DOWN:
+			return getStateFromMovement(state, state.player.x, state.player.y + 1);
+		case playerActions.MOVE_LEFT:
+			return getStateFromMovement(state, state.player.x - 1, state.player.y);
+		case playerActions.MOVE_RIGHT:
+			return getStateFromMovement(state, state.player.x + 1, state.player.y);
 		default:
 			return state;
+	}
+}
+
+function isPassable(board, x, y) {
+	return board.blocks[x][y].type !== blockTypes.BLOCK;
+}
+
+function getStateFromMovement(oldBoard, x, y) {
+	if (oldBoard.blocks[x] && oldBoard.blocks[x][y] &&
+			(oldBoard.blocks[x][y].type !== blockTypes.BLOCK || 
+			oldBoard.blocks[x][y].color === oldBoard.background)) {
+		return Object.assign({}, oldBoard, {
+			player: { x, y }
+		});
+	}
+	else {
+		return oldBoard;
 	}
 }
 

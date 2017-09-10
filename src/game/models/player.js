@@ -6,30 +6,44 @@ export default class Player {
 		this.x = x;
 		this.y = y;
 
-		this.width = .8 * layer.width() / width;
-		this.height = .8 * layer.height() / height;
+		this.width = .5 * layer.width() / width;
+		this.height = .5 * layer.height() / height;
 
 		this.cellWidth = layer.width() / width;
 		this.cellHeight = layer.height() / height;
 
-		console.log(x,y);
+		// this.model = new Konva.Rect({
+		// 	x: this.cellWidth * (x + .5),
+		// 	y: this.cellHeight * (y + .5),
+		// 	offsetX: this.width / 2,
+		// 	offsetY: this.height / 2,
+		// 	width: this.width,
+		// 	height: this.height,
+		// 	cornerRadius: 10,
+		// 	fill: colorValues[colorIndices.WHITE]
+		// });
 
-		this.model = new Konva.Rect({
+		this.model =  new Konva.Circle({
 			x: this.cellWidth * (x + .5),
 			y: this.cellHeight * (y + .5),
-			offsetX: this.width / 2,
-			offsetY: this.height / 2,
-			width: this.width,
-			height: this.height,
-			cornerRadius: 10,
-			fill: colorValues[colorIndices.BLACK]
+			radius: this.width / 2,
+			fill: colorValues[colorIndices.WHITE]
 		});
+
 		layer.add(this.model);
 	}
 
-	setPosition(x, y) {
-		this.model.x = this.cellWidth * x + .5;
-		this.model.y = this.cellHeight * y + .5;
+	moveTo(x, y) {
+		this.x = x;
+		this.y = y;
+		let tween = new Konva.Tween({
+			node: this.model,
+			x: this.cellWidth * (x + .5),
+			y: this.cellHeight * (y + .5),
+			duration: .35,
+			easing: Konva.Easings.EaseOut
+		});
+		tween.play();
 	}
 }
 
