@@ -44,8 +44,9 @@ export default class BoardManager {
 			// handle other actions here
 			const px = game.board.player.x;
 			const py = game.board.player.y;
-			this.board.setPlayerPosition(px, py);
-			if (this.board.hasSwitch(px, py) && action.type !== backgroundTypes.SET_COLOR) {
+			// Check if the player actually moved before changing switch color.
+			const didMove = this.board.setPlayerPosition(px, py);
+			if (didMove && this.board.hasSwitch(px, py) && action.type !== backgroundTypes.SET_COLOR) {
 				// need to dispatch a SET_COLOR action
 				const newColor = game.board.background ^ this.board.blocks[px][py].color;
 				// console.log(newColor);

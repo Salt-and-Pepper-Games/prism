@@ -42,9 +42,17 @@ export default class Player {
 		playerAnim.start();
 	}
 
+	// Returns a boolean indicating is position actually changed.
 	moveTo(x, y) {
-		this.targetX = x;
-		this.targetY = y;
+		if (x == this.targetX && y == this.targetY) {
+			this.targetX = x;
+			this.targetY = y;
+			return false;
+		} else {
+			this.targetX = x;
+			this.targetY = y;
+			return true;
+		}
 		// this.x = x;
 		// this.y = y;
 		// let tween = new Konva.Tween({
@@ -55,6 +63,7 @@ export default class Player {
 		// 	easing: Konva.Easings.EaseOut
 		// });
 		// tween.play();
+
 	}
 
 	updatePlayer(frame) {
