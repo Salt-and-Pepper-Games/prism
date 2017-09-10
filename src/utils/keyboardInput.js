@@ -7,7 +7,7 @@ export const setupKeyboardInput = s => {
 }
 
 function handleKey(e) {
-	e.preventDefault();
+	let doDefault = false;
 	const code = e.keyCode;
 	switch (code) {
 		case 37:
@@ -27,6 +27,10 @@ function handleKey(e) {
 			store.dispatch(playerActionCreators.moveDown());
 			break;
 		default:
+			doDefault = true;
 			break;
+	}
+	if (!doDefault) {
+		e.preventDefault();
 	}
 }
