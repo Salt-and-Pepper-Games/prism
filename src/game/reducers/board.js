@@ -1,3 +1,4 @@
+import backgroundActions from '../../actionCreators/backgroundActionNames';
 import levelActions from '../../actionCreators/levelActionNames';
 import playerActions from '../../actionCreators/playerActionNames';
 import { blockTypes } from '../models/board';
@@ -24,12 +25,12 @@ export const defaultState = {
 	blocks: null,
 	player: null,
 	enemies: null,
+	background: colorIndices.BLACK
 }
 
 export default (state = defaultState, action) => {
 	switch (action.type) {
 		case levelActions.LOAD_LEVEL:
-			console.log("Loading level");
 			const board = parseBoard(action.data);
 			const newState = Object.assign({}, state, board); 
 			Object.assign(newState, { loaded: true });
@@ -42,13 +43,11 @@ export default (state = defaultState, action) => {
 			return getStateFromMovement(state, state.player.x - 1, state.player.y);
 		case playerActions.MOVE_RIGHT:
 			return getStateFromMovement(state, state.player.x + 1, state.player.y);
+		case backgroundActions.SET_COLOR:
+			return getStateFromBgColor(state, action.color);
 		default:
 			return state;
 	}
-}
-
-function isPassable(board, x, y) {
-	return board.blocks[x][y].type !== blockTypes.BLOCK;
 }
 
 function getStateFromMovement(oldBoard, x, y) {
@@ -57,6 +56,30 @@ function getStateFromMovement(oldBoard, x, y) {
 			oldBoard.blocks[x][y].color === oldBoard.background)) {
 		return Object.assign({}, oldBoard, {
 			player: { x, y }
+		});
+	}
+	else {
+		return oldBoard;
+	}
+}
+
+function getStateFromBgColor(oldBoard, color) {
+	if (color !== oldBoard.bgColor) {
+		const newBlocks = Object.assign({}, oldBoard.blocks);
+		for (let i=0; i<newBlocks.length; i++) {
+			for (let j=0; j<newBlocks[i].length; j++) {
+				newBlocks[i][j].passable = newBlocks[i][j].type === blockTypes.EMPTY ||
+					newBlocks[i][j] === color;
+			}
+		}
+		const newSwitches = Object.assign({}, oldBoard.switches);
+		for (let i=0; i<newSwitches.length; i++) {
+			newSwitches[i].toggled = newSwitches[i].color & color;
+		}
+		return Object.assign({}, oldBoard, {
+			blocks: newBlocks,
+			switches: newSwitches,
+			background: color
 		});
 	}
 	else {
@@ -186,7 +209,8 @@ const parseBoardChar = c => {
 	}
 	return {
 		type,
-		color
+		color,
+		passable: false
 	};
 }
 

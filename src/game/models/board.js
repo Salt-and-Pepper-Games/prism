@@ -44,4 +44,12 @@ export default class Board {
 	setPlayerPosition(x, y) {
 		this.player.moveTo(x, y);
 	}
+
+	setBackgroundColor(color) {
+		this.background.setColor(color);
+	}
+
+	hasSwitch(x, y) {
+		return this.blocks[x] && this.blocks[x][y] && this.blocks[x][y].type === blockTypes.SWITCH;
+	}
 }

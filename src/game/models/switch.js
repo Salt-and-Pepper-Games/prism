@@ -1,8 +1,10 @@
 import Konva from 'konva';
+import { blockTypes } from './board';
 import { colorValues } from '../colors';
 
 export default class Switch {
 	constructor(color, x, y, width, height, layer) {
+		this.type = blockTypes.SWITCH;
 		this.color = color;
 		this.x = x;
 		this.y = y;

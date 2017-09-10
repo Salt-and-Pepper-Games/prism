@@ -17,5 +17,16 @@ export default class Background {
 		this.model.setZIndex(1);
 	}
 
+	setColor(color) {
+		console.log("Setting bg color to " + color);
+		this.color = color;
+		let tween = new Konva.Tween({
+			node: this.model,
+			fill: colorValues[color],
+			duration: .35,
+			easing: Konva.Easings.EaseOut
+		});
+		tween.play();
+	}
 }
 

@@ -1,9 +1,11 @@
 import Konva from 'konva';
+import { blockTypes } from './board';
 import { colorValues } from '../colors';
 
 export default class Block {
 
 	constructor(color, x, y, width, height, layer) {
+		this.type = blockTypes.BLOCK;
 		this.x = x;
 		this.y = y;
 

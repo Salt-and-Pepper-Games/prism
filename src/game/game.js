@@ -36,7 +36,7 @@ export const initGame = (store) => {
 		height: size
 	});
 
-	boardManager = new BoardManager(stage);
+	boardManager = new BoardManager(stage, store.dispatch);
 
 	store.subscribe(onStateChange.bind(null, store));
 	onStateChange(store);

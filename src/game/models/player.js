@@ -76,7 +76,7 @@ export default class Player {
 		this.y += this.dy;
 		this.model.setX(this.cellWidth * (this.x + .5));
 		this.model.setY(this.cellHeight * (this.y + .5));
-		console.log(this.x, this.y);
+		// console.log(this.x, this.y);
 	}
 
 	closeToTarget() {

@@ -1,5 +1,7 @@
 import Konva from 'konva';
 import types from '../actionCreators/levelActionNames.js';
+import backgroundTypes from '../actionCreators/backgroundActionNames';
+import { setBackgroundColor } from '../actionCreators/backgroundActionCreators';
 import { addStateListener } from './game';
 import Board from './models/board';
 
@@ -12,8 +14,10 @@ import Board from './models/board';
 export default class BoardManager {
 	board = null;
 
-	constructor(stage) {
+	constructor(stage, dispatch) {
 		this.stopStateListener = addStateListener(this.onStateChange.bind(this));
+		// is this bad practice? how else do i get at the store?
+		this.dispatch = dispatch;
 
 		// where we will put background and blocks
 		this.boardLayer = new Konva.Layer();
@@ -38,7 +42,18 @@ export default class BoardManager {
 		}
 		else if (this.board) {
 			// handle other actions here
-			this.board.setPlayerPosition(game.board.player.x, game.board.player.y);
+			const px = game.board.player.x;
+			const py = game.board.player.y;
+			this.board.setPlayerPosition(px, py);
+			if (this.board.hasSwitch(px, py) && action.type !== backgroundTypes.SET_COLOR) {
+				// need to dispatch a SET_COLOR action
+				const newColor = game.board.background ^ this.board.blocks[px][py].color;
+				// console.log(newColor);
+				this.dispatch(setBackgroundColor(newColor));
+			}
+			else if (action.type === backgroundTypes.SET_COLOR) {
+				this.board.setBackgroundColor(game.board.background);
+			}
 		}
 		else {
 			// receiving an action without a level loaded
