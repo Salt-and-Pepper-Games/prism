@@ -41,8 +41,8 @@ export default class Player {
 
 		layer.add(this.model);
 
-		const playerAnim = new Konva.Animation(this.updatePlayer.bind(this), layer);
-		playerAnim.start();
+		// const playerAnim = new Konva.Animation(this.updatePlayer.bind(this), layer);
+		// playerAnim.start();
 	}
 
 	// Returns a boolean indicating is position actually changed.
@@ -51,14 +51,14 @@ export default class Player {
 		this.targetY = y;
 		// this.x = x;
 		// this.y = y;
-		// let tween = new Konva.Tween({
-		// 	node: this.model,
-		// 	x: this.cellWidth * (x + .5),
-		// 	y: this.cellHeight * (y + .5),
-		// 	duration: .35,
-		// 	easing: Konva.Easings.EaseOut
-		// });
-		// tween.play();
+		let tween = new Konva.Tween({
+			node: this.model,
+			x: this.cellWidth * (x + .5),
+			y: this.cellHeight * (y + .5),
+			duration: .2,
+			easing: Konva.Easings.StrongEaseOut
+		});
+		tween.play();
 
 	}
 
