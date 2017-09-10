@@ -21,7 +21,11 @@ export default class Switch {
 			width: this.width,
 			height: this.height,
 			cornerRadius: 10,
-			fill: colorValues[color]
+			fill: colorValues[color],
+			shadowBlur: 0,
+			shadowColor: "#000000",
+			shadowOffsetX: this.width * .1,
+			shadowOffsetY: this.height * .1,
 		});
 
 		// this.model =  new Konva.Circle({
