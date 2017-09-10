@@ -33,9 +33,12 @@ export default class BoardManager {
 		this.stage = stage;
 	}
 
-	onStateChange({ game, action }, prevState) {
+	onStateChange({ game }, prevState) {
 		let prevGame = prevState.game;
-		if (action.type === types.LOAD_LEVEL) {
+		// if (action.type === types.LOAD_LEVEL) {
+		if (prevGame.board.levelPack !== game.board.levelPack &&
+				prevGame.board.levelNumber !== game.board.levelNumber) {
+			// TODO: add code to discard the old board!!!!!!!
 			this.board = new Board(game.board, { boardLayer: this.boardLayer,
 				playerLayer: this.playerLayer,
 				switchLayer: this.switchLayer });

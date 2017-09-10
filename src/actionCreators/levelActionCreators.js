@@ -7,12 +7,14 @@ export const loadLevel = (pack, number) => {
 	return dispatch => fetch('levels/' + pack + '/' + number + '.txt')
 		.then(res => res.text())
 		.then(text => {
-			dispatch(loadLevelAction(text));
+			dispatch(loadLevelAction(text, pack, number));
 			return text;
 		});
 }
 
-const loadLevelAction = (data) => ({
+const loadLevelAction = (data, pack, number) => ({
 	type: types.LOAD_LEVEL,
-	data
+	data,
+	pack,
+	number
 });

@@ -25,7 +25,9 @@ export const defaultState = {
 	blocks: null,
 	player: null,
 	enemies: null,
-	background: colorIndices.BLACK
+	background: colorIndices.BLACK,
+	levelPack: null,
+	levelNumber: null
 }
 
 export default (state = defaultState, action) => {
@@ -33,7 +35,11 @@ export default (state = defaultState, action) => {
 		case levelActions.LOAD_LEVEL:
 			const board = parseBoard(action.data);
 			const newState = Object.assign({}, state, board); 
-			Object.assign(newState, { loaded: true });
+			Object.assign(newState, { 
+				loaded: true,
+				levelPack: action.pack,
+				levelNumber: action.number
+			});
 			return newState;
 		case playerActions.MOVE_UP:
 			return getStateFromMovement(state, state.player.x, state.player.y - 1);
