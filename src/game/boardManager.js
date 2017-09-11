@@ -27,8 +27,8 @@ export default class BoardManager {
 		this.playerLayer = new Konva.Layer();
 
 		stage.add(this.boardLayer);
-		stage.add(this.switchLayer);
 		stage.add(this.playerLayer);
+		stage.add(this.switchLayer);
 
 		this.stage = stage;
 	}

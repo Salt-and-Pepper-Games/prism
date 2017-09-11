@@ -1,3 +1,38 @@
+function pad(n) {
+	if (n.length < 2) {
+		return "0".repeat(2 - n.length) + n;
+	}
+	else {
+		return n;
+	}
+}
+
+function color(hex) {
+	if (hex.length === 7) {
+		const r = parseInt(hex.substr(1, 2), 16);
+		const g = parseInt(hex.substr(3, 2), 16);
+		const b = parseInt(hex.substr(5, 2), 16);
+		return { r, g, b };
+	}
+	else {
+		throw 'InvalidColorFormat';
+	}
+}
+
+function lerpColor(a, b, t) {
+	const colA = color(a);
+	const colB = color(b);
+	const colResult = {
+		r: Math.floor(colA.r * (1 - t) + colB.r * t),
+		g: Math.floor(colA.g * (1 - t) + colB.g * t),
+		b: Math.floor(colA.b * (1 - t) + colB.b * t)
+	};
+	console.log(colResult);
+	const result = "#" + pad(colResult.r.toString(16)) + pad(colResult.g.toString(16)) + pad(colResult.b.toString(16));
+	console.log(result);
+	return result;
+}
+
 export const colorIndices = {
 	BLACK: 0,
 	RED: 1,
@@ -24,16 +59,18 @@ colorValues[colorIndices.PLAYER] = "#FFF8F4";
 
 export { colorValues };
 
+const black = "#000000";
+const lerpAmt = .12;
 const altColorValues = {};
-altColorValues[colorIndices.BLACK] = "#313445";
-altColorValues[colorIndices.RED] = "#b24954";
-altColorValues[colorIndices.GREEN] = "#67a33a";
-altColorValues[colorIndices.BLUE] = "#275dae";
-altColorValues[colorIndices.YELLOW] = "#aaa625";
-altColorValues[colorIndices.MAGENTA] = "#274197";
-altColorValues[colorIndices.CYAN] = "#35a59b";
-altColorValues[colorIndices.BLACK] = "#7d8191";
-altColorValues[colorIndices.WHITE] = "#b2adaa";
-altColorValues[colorIndices.PLAYER] = "#d8d2cf";
+altColorValues[colorIndices.BLACK] = lerpColor(colorValues[colorIndices.BLACK], black, lerpAmt);
+altColorValues[colorIndices.RED] = lerpColor(colorValues[colorIndices.RED], black, lerpAmt);
+altColorValues[colorIndices.GREEN] = lerpColor(colorValues[colorIndices.GREEN], black, lerpAmt);
+altColorValues[colorIndices.BLUE] = lerpColor(colorValues[colorIndices.BLUE], black, lerpAmt);
+altColorValues[colorIndices.YELLOW] = lerpColor(colorValues[colorIndices.YELLOW], black, lerpAmt);
+altColorValues[colorIndices.MAGENTA] = lerpColor(colorValues[colorIndices.MAGENTA], black, lerpAmt);
+altColorValues[colorIndices.CYAN] = lerpColor(colorValues[colorIndices.CYAN], black, lerpAmt);
+altColorValues[colorIndices.BLACK] = lerpColor(colorValues[colorIndices.BLACK], black, lerpAmt);
+altColorValues[colorIndices.PLAYER] = lerpColor(colorValues[colorIndices.WHITE], black, lerpAmt * 2);
+altColorValues[colorIndices.WHITE] = lerpColor(colorValues[colorIndices.PLAYER], altColorValues[colorIndices.PLAYER], .5);
 
 export { altColorValues };
