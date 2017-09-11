@@ -1,6 +1,7 @@
 import Konva from 'konva';
 import BoardManager from './boardManager';
 import { loadLevel } from '../actionCreators/levelActionCreators';
+import { setupInput } from '../utils/userInput';
 
 // const animationListeners = {};
 // let nextAnimationListenerId = 0;
@@ -38,6 +39,7 @@ export const initGame = (store) => {
 		width: size,
 		height: size
 	});
+	setupInput(store, stage.container());
 
 	boardManager = new BoardManager(stage, store.dispatch);
 

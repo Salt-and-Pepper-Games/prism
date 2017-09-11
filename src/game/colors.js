@@ -27,9 +27,7 @@ function lerpColor(a, b, t) {
 		g: Math.floor(colA.g * (1 - t) + colB.g * t),
 		b: Math.floor(colA.b * (1 - t) + colB.b * t)
 	};
-	console.log(colResult);
 	const result = "#" + pad(colResult.r.toString(16)) + pad(colResult.g.toString(16)) + pad(colResult.b.toString(16));
-	console.log(result);
 	return result;
 }
 
