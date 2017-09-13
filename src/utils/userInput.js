@@ -29,7 +29,6 @@ function setupSwipeInput(root) {
 
 function setupKeyboardInput(root) {
 	root.addEventListener('keydown', handleKey, false);
-	console.log(root);
 }
 
 function handleSwipe(start, end) {
@@ -64,7 +63,6 @@ function handleSwipe(start, end) {
 }
 
 function handleKey(e) {
-	console.log("Got key");
 	let doDefault = false;
 	const code = e.keyCode;
 	switch (code) {

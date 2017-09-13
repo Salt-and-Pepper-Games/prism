@@ -1,3 +1,4 @@
+import GameArea from './ui/components/GameArea';
 const React = require('react');
 const Header = require('./ui/components/Header.jsx');
 const Dashboard = require('./ui/components/Dashboard.jsx');
@@ -12,10 +13,11 @@ class App extends React.Component {
 				<Dashboard />
 				<LevelAreaContainer />
 				<LevelPackContainer />
+				<GameArea />
 			</div>
 		);
 	}
 }
 
 
-module.exports = App;
+export default App;

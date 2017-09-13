@@ -7,10 +7,8 @@ import './styles/index.css';
 import App from './App.jsx';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './rootReducer';
-import { initGame } from './game';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-initGame(store);
 
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
