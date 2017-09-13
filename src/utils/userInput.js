@@ -1,4 +1,5 @@
 import * as playerActionCreators from '../actionCreators/playerActionCreators';
+import { closeCurrentPack } from '../actionCreators/uiActionCreators';
 let store;
 let touchStart;
 

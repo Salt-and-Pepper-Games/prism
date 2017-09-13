@@ -6,6 +6,7 @@
     "firebase": "^4.3.1",
     "fs": "0.0.1-security",
     "konva": "^1.6.8",
+    "lodash.isequal": "^4.5.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
@@ -20,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-		"deploy" : "npm run build&&gh-pages -d build"
+    "deploy": "npm run build&&gh-pages -d build"
   },
   "homepage": "https://salt-and-pepper-games.github.io/prism",
   "devDependencies": {

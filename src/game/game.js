@@ -1,6 +1,5 @@
 import Konva from 'konva';
 import BoardManager from './boardManager';
-import { loadLevel } from '../actionCreators/levelActionCreators';
 import { setupInput } from '../utils/userInput';
 
 // const animationListeners = {};
@@ -45,7 +44,6 @@ export const initGame = (store) => {
 
 	store.subscribe(onStateChange.bind(null, store));
 	onStateChange(store);
-	store.dispatch(loadLevel("pack1", "0"));
 }
 
 const onStateChange = (store) => {

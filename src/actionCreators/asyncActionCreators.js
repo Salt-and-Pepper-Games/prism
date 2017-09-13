@@ -14,8 +14,7 @@ module.exports = {
 					levelNum,
 					packInfo
 				};
-				console.log(levelObject);
-				// dispatch(levelActionCreators.loadLevelAction(levelObject));
+				dispatch(levelActionCreators.loadLevelAction(levelObject));
 			});
 		};
 	}

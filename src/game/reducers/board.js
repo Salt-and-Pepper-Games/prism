@@ -18,7 +18,6 @@ const charMap = {
 	BLUE_SWITCH: 'B'
 }
 
-// TODO: Figure out if this should be separated into four reducers, or if it's ok to have it all here
 
 export const defaultState = {
 	loaded: false,
@@ -26,20 +25,21 @@ export const defaultState = {
 	player: null,
 	enemies: null,
 	background: colorIndices.BLACK,
-	levelPack: null,
+	packInfo: null,
 	levelNumber: null
 }
 
 export default (state = defaultState, action) => {
 	switch (action.type) {
 		case levelActions.LOAD_LEVEL:
-			const board = parseBoard(action.data);
+			const board = parseBoard(action.levelString);
 			const newState = Object.assign({}, state, board); 
 			Object.assign(newState, { 
 				loaded: true,
-				levelPack: action.pack,
-				levelNumber: action.number
+				packInfo: action.packInfo,
+				levelNumber: action.levelNumber
 			});
+			console.log(newState.blocks);
 			return newState;
 		case playerActions.MOVE_UP:
 			return getStateFromMovement(state, state.player.x, state.player.y - 1);
@@ -111,37 +111,48 @@ function getStateFromBgColor(oldBoard, color) {
  * b b b b b b b
  * etc.
  * =========================
+ * but with everythign just on one line
  */
 const parseBoard = lines => {
-	const data = lines.split(/\r?\n/);
-	for (let i=0; i<data.length; i++) {
-		data[i] = data[i].split(' ')
-	}
-
 	try {
+		const characters = lines.split(' ');
+		// const data = lines.split(/\r?\n/);
+
+		// for (let i=0; i<data.length; i++) {
+		// 	data[i] = data[i].split(' ')
+		// }
 		const player = {
-			x: parseInt(data[0][0]),
-			y: parseInt(data[0][1])
+			x: parseInt(characters[0]),
+			y: parseInt(characters[1])
 		}
 
 		const home = {
-			x: parseInt(data[1][0]),
-			y: parseInt(data[1][1])
+			x: parseInt(characters[2]),
+			y: parseInt(characters[3])
 		}
 
 		const size = {
-			width: parseInt(data[2][0]),
-			height: parseInt(data[2][1])
+			width: parseInt(characters[4]),
+			height: parseInt(characters[5])
+		}
+
+		const data = [];
+		const boardStartIndex = 6;
+		for (let i=0; i<size.width; i++) {
+			data[i] = []
+			for (let j=0; j<size.height; j++) {
+				data[i][j] = characters[boardStartIndex + i + (j * size.width)];
+			}
 		}
 
 		const blocks = [];
-		const rowOffset = 3;
 		for (let i=0; i<size.width; i++) {
 			blocks.push([]);
 			for (let j=0; j<size.height; j++) {
-				blocks[i].push(parseBoardChar(data[i + rowOffset][j]));
+				blocks[i].push(parseBoardChar(data[i][j]));
 			}
 		}
+
 		return {
 			blocks,
 			player,
@@ -224,7 +235,7 @@ const parseBoardChar = c => {
 	return {
 		type,
 		color,
-		passable: false
+		passable: type !== blockTypes.BLOCK
 	};
 }
 

@@ -4,6 +4,7 @@ import backgroundTypes from '../actionCreators/backgroundActionNames';
 import { setBackgroundColor } from '../actionCreators/backgroundActionCreators';
 import { addStateListener } from './game';
 import Board from './models/board';
+import isEqual from 'lodash.isequal';
 
 /**
  * Higher order redux-connected class to wrap around a board
@@ -36,8 +37,8 @@ export default class BoardManager {
 	onStateChange({ game }, prevState) {
 		let prevGame = prevState.game;
 		// if (action.type === types.LOAD_LEVEL) {
-		if (prevGame.board.levelPack !== game.board.levelPack &&
-				prevGame.board.levelNumber !== game.board.levelNumber) {
+		if (!isEqual(prevGame.board.levelNumber, game.board.levelNumber) ||
+				!isEqual(prevGame.board.packInfo, game.board.packInfo)) {
 			// TODO: add code to discard the old board!!!!!!!
 			this.board = new Board(game.board, { boardLayer: this.boardLayer,
 				playerLayer: this.playerLayer,
