@@ -18,6 +18,8 @@ export default class Switch {
 		this.cellWidth = layer.width() / width;
 		this.cellHeight = layer.height() / height;
 
+		this.shadowOffsetRatio = .1;
+
 		// this.model = new Konva.Rect({
 		// 	x: this.cellWidth * (x + .5),
 		// 	y: this.cellHeight * (y + .5),
@@ -42,8 +44,10 @@ export default class Switch {
 			// stroke: "rgba(30, 30, 30, .3)",
 			shadowBlur: 0,
 			shadowColor: "#000000",
-			shadowOffsetX: this.width * .1,
-			shadowOffsetY: this.height * .1,
+			shadowOffsetX: this.width * this.shadowOffsetRatio,
+			shadowOffsetY: this.height * this.shadowOffsetRatio,
+			offsetX: this.width * this.shadowOffsetRatio,
+			offsetY: this.height * this.shadowOffsetRatio,
 		});
 
 		layer.add(this.model);
@@ -56,7 +60,9 @@ export default class Switch {
 				node: this.model,
 				shadowOffsetX: 0,
 				shadowOffsetY: 0,
-				duration: .03
+				offsetX: 0,
+				offsetY: 0,
+				duration: .3
 			});
 			tween.play();
 			this.isPressed = true;
@@ -65,9 +71,11 @@ export default class Switch {
 			let tween = new Konva.Tween({
 				node: this.model,
 				shadowBlur: 0,
-				shadowOffsetX: this.width * .1,
-				shadowOffsetY: this.height * .1,
-				duration: .03
+				shadowOffsetX: this.width * this.shadowOffsetRatio,
+				shadowOffsetY: this.height * this.shadowOffsetRatio,
+				offsetX: this.width * this.shadowOffsetRatio,
+				offsetY: this.height * this.shadowOffsetRatio,
+				duration: .3
 			});
 			tween.play();
 			this.isPressed = false;
