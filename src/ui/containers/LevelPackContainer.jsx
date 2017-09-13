@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => {
 	return {
 		setCurrentLevel: level => dispatch(uiActionCreators.setCurrentLevel(level)),
 		onClose: () => dispatch(uiActionCreators.closeCurrentPack()),
-		onLevelClick: (levelNum, packIndex) => dispatch(asyncActionCreators.loadLevelString(levelNum, packIndex))
+		onLevelClick: (levelNum, packInfo) => dispatch(asyncActionCreators.loadLevelString(levelNum, packInfo))
 	};
 };
 

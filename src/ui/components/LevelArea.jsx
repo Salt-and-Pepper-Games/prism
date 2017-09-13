@@ -6,10 +6,10 @@ class LevelArea extends React.Component {
 		const levelsRef = firebase.database().ref("levelStrings");
 		const packInfo = [];
 		levelsRef.once("value").then(snapshot => {
-			const packCount = snapshot.child("packCount").val();
-			for (let i = 1; i <= packCount; i++) {
+			const packNames = snapshot.child("packNames").val();
+			for (const packName in packNames) {
 				packInfo.push(levelsRef.once("value").then(snapshot => {
-					return snapshot.child(`pack${i}/packInfo`).val();
+					return snapshot.child(`${packName}Pack/packInfo`).val();
 				}));
 			}
 			return packInfo;

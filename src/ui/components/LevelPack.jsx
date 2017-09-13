@@ -41,7 +41,7 @@ class LevelPack extends React.Component {
 						<i onClick={onClose} className='fa fa-close close-pack-btn'/>
 						<div id='level-grid' className="levels-grid">
 							{levels.map(level =>
-								<div onClick={() => onLevelClick(level, currentPack.packIndex)} key={level} className={`level-btn btn-${cachedCurrentPack.packName}`}>
+								<div onClick={() => onLevelClick(level, currentPack)} key={level} className={`level-btn btn-${cachedCurrentPack.packName}`}>
 									<span className='level-btn-text'>{level}</span>
 								</div>
 							)}
