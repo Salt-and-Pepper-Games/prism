@@ -1,24 +1,154 @@
 @mixin mobile {
-  @media only screen and (orientation: portrait), only screen and (max-width: 768px) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     @content;
   }
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Work Sans", sans-serif;
+    background-color: #fffdfc;
+    margin: 0;
+    padding: 0;
+    font-family: "Josefin Sans", sans-serif;
+    color: #464B63;
+}
+.level-pack-background {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .25s, opacity .25s;
+}
+.level-pack {
+    position: fixed;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1em;
+    border: 5px solid #464B63;
+    width: 75vw;
+    height: 80vh;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .25s, opacity .25s;
+    @include mobile {
+        width: 90vw;
+        height: 90vh;
+    }
+}
+.pack-open {
+    visibility: visible;
+    opacity: 1;
+}
+.level-pack-inner {
+    padding: 1em 2em;
+    position: relative;
+}
+.pack-header {
+    text-align: center;
+}
+.close-pack-btn {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    font-size: 2em;
+    transition: opacity .25s;
+}
+.close-pack-btn:hover {
+    opacity: .75;
+    cursor: 
+    pointer;
+}
+.modal-open {
+    overflow: hidden;
+}
+.levels-grid {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+    overflow: auto;
+    height: 64vh;
+    @include mobile {
+        height: 70vh;
+    }
+}
+.level-btn {
+    flex: 0 1 calc(20% - 2em);
+    margin: 1em;
+    border-radius: 2em;
+    transition: opacity .25s;
+    @include mobile {
+        flex-basis: calc(33.33% - 2em);
+        margin: 1em;
+        border-radius: 1em;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .25s;
+}
+.level-btn:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+.level-btn:hover {
+    opacity: .75;
+    cursor: pointer;    
+}
+
+.level-btn-text {
+    font-size: 2em;
+}
+.btn-red {
+    background-color: #ff919c;
+}
+.btn-green {
+    background-color: #baff87;
+}
+.btn-blue {
+    background-color: #6aa5ff;
+}
+.btn-magenta {
+    background-color: #dc6eec;
+}
+
+.dashboard {
+    margin: 2em;
+    background-color: #fff3f3;
+    border-radius: 1em;
+}
+.dashboard-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stats-list, .leaderboards-list {
+    line-height: 2em;
+    margin-top: 0;
+    align-self: left;
+}
+.stats-header, .leaderboards-header, .daily-challenge-header {
+    font-weight: 300;
+    margin-bottom: .5em;
 }
 
 .header {
 	text-align: center;
 }
 .prism {
+    padding-top: .25em;
 	display: inline-block;
     font-weight: 300;
     font-size: 7.5em;
     @include mobile {
     	font-weight: 400;
+        font-size: 5em;
     }
     .P {
         color: #FF6978;
@@ -62,9 +192,58 @@ body {
 .subtitle {
 	font-size: 1em;
 	@include mobile {
-		font-size: 1em;
+		font-size: .75em;
 	}
 }
 .subtitle:hover {
 	cursor: default;
+}
+.packs-container {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+}
+.pack {
+    flex: 0 1 calc(33.33% - 6em);
+    margin: 3em;
+    border-radius: 3em;
+    transition: opacity .25s;
+    @include mobile {
+        flex-basis: calc(33% - 2em);
+        margin: 1em;
+        border-radius: 1em;
+    }
+}
+.pack:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+.pack:hover {
+    cursor: pointer;
+    opacity: .75;
+}
+.packred {
+    background-color: #FF6978;
+}
+.packredbg {
+    background-color: rgba(255, 105, 120, 0.35);
+}
+.packblue {
+    background-color: #3885F9;
+}
+.packbluebg {
+    background-color: rgba(56, 133, 249, 0.35);
+}
+.packgreen {
+    background-color: #94EA54;
+}
+.packgreenbg {
+    background-color: rgba(148, 234, 84, 0.35);
+}
+.packmagenta {
+    background-color: #C85ED8;
+}
+.packmagentabg {
+    background-color: rgba(200, 94, 216, 0.35);
 }

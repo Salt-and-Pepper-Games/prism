@@ -1,19 +1,17 @@
 const React = require('react');
+const Header = require('./ui/components/Header.jsx');
+const Dashboard = require('./ui/components/Dashboard.jsx');
+const LevelAreaContainer = require('./ui/containers/LevelAreaContainer.jsx');
+const LevelPackContainer = require('./ui/containers/LevelPackContainer.jsx');
 
 class App extends React.Component {
 	render() {
 		return (
-			<div className="header">
-				<div className='prism'>
-					<span className='letter P'>P</span>
-					<span className='letter R'>R</span>
-					<span className='letter I'>I</span>
-					<span className='letter S'>S</span>
-					<span className='letter M'>M</span>
-				</div>
-				<div className="subtitle">
-					A Salt and Pepper Games Production
-				</div>
+			<div>
+				<Header />
+				<Dashboard />
+				<LevelAreaContainer />
+				<LevelPackContainer />
 			</div>
 		);
 	}
