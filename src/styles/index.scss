@@ -37,7 +37,7 @@ body {
     transition: visibility .25s, opacity .25s;
     @include mobile {
         width: 90vw;
-        height: 90vh;
+        height: 80vh;
     }
 }
 .pack-open {
@@ -73,7 +73,7 @@ body {
     overflow: auto;
     height: 64vh;
     @include mobile {
-        height: 70vh;
+        height: 60vh;
     }
 }
 .level-btn {
@@ -82,8 +82,8 @@ body {
     border-radius: 2em;
     transition: opacity .25s;
     @include mobile {
-        flex-basis: calc(33.33% - 2em);
-        margin: 1em;
+        flex-basis: calc(33.33% - 1em);
+        margin: .5em;
         border-radius: 1em;
     }
     display: flex;
