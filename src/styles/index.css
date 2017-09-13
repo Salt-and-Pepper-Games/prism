@@ -32,7 +32,7 @@ body {
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .level-pack {
       width: 90vw;
-      height: 90vh; } }
+      height: 80vh; } }
 
 .pack-open {
   visibility: visible;
@@ -67,7 +67,7 @@ body {
   height: 64vh; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .levels-grid {
-      height: 70vh; } }
+      height: 60vh; } }
 
 .level-btn {
   flex: 0 1 calc(20% - 2em);
@@ -80,8 +80,8 @@ body {
   transition: opacity .25s; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .level-btn {
-      flex-basis: calc(33.33% - 2em);
-      margin: 1em;
+      flex-basis: calc(33.33% - 1em);
+      margin: .5em;
       border-radius: 1em; } }
 
 .level-btn:after {
