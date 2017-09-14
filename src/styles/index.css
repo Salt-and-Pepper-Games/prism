@@ -61,10 +61,7 @@ body {
   cursor: pointer; }
 
 .modal-open {
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-  position: fixed; }
+  overflow-y: hidden; }
 
 .levels-grid {
   display: flex;
@@ -197,7 +194,7 @@ body {
   transition: opacity .25s; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack {
-      flex-basis: calc(33% - 2em);
+      flex-basis: calc(50% - 2em);
       margin: 1em;
       border-radius: 1em; } }
 

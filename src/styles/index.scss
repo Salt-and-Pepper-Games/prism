@@ -68,10 +68,7 @@ body {
     pointer;
 }
 .modal-open {
-    height: 100%;
-    overflow: hidden;
-    width: 100%;
-    position: fixed;
+    overflow-y: hidden;
 }
 .levels-grid {
     display: flex;
@@ -217,7 +214,7 @@ body {
     border-radius: 3em;
     transition: opacity .25s;
     @include mobile {
-        flex-basis: calc(33% - 2em);
+        flex-basis: calc(50% - 2em);
         margin: 1em;
         border-radius: 1em;
     }
