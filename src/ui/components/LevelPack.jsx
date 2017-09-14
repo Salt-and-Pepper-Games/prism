@@ -16,16 +16,19 @@ class LevelPack extends React.Component {
 				levels.push(i);
 			}
 		}
-		const el = document.getElementById('body');
+		const body = document.getElementById('body');
+		const html = document.getElementById('html');
 		if (isOpen) {
-			el.classList.add('modal-open');
+			body.classList.add('modal-open');
+			html.classList.add('modal-open');
 		} else {
 			if (this.levelGrid) {
 				setTimeout(() => {
 					this.levelGrid.scrollTop = 0;
 				}, 200);
 			}
-			el.classList.remove('modal-open');
+			body.classList.remove('modal-open');
+			html.classList.remove('modal-open');
 		}
 		return (
 			<div>
