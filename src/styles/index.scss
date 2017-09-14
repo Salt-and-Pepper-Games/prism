@@ -57,6 +57,10 @@ body {
     right: 1em;
     font-size: 2em;
     transition: opacity .25s;
+    @include mobile {
+        top: .5em;
+        right: .5em;
+    }
 }
 .close-pack-btn:hover {
     opacity: .75;
