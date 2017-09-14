@@ -51,6 +51,10 @@ body {
   right: 1em;
   font-size: 2em;
   transition: opacity .25s; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .close-pack-btn {
+      top: .5em;
+      right: .5em; } }
 
 .close-pack-btn:hover {
   opacity: .75;
