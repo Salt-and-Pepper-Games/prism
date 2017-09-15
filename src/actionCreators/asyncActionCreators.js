@@ -9,12 +9,17 @@ module.exports = {
 			packRef.once("value").then(snapshot => {
 				return snapshot.child(`level${levelNum}`).val();
 			}).then(levelString => {
-				const levelObject = {
-					levelString,
-					levelNum,
-					packInfo
-				};
-				dispatch(levelActionCreators.loadLevelAction(levelObject));
+				if (levelString) {
+					const levelObject = {
+						levelString,
+						levelNum,
+						packInfo
+					};
+					dispatch(levelActionCreators.loadLevelAction(levelObject));
+				// TODO: Add in error handling
+				} else {
+					console.log("There was an error loading the level");
+				}
 			});
 		};
 	}
