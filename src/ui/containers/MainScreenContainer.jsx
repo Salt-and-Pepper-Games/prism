@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import MainScreen from '../components/MainScreen.jsx';
 
 const mapStateToProps = state => {
-	console.log(state);
 	return {
 		inGame: state.ui.inGame && state.game.board.loaded
 	};
