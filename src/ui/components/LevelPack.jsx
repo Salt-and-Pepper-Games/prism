@@ -23,8 +23,8 @@ class LevelPack extends React.Component {
 			html.classList.add('modal-open');
 		} else {
 			if (this.levelGrid) {
+				this.levelGrid.style.overflowY = 'hidden';
 				setTimeout(() => {
-					this.levelGrid.style.overflowY = 'hidden';
 					this.levelGrid.style.overflowY = 'scroll';
 					this.levelGrid.scrollTop = 0;
 				}, 200);
