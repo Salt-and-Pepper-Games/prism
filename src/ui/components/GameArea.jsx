@@ -12,7 +12,13 @@ class GameArea extends React.Component {
 	}
 
 	render() {
-		return <div id="game-root" tabIndex="1"></div>
+		const { inGame, returnToMainScreen } = this.props;
+		return (
+			<div className={`${inGame ? 'open' : 'hidden'}`}>
+				<button className="return-home-btn" onClick={returnToMainScreen}>Return to main screen</button>
+				<div className='game-area' id='game-root' tabIndex='1' />
+			</div>
+		);
 	}
 }
 

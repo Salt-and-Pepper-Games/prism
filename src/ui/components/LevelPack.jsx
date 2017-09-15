@@ -1,4 +1,4 @@
-const React = require('react');
+import React from 'react';
 
 class LevelPack extends React.Component {
 	constructor(props) {
@@ -44,7 +44,7 @@ class LevelPack extends React.Component {
 							{cachedCurrentPack && <h1>{cachedCurrentPack.packName.toUpperCase()}</h1>}
 						</div>
 						<i onClick={onClose} className='fa fa-close close-pack-btn'/>
-						<div id='levels-grid' className="levels-grid">
+						<div id='levels-grid' className='levels-grid'>
 							{levels.map(level =>
 								<div onClick={() => onLevelClick(level, currentPack)} key={level} className={`level-btn btn-${cachedCurrentPack.packName}`}>
 									<span className='level-btn-text'>{level}</span>
@@ -58,4 +58,4 @@ class LevelPack extends React.Component {
 	}
 }
 
-module.exports = LevelPack;
+export default LevelPack;

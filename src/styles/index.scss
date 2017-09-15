@@ -11,6 +11,28 @@ body {
     font-family: "Josefin Sans", sans-serif;
     color: #464B63;
 }
+.main-screen, .game-area {
+    transition: visibility 0s, opacity .25s;
+}
+.game-area {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.return-home-btn {
+    position: fixed;
+    top: 0;
+}
+.open {
+    visibility: visible;
+    opacity: 1;
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
 .level-pack-background {
     position: fixed;
     z-index: 2;
