@@ -6,7 +6,7 @@ class LevelPack extends React.Component {
 		this.levelGrid;
 	}
 	componentDidMount() {
-		this.levelGrid = document.getElementById('level-grid');
+		this.levelGrid = document.getElementById('levels-grid');
 	}
 	render() {
 		const { isOpen, currentPack, cachedCurrentPack, setCurrentLevel, onClose, onLevelClick } = this.props;
@@ -24,6 +24,8 @@ class LevelPack extends React.Component {
 		} else {
 			if (this.levelGrid) {
 				setTimeout(() => {
+					this.levelGrid.style.overflowY = 'hidden';
+					this.levelGrid.style.overflowY = 'scroll';
 					this.levelGrid.scrollTop = 0;
 				}, 200);
 			}
@@ -42,7 +44,7 @@ class LevelPack extends React.Component {
 							{cachedCurrentPack && <h1>{cachedCurrentPack.packName.toUpperCase()}</h1>}
 						</div>
 						<i onClick={onClose} className='fa fa-close close-pack-btn'/>
-						<div id='level-grid' className="levels-grid">
+						<div id='levels-grid' className="levels-grid">
 							{levels.map(level =>
 								<div onClick={() => onLevelClick(level, currentPack)} key={level} className={`level-btn btn-${cachedCurrentPack.packName}`}>
 									<span className='level-btn-text'>{level}</span>
