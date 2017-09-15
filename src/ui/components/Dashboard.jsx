@@ -1,7 +1,7 @@
-const React = require('react');
-require("slick-carousel/slick/slick.css");
-require("slick-carousel/slick/slick-theme.css");
-const Slider = require('react-slick').default;
+import React from 'react';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick';
 
 const Dashboard = () => {
 	const mq = window.matchMedia("(orientation: portrait)");
@@ -49,4 +49,4 @@ const Dashboard = () => {
 	);
 };
 
-module.exports = Dashboard;
+export default Dashboard;

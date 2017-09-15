@@ -1,9 +1,10 @@
-const uiActionNames = require('../../actionCreators/uiActionNames.js');
+import uiActionNames from '../../actionCreators/uiActionNames.js';
 
 const initialState = {
 	currentPack: null,
 	cachedCurrentPack: null,
 	currentLevel: null,
+	inGame: false,
 	packInfo: []
 };
 
@@ -20,9 +21,13 @@ const ui = (state = initialState, action) => {
 			return Object.assign({}, state, { packInfo: action.packInfo });
 		case uiActionNames.SET_CURRENT_LEVEL:
 			return Object.assign({}, state, { currentLevel: action.currentLevel });
+		case uiActionNames.OPEN_GAME_MODE:
+			return Object.assign({}, state, { inGame: true });
+		case uiActionNames.CLOSE_GAME_MODE:
+			return Object.assign({}, state, { inGame: false });
 		default:
 			return state;
 	}
 };
 
-module.exports = ui;
+export default ui;

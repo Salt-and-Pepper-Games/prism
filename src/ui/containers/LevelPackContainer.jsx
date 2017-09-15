@@ -1,7 +1,7 @@
-const uiActionCreators = require('../../actionCreators/uiActionCreators');
-const asyncActionCreators = require('../../actionCreators/asyncActionCreators');
-const { connect } = require('react-redux');
-const LevelPack = require('../components/LevelPack');
+import uiActionCreators from '../../actionCreators/uiActionCreators';
+import asyncActionCreators from '../../actionCreators/asyncActionCreators';
+import { connect } from 'react-redux';
+import LevelPack from '../components/LevelPack';
 
 const mapStateToProps = state => {
 	return {
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-module.exports = connect(mapStateToProps, mapDispatchToProps)(LevelPack);
+export default connect(mapStateToProps, mapDispatchToProps)(LevelPack);

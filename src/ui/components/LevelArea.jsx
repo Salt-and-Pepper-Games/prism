@@ -1,5 +1,5 @@
-const React = require('react');
-const firebase = require('../../utils/initFirebase');
+import React from 'react';
+import firebase from '../../utils/initFirebase';
 
 class LevelArea extends React.Component {
 	componentDidMount() {
@@ -35,7 +35,7 @@ class LevelArea extends React.Component {
 	}
 }
 
-module.exports = LevelArea;
+export default LevelArea;
 
 
 

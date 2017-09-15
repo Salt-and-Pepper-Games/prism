@@ -1,4 +1,4 @@
-const firebase = require('firebase');
+import firebase from 'firebase';
 const config = {
 	apiKey: "AIzaSyAgfYibGQ6G_vzwNJkyl5GLU_fepDGLdas",
 	authDomain: "prism-d2f60.firebaseapp.com",
@@ -9,4 +9,4 @@ const config = {
 };
 firebase.initializeApp(config);
 
-module.exports = firebase;
+export default firebase;

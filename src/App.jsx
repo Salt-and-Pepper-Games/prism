@@ -1,19 +1,14 @@
-import GameArea from './ui/components/GameArea';
-const React = require('react');
-const Header = require('./ui/components/Header.jsx');
-const Dashboard = require('./ui/components/Dashboard.jsx');
-const LevelAreaContainer = require('./ui/containers/LevelAreaContainer.jsx');
-const LevelPackContainer = require('./ui/containers/LevelPackContainer.jsx');
+import React from 'react';
+
+import MainScreenContainer from './ui/containers/MainScreenContainer.jsx'
+import GameAreaContainer from './ui/containers/GameAreaContainer.jsx';
 
 class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Header />
-				<Dashboard />
-				<LevelAreaContainer />
-				<LevelPackContainer />
-				<GameArea />
+				<MainScreenContainer />
+				<GameAreaContainer />
 			</div>
 		);
 	}
