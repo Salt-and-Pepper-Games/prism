@@ -41,9 +41,8 @@ export default class Board {
 		this.background = new Background(bgColor, boardLayer);
 	}
 
-	// Returns a boolean indicating if the player's position really changed.
 	setPlayerPosition(x, y) {
-		return this.player.moveTo(x, y);
+		this.player.moveTo(x, y);
 	}
 
 	setBackgroundColor(color) {
