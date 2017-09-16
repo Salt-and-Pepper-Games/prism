@@ -14,9 +14,14 @@ class GameArea extends React.Component {
 	render() {
 		const { inGame, returnToMainScreen } = this.props;
 		return (
-			<div className={`${inGame ? 'open' : 'hidden'}`}>
-				<button className="return-home-btn" onClick={returnToMainScreen}>Return to main screen</button>
-				<div className='game-area' id='game-root' tabIndex='1' />
+			<div className={`${inGame ? 'open' : 'hidden'} game-area`}>
+				<div className="before-game-board">
+					<button className="return-home-btn" onClick={returnToMainScreen}>Return to main screen</button>
+				</div>
+				<div className='game-board' id='game-root' tabIndex='1' />
+				<div className="after-game-board">
+
+				</div>
 			</div>
 		);
 	}

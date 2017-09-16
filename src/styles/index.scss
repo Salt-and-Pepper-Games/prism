@@ -16,13 +16,25 @@ body {
 }
 .game-area {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    @include mobile {
+        flex-direction: column;
+    }
+}
+.game-board {
+    flex: 2;
+}
+.before-game-board {
+    flex: 1;
+}
+.after-game-board {
+    flex: 1;
 }
 .return-home-btn {
-    position: fixed;
-    top: 0;
+   
 }
 .open {
     visibility: visible;
@@ -31,6 +43,7 @@ body {
 .hidden {
     visibility: hidden;
     opacity: 0;
+    overflow: hidden;
 }
 
 .level-pack-background {
