@@ -22,6 +22,8 @@ export default class BoardManager {
 
 		// where we will put background and blocks
 		this.boardLayer = new Konva.Layer();
+		// give background rounded edges
+		this.boardLayer.canvas._canvas.style.borderRadius = '1em';
 		// where we will put switches
 		this.switchLayer = new Konva.Layer();
 		// where we will put player and enemies

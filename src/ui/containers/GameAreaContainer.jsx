@@ -5,13 +5,16 @@ import uiActionCreators from '../../actionCreators/uiActionCreators'
 
 const mapStateToProps = state => {
 	return {
-		inGame: state.ui.inGame && state.game.board.loaded
+		inGame: state.ui.inGame && state.game.board.loaded,
+		isHelpOpen: state.ui.isHelpOpen
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		returnToMainScreen: () => dispatch(uiActionCreators.closeGameMode())
+		returnToMainScreen: () => dispatch(uiActionCreators.closeGameMode()),
+		openHelp: () => dispatch(uiActionCreators.openHelp()),
+		closeHelp: () => dispatch(uiActionCreators.closeHelp())
 	};
 };
 
