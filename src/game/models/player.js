@@ -32,13 +32,59 @@ export default class Player {
 		// 	stroke: colorValues[colorIndices.WHITE]
 		// });
 
-		this.model =  new Konva.Ellipse({
+		//build the eye model
+		this.model = new Konva.Group({
 			x: this.cellWidth * (x + .5),
 			y: this.cellHeight * (y + .5),
-			radius: this.width / 2,
-			stroke: colorValues[this.color],
-			strokeWidth: this.cellWidth * .1,
 		});
+
+		this.body = new Konva.Rect({
+			x:0, 
+			y:0,
+			width: this.width,
+			height: this.height,
+			offsetX: this.width / 2,
+			offsetY: this.height / 2,
+			fill: colorValues[colorIndices.WHITE],
+			cornerRadius: 10,
+			strokeWidth: 0,
+		});
+
+		this.eyehole = new Konva.Ellipse({
+			x:0,
+			y:0,
+			width: this.width / 1.2,
+			height: this.height / 1.8,
+			fill: colorValues[colorIndices.BLACK],
+			strokeWidth: 0,
+		});
+
+		this.iris = new Konva.Ellipse({
+			x:0,
+			y:0,
+			width: this.width / 1.7,
+			height: this.height / 1.7,
+			fill: colorValues[colorIndices.WHITE],
+			strokeWidth: 0,
+		});
+
+		this.eye = new Konva.Ellipse({
+			x: 0,
+			y: 0,
+			offsetX: -this.width / 12,
+			width: this.width / 3.2,
+			height: this.height / 3.2,
+			fill: colorValues[colorIndices.BLACK],
+			strokeWidth: 0,
+		});
+
+		this.backgroundColorGroup = [this.eye, this.eyehole];
+		this.playerColorGroup = [this.body, this.iris];
+
+		this.model.add(this.body);
+		this.model.add(this.eyehole);
+		this.model.add(this.iris);
+		this.model.add(this.eye);
 
 		layer.add(this.model);
 
@@ -68,8 +114,8 @@ export default class Player {
 		if (this.closeToTarget()) {
 			this.dx = 0;
 			this.dy = 0;
-			this.model.setHeight(this.height);
-			this.model.setWidth(this.width);
+			this.model.setScaleX(1);
+			this.model.setScaleY(1);
 			return;
 		}
 
@@ -85,10 +131,15 @@ export default class Player {
 		this.model.setX(this.cellWidth * (this.x + .5));
 		this.model.setY(this.cellHeight * (this.y + .5));
 
+
+		//eye animation
+		let directionToCenter = Math.atan2(-this.y, -this.x);
+		this.eye.setRotation(directionToCenter / Math.PI * 180.0);
+
 		const hStretch = 1 / (2 * (Math.abs(this.dy) - Math.abs(this.dx)) + 1);
 		const vStretch = 1 / (2 * (Math.abs(this.dx) - Math.abs(this.dy)) + 1);
-		this.model.setWidth(this.width * hStretch);
-		this.model.setHeight(this.height * vStretch);
+		this.model.setScaleX(hStretch);
+		this.model.setScaleY(vStretch);
 		// console.log(this.x, this.y);
 	}
 
@@ -99,22 +150,37 @@ export default class Player {
 
 	onBackgroundColor(color) {
 		const playerColor = colorIndices.WHITE;
-		if (color === playerColor && !this.hasAltColor) {
+
+		//Tween the color of the background colored components
+		this.backgroundColorGroup.forEach((modelComponent) => {
 			let tween = new Konva.Tween({
-				node: this.model,
-				stroke: altColorValues[this.color],
+				node: modelComponent,
+				fill: colorValues[color],
 				duration: .35,
 			});
 			tween.play();
+		});
+
+		if (color === playerColor && !this.hasAltColor) {
+			this.playerColorGroup.forEach((modelComponent) => {
+				let tween = new Konva.Tween({
+					node: modelComponent,
+					fill: altColorValues[this.color],
+					duration: .35,
+				});
+				tween.play();
+			});
 			this.hasAltColor = true;
 		}
 		else if (color !== playerColor && this.hasAltColor) {
-			let tween = new Konva.Tween({
-				node: this.model,
-				stroke: colorValues[this.color],
-				duration: .35,
+			this.playerColorGroup.forEach((modelComponent) => {
+				let tween = new Konva.Tween({
+					node: modelComponent,
+					fill: colorValues[this.color],
+					duration: .35,
+				});
+				tween.play();
 			});
-			tween.play();
 			this.hasAltColor = false;
 		}
 	}
