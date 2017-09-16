@@ -62,7 +62,8 @@ export default class Switch {
 				shadowOffsetY: 0,
 				offsetX: 0,
 				offsetY: 0,
-				duration: .3
+				easing: Konva.Easings.EaseIn,
+				duration: .15
 			});
 			tween.play();
 			this.isPressed = true;
@@ -75,7 +76,8 @@ export default class Switch {
 				shadowOffsetY: this.height * this.shadowOffsetRatio,
 				offsetX: this.width * this.shadowOffsetRatio,
 				offsetY: this.height * this.shadowOffsetRatio,
-				duration: .3
+				easing: Konva.Easings.EaseIn,
+				duration: .15
 			});
 			tween.play();
 			this.isPressed = false;

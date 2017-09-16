@@ -178,12 +178,15 @@ export default class Player {
 			if (currentAnimation.timeLeft === 0) {
 				this.animationQueue.shift();
 			}
-		}
 
-		//eye animation
-		// TODO make eye look at exit when it exists (for now we just look at top left corner)
-		const directionToCenter = Math.atan2(-this.y, -this.x);
-		this.eye.setRotation(directionToCenter / Math.PI * 180.0);
+			//eye animation
+			// TODO make eye look at exit when it exists (for now we just look at top left corner)
+			const directionToCenter = Math.atan2(-this.y, -this.x);
+			this.eye.setRotation(directionToCenter / Math.PI * 180.0);
+		}
+		else {
+			return false;
+		}
 	}
 
 	closeToTarget() {
