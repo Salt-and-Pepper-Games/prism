@@ -39,7 +39,9 @@ export default class BoardManager {
 		// if (action.type === types.LOAD_LEVEL) {
 		if (!isEqual(prevGame.board.levelNumber, game.board.levelNumber) ||
 				!isEqual(prevGame.board.packInfo, game.board.packInfo)) {
-			// TODO: add code to discard the old board!!!!!!!
+			if (this.board) {
+				this.board.destroy();
+			}
 			this.board = new Board(game.board, { boardLayer: this.boardLayer,
 				playerLayer: this.playerLayer,
 				switchLayer: this.switchLayer });

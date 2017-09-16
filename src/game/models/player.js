@@ -118,5 +118,9 @@ export default class Player {
 			this.hasAltColor = false;
 		}
 	}
+
+	destroy() {
+		this.model.destroy();
+	}
 }
 

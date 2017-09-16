@@ -103,5 +103,9 @@ export default class Switch {
 			}
 		}
 	}
+
+	destroy() {
+		this.model.destroy();
+	}
 }
 

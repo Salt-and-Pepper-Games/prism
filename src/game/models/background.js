@@ -18,7 +18,6 @@ export default class Background {
 	}
 
 	setColor(color) {
-		console.log("Setting bg color to " + color);
 		this.color = color;
 		let tween = new Konva.Tween({
 			node: this.model,
@@ -27,6 +26,10 @@ export default class Background {
 			easing: Konva.Easings.EaseOut
 		});
 		tween.play();
+	}
+
+	destroy() {
+		this.model.destroy();
 	}
 }
 

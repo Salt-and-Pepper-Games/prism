@@ -8,5 +8,8 @@ export default class Home {
 
 	render(ctx, time, dimensions) {
 	}
+
+	destroy() {
+	}
 }
 

@@ -61,4 +61,20 @@ export default class Board {
 	hasSwitch(x, y) {
 		return this.blocks[x] && this.blocks[x][y] && this.blocks[x][y].type === blockTypes.SWITCH;
 	}
+
+	destroy() {
+		for (let i=0; i<this.width; i++) {
+			for (let j=0; j<this.height; j++) {
+				if (this.blocks[i][j]) {
+					this.blocks[i][j].destroy();
+				}
+			}
+		}
+		// for (let enemy in this.enemies) {
+		// 	enemy.destroy();
+		// }
+		this.home.destroy();
+		this.player.destroy();
+		this.background.destroy();
+	}
 }

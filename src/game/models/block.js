@@ -59,5 +59,9 @@ export default class Block {
 			this.hasAltColor = false;
 		}
 	}
+	
+	destroy() {
+		this.model.destroy();
+	}
 }
 

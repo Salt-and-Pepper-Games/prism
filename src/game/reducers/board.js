@@ -32,8 +32,7 @@ export const defaultState = {
 export default (state = defaultState, action) => {
 	switch (action.type) {
 		case levelActions.LOAD_LEVEL:
-			const board = parseBoard(action.levelString);
-			const newState = Object.assign({}, state, board); 
+			const newState = parseBoard(action.levelString);
 			Object.assign(newState, { 
 				loaded: true,
 				packInfo: action.packInfo,
