@@ -1,6 +1,6 @@
-const { connect } = require('react-redux');
-const uiActionCreators = require('../../actionCreators/uiActionCreators');
-const LevelArea = require('../components/LevelArea.jsx');
+import { connect } from 'react-redux';
+import uiActionCreators from '../../actionCreators/uiActionCreators';
+import LevelArea from '../components/LevelArea.jsx';
 
 const mapStateToProps = state => {
 	return {
@@ -14,4 +14,4 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-module.exports = connect(mapStateToProps, mapDispatchToProps)(LevelArea);
+export default connect(mapStateToProps, mapDispatchToProps)(LevelArea);

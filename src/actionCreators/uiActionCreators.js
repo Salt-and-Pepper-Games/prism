@@ -1,6 +1,6 @@
-const uiActionNames = require('./uiActionNames');
+import uiActionNames from './uiActionNames';
 
-module.exports = {
+export default {
 	setCurrentPack: currentPack => {
 		return {
 			type: uiActionNames.SET_CURRENT_PACK,
@@ -12,10 +12,14 @@ module.exports = {
 			type: uiActionNames.CLOSE_CURRENT_PACK
 		};
 	},
-	setCurrentLevel: currentLevel => {
+	openGameMode: () => {
 		return {
-			type: uiActionNames.SET_CURRENT_LEVEL,
-			currentLevel
+			type: uiActionNames.OPEN_GAME_MODE,
+		};
+	},
+	closeGameMode: () => {
+		return {
+			type: uiActionNames.CLOSE_GAME_MODE,
 		};
 	},
 	setPackInfo: packInfo => {

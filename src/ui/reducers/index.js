@@ -1,5 +1,5 @@
-const { combineReducers } =  require('redux');
+import { combineReducers } from 'redux';
 // after the other reducers exist, import them all here
 const dummy = (state={}, action) => state;
 
-module.exports = combineReducers({ dummy });
+export default combineReducers({ dummy });

@@ -1,20 +1,26 @@
-const uiActionCreators = require('./uiActionCreators');
-const levelActionCreators = require('./levelActionCreators');
-const firebase = require('../utils/initFirebase');
+import uiActionCreators from './uiActionCreators';
+import { loadLevelAction } from './levelActionCreators';
+import firebase from '../utils/initFirebase';
 
-module.exports = {
+export default {
 	loadLevelString: (levelNum, packInfo) => {
 		return dispatch => {
 			const packRef = firebase.database().ref(`levelStrings/${packInfo.packName}Pack`);
 			packRef.once("value").then(snapshot => {
 				return snapshot.child(`level${levelNum}`).val();
 			}).then(levelString => {
-				const levelObject = {
-					levelString,
-					levelNum,
-					packInfo
-				};
-				dispatch(levelActionCreators.loadLevelAction(levelObject));
+				if (levelString) {
+					const levelObject = {
+						levelString,
+						levelNum,
+						packInfo
+					};
+					dispatch(loadLevelAction(levelObject));
+					dispatch(uiActionCreators.openGameMode());
+				// TODO: Add in error handling
+				} else {
+					console.log("There was an error loading the level");
+				}
 			});
 		};
 	}

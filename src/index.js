@@ -11,5 +11,11 @@ import rootReducer from './rootReducer';
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('root')
+);
+
 registerServiceWorker();
