@@ -131,6 +131,25 @@ export default class Player {
 		});
 	}
 
+	/*squishAnimation(x, y, deltaX, deltaY, vertical) {
+		return (time) => {
+			const xDiff = targetX - x;
+			const yDiff = targetY - y;
+			const animationPos = Math.sin(time * Math.PI / 2.0);
+			this.x = x + xDiff * animationPos;
+			this.y = y + yDiff * animationPos;
+			this.model.setX(this.cellWidth * (this.x + .5));
+			this.model.setY(this.cellHeight * (this.y + .5));
+			if (vertical) {
+				this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
+				this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
+			} else {
+				this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
+				this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
+			}
+		};
+	}*/
+
 	moveToAnimation(x, y, targetX, targetY, vertical) {
 		return (time) => {
 			const xDiff = targetX - x;
@@ -161,34 +180,10 @@ export default class Player {
 			}
 		}
 
-		/*if (this.closeToTarget()) {
-			this.dx = 0;
-			this.dy = 0;
-			this.model.setScaleX(1);
-			this.model.setScaleY(1);
-			return;
-		}*/
-
-		// simulating spring force to targetX, targetY
-		/*let aX = this.targetX - this.x;
-		let aY = this.targetY - this.y;
-		this.dx += aX * .2;
-		this.dy += aY * .2;
-		this.dx *= .6;
-		this.dy *= .6;
-		this.x += this.dx;
-		this.y += this.dy;
-		this.model.setX(this.cellWidth * (this.x + .5));
-		this.model.setY(this.cellHeight * (this.y + .5));*/
-
-
 		//eye animation
+		// TODO make eye look at exit when it exists (for now we just look at top left corner)
 		const directionToCenter = Math.atan2(-this.y, -this.x);
 		this.eye.setRotation(directionToCenter / Math.PI * 180.0);
-
-		//this.model.setScaleX(hStretch);
-		//this.model.setScaleY(vStretch);
-		// console.log(this.x, this.y);
 	}
 
 	closeToTarget() {
