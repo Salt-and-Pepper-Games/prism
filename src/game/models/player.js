@@ -21,6 +21,10 @@ export default class Player {
 		this.cellWidth = layer.width() / width;
 		this.cellHeight = layer.height() / height;
 
+		//takes animation objects of type animation type, duration, enum
+		this.animationSpeed = 1;
+		this.animationQueue = [];
+
 		// this.model = new Konva.Rect({
 		// 	x: this.cellWidth * (x + .5),
 		// 	y: this.cellHeight * (y + .5),
@@ -94,8 +98,18 @@ export default class Player {
 
 	// Returns a boolean indicating is position actually changed.
 	moveTo(x, y) {
+		const oldTargetX = this.targetX;
+		const oldTargetY = this.targetY;
 		this.targetX = x;
 		this.targetY = y;
+		this.pushAnimation(1000, this.moveToAnimation(oldTargetX, oldTargetY, this.targetX, this.targetY, this.targetY === oldTargetY));
+
+		const totalDuration = this.animationQueue.reduce(function(sum, value) {
+  			return sum + value.timeLeft;
+		}, 0);
+
+		this.animationSpeed = Math.min(totalDuration / 200.0, 100);
+
 		// this.x = x;
 		// this.y = y;
 		// let tween = new Konva.Tween({
@@ -109,18 +123,54 @@ export default class Player {
 
 	}
 
+	pushAnimation(duration, animation) {
+		this.animationQueue.push({
+			duration:duration,
+			timeLeft:duration,
+			animation:animation,
+		});
+	}
+
+	moveToAnimation(x, y, targetX, targetY, vertical) {
+		return (time) => {
+			const xDiff = targetX - x;
+			const yDiff = targetY - y;
+			const animationPos = Math.sin(time * Math.PI / 2.0);
+			this.x = x + xDiff * animationPos;
+			this.y = y + yDiff * animationPos;
+			this.model.setX(this.cellWidth * (this.x + .5));
+			this.model.setY(this.cellHeight * (this.y + .5));
+			if (vertical) {
+				this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
+			} else {
+				this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
+			}
+		};
+	}
+
 	updatePlayer(frame) {
 		const { timeDiff } = frame;
-		if (this.closeToTarget()) {
+
+		if (this.animationQueue.length > 0) {
+			const currentAnimation = this.animationQueue[0];
+			currentAnimation.timeLeft -= this.animationSpeed * timeDiff;
+			currentAnimation.timeLeft = Math.max(currentAnimation.timeLeft, 0);
+			currentAnimation.animation(1 - currentAnimation.timeLeft / currentAnimation.duration);
+			if (currentAnimation.timeLeft === 0) {
+				this.animationQueue.shift();
+			}
+		}
+
+		/*if (this.closeToTarget()) {
 			this.dx = 0;
 			this.dy = 0;
 			this.model.setScaleX(1);
 			this.model.setScaleY(1);
 			return;
-		}
+		}*/
 
 		// simulating spring force to targetX, targetY
-		let aX = this.targetX - this.x;
+		/*let aX = this.targetX - this.x;
 		let aY = this.targetY - this.y;
 		this.dx += aX * .2;
 		this.dy += aY * .2;
@@ -129,17 +179,15 @@ export default class Player {
 		this.x += this.dx;
 		this.y += this.dy;
 		this.model.setX(this.cellWidth * (this.x + .5));
-		this.model.setY(this.cellHeight * (this.y + .5));
+		this.model.setY(this.cellHeight * (this.y + .5));*/
 
 
 		//eye animation
-		let directionToCenter = Math.atan2(-this.y, -this.x);
+		const directionToCenter = Math.atan2(-this.y, -this.x);
 		this.eye.setRotation(directionToCenter / Math.PI * 180.0);
 
-		const hStretch = 1 / (2 * (Math.abs(this.dy) - Math.abs(this.dx)) + 1);
-		const vStretch = 1 / (2 * (Math.abs(this.dx) - Math.abs(this.dy)) + 1);
-		this.model.setScaleX(hStretch);
-		this.model.setScaleY(vStretch);
+		//this.model.setScaleX(hStretch);
+		//this.model.setScaleY(vStretch);
 		// console.log(this.x, this.y);
 	}
 
