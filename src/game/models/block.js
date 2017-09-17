@@ -24,19 +24,19 @@ export default class Block {
 		// it's the first block added to the layer so it's gotta be that something in the layer
 		// is not ready
 		setTimeout(() => {
-		this.model = new Konva.Rect({
-			x: this.cellWidth * (x + .5),
-			y: this.cellHeight * (y + .5),
-			offsetX: this.width / 2,
-			offsetY: this.height / 2,
-			width: this.width,
-			height: this.height,
-			cornerRadius: 10,
-			fill: colorValues[color]
-		});
-		layer.add(this.model);
-		layer.draw();
-	}, 0);
+			this.model = new Konva.Rect({
+				x: this.cellWidth * (x + .5),
+				y: this.cellHeight * (y + .5),
+				offsetX: this.width / 2,
+				offsetY: this.height / 2,
+				width: this.width,
+				height: this.height,
+				cornerRadius: 10,
+				fill: colorValues[color]
+			});
+			layer.add(this.model);
+			layer.draw();
+		}, 0);
 	}
 
 	onBackgroundColor(color) {

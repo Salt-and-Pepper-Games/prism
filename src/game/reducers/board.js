@@ -23,6 +23,7 @@ export const defaultState = {
 	loaded: false,
 	blocks: null,
 	player: null,
+	home: null,
 	enemies: null,
 	background: colorIndices.BLACK,
 	packInfo: null,
@@ -34,6 +35,7 @@ export const defaultState = {
 		elapsedTime: null,
 		solved: false
 	}
+	complete: false
 }
 
 export default (state = defaultState, action) => {
@@ -69,7 +71,7 @@ export default (state = defaultState, action) => {
 }
 
 function getStateFromMovement(oldBoard, x, y) {
-	if (oldBoard.blocks[x] && oldBoard.blocks[x][y] &&
+	if (!oldBoard.complete && oldBoard.blocks[x] && oldBoard.blocks[x][y] &&
 			(oldBoard.blocks[x][y].type !== blockTypes.BLOCK || 
 			oldBoard.blocks[x][y].color === oldBoard.background)) {
 		let newBoard;

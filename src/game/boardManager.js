@@ -65,6 +65,10 @@ export default class BoardManager {
 			// Check if the player actually moved before changing switch color.
 			if (didMove) {
 				this.board.setPlayerPosition(px, py);
+				if (px === game.board.home.x && px === game.board.home.y === py && game.board.complete === false) {
+					// in the future dispatch a level end action but for now just cut to home screen
+					//dispatch()
+				}
 			}
 			if (didBgChange) {
 				this.board.setBackgroundColor(game.board.background);
