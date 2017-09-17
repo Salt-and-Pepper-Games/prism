@@ -1,3 +1,4 @@
 export default {
-	LOAD_LEVEL: "LOAD_LEVEL"
+	LOAD_LEVEL: "LOAD_LEVEL",
+	CLOSE_LEVEL: "CLOSE_LEVEL"
 }

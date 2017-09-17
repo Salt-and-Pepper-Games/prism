@@ -51,6 +51,8 @@ export default (state = defaultState, action) => {
 			});
 			console.log(newState.blocks);
 			return newState;
+		case levelActions.CLOSE_LEVEL:
+			return Object.assign({}, state, { loaded: false });
 		case playerActions.MOVE_UP:
 			return getStateFromMovement(state, state.player.x, state.player.y - 1);
 		case playerActions.MOVE_DOWN:
