@@ -41,21 +41,17 @@ export default class Block {
 
 	onBackgroundColor(color) {
 		if (color === this.color && !this.hasAltColor) {
-			let tween = new Konva.Tween({
-				node: this.model,
+			this.model.to({
 				fill: altColorValues[this.color],
 				duration: .35,
 			});
-			tween.play();
 			this.hasAltColor = true;
 		}
 		else if (color !== this.color && this.hasAltColor) {
-			let tween = new Konva.Tween({
-				node: this.model,
+			this.model.to({
 				fill: colorValues[this.color],
 				duration: .35,
 			});
-			tween.play();
 			this.hasAltColor = false;
 		}
 	}

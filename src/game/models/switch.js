@@ -56,8 +56,7 @@ export default class Switch {
 	onBackgroundColor(color) {
 		const shouldBePressed = color & this.color;
 		if (shouldBePressed && !this.isPressed) {
-			let tween = new Konva.Tween({
-				node: this.model,
+			this.model.to({
 				shadowOffsetX: 0,
 				shadowOffsetY: 0,
 				offsetX: 0,
@@ -65,12 +64,10 @@ export default class Switch {
 				easing: Konva.Easings.EaseIn,
 				duration: .15
 			});
-			tween.play();
 			this.isPressed = true;
 		}
 		else if (!shouldBePressed && this.isPressed) {
-			let tween = new Konva.Tween({
-				node: this.model,
+			this.model.to({
 				shadowBlur: 0,
 				shadowOffsetX: this.width * this.shadowOffsetRatio,
 				shadowOffsetY: this.height * this.shadowOffsetRatio,
@@ -79,28 +76,23 @@ export default class Switch {
 				easing: Konva.Easings.EaseIn,
 				duration: .15
 			});
-			tween.play();
 			this.isPressed = false;
 		}
 		if (color === this.color) {
 			if (!this.hasAltColor) {
-				let tween = new Konva.Tween({
-					node: this.model,
+				this.model.to({
 					fill: altColorValues[this.color],
 					duration: .35,
 				});
-				tween.play();
 				this.hasAltColor = true;
 			}
 		}
 		else {
 			if (this.hasAltColor) {
-				let tween = new Konva.Tween({
-					node: this.model,
+				this.model.to({
 					fill: colorValues[this.color],
 					duration: .35,
 				});
-				tween.play();
 				this.hasAltColor = false;
 			}
 		}

@@ -112,14 +112,12 @@ export default class Player {
 
 		// this.x = x;
 		// this.y = y;
-		// let tween = new Konva.Tween({
-		// 	node: this.model,
+		// 	this.model.to({
 		// 	x: this.cellWidth * (x + .5),
 		// 	y: this.cellHeight * (y + .5),
 		// 	duration: .2,
 		// 	easing: Konva.Easings.StrongEaseOut
 		// });
-		// tween.play();
 
 	}
 
@@ -199,33 +197,27 @@ export default class Player {
 
 		//Tween the color of the background colored components
 		this.backgroundColorGroup.forEach((modelComponent) => {
-			let tween = new Konva.Tween({
-				node: modelComponent,
+			this.model.to({
 				fill: colorValues[color],
 				duration: .35,
 			});
-			tween.play();
 		});
 
 		if (color === playerColor && !this.hasAltColor) {
 			this.playerColorGroup.forEach((modelComponent) => {
-				let tween = new Konva.Tween({
-					node: modelComponent,
+				modelComponent.to({
 					fill: altColorValues[this.color],
 					duration: .35,
 				});
-				tween.play();
 			});
 			this.hasAltColor = true;
 		}
 		else if (color !== playerColor && this.hasAltColor) {
 			this.playerColorGroup.forEach((modelComponent) => {
-				let tween = new Konva.Tween({
-					node: modelComponent,
+				modelComponent.to({
 					fill: colorValues[this.color],
 					duration: .35,
 				});
-				tween.play();
 			});
 			this.hasAltColor = false;
 		}

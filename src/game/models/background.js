@@ -19,13 +19,11 @@ export default class Background {
 
 	setColor(color) {
 		this.color = color;
-		let tween = new Konva.Tween({
-			node: this.model,
+		this.model.to({
 			fill: colorValues[color],
 			duration: .35,
 			easing: Konva.Easings.EaseOut
 		});
-		tween.play();
 	}
 
 	destroy() {
