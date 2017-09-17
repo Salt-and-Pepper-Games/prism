@@ -298,8 +298,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  font-size: 1.5em; }
+  flex-direction: column; }
 
 .pack-content-info {
   display: flex;
@@ -308,7 +307,8 @@ body {
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: visibility 0s, opacity .25s; }
+  transition: visibility 0s, opacity .25s;
+  font-size: 2vw; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-content-info {
       display: none; } }
@@ -316,6 +316,12 @@ body {
 .pack-content:hover > .pack-content-info {
   opacity: 1;
   visibility: visible; }
+
+.pack-title {
+  font-size: 3vw; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-title {
+      font-size: 5vw; } }
 
 .pack {
   position: relative;

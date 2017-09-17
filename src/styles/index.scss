@@ -322,7 +322,6 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-size: 1.5em;
 }
 .pack-content-info {
     display: flex;
@@ -332,6 +331,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: visibility 0s, opacity .25s;
+    font-size: 2vw;
     @include mobile {
         display: none;
     }
@@ -339,6 +339,12 @@ body {
 .pack-content:hover > .pack-content-info {
     opacity: 1;
     visibility: visible;
+}
+.pack-title {
+    font-size: 3vw;
+    @include mobile {
+        font-size: 5vw;
+    }
 }
 .pack {
     position: relative;

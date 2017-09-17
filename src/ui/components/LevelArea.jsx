@@ -30,10 +30,10 @@ class LevelArea extends React.Component {
 						onClick={() => setCurrentPack(pack)}
 					>
 						<div className={`pack-content`}>
-							<p>{pack.packName}</p>
+							<p className='pack-title'>{pack.packName.toUpperCase()}</p>
 							<span className="pack-content-info">
 								<p>easy</p>
-								<p>45% complete</p>
+								<p>{`${Math.floor(Math.random() * 100)}% complete`}</p>
 							</span>
 						</div>
 					</div>
