@@ -7,7 +7,8 @@ import * as levelActionCreators from '../../actionCreators/levelActionCreators';
 const mapStateToProps = state => {
 	return {
 		inGame: state.ui.inGame && state.game.board.loaded,
-		isHelpOpen: state.ui.isHelpOpen
+		isHelpOpen: state.ui.isHelpOpen,
+		soundOn: state.ui.soundOn
 	};
 };
 
@@ -18,7 +19,8 @@ const mapDispatchToProps = dispatch => {
 			dispatch(levelActionCreators.closeLevel());
 		},
 		openHelp: () => dispatch(uiActionCreators.openHelp()),
-		closeHelp: () => dispatch(uiActionCreators.closeHelp())
+		closeHelp: () => dispatch(uiActionCreators.closeHelp()),
+		toggleSound: () => dispatch(uiActionCreators.toggleSound())
 	};
 };
 

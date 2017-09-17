@@ -46,15 +46,14 @@ body {
     .after-game-board {
       flex-direction: row; } }
 
-.return-home-btn, .help-btn {
+.return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn {
   font-size: 5em;
   transition: opacity .25s; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .return-home-btn, .help-btn {
-      font-size: 3em;
-      padding: 0em 1em; } }
+    .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn {
+      font-size: 3em; } }
 
-.return-home-btn:hover, .help-btn:hover {
+.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover {
   cursor: pointer;
   opacity: .75; }
 
