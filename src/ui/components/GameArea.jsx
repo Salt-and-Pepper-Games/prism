@@ -11,6 +11,14 @@ class GameArea extends React.Component {
 	componentDidMount() {
 		initGame(this.context.store);
 	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.inGame && !nextProps.isHelpOpen) {
+			// autofocus game
+			setTimeout(() => {
+				document.getElementById('game-root').focus();
+			}, 300);
+		}
+	}
 
 	render() {
 		const { inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen } = this.props;
@@ -22,7 +30,7 @@ class GameArea extends React.Component {
 					<i className="help-btn fa fa-question" onClick={openHelp} />
 				</div>
 				<div className="game-board-wrapper">
-					<div className='game-board' id='game-root' tabIndex='1' />
+					<div className='game-board' id='game-root' tabIndex='0' />
 				</div>
 				<div className="after-game-board">
 

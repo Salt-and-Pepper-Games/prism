@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 
 import GameArea from '../components/GameArea.jsx';
-import uiActionCreators from '../../actionCreators/uiActionCreators'
+import uiActionCreators from '../../actionCreators/uiActionCreators';
+import levelActionCreators from '../../actionCreators/levelActionCreators';
 
 const mapStateToProps = state => {
 	return {
@@ -12,7 +13,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		returnToMainScreen: () => dispatch(uiActionCreators.closeGameMode()),
+		returnToMainScreen: () => {
+			dispatch(uiActionCreators.closeGameMode());
+			dispatch(levelActionCreators.closeLevel());
+		},
 		openHelp: () => dispatch(uiActionCreators.openHelp()),
 		closeHelp: () => dispatch(uiActionCreators.closeHelp())
 	};

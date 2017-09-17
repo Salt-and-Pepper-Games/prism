@@ -1,5 +1,5 @@
 import uiActionCreators from './uiActionCreators';
-import { loadLevelAction } from './levelActionCreators';
+import levelActionCreators from './levelActionCreators';
 import firebase from '../utils/initFirebase';
 
 export default {
@@ -15,7 +15,7 @@ export default {
 						levelNum,
 						packInfo
 					};
-					dispatch(loadLevelAction(levelObject));
+					dispatch(levelActionCreators.loadLevelAction(levelObject));
 					dispatch(uiActionCreators.openGameMode());
 				// TODO: Add in error handling
 				} else {
