@@ -54,6 +54,7 @@ export default class Board {
 				}
 			}
 		}
+		this.home.onBackgroundColor(color);
 		this.player.onBackgroundColor(color);
 	}
 
