@@ -37,6 +37,7 @@ export default class BoardManager {
 	}
 
 	onStateChange({ game }, prevState) {
+		console.log(game.user);
 		let prevGame = prevState.game;
 		// if (action.type === types.LOAD_LEVEL) {
 		if (!isEqual(prevGame.board.levelNumber, game.board.levelNumber) ||

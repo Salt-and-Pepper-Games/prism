@@ -7,8 +7,10 @@ import './styles/index.css';
 import App from './App.jsx';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './rootReducer';
+import { setupFirebaseListeners } from './actionCreators/asyncActionCreators';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
+store.dispatch(setupFirebaseListeners());
 
 
 ReactDOM.render(
