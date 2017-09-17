@@ -3,13 +3,13 @@ import React from 'react';
 class LevelPack extends React.Component {
 	constructor(props) {
 		super(props);
-		this.levelGrid;
+		this.levelGrid = null;
 	}
 	componentDidMount() {
 		this.levelGrid = document.getElementById('levels-grid');
 	}
 	render() {
-		const { isOpen, currentPack, cachedCurrentPack, setCurrentLevel, onClose, onLevelClick } = this.props;
+		const { isOpen, currentPack, cachedCurrentPack, onClose, onLevelClick } = this.props;
 		const levels = [];
 		if (cachedCurrentPack) {
 			for (let i = 1; i <= /*cachedCurrentPack.levelCount*/ 100; i++) {
