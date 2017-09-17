@@ -37,5 +37,10 @@ export default {
 		return {
 			type: uiActionNames.CLOSE_HELP
 		};
+	},
+	toggleSound: () => {
+		return {
+			type: uiActionNames.TOGGLE_SOUND
+		};
 	}
 };

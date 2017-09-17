@@ -52,15 +52,14 @@ body {
         flex-direction: row;
     }
 }
-.return-home-btn, .help-btn {
+.return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn {
     font-size: 5em;
     transition: opacity .25s;
     @include mobile {
         font-size: 3em;
-        padding: 0em 1em;
     }
 }
-.return-home-btn:hover, .help-btn:hover {
+.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover {
     cursor: pointer;
     opacity: .75;    
 }
