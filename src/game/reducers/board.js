@@ -36,6 +36,7 @@ export const defaultState = {
 		elapsedTime: null,
 		solved: false
 	}
+	complete: false
 }
 
 export default (state = defaultState, action) => {
