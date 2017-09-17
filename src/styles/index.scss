@@ -24,18 +24,89 @@ body {
         flex-direction: column;
     }
 }
-.game-board {
+.game-board-wrapper {
+    background-color: #464B63;
+    border-radius: 1em;
     flex: 2;
+}
+.game-board:focus {
+    outline: none;
 }
 .before-game-board {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    @include mobile {
+        flex-direction: row;
+    }
 }
 .after-game-board {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    @include mobile {
+        flex-direction: row;
+    }
 }
-.return-home-btn {
-   
+.return-home-btn, .help-btn {
+    font-size: 5em;
+    transition: opacity .25s;
+    @include mobile {
+        font-size: 3em;
+        padding: 0em 1em;
+    }
 }
+.return-home-btn:hover, .help-btn:hover {
+    cursor: pointer;
+    opacity: .75;    
+}
+.help-overlay {
+    position: fixed;
+    z-index: 2;
+    background-color: rgba(70, 75, 99, 0.95);
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    transition: visibility .26s, opacity .25s;
+    @include mobile {
+        flex-direction: column;
+    }
+}
+.venndiagram {
+    height: 45vh;
+    width: 60vh;
+}
+.help-text {
+    color: #fffdfc;
+    padding: 1em 1em;
+    font-size: 3em;
+    @include mobile {
+        font-size: 1em;
+        padding: 1em 2em;
+    }
+}
+.help-overlay-close-btn {
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    color: #fffdfc;
+    font-size: 5em;
+    transition: opacity .25s;
+    @include mobile {
+        font-size: 3em;
+    }
+}
+.help-overlay-close-btn:hover {
+    opacity: .75;
+    cursor: pointer;   
+}
+
 .open {
     visibility: visible;
     opacity: 1;
