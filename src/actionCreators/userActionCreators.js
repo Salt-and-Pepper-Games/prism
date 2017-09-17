@@ -3,3 +3,8 @@ export const setUserAction = user => ({
 	type: types.SET_USER,
 	user
 });
+
+export const setLevelCompletionData = data => ({
+	type: types.SET_LEVEL_COMPLETION_DATA,
+	data
+});

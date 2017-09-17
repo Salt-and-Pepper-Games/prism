@@ -1,6 +1,6 @@
 import uiActionCreators from './uiActionCreators';
 import { loadLevelAction } from './levelActionCreators';
-import { setUserAction } from './userActionCreators';
+import { setUserAction, setLevelCompletionData } from './userActionCreators';
 import firebase from '../utils/initFirebase';
 
 export const loadLevelString = (levelNum, packInfo) => {
@@ -30,7 +30,11 @@ export const setupFirebaseListeners = () => {
 			firebase.auth().onAuthStateChanged(user => {
 				if (user) {
 					dispatch(setUserAction(user));
-					// TODO: this is where we would load user level completion data
+					firebase.database().ref(`users/${user.uid}`)
+						.once('value').then(snapshot => {
+							// TODO: this is where we would load user level completion data
+							dispatch(setLevelCompletionData(snapshot.child('levelData').val()));
+						});
 				}
 				else {
 					firebase.auth().signInAnonymously().catch(error => {
