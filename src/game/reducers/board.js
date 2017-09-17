@@ -26,7 +26,14 @@ export const defaultState = {
 	enemies: null,
 	background: colorIndices.BLACK,
 	packInfo: null,
-	levelNumber: null
+	levelNumber: null,
+	stats: {
+		moves: 0,
+		switches: 0,
+		startTime: null,
+		elapsedTime: null,
+		solved: false
+	}
 }
 
 export default (state = defaultState, action) => {
@@ -36,7 +43,11 @@ export default (state = defaultState, action) => {
 			Object.assign(newState, { 
 				loaded: true,
 				packInfo: action.packInfo,
-				levelNumber: action.levelNumber
+				levelNumber: action.levelNumber,
+				stats: Object.assign({}, defaultState.stats, {
+					startTime: Date.now(),
+					elapsedTime: 0
+				})
 			});
 			console.log(newState.blocks);
 			return newState;
@@ -67,7 +78,12 @@ function getStateFromMovement(oldBoard, x, y) {
 			newBoard = Object.assign({}, oldBoard);
 		}
 		Object.assign(newBoard, {
-			player: { x, y }
+			player: { x, y },
+			// stat tracking for move count
+			stats: Object.assign({}, newBoard.stats, {
+				moves: oldBoard.stats.moves + 1,
+				elapsedTime: Date.now() - oldBoard.stats.startTime
+			})
 		});
 		return newBoard;
 	}
@@ -92,7 +108,12 @@ function getStateFromBgColor(oldBoard, color) {
 		return Object.assign({}, oldBoard, {
 			blocks: newBlocks,
 			switches: newSwitches,
-			background: color
+			background: color,
+			// stat tracking for switch count
+			stats: Object.assign({}, oldBoard.stats, {
+				switches: oldBoard.stats.switches + 1,
+				elapsedTime: Date.now() - oldBoard.stats.startTime
+			})
 		});
 	}
 	else {

@@ -5,6 +5,7 @@ const initialState = {
 	cachedCurrentPack: null,
 	currentLevel: null,
 	inGame: false,
+	isHelpOpen: false,
 	packInfo: []
 };
 
@@ -25,6 +26,10 @@ const ui = (state = initialState, action) => {
 			return Object.assign({}, state, { inGame: true });
 		case uiActionNames.CLOSE_GAME_MODE:
 			return Object.assign({}, state, { inGame: false });
+		case uiActionNames.OPEN_HELP:
+			return Object.assign({}, state, { isHelpOpen: true });
+		case uiActionNames.CLOSE_HELP:
+			return Object.assign({}, state, { isHelpOpen: false });
 		default:
 			return state;
 	}

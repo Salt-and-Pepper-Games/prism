@@ -18,6 +18,9 @@ const Dashboard = () => {
 				<div>
 					<div className="dashboard-panel">
 						<h1 className="daily-challenge-header">Daily Challenge</h1>
+						<svg>
+							
+						</svg>
 					</div>
 				</div>
 				<div>

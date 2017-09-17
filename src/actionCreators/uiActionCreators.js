@@ -27,5 +27,15 @@ export default {
 			type: uiActionNames.SET_PACK_INFO,
 			packInfo
 		};
+	},
+	openHelp: () => {
+		return {
+			type: uiActionNames.OPEN_HELP
+		};
+	},
+	closeHelp: () => {
+		return {
+			type: uiActionNames.CLOSE_HELP
+		};
 	}
 };
