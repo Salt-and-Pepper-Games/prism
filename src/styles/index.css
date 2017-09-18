@@ -1,3 +1,28 @@
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-moz-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-ms-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-o-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 body {
   background-color: #fffdfc;
   margin: 0;
@@ -6,7 +31,12 @@ body {
   color: #464B63; }
 
 .main-screen, .game-area {
-  transition: visibility 0s, opacity .25s; }
+  transition: visibility 0s, opacity .25s;
+  -webkit-animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  -ms-animation: fadein 1s;
+  -o-animation: fadein 1s;
+  animation: fadein 1s; }
 
 .game-area {
   position: fixed;
@@ -43,6 +73,14 @@ body {
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .after-game-board {
       flex-direction: row; } }
+
+.bottom-game-buttons {
+  display: flex;
+  align-items: center;
+  flex-basis: 33.33%; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .bottom-game-buttons {
+      justify-content: center; } }
 
 .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn {
   font-size: 5em;
@@ -118,13 +156,13 @@ body {
   transition: visibility .25s, opacity .25s; }
 
 .level-pack {
+  box-sizing: border-box;
   position: fixed;
   z-index: 3;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 1em;
-  border: 5px solid #464B63;
   width: 75vw;
   height: 80vh;
   visibility: hidden;
@@ -176,6 +214,7 @@ body {
       height: 60vh; } }
 
 .level-btn {
+  box-sizing: border-box;
   position: relative;
   flex: 0 1 calc(20% - 2em);
   margin: 1em;
@@ -197,6 +236,12 @@ body {
 .level-btn:hover {
   opacity: .75;
   cursor: pointer; }
+
+.level-solved {
+  border: .35em solid; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .level-solved {
+      border: .25em solid; } }
 
 .level-btn-text {
   position: absolute;
@@ -301,14 +346,12 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column; }
+  .pack-content p {
+    margin: 0; }
 
 .pack-content-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
   visibility: hidden;
   transition: visibility 0s, opacity .25s;
@@ -317,17 +360,23 @@ body {
     .pack-content-info {
       display: none; } }
 
+.completion {
+  padding-bottom: 1em; }
+
 .pack-content:hover > .pack-content-info {
   opacity: 1;
   visibility: visible; }
 
 .pack-title {
+  padding-top: 1em;
   font-size: 3vw; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-title {
-      font-size: 5vw; } }
+      font-size: 5vw;
+      padding-top: 0em; } }
 
 .pack {
+  box-sizing: border-box;
   position: relative;
   flex: 0 1 calc(33.33% - 6em);
   margin: 3em;
@@ -350,28 +399,44 @@ body {
 
 .packred {
   color: #840010;
-  background-color: #FF6978; }
+  background-color: #FF6978;
+  border: .35em solid #840010; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packred {
+      border: .25em solid #840010; } }
 
 .packredbg {
   background-color: rgba(255, 105, 120, 0.35); }
 
 .packblue {
   color: #003c96;
-  background-color: #3885F9; }
+  background-color: #3885F9;
+  border: .35em solid #003c96; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packblue {
+      border: .25em solid #003c96; } }
 
 .packbluebg {
   background-color: rgba(56, 133, 249, 0.35); }
 
 .packgreen {
   color: #347900;
-  background-color: #94EA54; }
+  background-color: #94EA54;
+  border: .35em solid #347900; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packgreen {
+      border: .25em solid #347900; } }
 
 .packgreenbg {
   background-color: rgba(148, 234, 84, 0.35); }
 
 .packmagenta {
   color: #700080;
-  background-color: #C85ED8; }
+  background-color: #C85ED8;
+  border: .35em solid #700080; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packmagenta {
+      border: .25em solid #700080; } }
 
 .packmagentabg {
   background-color: rgba(200, 94, 216, 0.35); }

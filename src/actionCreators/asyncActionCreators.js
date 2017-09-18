@@ -3,17 +3,20 @@ import { closeLevelAction, loadLevelAction } from './levelActionCreators';
 import { setUserAction, setLevelCompletionData } from './userActionCreators';
 import firebase from '../utils/initFirebase';
 
-export const loadLevelString = (levelNumber, packInfo) => {
+export const loadLevelString = (levelNumber, packName) => {
 	return dispatch => {
-		const packRef = firebase.database().ref(`levelData/${packInfo.packName}Pack`);
+		console.log(levelNumber, packName);
+		const packRef = firebase.database().ref(`levelData/${packName}Pack`);
 		packRef.once("value").then(snapshot => {
-			return snapshot.child(`level${levelNumber}`).val();
-		}).then(levelString => {
-			if (levelString) {
+			const levelString = snapshot.child(`level${levelNumber}`).val();
+			const packInfo = snapshot.child(`packInfo`).val();
+			return { levelString, packInfo };
+		}).then(levelInfo => {
+			if (levelInfo) {
 				const levelObject = {
-					levelString,
-					levelNumber,
-					packInfo
+					levelString: levelInfo.levelString,
+					levelNumber: levelNumber,
+					packInfo: levelInfo.packInfo
 				};
 				dispatch(loadLevelAction(levelObject));
 				dispatch(uiActionCreators.openGameMode());

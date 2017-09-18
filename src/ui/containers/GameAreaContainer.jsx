@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import GameArea from '../components/GameArea.jsx';
 import uiActionCreators from '../../actionCreators/uiActionCreators';
 import * as levelActionCreators from '../../actionCreators/levelActionCreators';
+import * as asyncActionCreators from '../../actionCreators/asyncActionCreators';
 
 const mapStateToProps = state => {
 	return {
@@ -20,7 +21,8 @@ const mapDispatchToProps = dispatch => {
 		},
 		openHelp: () => dispatch(uiActionCreators.openHelp()),
 		closeHelp: () => dispatch(uiActionCreators.closeHelp()),
-		toggleSound: () => dispatch(uiActionCreators.toggleSound())
+		toggleSound: () => dispatch(uiActionCreators.toggleSound()),
+		loadLevel: (levelNumber, packName) => dispatch(asyncActionCreators.loadLevelString(levelNumber, packName))
 	};
 };
 
