@@ -21,7 +21,7 @@ class GameArea extends React.Component {
 	}
 
 	render() {
-		const { inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen } = this.props;
+		const { inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen, toggleSound, soundOn } = this.props;
 		return (
 			<div className={`${inGame ? 'open' : 'hidden'} game-area`}>
 				<HelpOverlay isHelpOpen={isHelpOpen} closeHelp={closeHelp} />
@@ -33,7 +33,9 @@ class GameArea extends React.Component {
 					<div className='game-board' id='game-root' tabIndex='0' />
 				</div>
 				<div className="after-game-board">
-
+					<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
+					<i className={`hint-btn fa fa-magic`}/>
+					<i className={`reset-btn fa fa-refresh`}/>
 				</div>
 			</div>
 		);

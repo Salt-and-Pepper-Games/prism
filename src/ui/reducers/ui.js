@@ -6,6 +6,7 @@ const initialState = {
 	currentLevel: null,
 	inGame: false,
 	isHelpOpen: false,
+	soundOn: true,
 	packInfo: []
 };
 
@@ -30,6 +31,8 @@ const ui = (state = initialState, action) => {
 			return Object.assign({}, state, { isHelpOpen: true });
 		case uiActionNames.CLOSE_HELP:
 			return Object.assign({}, state, { isHelpOpen: false });
+		case uiActionNames.TOGGLE_SOUND:
+			return Object.assign({}, state, { soundOn: !state.soundOn });
 		default:
 			return state;
 	}

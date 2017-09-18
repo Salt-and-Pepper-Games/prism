@@ -25,8 +25,6 @@ body {
     }
 }
 .game-board-wrapper {
-    background-color: #464B63;
-    border-radius: 1em;
     flex: 2;
 }
 .game-board:focus {
@@ -52,15 +50,14 @@ body {
         flex-direction: row;
     }
 }
-.return-home-btn, .help-btn {
+.return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn {
     font-size: 5em;
     transition: opacity .25s;
     @include mobile {
         font-size: 3em;
-        padding: 0em 1em;
     }
 }
-.return-home-btn:hover, .help-btn:hover {
+.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover {
     cursor: pointer;
     opacity: .75;    
 }
@@ -188,18 +185,17 @@ body {
     }
 }
 .level-btn {
+    position: relative;
     flex: 0 1 calc(20% - 2em);
     margin: 1em;
     border-radius: 2em;
     transition: opacity .25s;
+    align-self: flex-start;
     @include mobile {
         flex-basis: calc(33.33% - 1em);
         margin: .5em;
         border-radius: 1em;
     }
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: opacity .25s;
 }
 .level-btn:after {
@@ -213,6 +209,14 @@ body {
 }
 
 .level-btn-text {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 2em;
 }
 .btn-red {
