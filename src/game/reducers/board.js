@@ -28,6 +28,7 @@ export const defaultState = {
 	background: colorIndices.BLACK,
 	packInfo: null,
 	levelNumber: null,
+	complete: false,
 	stats: {
 		moves: 0,
 		switches: 0,
@@ -35,7 +36,6 @@ export const defaultState = {
 		elapsedTime: null,
 		solved: false
 	}
-	complete: false
 }
 
 export default (state = defaultState, action) => {
@@ -51,8 +51,9 @@ export default (state = defaultState, action) => {
 					elapsedTime: 0
 				})
 			});
-			console.log(newState.blocks);
 			return newState;
+		case levelActions.COMPLETE_LEVEL:
+			return Object.assign({}, state, { complete: true });
 		case levelActions.CLOSE_LEVEL:
 			return Object.assign({}, state, { loaded: false });
 		case playerActions.MOVE_UP:

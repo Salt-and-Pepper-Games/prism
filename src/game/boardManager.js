@@ -1,5 +1,8 @@
 import Konva from 'konva';
+
 import types from '../actionCreators/levelActionNames.js';
+import uiActionCreators from '../actionCreators/uiActionCreators';
+import levelActionCreators from '../actionCreators/levelActionCreators';
 import backgroundTypes from '../actionCreators/backgroundActionNames';
 import { setBackgroundColor } from '../actionCreators/backgroundActionCreators';
 import { addStateListener } from './game';
@@ -65,9 +68,11 @@ export default class BoardManager {
 			// Check if the player actually moved before changing switch color.
 			if (didMove) {
 				this.board.setPlayerPosition(px, py);
-				if (px === game.board.home.x && px === game.board.home.y === py && game.board.complete === false) {
+				if (px === game.board.home.x && game.board.home.y === py && !game.board.complete) {
 					// in the future dispatch a level end action but for now just cut to home screen
-					//dispatch()
+					this.dispatch(levelActionCreators.completeLevel());
+					this.dispatch(uiActionCreators.closeGameMode());
+					this.dispatch(levelActionCreators.closeLevel());
 				}
 			}
 			if (didBgChange) {
