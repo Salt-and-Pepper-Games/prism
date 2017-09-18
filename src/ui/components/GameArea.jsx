@@ -3,6 +3,7 @@ import { initGame } from '../../game';
 import PropTypes from 'prop-types';
 import HelpOverlay from './HelpOverlay.jsx';
 import { withRouter } from 'react-router';
+import isEqual from 'lodash.isequal';
 
 class GameArea extends React.Component {
 	static contextTypes = {
@@ -15,8 +16,10 @@ class GameArea extends React.Component {
 		this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
 	}
 	componentWillReceiveProps(nextProps) {
-		const matchParams = nextProps.match.params;
-		this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
+		if (!isEqual(this.props.match, nextProps.match)) {
+			const matchParams = nextProps.match.params;
+			this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
+		}
 		if (nextProps.inGame && !nextProps.isHelpOpen) {
 			// autofocus game
 			setTimeout(() => {
@@ -34,7 +37,7 @@ class GameArea extends React.Component {
 					<i
 						className="return-home-btn fa fa-sign-out fa-flip-horizontal"
 						onClick={() => {
-							history.push('/');
+							history.push(`${process.env.PUBLIC_URL}/`);
 							returnToMainScreen();
 						}}
 					/>
@@ -44,9 +47,15 @@ class GameArea extends React.Component {
 					<div className='game-board' id='game-root' tabIndex='0' />
 				</div>
 				<div className="after-game-board">
-					<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
-					<i className={`hint-btn fa fa-magic`}/>
-					<i className={`reset-btn fa fa-refresh`}/>
+					<div className='bottom-game-buttons'>
+						<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
+					</div>
+					<div className='bottom-game-buttons'>
+						<i className={`hint-btn fa fa-magic`}/>
+					</div>
+					<div className='bottom-game-buttons'>
+						<i className={`reset-btn fa fa-refresh`}/>
+					</div>
 				</div>
 			</div>
 		);

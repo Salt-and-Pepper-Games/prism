@@ -1,5 +1,4 @@
 import uiActionCreators from '../../actionCreators/uiActionCreators';
-import { loadLevelString } from '../../actionCreators/asyncActionCreators';
 import { connect } from 'react-redux';
 import LevelPack from '../components/LevelPack';
 

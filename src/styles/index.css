@@ -74,6 +74,14 @@ body {
     .after-game-board {
       flex-direction: row; } }
 
+.bottom-game-buttons {
+  display: flex;
+  align-items: center;
+  flex-basis: 33.33%; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .bottom-game-buttons {
+      justify-content: center; } }
+
 .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn {
   font-size: 5em;
   transition: opacity .25s; }
@@ -331,14 +339,12 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column; }
+  .pack-content p {
+    margin: 0; }
 
 .pack-content-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
   visibility: hidden;
   transition: visibility 0s, opacity .25s;
@@ -347,15 +353,20 @@ body {
     .pack-content-info {
       display: none; } }
 
+.completion {
+  padding-bottom: 1em; }
+
 .pack-content:hover > .pack-content-info {
   opacity: 1;
   visibility: visible; }
 
 .pack-title {
+  padding-top: 1em;
   font-size: 3vw; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-title {
-      font-size: 5vw; } }
+      font-size: 5vw;
+      padding-top: 0em; } }
 
 .pack {
   position: relative;

@@ -10,8 +10,8 @@ class App extends React.Component {
 		return (
 			<Router>
 				<div>
-					<Route exact path="/" component={MainScreenContainer} />
-					<Route path="/game/:packName/:levelNumber" component={GameAreaContainer}></Route>
+					<Route exact path={`${process.env.PUBLIC_URL}/`} component={MainScreenContainer} />
+					<Route path={`${process.env.PUBLIC_URL}/game/:packName/:levelNumber`} component={GameAreaContainer}></Route>
 				</div>
 			</Router>
 		);
