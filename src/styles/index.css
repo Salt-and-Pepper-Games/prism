@@ -19,8 +19,6 @@ body {
       flex-direction: column; } }
 
 .game-board-wrapper {
-  background-color: #464B63;
-  border-radius: 1em;
   flex: 2; }
 
 .game-board:focus {
