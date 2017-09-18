@@ -5,22 +5,31 @@ class LevelArea extends React.Component {
 		this.props.setPackInfo();
 	}
 	render() {
-		const { setCurrentPack, packInfo } = this.props;
+		const { setCurrentPack, packInfo, userLevelData } = this.props;
 		return (
 			<div className="packs-container">
-				{packInfo.map(pack =>
-					<div
-						key={pack.packName}
-						className={`pack pack${pack.packName}`}
-						onClick={() => setCurrentPack(pack)}
-					>
-						<div className={`pack-content`}>
-							<p className='pack-title'>{pack.packName.toUpperCase()}</p>
-							<p className="pack-content-info">easy</p>
-							<p className="pack-content-info completion">{`${Math.floor(Math.random() * 100)}% complete`}</p>
+				{packInfo.map(pack => {
+					const userPackData = userLevelData[pack.packName];
+					let solvedCount = 0;
+					if (userPackData) {
+						for (const level in userPackData) {
+							solvedCount += userPackData[level].solved ? 1 : 0;
+						}
+					}
+					return (
+						<div
+							key={pack.packName}
+							className={`pack pack${pack.packName}`}
+							onClick={() => setCurrentPack(pack)}
+						>
+							<div className={`pack-content`}>
+								<p className='pack-title'>{pack.packName.toUpperCase()}</p>
+								<p className="pack-content-info">easy</p>
+								<p className="pack-content-info completion">{`${Math.floor((solvedCount / pack.levelCount) * 100)}% complete`}</p>
+							</div>
 						</div>
-					</div>
-				)}
+					);
+				})}
 			</div>
 		);
 	}

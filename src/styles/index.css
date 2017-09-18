@@ -156,13 +156,13 @@ body {
   transition: visibility .25s, opacity .25s; }
 
 .level-pack {
+  box-sizing: border-box;
   position: fixed;
   z-index: 3;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 1em;
-  border: 5px solid #464B63;
   width: 75vw;
   height: 80vh;
   visibility: hidden;
@@ -214,6 +214,7 @@ body {
       height: 60vh; } }
 
 .level-btn {
+  box-sizing: border-box;
   position: relative;
   flex: 0 1 calc(20% - 2em);
   margin: 1em;
@@ -235,6 +236,12 @@ body {
 .level-btn:hover {
   opacity: .75;
   cursor: pointer; }
+
+.level-solved {
+  border: .35em solid; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .level-solved {
+      border: .25em solid; } }
 
 .level-btn-text {
   position: absolute;
@@ -369,6 +376,7 @@ body {
       padding-top: 0em; } }
 
 .pack {
+  box-sizing: border-box;
   position: relative;
   flex: 0 1 calc(33.33% - 6em);
   margin: 3em;
@@ -391,28 +399,44 @@ body {
 
 .packred {
   color: #840010;
-  background-color: #FF6978; }
+  background-color: #FF6978;
+  border: .35em solid #840010; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packred {
+      border: .25em solid #840010; } }
 
 .packredbg {
   background-color: rgba(255, 105, 120, 0.35); }
 
 .packblue {
   color: #003c96;
-  background-color: #3885F9; }
+  background-color: #3885F9;
+  border: .35em solid #003c96; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packblue {
+      border: .25em solid #003c96; } }
 
 .packbluebg {
   background-color: rgba(56, 133, 249, 0.35); }
 
 .packgreen {
   color: #347900;
-  background-color: #94EA54; }
+  background-color: #94EA54;
+  border: .35em solid #347900; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packgreen {
+      border: .25em solid #347900; } }
 
 .packgreenbg {
   background-color: rgba(148, 234, 84, 0.35); }
 
 .packmagenta {
   color: #700080;
-  background-color: #C85ED8; }
+  background-color: #C85ED8;
+  border: .35em solid #700080; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packmagenta {
+      border: .25em solid #700080; } }
 
 .packmagentabg {
   background-color: rgba(200, 94, 216, 0.35); }
