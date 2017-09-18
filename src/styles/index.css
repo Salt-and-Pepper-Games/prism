@@ -365,7 +365,8 @@ body {
   font-size: 3vw; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-title {
-      font-size: 5vw; } }
+      font-size: 5vw;
+      padding-top: 0em; } }
 
 .pack {
   position: relative;

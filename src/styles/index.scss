@@ -387,6 +387,7 @@ body {
     font-size: 3vw;
     @include mobile {
         font-size: 5vw;
+        padding-top: 0em;
     }
 }
 .pack {
