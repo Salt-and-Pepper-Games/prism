@@ -44,9 +44,15 @@ class GameArea extends React.Component {
 					<div className='game-board' id='game-root' tabIndex='0' />
 				</div>
 				<div className="after-game-board">
-					<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
-					<i className={`hint-btn fa fa-magic`}/>
-					<i className={`reset-btn fa fa-refresh`}/>
+					<div className='bottom-game-buttons'>
+						<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
+					</div>
+					<div className='bottom-game-buttons'>
+						<i className={`hint-btn fa fa-magic`}/>
+					</div>
+					<div className='bottom-game-buttons'>
+						<i className={`reset-btn fa fa-refresh`}/>
+					</div>
 				</div>
 			</div>
 		);

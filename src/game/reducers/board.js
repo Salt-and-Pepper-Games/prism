@@ -61,7 +61,11 @@ export default (state = defaultState, action) => {
 				})
 			});
 		case levelActions.CLOSE_LEVEL:
-			return Object.assign({}, state, { loaded: false });
+			return Object.assign({}, state, {
+				loaded: false,
+				packInfo: null,
+				levelNumber: null
+			});
 		case playerActions.MOVE_UP:
 			return getStateFromMovement(state, state.player.x, state.player.y - 1);
 		case playerActions.MOVE_DOWN:

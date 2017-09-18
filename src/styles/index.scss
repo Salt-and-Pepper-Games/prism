@@ -78,6 +78,14 @@ body {
         flex-direction: row;
     }
 }
+.bottom-game-buttons {
+    display: flex;
+    justify-content: center;
+    flex-basis: 33.33%;
+    @include mobile {
+        align-items: center;
+    }
+}
 .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn {
     font-size: 5em;
     transition: opacity .25s;
