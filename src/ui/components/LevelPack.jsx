@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 class LevelPack extends React.Component {
 	constructor(props) {
@@ -9,7 +10,7 @@ class LevelPack extends React.Component {
 		this.levelGrid = document.getElementById('levels-grid');
 	}
 	render() {
-		const { isOpen, currentPack, cachedCurrentPack, onClose, onLevelClick } = this.props;
+		const { isOpen, currentPack, cachedCurrentPack, onClose, onLevelClick, history } = this.props;
 		const levels = [];
 		if (cachedCurrentPack) {
 			for (let i = 1; i <= cachedCurrentPack.levelCount; i++) {
@@ -35,10 +36,10 @@ class LevelPack extends React.Component {
 		return (
 			<div>
 				<div
-					className={`${isOpen ? `pack-open` : ''} level-pack-background ${cachedCurrentPack ? `pack${cachedCurrentPack.packName}bg` : ''}`}
+					className={`${isOpen ? `pack-open` : ''} level-pack-background ${cachedCurrentPack ? `pack${cachedCurrentPack.packColor}bg` : ''}`}
 					onClick={onClose}
 				/>
-				<div className={`${isOpen ? `pack-open` : ''} level-pack ${cachedCurrentPack ? `pack${cachedCurrentPack.packName}` : ''}`}>
+				<div className={`${isOpen ? `pack-open` : ''} level-pack ${cachedCurrentPack ? `pack${cachedCurrentPack.packColor}` : ''}`}>
 					<div className='level-pack-inner'>
 						<div className='pack-header'>
 							{cachedCurrentPack && <h1>{cachedCurrentPack.packName.toUpperCase()}</h1>}
@@ -46,7 +47,11 @@ class LevelPack extends React.Component {
 						<i onClick={onClose} className='fa fa-close close-pack-btn'/>
 						<div id='levels-grid' className='levels-grid'>
 							{levels.map(level =>
-								<div onClick={() => onLevelClick(level, currentPack)} key={level} className={`level-btn btn-${cachedCurrentPack.packName}`}>
+								<div
+									onClick={() => history.push(`/game/${currentPack.packName}/${level}`)}
+									key={level}
+									className={`level-btn btn-${cachedCurrentPack.packColor}`}
+								>
 									<span className='level-btn-text'>{level}</span>
 								</div>
 							)}
@@ -58,4 +63,4 @@ class LevelPack extends React.Component {
 	}
 }
 
-export default LevelPack;
+export default withRouter(LevelPack);

@@ -13,8 +13,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onClose: () => dispatch(uiActionCreators.closeCurrentPack()),
-		onLevelClick: (levelNum, packInfo) => dispatch(loadLevelString(levelNum, packInfo))
+		onClose: () => dispatch(uiActionCreators.closeCurrentPack())
 	};
 };
 

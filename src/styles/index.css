@@ -1,3 +1,28 @@
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-moz-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-ms-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-o-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 body {
   background-color: #fffdfc;
   margin: 0;
@@ -6,7 +31,12 @@ body {
   color: #464B63; }
 
 .main-screen, .game-area {
-  transition: visibility 0s, opacity .25s; }
+  transition: visibility 0s, opacity .25s;
+  -webkit-animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  -ms-animation: fadein 1s;
+  -o-animation: fadein 1s;
+  animation: fadein 1s; }
 
 .game-area {
   position: fixed;
