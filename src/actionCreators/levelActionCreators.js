@@ -11,6 +11,6 @@ export const closeLevel = () => ({
 	type: types.CLOSE_LEVEL
 })
 
-export const completeLevel: () => ({
+export const completeLevel = () => ({
 	type: types.COMPLETE_LEVEL
 })
