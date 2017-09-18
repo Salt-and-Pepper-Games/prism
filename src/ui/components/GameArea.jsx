@@ -3,6 +3,7 @@ import { initGame } from '../../game';
 import PropTypes from 'prop-types';
 import HelpOverlay from './HelpOverlay.jsx';
 import { withRouter } from 'react-router';
+import isEqual from 'lodash.isequal';
 
 class GameArea extends React.Component {
 	static contextTypes = {
@@ -15,8 +16,10 @@ class GameArea extends React.Component {
 		this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
 	}
 	componentWillReceiveProps(nextProps) {
-		const matchParams = nextProps.match.params;
-		this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
+		if (!isEqual(this.props.match, nextProps.match)) {
+			const matchParams = nextProps.match.params;
+			this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
+		}
 		if (nextProps.inGame && !nextProps.isHelpOpen) {
 			// autofocus game
 			setTimeout(() => {
