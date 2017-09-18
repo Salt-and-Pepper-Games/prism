@@ -41,6 +41,7 @@ export const defaultState = {
 export default (state = defaultState, action) => {
 	switch (action.type) {
 		case levelActions.LOAD_LEVEL:
+			console.log(action);
 			const newState = Object.assign({}, defaultState, parseBoard(action.levelString));
 			Object.assign(newState, { 
 				loaded: true,
@@ -53,7 +54,12 @@ export default (state = defaultState, action) => {
 			});
 			return newState;
 		case levelActions.COMPLETE_LEVEL:
-			return Object.assign({}, state, { complete: true });
+			return Object.assign({}, state, { 
+				complete: true,
+				stats: Object.assign({}, state.stats, {
+					solved: true
+				})
+			});
 		case levelActions.CLOSE_LEVEL:
 			return Object.assign({}, state, { loaded: false });
 		case playerActions.MOVE_UP:
@@ -87,7 +93,8 @@ function getStateFromMovement(oldBoard, x, y) {
 			// stat tracking for move count
 			stats: Object.assign({}, newBoard.stats, {
 				moves: oldBoard.stats.moves + 1,
-				elapsedTime: Date.now() - oldBoard.stats.startTime
+				elapsedTime: Date.now() - oldBoard.stats.startTime,
+				solved: x === newBoard.home.x && y === newBoard.home.y
 			})
 		});
 		return newBoard;

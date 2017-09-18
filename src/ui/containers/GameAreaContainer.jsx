@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => {
 	return {
 		returnToMainScreen: () => {
 			dispatch(uiActionCreators.closeGameMode());
-			dispatch(levelActionCreators.closeLevel());
+			dispatch(levelActionCreators.closeLevelAction());
 		},
 		openHelp: () => dispatch(uiActionCreators.openHelp()),
 		closeHelp: () => dispatch(uiActionCreators.closeHelp())

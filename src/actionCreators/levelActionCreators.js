@@ -7,10 +7,10 @@ export const loadLevelAction = ({ levelString, levelNumber, packInfo }) => ({
 	packInfo
 })
 
-export const closeLevel = () => ({
+export const closeLevelAction = () => ({
 	type: types.CLOSE_LEVEL
 })
 
-export const completeLevel = () => ({
+export const completeLevelAction = () => ({
 	type: types.COMPLETE_LEVEL
 })
