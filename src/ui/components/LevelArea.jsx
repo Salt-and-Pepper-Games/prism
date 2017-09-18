@@ -16,10 +16,8 @@ class LevelArea extends React.Component {
 					>
 						<div className={`pack-content`}>
 							<p className='pack-title'>{pack.packName.toUpperCase()}</p>
-							<span className="pack-content-info">
-								<p>easy</p>
-								<p>{`${Math.floor(Math.random() * 100)}% complete`}</p>
-							</span>
+							<p className="pack-content-info">easy</p>
+							<p className="pack-content-info completion">{`${Math.floor(Math.random() * 100)}% complete`}</p>
 						</div>
 					</div>
 				)}

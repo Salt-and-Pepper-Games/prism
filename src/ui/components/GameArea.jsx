@@ -34,7 +34,7 @@ class GameArea extends React.Component {
 					<i
 						className="return-home-btn fa fa-sign-out fa-flip-horizontal"
 						onClick={() => {
-							history.push('/');
+							history.push(`${process.env.PUBLIC_URL}/`);
 							returnToMainScreen();
 						}}
 					/>
