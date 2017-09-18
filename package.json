@@ -5,6 +5,7 @@
   "dependencies": {
     "firebase": "^4.3.1",
     "fs": "0.0.1-security",
+    "history": "^4.7.2",
     "konva": "^1.6.8",
     "lodash.isequal": "^4.5.0",
     "react": "^15.6.1",

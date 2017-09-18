@@ -12,7 +12,7 @@ class LevelPack extends React.Component {
 		const { isOpen, currentPack, cachedCurrentPack, onClose, onLevelClick } = this.props;
 		const levels = [];
 		if (cachedCurrentPack) {
-			for (let i = 1; i <= /*cachedCurrentPack.levelCount*/ 100; i++) {
+			for (let i = 1; i <= cachedCurrentPack.levelCount; i++) {
 				levels.push(i);
 			}
 		}
