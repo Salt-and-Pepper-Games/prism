@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import uiActionCreators from '../../actionCreators/uiActionCreators';
+import * as asyncActionCreators from '../../actionCreators/asyncActionCreators';
 import LevelArea from '../components/LevelArea.jsx';
 
 const mapStateToProps = state => {
@@ -9,7 +10,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
 	return {
-		setPackInfo: packInfo => dispatch(uiActionCreators.setPackInfo(packInfo)),
+		setPackInfo: () => dispatch(asyncActionCreators.getPackInfo()),
 		setCurrentPack: currentPack => dispatch(uiActionCreators.setCurrentPack(currentPack))
 	};
 };

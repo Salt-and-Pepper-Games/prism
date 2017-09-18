@@ -5,7 +5,7 @@ import firebase from '../utils/initFirebase';
 
 export const loadLevelString = (levelNumber, packInfo) => {
 	return dispatch => {
-		const packRef = firebase.database().ref(`levelStrings/${packInfo.packName}Pack`);
+		const packRef = firebase.database().ref(`levelData/${packInfo.packName}Pack`);
 		packRef.once("value").then(snapshot => {
 			return snapshot.child(`level${levelNumber}`).val();
 		}).then(levelString => {
@@ -24,6 +24,25 @@ export const loadLevelString = (levelNumber, packInfo) => {
 		});
 	};
 }
+export const getPackInfo = () => {
+	return dispatch => {
+		const levelsRef = firebase.database().ref("levelData");
+		const packInfo = [];
+		levelsRef.once("value").then(snapshot => {
+			const packNames = snapshot.child("packNames").val();
+			for (const packName in packNames) {
+				packInfo.push(levelsRef.once("value").then(snapshot => {
+					return snapshot.child(`${packName}Pack/packInfo`).val();
+				}));
+			}
+			return packInfo;
+		}).then(packInfo => {
+			Promise.all(packInfo).then(resolvedPacks => {
+				dispatch(uiActionCreators.setPackInfo(resolvedPacks));
+			});
+		});
+	};
+};
 
 export const closeLevel = (state) => {
 	return dispatch => {
