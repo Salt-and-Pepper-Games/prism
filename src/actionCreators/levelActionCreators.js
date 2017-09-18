@@ -9,5 +9,8 @@ export default {
 	}),
 	closeLevel: () => ({
 		type: types.CLOSE_LEVEL
+	}),
+	completeLevel: () => ({
+		type: types.COMPLETE_LEVEL
 	})
 }
