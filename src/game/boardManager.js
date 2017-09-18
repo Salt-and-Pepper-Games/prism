@@ -2,8 +2,9 @@ import Konva from 'konva';
 
 import types from '../actionCreators/levelActionNames.js';
 import uiActionCreators from '../actionCreators/uiActionCreators';
-import {loadLevel, completeLevelAction} from '../actionCreators/levelActionCreators';
-import { closeLevel } from '../actionCreators/asyncActionCreators';
+import {loadLevel, closeLevelAction, completeLevelAction} from '../actionCreators/levelActionCreators';
+import { loadLevelString } from '../actionCreators/asyncActionCreators';
+import { saveData } from '../utils/firebaseListeners';
 import backgroundTypes from '../actionCreators/backgroundActionNames';
 import { setBackgroundColor } from '../actionCreators/backgroundActionCreators';
 import { addStateListener } from './game';
@@ -72,8 +73,14 @@ export default class BoardManager {
 				if (px === game.board.home.x && game.board.home.y === py && !game.board.complete) {
 					// in the future dispatch a level end action but for now just cut to home screen
 					this.dispatch(completeLevelAction());
-					this.dispatch(uiActionCreators.closeGameMode());
-					this.dispatch(closeLevel(state));
+					saveData(state);
+					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
+						this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo));
+					}
+					else {
+						this.dispatch(closeLevelAction());
+						this.dispatch(uiActionCreators.closeGameMode());
+					}
 				}
 			}
 			if (didBgChange) {

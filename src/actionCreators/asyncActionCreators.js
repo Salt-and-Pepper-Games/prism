@@ -25,23 +25,6 @@ export const loadLevelString = (levelNumber, packInfo) => {
 	};
 }
 
-export const closeLevel = (state) => {
-	return dispatch => {
-		// upload stuff to firebase
-		const levelNumber = state.game.board.levelNumber;
-		const packName = state.game.board.packInfo.packName;
-		const uid = state.game.user.id;
-		const solved = state.game.board.stats.solved;
-		const ref = firebase.database().ref(`users/${uid}/levelData/${packName}/${levelNumber}`);
-		ref.transaction(curr => {
-			return Object.assign({}, curr || {}, {
-				solved: (curr && curr.solved) || solved
-			});
-		});
-		dispatch(closeLevelAction());
-	}
-}
-
 export const setupFirebaseListeners = () => {
 		return dispatch => {
 			firebase.auth().onAuthStateChanged(user => {
@@ -49,7 +32,6 @@ export const setupFirebaseListeners = () => {
 					dispatch(setUserAction(user));
 					firebase.database().ref(`users/${user.uid}`)
 						.once('value').then(snapshot => {
-							// TODO: this is where we would load user level completion data
 							dispatch(setLevelCompletionData(snapshot.child('levelData').val()));
 						});
 				}
