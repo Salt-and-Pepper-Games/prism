@@ -10,6 +10,7 @@ import { setBackgroundColor } from '../actionCreators/backgroundActionCreators';
 import { addStateListener } from './game';
 import Board from './models/board';
 import isEqual from 'lodash.isequal';
+import { push } from 'react-router-redux';
 
 /**
  * Higher order redux-connected class to wrap around a board
@@ -75,7 +76,9 @@ export default class BoardManager {
 					this.dispatch(completeLevelAction());
 					saveData(state);
 					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
-						this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo));
+						// figure out how to navigate to a new url here
+						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
+						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
 					}
 					else {
 						this.dispatch(closeLevelAction());
