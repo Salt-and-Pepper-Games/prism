@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-// after the other reducers exist, import them all here
-const dummy = (state={}, action) => state;
+import ui from './ui.js'
 
-export default combineReducers({ dummy });
+export default combineReducers({ ui });

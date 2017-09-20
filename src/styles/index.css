@@ -367,13 +367,17 @@ body {
   opacity: 1;
   visibility: visible; }
 
+.difficulty {
+  padding-top: 1em; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .difficulty {
+      padding-top: 0em; } }
+
 .pack-title {
-  padding-top: 1em;
   font-size: 3vw; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-title {
-      font-size: 5vw;
-      padding-top: 0em; } }
+      font-size: 5vw; } }
 
 .pack {
   box-sizing: border-box;
