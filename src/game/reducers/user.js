@@ -1,4 +1,5 @@
 import * as userActions from '../../actionCreators/userActionNames';
+import clone from 'clone';
 const defaultState = {
 	authenticated: false,
 	id: null,
@@ -15,6 +16,12 @@ export default (state=defaultState, action) => {
 		case userActions.SET_LEVEL_COMPLETION_DATA:
 			return Object.assign({}, state, {
 				levelData: action.data || {}
+			});
+		case userActions.UPDATE_LEVEL_COMPLETION_DATA:
+			const newData = clone(state.levelData);
+			newData[action.packName][action.levelNumber] = action.data;
+			return Object.assign({}, state, {
+				levelData: newData || {}
 			});
 		default:
 			return state;

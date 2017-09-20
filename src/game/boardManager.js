@@ -74,7 +74,7 @@ export default class BoardManager {
 				if (px === game.board.home.x && game.board.home.y === py && !game.board.complete) {
 					// in the future dispatch a level end action but for now just cut to home screen
 					this.dispatch(completeLevelAction());
-					saveData(state);
+					saveData(state, this.dispatch);
 					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
 						// figure out how to navigate to a new url here
 						this.dispatch(push(`${process.env.PUBLIC_URL}/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));

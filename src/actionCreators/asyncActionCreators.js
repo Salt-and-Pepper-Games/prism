@@ -5,7 +5,6 @@ import firebase from '../utils/initFirebase';
 
 export const loadLevelString = (levelNumber, packName) => {
 	return dispatch => {
-		console.log(levelNumber, packName);
 		const packRef = firebase.database().ref(`levelData/${packName}Pack`);
 		packRef.once("value").then(snapshot => {
 			const levelString = snapshot.child(`level${levelNumber}`).val();

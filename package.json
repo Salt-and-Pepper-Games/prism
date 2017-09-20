@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "clone": "^2.1.1",
     "firebase": "^4.3.1",
     "fs": "0.0.1-security",
     "history": "^4.7.2",
