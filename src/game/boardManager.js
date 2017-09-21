@@ -77,11 +77,11 @@ export default class BoardManager {
 					saveData(state, this.dispatch);
 					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
 						// figure out how to navigate to a new url here
-						this.dispatch(push(`${process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}/prism/` : ''}/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
+						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
 						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
 					}
 					else {
-						this.dispatch(push(`${process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}/prism/` : ''}/`));
+						this.dispatch(push(`/`));
 						this.dispatch(closeLevelAction());
 						this.dispatch(uiActionCreators.closeGameMode());
 					}

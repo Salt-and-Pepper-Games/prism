@@ -53,7 +53,7 @@ class LevelPack extends React.Component {
 								}
 								return (
 									<div
-										onClick={() => history.push(`${process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}/prism/` : ''}/game/${currentPack.packName}/${level}`)}
+										onClick={() => history.push(`/game/${currentPack.packName}/${level}`)}
 										key={level}
 										className={`level-btn btn-${cachedCurrentPack.packColor} level-${isSolved ? 'solved' : 'not-solved'}`}
 									>
