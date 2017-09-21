@@ -21,8 +21,8 @@ class App extends React.Component {
 		return (
 			<HashRouter>
 				<div>
-					<Route exact path={`${process.env.PUBLIC_URL}/`} component={MainScreenContainer} />
-					<Route path={`${process.env.PUBLIC_URL}/game/:packName/:levelNumber`} component={GameAreaContainer}></Route>
+					<Route exact path={`${process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}/prism/` : ''}/`} component={MainScreenContainer} />
+					<Route path={`${process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}/prism/` : ''}/game/:packName/:levelNumber`} component={GameAreaContainer}></Route>
 				</div>
 			</HashRouter>
 		);
