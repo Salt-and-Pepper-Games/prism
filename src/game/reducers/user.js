@@ -19,7 +19,11 @@ export default (state=defaultState, action) => {
 			});
 		case userActions.UPDATE_LEVEL_COMPLETION_DATA:
 			const newData = clone(state.levelData);
-			newData[action.packName][action.levelNumber] = action.data;
+			if (newData[action.packName]) {
+				newData[action.packName][action.levelNumber] = action.data;
+			} else {
+				newData[action.packName] = { [action.levelNumber] : action.data };
+			}
 			return Object.assign({}, state, {
 				levelData: newData || {}
 			});
