@@ -6,7 +6,6 @@ class LevelArea extends React.Component {
 	}
 	render() {
 		const { setCurrentPack, packInfo, userLevelData } = this.props;
-		console.log(userLevelData);
 		return (
 			<div className="packs-container">
 				{packInfo.map(pack => {
