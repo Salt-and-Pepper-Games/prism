@@ -18,6 +18,10 @@ export default (state=defaultState, action) => {
 			return Object.assign({}, state, {
 				levelData: action.data || {}
 			});
+		case userActions.SET_USER_STATS:
+			return Object.assign({}, state, {
+				stats: action.stats || {}
+			});
 		case userActions.UPDATE_LEVEL_COMPLETION_DATA:
 			const newData = clone(state.levelData);
 			if (newData[action.packName]) {

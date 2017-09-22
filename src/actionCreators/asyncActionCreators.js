@@ -1,6 +1,6 @@
 import uiActionCreators from './uiActionCreators';
 import { closeLevelAction, loadLevelAction } from './levelActionCreators';
-import { setUserAction, setLevelCompletionData } from './userActionCreators';
+import { setUserStats, setUserAction, setLevelCompletionData } from './userActionCreators';
 import firebase from 'firebase';
 
 export const loadLevelString = (levelNumber, packName) => {
@@ -62,6 +62,7 @@ export const setupFirebaseListeners = () => {
 					firebase.database().ref(`users/${user.uid}`)
 						.once('value').then(snapshot => {
 							dispatch(setLevelCompletionData(snapshot.child('levelData').val()));
+							dispatch(setUserStats(snapshot.child('stats').val()));
 						});
 				}
 				else {

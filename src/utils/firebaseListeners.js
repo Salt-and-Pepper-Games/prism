@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { updateLevelCompletionData } from '../actionCreators/userActionCreators';
+import { setUserStats, updateLevelCompletionData } from '../actionCreators/userActionCreators';
 
 const config = {
 	apiKey: "AIzaSyAgfYibGQ6G_vzwNJkyl5GLU_fepDGLdas",
@@ -38,12 +38,14 @@ export const saveData = (state, dispatch) => {
 		const moves = (prevState.moves || 0) + stats.moves;
 		const switches = (prevState.switches || 0) + stats.switches;
 		const elapsedTime = (prevState.elapsedTime || 0) + stats.elapsedTime;
-		return Object.assign({}, prevState, {
+		const newStats = Object.assign({}, prevState, {
 			levelsCompleted,
 			moves,
 			switches,
 			elapsedTime
 		});
+		dispatch(setUserStats(newStats));
+		return newStats;
 	});
 
 	// updating internal level stats
