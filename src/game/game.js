@@ -38,7 +38,7 @@ export const initGame = (store) => {
 		width: size,
 		height: size
 	});
-	setupInput(store, stage.container());
+	setupInput(store);
 
 	boardManager = new BoardManager(stage, store.dispatch);
 
