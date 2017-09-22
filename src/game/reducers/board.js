@@ -46,7 +46,7 @@ export default (state = defaultState, action) => {
 			Object.assign(newState, { 
 				loaded: true,
 				packInfo: action.packInfo,
-				levelNumber: action.levelNumber,
+				levelNumber: parseInt(action.levelNumber),
 				stats: Object.assign({}, defaultState.stats, {
 					startTime: Date.now(),
 					elapsedTime: 0

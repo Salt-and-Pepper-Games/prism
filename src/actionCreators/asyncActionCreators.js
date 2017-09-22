@@ -1,15 +1,20 @@
 import uiActionCreators from './uiActionCreators';
 import { closeLevelAction, loadLevelAction } from './levelActionCreators';
 import { setUserAction, setLevelCompletionData } from './userActionCreators';
-import firebase from '../utils/initFirebase';
+import firebase from 'firebase';
 
 export const loadLevelString = (levelNumber, packName) => {
 	return dispatch => {
 		const packRef = firebase.database().ref(`levelData/${packName}Pack`);
 		packRef.once("value").then(snapshot => {
 			const levelString = snapshot.child(`level${levelNumber}`).val();
-			const packInfo = snapshot.child(`packInfo`).val();
-			return { levelString, packInfo };
+			if (levelString) {
+				const packInfo = snapshot.child(`packInfo`).val();
+				return { levelString, packInfo };
+			}
+			else {
+				throw new Error("Level not found");
+			}
 		}).then(levelInfo => {
 			if (levelInfo) {
 				const levelObject = {
@@ -23,6 +28,9 @@ export const loadLevelString = (levelNumber, packName) => {
 			} else {
 				console.log("There was an error loading the level");
 			}
+		})
+		.catch(err => {
+			console.log(err);
 		});
 	};
 }

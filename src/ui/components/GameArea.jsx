@@ -20,12 +20,6 @@ class GameArea extends React.Component {
 			const matchParams = nextProps.match.params;
 			this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
 		}
-		if (nextProps.inGame && !nextProps.isHelpOpen) {
-			// autofocus game
-			setTimeout(() => {
-				document.getElementById('game-root').focus();
-			}, 300);
-		}
 	}
 
 	render() {

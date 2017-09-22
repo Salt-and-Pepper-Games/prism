@@ -3,7 +3,8 @@ import clone from 'clone';
 const defaultState = {
 	authenticated: false,
 	id: null,
-	levelData: {}
+	levelData: {},
+	stats: {},
 };
 
 export default (state=defaultState, action) => {
