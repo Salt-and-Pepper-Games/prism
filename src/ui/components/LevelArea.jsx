@@ -19,7 +19,7 @@ class LevelArea extends React.Component {
 					return (
 						<div
 							key={pack.packName}
-							className={`pack pack${pack.packName}`}
+							className={`pack pack${pack.packColor}`}
 							onClick={() => setCurrentPack(pack)}
 						>
 							<div className={`pack-content`}>
