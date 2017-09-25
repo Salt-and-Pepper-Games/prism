@@ -27,12 +27,45 @@
     to   { opacity: 1; }
 }
 
+$white: #fffdfc;
+$creamy-white: #fff3f3;
+$white-opaque: rgba(255, 253, 252, 0.35);
+$black: #464B63;
+$dark-black: #252525;
+$black-opaque: rgba(70, 75, 99, 0.35);
+$red: #FF6978;
+$red-opaque: rgba(255, 105, 120, 0.35);
+$dark-red: #840010;
+$light-red: #ff919c;
+$green: #94EA54;
+$dark-green: #347900;
+$light-green: #baff87;
+$green-opaque: rgba(148, 234, 84, 0.35);
+$blue: #3885F9;
+$light-blue: #6aa5ff;
+$dark-blue: #003c96;
+$blue-opaque: rgba(56, 133, 249, 0.35);
+$magenta: #C85ED8;
+$dark-magenta: #700080;
+$light-magenta: #dc6eec;
+$magenta-opaque: rgba(200, 94, 216, 0.35);
+$cyan: #4CEDDE;
+$dark-cyan: #267770;
+$light-cyan: #6bfff2;
+$cyan-opaque: rgba(76, 237, 222, 0.35);
+$yellow: #F4EE36;
+$dark-yellow: #6b6a57;
+$light-yellow: #fff85d;
+$yellow-opaque: rgba(244, 238, 54, 0.35);
+
+
+
 body {
-    background-color: #fffdfc;
+    background-color: $white;
     margin: 0;
     padding: 0;
     font-family: "Josefin Sans", sans-serif;
-    color: #464B63;
+    color: $black;
 }
 .main-screen, .game-area {
     transition: visibility 0s, opacity .25s;
@@ -124,7 +157,7 @@ body {
     width: 60vh;
 }
 .help-text {
-    color: #fffdfc;
+    color: $white;
     padding: 1em 1em;
     font-size: 3em;
     @include mobile {
@@ -136,7 +169,7 @@ body {
     position: absolute;
     top: .5em;
     right: .5em;
-    color: #fffdfc;
+    color: $white;
     font-size: 5em;
     transition: opacity .25s;
     @include mobile {
@@ -270,22 +303,10 @@ body {
     justify-content: center;
     font-size: 2em;
 }
-.btn-red {
-    background-color: #ff919c;
-}
-.btn-green {
-    background-color: #baff87;
-}
-.btn-blue {
-    background-color: #6aa5ff;
-}
-.btn-magenta {
-    background-color: #dc6eec;
-}
 
 .dashboard {
     margin: 2em;
-    background-color: #fff3f3;
+    background-color: $creamy-white;
     border-radius: 1em;
 }
 .dashboard-panel {
@@ -431,78 +452,175 @@ body {
     cursor: pointer;
     opacity: .75;
 }
-.packred {
-    color: #840010;
-    background-color: #FF6978;
-    border: .35em solid #840010;
+.packyellow {
+    color: $dark-yellow;
+    background-color: $yellow;
+    border: .35em solid $dark-yellow;
     @include mobile {
-        border: .25em solid #840010;
+        border: .25em solid $dark-yellow;
+    }
+}
+.packyellowbg {
+    background-color: $yellow-opaque;
+}
+.packcyan {
+    color: $dark-cyan;
+    background-color: $cyan;
+    border: .35em solid $dark-cyan;
+    @include mobile {
+        border: .25em solid $dark-cyan;
+    }
+}
+.packcyanbg {
+    background-color: $cyan-opaque;
+}
+.packblack {
+    color: $white;
+    background-color: $black;
+    border: .35em solid $dark-black;
+    @include mobile {
+        border: .25em solid $dark-black;
+    }
+}
+.packblackbg {
+    background-color: $black-opaque;
+}
+.packwhite {
+    color: $black;
+    background-color: $white;
+    border: .35em solid $black;
+    @include mobile {
+        border: .25em solid $black;
+    }
+}
+.packwhitebg {
+    background-color: $white-opaque;
+}
+.packred {
+    color: $dark-red;
+    background-color: $red;
+    border: .35em solid $dark-red;
+    @include mobile {
+        border: .25em solid $dark-red;
     }
 }
 .packredbg {
-    background-color: rgba(255, 105, 120, 0.35);
+    background-color: $red-opaque;
 }
 .packblue {
-    color: #003c96;
-    background-color: #3885F9;
-    border: .35em solid #003c96;
+    color: $dark-blue;
+    background-color: $blue;
+    border: .35em solid $dark-blue;
     @include mobile {
-        border: .25em solid #003c96;
+        border: .25em solid $dark-blue;
     }
 }
 .packbluebg {
-    background-color: rgba(56, 133, 249, 0.35);
+    background-color: $blue-opaque;
 }
 .packgreen {
-    color: #347900;
-    background-color: #94EA54;
-    border: .35em solid #347900;
+    color: $dark-green;
+    background-color: $green;
+    border: .35em solid $dark-green;
     @include mobile {
-        border: .25em solid #347900;
+        border: .25em solid $dark-green;
     }
 }
 .packgreenbg {
-    background-color: rgba(148, 234, 84, 0.35);
+    background-color: $green-opaque;
 }
 .packmagenta {
-    color: #700080;
-    background-color: #C85ED8;
-    border: .35em solid #700080;
+    color: $dark-magenta;
+    background-color: $magenta;
+    border: .35em solid $dark-magenta;
     @include mobile {
-        border: .25em solid #700080;
+        border: .25em solid $dark-magenta;
     }
 }
 .packmagentabg {
-    background-color: rgba(200, 94, 216, 0.35);
+    background-color: $magenta-opaque;
+}
+.game-area-yellow {
+    color: $dark-yellow;
+    background-color: $yellow;
+}
+.game-area-cyan {
+    color: $dark-cyan;
+    background-color: $cyan;
+}
+.game-area-white {
+    color: $black;
+    background-color: $white;
+}
+.game-area-black {
+    color: $white;
+    background-color: $black;
 }
 .game-area-red {
-    color: #003c96;
-    background-color: #3885F9;
+    color: $dark-red;
+    background-color: $red;
 }
 .game-area-green {
-    color: #347900;
-    background-color: #94EA54;
+    color: $dark-green;
+    background-color: $green;
 }
 .game-area-blue {
-    color: #003c96;
-    background-color: #3885F9;
+    color: $dark-blue;
+    background-color: $blue;
 }
 .game-area-magenta {
-    color: #700080;
-    background-color: #C85ED8;
+    color: $dark-magenta;
+    background-color: $magenta;
+}
+.game-wrapper-yellow {
+    background-color: $dark-yellow;
+}
+.game-wrapper-cyan {
+    background-color: $dark-cyan;
+}
+
+.game-wrapper-white {
+    background-color: $creamy-white;
+}
+.game-wrapper-black {
+    background-color: $dark-black;
 }
 .game-wrapper-red {
-    background-color: #003c96;
+    background-color: $dark-red;
     
 }
 .game-wrapper-green {
-    background-color: #347900;
+    background-color: $dark-green;
     
 }
 .game-wrapper-blue {
-    background-color: #003c96;
+    background-color: $dark-blue;
     
 }
 .game-wrapper-magenta {
-    background-color: #700080;
+    background-color: $dark-magenta;
+}
+.btn-yellow {
+    background-color: $light-yellow;
+}
+.btn-cyan {
+    background-color: $light-cyan;
+}
+.btn-white {
+    background-color: $creamy-white;
+}
+.btn-black {
+    background-color: $dark-black;
+}
+.btn-red {
+    background-color: $light-red;
+}
+.btn-green {
+    background-color: $light-green;
+}
+.btn-blue {
+    background-color: $light-blue;
+}
+.btn-magenta {
+    background-color: $light-magenta;
 }

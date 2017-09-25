@@ -262,18 +262,6 @@ body {
   justify-content: center;
   font-size: 2em; }
 
-.btn-red {
-  background-color: #ff919c; }
-
-.btn-green {
-  background-color: #baff87; }
-
-.btn-blue {
-  background-color: #6aa5ff; }
-
-.btn-magenta {
-  background-color: #dc6eec; }
-
 .dashboard {
   margin: 2em;
   background-color: #fff3f3;
@@ -409,13 +397,57 @@ body {
   cursor: pointer;
   opacity: .75; }
 
+.packyellow {
+  color: #6b6a57;
+  background-color: #F4EE36;
+  border: 0.35em solid #6b6a57; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packyellow {
+      border: 0.25em solid #6b6a57; } }
+
+.packyellowbg {
+  background-color: rgba(244, 238, 54, 0.35); }
+
+.packcyan {
+  color: #267770;
+  background-color: #4CEDDE;
+  border: 0.35em solid #267770; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packcyan {
+      border: 0.25em solid #267770; } }
+
+.packcyanbg {
+  background-color: rgba(76, 237, 222, 0.35); }
+
+.packblack {
+  color: #fffdfc;
+  background-color: #464B63;
+  border: 0.35em solid #252525; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packblack {
+      border: 0.25em solid #252525; } }
+
+.packblackbg {
+  background-color: rgba(70, 75, 99, 0.35); }
+
+.packwhite {
+  color: #464B63;
+  background-color: #fffdfc;
+  border: 0.35em solid #464B63; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packwhite {
+      border: 0.25em solid #464B63; } }
+
+.packwhitebg {
+  background-color: rgba(255, 253, 252, 0.35); }
+
 .packred {
   color: #840010;
   background-color: #FF6978;
-  border: .35em solid #840010; }
+  border: 0.35em solid #840010; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packred {
-      border: .25em solid #840010; } }
+      border: 0.25em solid #840010; } }
 
 .packredbg {
   background-color: rgba(255, 105, 120, 0.35); }
@@ -423,10 +455,10 @@ body {
 .packblue {
   color: #003c96;
   background-color: #3885F9;
-  border: .35em solid #003c96; }
+  border: 0.35em solid #003c96; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packblue {
-      border: .25em solid #003c96; } }
+      border: 0.25em solid #003c96; } }
 
 .packbluebg {
   background-color: rgba(56, 133, 249, 0.35); }
@@ -434,10 +466,10 @@ body {
 .packgreen {
   color: #347900;
   background-color: #94EA54;
-  border: .35em solid #347900; }
+  border: 0.35em solid #347900; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packgreen {
-      border: .25em solid #347900; } }
+      border: 0.25em solid #347900; } }
 
 .packgreenbg {
   background-color: rgba(148, 234, 84, 0.35); }
@@ -445,17 +477,33 @@ body {
 .packmagenta {
   color: #700080;
   background-color: #C85ED8;
-  border: .35em solid #700080; }
+  border: 0.35em solid #700080; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packmagenta {
-      border: .25em solid #700080; } }
+      border: 0.25em solid #700080; } }
 
 .packmagentabg {
   background-color: rgba(200, 94, 216, 0.35); }
 
+.game-area-yellow {
+  color: #6b6a57;
+  background-color: #F4EE36; }
+
+.game-area-cyan {
+  color: #267770;
+  background-color: #4CEDDE; }
+
+.game-area-white {
+  color: #464B63;
+  background-color: #fffdfc; }
+
+.game-area-black {
+  color: #fffdfc;
+  background-color: #464B63; }
+
 .game-area-red {
-  color: #003c96;
-  background-color: #3885F9; }
+  color: #840010;
+  background-color: #FF6978; }
 
 .game-area-green {
   color: #347900;
@@ -469,8 +517,20 @@ body {
   color: #700080;
   background-color: #C85ED8; }
 
+.game-wrapper-yellow {
+  background-color: #6b6a57; }
+
+.game-wrapper-cyan {
+  background-color: #267770; }
+
+.game-wrapper-white {
+  background-color: #fff3f3; }
+
+.game-wrapper-black {
+  background-color: #252525; }
+
 .game-wrapper-red {
-  background-color: #003c96; }
+  background-color: #840010; }
 
 .game-wrapper-green {
   background-color: #347900; }
@@ -480,5 +540,29 @@ body {
 
 .game-wrapper-magenta {
   background-color: #700080; }
+
+.btn-yellow {
+  background-color: #fff85d; }
+
+.btn-cyan {
+  background-color: #6bfff2; }
+
+.btn-white {
+  background-color: #fff3f3; }
+
+.btn-black {
+  background-color: #252525; }
+
+.btn-red {
+  background-color: #ff919c; }
+
+.btn-green {
+  background-color: #baff87; }
+
+.btn-blue {
+  background-color: #6aa5ff; }
+
+.btn-magenta {
+  background-color: #dc6eec; }
 
 /*# sourceMappingURL=index.css.map */
