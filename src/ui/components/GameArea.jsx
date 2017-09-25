@@ -23,9 +23,9 @@ class GameArea extends React.Component {
 	}
 
 	render() {
-		const { inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen, toggleSound, soundOn, history } = this.props;
+		const { inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen, toggleSound, soundOn, history, currentPack } = this.props;
 		return (
-			<div className={`${inGame ? 'open' : 'hidden'} game-area`}>
+			<div className={`${inGame ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
 				<HelpOverlay isHelpOpen={isHelpOpen} closeHelp={closeHelp} />
 				<div className="before-game-board">
 					<i
@@ -37,7 +37,7 @@ class GameArea extends React.Component {
 					/>
 					<i className="help-btn fa fa-question" onClick={openHelp} />
 				</div>
-				<div className="game-board-wrapper">
+				<div className={`game-wrapper-${currentPack ? currentPack.packColor : ''} game-board-wrapper`}>
 					<div className='game-board' id='game-root' tabIndex='0' />
 				</div>
 				<div className="after-game-board">

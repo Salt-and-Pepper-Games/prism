@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route, HashRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Howl } from 'howler';
 import MainScreenContainer from './ui/containers/MainScreenContainer.jsx'
 import GameAreaContainer from './ui/containers/GameAreaContainer.jsx';
-import demoTrack from './audio/demo_blue.mp3'
+import demoTrack from './audio/demo_blue.mp3';
 
 class App extends React.Component {
 	constructor(props) {
@@ -11,13 +12,15 @@ class App extends React.Component {
 		this.mainTrack = new Howl({
 		  src: [demoTrack],
 		  loop: true,
-		  html5: true
+		  html5: true,
+		  volume: 1.0
 		});
 	}
 	componentDidMount() {
 		this.mainTrack.play();
 	}
 	render() {
+		this.mainTrack.volume(this.props.soundOn ? 1.0 : 0.0);
 		return (
 			<HashRouter>
 				<div>
@@ -30,4 +33,4 @@ class App extends React.Component {
 }
 
 
-export default App;
+export default connect(state => ({soundOn: state.ui.soundOn}), null)(App);

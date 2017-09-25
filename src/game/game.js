@@ -30,7 +30,7 @@ export const initGame = (store) => {
 	// maybe add a start() function to boardManager
 	// window.requestAnimationFrame(animationLoop);
 	
-	const size = Math.min(window.innerWidth, window.innerHeight);
+	const size = Math.min(window.innerWidth * .9, window.innerHeight * .9);
 
 	// initialize konva stage
 	const stage = new Konva.Stage({

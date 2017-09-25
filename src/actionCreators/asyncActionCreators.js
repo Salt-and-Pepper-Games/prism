@@ -22,6 +22,7 @@ export const loadLevelString = (levelNumber, packName) => {
 					levelNumber: levelNumber,
 					packInfo: levelInfo.packInfo
 				};
+				dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
 				dispatch(loadLevelAction(levelObject));
 				dispatch(uiActionCreators.openGameMode());
 			// TODO: Add in error handling
