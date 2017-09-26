@@ -85,12 +85,13 @@ body {
 .bottom-game-buttons {
   display: flex;
   align-items: center;
-  flex-basis: 33.33%; }
+  flex-basis: 25%; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .bottom-game-buttons {
       justify-content: center; } }
 
 .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
+  position: relative;
   font-size: 5em;
   transition: opacity .25s; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
