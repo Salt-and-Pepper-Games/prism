@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Howl } from 'howler';
 import MainScreenContainer from './ui/containers/MainScreenContainer.jsx'
 import GameAreaContainer from './ui/containers/GameAreaContainer.jsx';
-import demoTrack from './audio/demo_blue.mp3';
+import demoTrack from './audio/main_menu.mp3';
 
 class App extends React.Component {
 	constructor(props) {

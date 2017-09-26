@@ -354,7 +354,7 @@ body {
 .pack-content-info {
   opacity: 0;
   visibility: hidden;
-  transition: visibility 0s, opacity .25s;
+  transition: visibility .25s, opacity .25s;
   font-size: 2vw; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-content-info {
@@ -385,7 +385,7 @@ body {
   flex: 0 1 calc(33.33% - 6em);
   margin: 3em;
   border-radius: 3em;
-  transition: opacity .25s; }
+  transition: background-color .25s; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack {
       flex-basis: calc(50% - 2em);
@@ -398,8 +398,31 @@ body {
   padding-bottom: 100%; }
 
 .pack:hover {
-  cursor: pointer;
-  opacity: .75; }
+  cursor: pointer; }
+
+.pack.packblack:hover {
+  background-color: rgba(70, 75, 99, 0.8); }
+
+.pack.packwhite:hover {
+  background-color: rgba(255, 243, 243, 0.8); }
+
+.pack.packyellow:hover {
+  background-color: rgba(255, 250, 108, 0.8); }
+
+.pack.packcyan:hover {
+  background-color: rgba(76, 237, 222, 0.8); }
+
+.pack.packmagenta:hover {
+  background-color: rgba(255, 123, 214, 0.8); }
+
+.pack.packred:hover {
+  background-color: rgba(255, 105, 120, 0.8); }
+
+.pack.packgreen:hover {
+  background-color: rgba(148, 234, 84, 0.8); }
+
+.pack.packblue:hover {
+  background-color: rgba(86, 153, 253, 0.8); }
 
 .packyellow {
   color: #52501b;

@@ -31,35 +31,44 @@ $white: #fffdfc;
 $creamy-white: #fff3f3;
 $dark-white: #6f6f6f;
 $white-opaque: rgba(255, 253, 252, 0.35);
+$white-less-opaque: rgba(255, 253, 252, 0.8);
 $creamy-white-opaque: rgba(255, 243, 243, 0.35);
+$creamy-white-less-opaque: rgba(255, 243, 243, 0.8);
 $black: #464B63;
 $dark-black: #252525;
 $light-black: #5a5979;
 $black-opaque: rgba(70, 75, 99, 0.35);
+$black-less-opaque: rgba(70, 75, 99, 0.8);
 $red: #FF6978;
 $red-opaque: rgba(255, 105, 120, 0.35);
+$red-less-opaque: rgba(255, 105, 120, 0.8);
 $dark-red: #4e0009;
 $light-red: #ff919c;
 $green: #94EA54;
 $dark-green: #225000;
 $light-green: #baff87;
 $green-opaque: rgba(148, 234, 84, 0.35);
+$green-less-opaque: rgba(148, 234, 84, 0.8);
 $blue: #5699fd;
 $light-blue: #6aa5ff;
 $dark-blue: #003179;
 $blue-opaque: rgba(86, 153, 253, 0.35);
+$blue-less-opaque: rgba(86, 153, 253, 0.8);
 $magenta: #ff7bd6;
 $dark-magenta: #700080;
 $light-magenta: #ff99e0;
 $magenta-opaque: rgba(255, 123, 214, 0.35);
+$magenta-less-opaque: rgba(255, 123, 214, 0.8);
 $cyan: #4CEDDE;
 $dark-cyan: #173c38;
 $light-cyan: #6bfff2;
 $cyan-opaque: rgba(76, 237, 222, 0.35);
+$cyan-less-opaque: rgba(76, 237, 222, 0.8);
 $yellow: #fffa6c;
 $dark-yellow: #52501b;
 $light-yellow: #fffcc0;
 $yellow-opaque: rgba(255, 250, 108, 0.35);
+$yellow-less-opaque: rgba(255, 250, 108, 0.8);
 
 
 
@@ -412,7 +421,7 @@ body {
 .pack-content-info {
     opacity: 0;
     visibility: hidden;
-    transition: visibility 0s, opacity .25s;
+    transition: visibility .25s, opacity .25s;
     font-size: 2vw;
     @include mobile {
         display: none;
@@ -443,7 +452,7 @@ body {
     flex: 0 1 calc(33.33% - 6em);
     margin: 3em;
     border-radius: 3em;
-    transition: opacity .25s;
+    transition: background-color .25s;
     @include mobile {
         flex-basis: calc(50% - 2em);
         margin: 1em;
@@ -457,8 +466,32 @@ body {
 }
 .pack:hover {
     cursor: pointer;
-    opacity: .75;
 }
+.pack.packblack:hover {
+    background-color: $black-less-opaque;
+}
+.pack.packwhite:hover {
+    background-color: $creamy-white-less-opaque;
+}
+.pack.packyellow:hover {
+    background-color: $yellow-less-opaque;
+}
+.pack.packcyan:hover {
+    background-color: $cyan-less-opaque;
+}
+.pack.packmagenta:hover {
+    background-color: $magenta-less-opaque;
+}
+.pack.packred:hover {
+    background-color: $red-less-opaque;
+}
+.pack.packgreen:hover {
+    background-color: $green-less-opaque;
+}
+.pack.packblue:hover {
+    background-color: $blue-less-opaque;
+}
+
 .packyellow {
     color: $dark-yellow;
     background-color: $yellow;
