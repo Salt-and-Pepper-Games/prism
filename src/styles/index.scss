@@ -122,7 +122,7 @@ body {
         flex-direction: row;
     }
 }
-.bottom-game-buttons {
+.in-game-buttons {
     display: flex;
     align-items: center;
     flex-basis: 25%;
@@ -580,32 +580,32 @@ body {
     background-color: $magenta;
 }
 .game-wrapper-yellow {
-    background-color: $dark-yellow;
+    background-color: $light-yellow;
 }
 .game-wrapper-cyan {
-    background-color: $dark-cyan;
+    background-color: $light-cyan;
 }
 
 .game-wrapper-white {
-    background-color: $dark-white;
+    background-color: $creamy-white;
 }
 .game-wrapper-black {
-    background-color: $dark-black;
+    background-color: $light-black;
 }
 .game-wrapper-red {
-    background-color: $dark-red;
+    background-color: $light-red;
     
 }
 .game-wrapper-green {
-    background-color: $dark-green;
+    background-color: $light-green;
     
 }
 .game-wrapper-blue {
-    background-color: $dark-blue;
+    background-color: $light-blue;
     
 }
 .game-wrapper-magenta {
-    background-color: $dark-magenta;
+    background-color: $light-magenta;
 }
 .btn-yellow {
     background-color: $light-yellow;

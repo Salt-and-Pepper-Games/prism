@@ -82,12 +82,12 @@ body {
     .after-game-board {
       flex-direction: row; } }
 
-.bottom-game-buttons {
+.in-game-buttons {
   display: flex;
   align-items: center;
   flex-basis: 25%; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .bottom-game-buttons {
+    .in-game-buttons {
       justify-content: center; } }
 
 .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
@@ -522,28 +522,28 @@ body {
   background-color: #ff7bd6; }
 
 .game-wrapper-yellow {
-  background-color: #52501b; }
+  background-color: #fffcc0; }
 
 .game-wrapper-cyan {
-  background-color: #173c38; }
+  background-color: #6bfff2; }
 
 .game-wrapper-white {
-  background-color: #6f6f6f; }
+  background-color: #fff3f3; }
 
 .game-wrapper-black {
-  background-color: #252525; }
+  background-color: #5a5979; }
 
 .game-wrapper-red {
-  background-color: #4e0009; }
+  background-color: #ff919c; }
 
 .game-wrapper-green {
-  background-color: #225000; }
+  background-color: #baff87; }
 
 .game-wrapper-blue {
-  background-color: #003179; }
+  background-color: #6aa5ff; }
 
 .game-wrapper-magenta {
-  background-color: #700080; }
+  background-color: #ff99e0; }
 
 .btn-yellow {
   background-color: #fffcc0; }
