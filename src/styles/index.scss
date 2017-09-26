@@ -344,37 +344,37 @@ body {
         font-size: 5em;
     }
     .P {
-        color: #FF6978;
+        color: $red;
     }
     .R {
-        color: #4CEDDE;
+        color: $cyan;
     }
     .I {
-        color: #94EA54;
+        color: $green;
     }
     .S {
-        color: #C85ED8;
+        color: $magenta;
     }
     .M {
-        color: #3885F9;
+        color: $blue;
     }
 }
 .prism:hover {
 	cursor: default;
     .P {
-        color: #3885F9;
+        color: $blue;
     }
     .R {
-        color: #FF6978;
+        color: $red;
     }
     .I {
-        color: #4CEDDE;
+        color: $cyan;
     }
     .S {
-        color: #94EA54;
+        color: $green;
     }
     .M {
-        color: #C85ED8;
+        color: $magenta;
     }
 }
 .letter {

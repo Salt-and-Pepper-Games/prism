@@ -303,14 +303,14 @@ body {
   .prism .I {
     color: #94EA54; }
   .prism .S {
-    color: #C85ED8; }
+    color: #ff7bd6; }
   .prism .M {
-    color: #3885F9; }
+    color: #5699fd; }
 
 .prism:hover {
   cursor: default; }
   .prism:hover .P {
-    color: #3885F9; }
+    color: #5699fd; }
   .prism:hover .R {
     color: #FF6978; }
   .prism:hover .I {
@@ -318,7 +318,7 @@ body {
   .prism:hover .S {
     color: #94EA54; }
   .prism:hover .M {
-    color: #C85ED8; }
+    color: #ff7bd6; }
 
 .letter {
   padding-left: 5px;

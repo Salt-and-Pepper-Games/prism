@@ -53,7 +53,7 @@ colorValues[colorIndices.MAGENTA] = "#ff7bd6";
 colorValues[colorIndices.CYAN] = "#4CEDDE";
 colorValues[colorIndices.BLACK] = "#464B63";
 colorValues[colorIndices.WHITE] = "#fffdfc";
-colorValues[colorIndices.PLAYER] = "#FFF8F4";
+colorValues[colorIndices.PLAYER] = "#fffdfc";
 
 export { colorValues };
 
