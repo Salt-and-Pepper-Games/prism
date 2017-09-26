@@ -29,9 +29,12 @@
 
 $white: #fffdfc;
 $creamy-white: #fff3f3;
+$dark-white: #a59999;
 $white-opaque: rgba(255, 253, 252, 0.35);
+$creamy-white-opaque: rgba(255, 243, 243, 0.35);
 $black: #464B63;
 $dark-black: #252525;
+$light-black: #5a5979;
 $black-opaque: rgba(70, 75, 99, 0.35);
 $red: #FF6978;
 $red-opaque: rgba(255, 105, 120, 0.35);
@@ -475,7 +478,7 @@ body {
     background-color: $cyan-opaque;
 }
 .packblack {
-    color: $white;
+    color: $dark-black;
     background-color: $black;
     border: .35em solid $dark-black;
     @include mobile {
@@ -486,15 +489,15 @@ body {
     background-color: $black-opaque;
 }
 .packwhite {
-    color: $black;
-    background-color: $white;
-    border: .35em solid $black;
+    color: $dark-white;
+    background-color: $creamy-white;
+    border: .35em solid $dark-white;
     @include mobile {
-        border: .25em solid $black;
+        border: .25em solid $dark-white;
     }
 }
 .packwhitebg {
-    background-color: $white-opaque;
+    background-color: $creamy-white-opaque;
 }
 .packred {
     color: $dark-red;
@@ -549,11 +552,11 @@ body {
     background-color: $cyan;
 }
 .game-area-white {
-    color: $black;
+    color: $dark-white;
     background-color: $white;
 }
 .game-area-black {
-    color: $white;
+    color: $dark-black;
     background-color: $black;
 }
 .game-area-red {
@@ -580,7 +583,7 @@ body {
 }
 
 .game-wrapper-white {
-    background-color: $creamy-white;
+    background-color: $dark-white;
 }
 .game-wrapper-black {
     background-color: $dark-black;
@@ -607,10 +610,10 @@ body {
     background-color: $light-cyan;
 }
 .btn-white {
-    background-color: $creamy-white;
+    background-color: $white;
 }
 .btn-black {
-    background-color: $dark-black;
+    background-color: $light-black;
 }
 .btn-red {
     background-color: $light-red;

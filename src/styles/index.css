@@ -420,7 +420,7 @@ body {
   background-color: rgba(76, 237, 222, 0.35); }
 
 .packblack {
-  color: #fffdfc;
+  color: #252525;
   background-color: #464B63;
   border: 0.35em solid #252525; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
@@ -431,15 +431,15 @@ body {
   background-color: rgba(70, 75, 99, 0.35); }
 
 .packwhite {
-  color: #464B63;
-  background-color: #fffdfc;
-  border: 0.35em solid #464B63; }
+  color: #a59999;
+  background-color: #fff3f3;
+  border: 0.35em solid #a59999; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packwhite {
-      border: 0.25em solid #464B63; } }
+      border: 0.25em solid #a59999; } }
 
 .packwhitebg {
-  background-color: rgba(255, 253, 252, 0.35); }
+  background-color: rgba(255, 243, 243, 0.35); }
 
 .packred {
   color: #840010;
@@ -494,11 +494,11 @@ body {
   background-color: #4CEDDE; }
 
 .game-area-white {
-  color: #464B63;
+  color: #a59999;
   background-color: #fffdfc; }
 
 .game-area-black {
-  color: #fffdfc;
+  color: #252525;
   background-color: #464B63; }
 
 .game-area-red {
@@ -524,7 +524,7 @@ body {
   background-color: #267770; }
 
 .game-wrapper-white {
-  background-color: #fff3f3; }
+  background-color: #a59999; }
 
 .game-wrapper-black {
   background-color: #252525; }
@@ -548,10 +548,10 @@ body {
   background-color: #6bfff2; }
 
 .btn-white {
-  background-color: #fff3f3; }
+  background-color: #fffdfc; }
 
 .btn-black {
-  background-color: #252525; }
+  background-color: #5a5979; }
 
 .btn-red {
   background-color: #ff919c; }
