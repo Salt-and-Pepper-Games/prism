@@ -23,7 +23,7 @@ class GameArea extends React.Component {
 	}
 
 	render() {
-		const { inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen, toggleSound, soundOn, history, currentPack } = this.props;
+		const { moveCount, loadLevel, match, inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen, toggleSound, soundOn, history, currentPack } = this.props;
 		return (
 			<div className={`${inGame ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
 				<HelpOverlay isHelpOpen={isHelpOpen} closeHelp={closeHelp} />
@@ -35,6 +35,7 @@ class GameArea extends React.Component {
 							returnToMainScreen();
 						}}
 					/>
+					<div className="move-count">{moveCount}</div>
 					<i className="help-btn fa fa-question" onClick={openHelp} />
 				</div>
 				<div className={`game-wrapper-${currentPack ? currentPack.packColor : ''} game-board-wrapper`}>
@@ -48,7 +49,7 @@ class GameArea extends React.Component {
 						<i className={`hint-btn fa fa-magic`}/>
 					</div>
 					<div className='bottom-game-buttons'>
-						<i className={`reset-btn fa fa-refresh`}/>
+						<i onClick={() => loadLevel(match.params.levelNumber, match.params.packName)} className={`reset-btn fa fa-refresh`}/>
 					</div>
 				</div>
 			</div>

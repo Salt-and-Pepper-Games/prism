@@ -4,7 +4,7 @@ const defaultState = {
 	authenticated: false,
 	id: null,
 	levelData: {},
-	stats: {},
+	stats: {}
 };
 
 export default (state=defaultState, action) => {

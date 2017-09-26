@@ -29,7 +29,7 @@
 
 $white: #fffdfc;
 $creamy-white: #fff3f3;
-$dark-white: #a59999;
+$dark-white: #6f6f6f;
 $white-opaque: rgba(255, 253, 252, 0.35);
 $creamy-white-opaque: rgba(255, 243, 243, 0.35);
 $black: #464B63;
@@ -38,28 +38,28 @@ $light-black: #5a5979;
 $black-opaque: rgba(70, 75, 99, 0.35);
 $red: #FF6978;
 $red-opaque: rgba(255, 105, 120, 0.35);
-$dark-red: #840010;
+$dark-red: #4e0009;
 $light-red: #ff919c;
 $green: #94EA54;
-$dark-green: #347900;
+$dark-green: #225000;
 $light-green: #baff87;
 $green-opaque: rgba(148, 234, 84, 0.35);
-$blue: #3885F9;
+$blue: #5699fd;
 $light-blue: #6aa5ff;
-$dark-blue: #003c96;
-$blue-opaque: rgba(56, 133, 249, 0.35);
-$magenta: #C85ED8;
+$dark-blue: #003179;
+$blue-opaque: rgba(86, 153, 253, 0.35);
+$magenta: #ff7bd6;
 $dark-magenta: #700080;
-$light-magenta: #dc6eec;
-$magenta-opaque: rgba(200, 94, 216, 0.35);
+$light-magenta: #ff99e0;
+$magenta-opaque: rgba(255, 123, 214, 0.35);
 $cyan: #4CEDDE;
-$dark-cyan: #267770;
+$dark-cyan: #173c38;
 $light-cyan: #6bfff2;
 $cyan-opaque: rgba(76, 237, 222, 0.35);
-$yellow: #F4EE36;
-$dark-yellow: #6b6a57;
-$light-yellow: #fff85d;
-$yellow-opaque: rgba(244, 238, 54, 0.35);
+$yellow: #fffa6c;
+$dark-yellow: #52501b;
+$light-yellow: #fffcc0;
+$yellow-opaque: rgba(255, 250, 108, 0.35);
 
 
 
@@ -130,12 +130,15 @@ body {
         justify-content: center;
     }
 }
-.return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn {
+.return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
     font-size: 5em;
     transition: opacity .25s;
     @include mobile {
         font-size: 3em;
     }
+}
+.move-count:hover {
+    cursor: default;
 }
 .return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover {
     cursor: pointer;

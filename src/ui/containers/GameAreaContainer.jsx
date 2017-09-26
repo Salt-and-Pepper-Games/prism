@@ -10,7 +10,8 @@ const mapStateToProps = state => {
 		inGame: state.ui.inGame && state.game.board.loaded,
 		isHelpOpen: state.ui.isHelpOpen,
 		soundOn: state.ui.soundOn,
-		currentPack: state.ui.currentPack
+		currentPack: state.ui.currentPack,
+		moveCount: state.game.board.stats.moves
 	};
 };
 
