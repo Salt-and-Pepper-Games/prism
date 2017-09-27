@@ -12,6 +12,7 @@ const config = {
 firebase.initializeApp(config);
 
 export const saveData = (state, dispatch) => {
+	console.log("Saving data");
 	// upload stuff to firebase
 	const stats = state.game.board.stats;
 	const { solved } = stats;

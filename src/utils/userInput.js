@@ -3,14 +3,13 @@ import { closeCurrentPack } from '../actionCreators/uiActionCreators';
 let store;
 let touchStart;
 
-export const setupInput = (s) => {
+export const setupInput = (s, root) => {
 	store = s;
-	let root = window;
 	// it seems silly to have to do this, but it works
 	root.onclick = () => {
 		root.focus();
 	}
-	setupKeyboardInput(root);
+	setupKeyboardInput(window);
 	setupSwipeInput(root);
 }
 

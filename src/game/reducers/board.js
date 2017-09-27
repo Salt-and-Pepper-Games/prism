@@ -39,6 +39,7 @@ export const defaultState = {
 }
 
 export default (state = defaultState, action) => {
+	console.log(action.type);
 	switch (action.type) {
 		case levelActions.LOAD_LEVEL:
 			console.log(action);
