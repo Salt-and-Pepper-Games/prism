@@ -26,7 +26,7 @@ class GameArea extends React.Component {
 		const { isLoading, moveCount, loadLevel, match, inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen, toggleSound, soundOn, history, currentPack } = this.props;
 		return (
 			<div>
-				{isLoading &&
+				{(isLoading && !inGame) &&
 					<div id="loader-wrapper">
 					    <div id="loader"></div>
 					</div>

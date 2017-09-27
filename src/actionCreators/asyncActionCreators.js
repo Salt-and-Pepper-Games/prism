@@ -4,7 +4,7 @@ import { setUserStats, setUserAction, setLevelCompletionData } from './userActio
 import firebase from 'firebase';
 
 export const loadLevelString = (levelNumber, packName) => {
-	return dispatch => {
+	return (dispatch, store) => {
 		dispatch(uiActionCreators.showLoader());
 		const packRef = firebase.database().ref(`levelData/${packName}Pack`);
 		packRef.once("value").then(snapshot => {
@@ -23,10 +23,20 @@ export const loadLevelString = (levelNumber, packName) => {
 					levelNumber: levelNumber,
 					packInfo: levelInfo.packInfo
 				};
-				dispatch(uiActionCreators.hideLoader());
-				dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
-				dispatch(loadLevelAction(levelObject));
-				dispatch(uiActionCreators.openGameMode());
+				if (!store().ui.inGame) {
+					setTimeout(() => {
+						dispatch(uiActionCreators.hideLoader());
+						dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
+						dispatch(loadLevelAction(levelObject));
+						dispatch(uiActionCreators.openGameMode());
+					}, 1500);
+				} else {
+					dispatch(uiActionCreators.hideLoader());
+					dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
+					dispatch(loadLevelAction(levelObject));
+					dispatch(uiActionCreators.openGameMode());
+				}
+				
 			// TODO: Add in error handling
 			} else {
 				console.log("There was an error loading the level");
@@ -52,8 +62,10 @@ export const getPackInfo = () => {
 			return packInfo;
 		}).then(packInfo => {
 			Promise.all(packInfo).then(resolvedPacks => {
-				dispatch(uiActionCreators.hideLoader());
-				dispatch(uiActionCreators.setPackInfo(resolvedPacks));
+				setTimeout(() => {
+					dispatch(uiActionCreators.hideLoader());
+					dispatch(uiActionCreators.setPackInfo(resolvedPacks));
+				}, 1500);
 			});
 		});
 	};
