@@ -23,39 +23,47 @@ class GameArea extends React.Component {
 	}
 
 	render() {
-		const { moveCount, loadLevel, match, inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen, toggleSound, soundOn, history, currentPack } = this.props;
+		const { isLoading, moveCount, loadLevel, match, inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen, toggleSound, soundOn, history, currentPack } = this.props;
 		return (
-			<div className={`${inGame ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
-				<HelpOverlay isHelpOpen={isHelpOpen} closeHelp={closeHelp} />
-				<div className="before-game-board">
-					<div className="in-game-buttons">
-						<i
-							className="return-home-btn fa fa-sign-out fa-flip-horizontal"
-							onClick={() => {
-								history.push(`/`);
-								returnToMainScreen();
-							}}
-						/>
+			<div>
+				{isLoading &&
+					<div id="loader-wrapper">
+					    <div id="loader"></div>
 					</div>
-					<div className="in-game-buttons">
-						<div className="move-count">{moveCount}</div>
+				}
+				<div className={`${inGame ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
+					
+					<HelpOverlay isHelpOpen={isHelpOpen} closeHelp={closeHelp} />
+					<div className="before-game-board">
+						<div className="in-game-buttons">
+							<i
+								className="return-home-btn fa fa-sign-out fa-flip-horizontal"
+								onClick={() => {
+									history.push(`/`);
+									returnToMainScreen();
+								}}
+							/>
+						</div>
+						<div className="in-game-buttons">
+							<div className="move-count">{moveCount}</div>
+						</div>
+						<div className="in-game-buttons">
+							<i className="help-btn fa fa-question" onClick={openHelp} />
+						</div>
 					</div>
-					<div className="in-game-buttons">
-						<i className="help-btn fa fa-question" onClick={openHelp} />
+					<div className={`game-wrapper-${currentPack ? currentPack.packColor : ''} game-board-wrapper`}>
+						<div className='game-board' id='game-root' tabIndex='0' />
 					</div>
-				</div>
-				<div className={`game-wrapper-${currentPack ? currentPack.packColor : ''} game-board-wrapper`}>
-					<div className='game-board' id='game-root' tabIndex='0' />
-				</div>
-				<div className="after-game-board">
-					<div className='in-game-buttons'>
-						<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
-					</div>
-					<div className='in-game-buttons'>
-						<i className={`hint-btn fa fa-magic`}/>
-					</div>
-					<div className='in-game-buttons'>
-						<i onClick={() => loadLevel(match.params.levelNumber, match.params.packName)} className={`reset-btn fa fa-refresh`}/>
+					<div className="after-game-board">
+						<div className='in-game-buttons'>
+							<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
+						</div>
+						<div className='in-game-buttons'>
+							<i className={`hint-btn fa fa-magic`}/>
+						</div>
+						<div className='in-game-buttons'>
+							<i onClick={() => loadLevel(match.params.levelNumber, match.params.packName)} className={`reset-btn fa fa-refresh`}/>
+						</div>
 					</div>
 				</div>
 			</div>

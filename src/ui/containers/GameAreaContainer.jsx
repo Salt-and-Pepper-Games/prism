@@ -11,7 +11,8 @@ const mapStateToProps = state => {
 		isHelpOpen: state.ui.isHelpOpen,
 		soundOn: state.ui.soundOn,
 		currentPack: state.ui.currentPack,
-		moveCount: state.game.board.stats.moves
+		moveCount: state.game.board.stats.moves,
+		isLoading: state.ui.isLoading
 	};
 };
 

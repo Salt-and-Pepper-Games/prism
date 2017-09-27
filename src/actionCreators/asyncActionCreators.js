@@ -5,6 +5,7 @@ import firebase from 'firebase';
 
 export const loadLevelString = (levelNumber, packName) => {
 	return dispatch => {
+		dispatch(uiActionCreators.showLoader());
 		const packRef = firebase.database().ref(`levelData/${packName}Pack`);
 		packRef.once("value").then(snapshot => {
 			const levelString = snapshot.child(`level${levelNumber}`).val();
@@ -22,6 +23,7 @@ export const loadLevelString = (levelNumber, packName) => {
 					levelNumber: levelNumber,
 					packInfo: levelInfo.packInfo
 				};
+				dispatch(uiActionCreators.hideLoader());
 				dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
 				dispatch(loadLevelAction(levelObject));
 				dispatch(uiActionCreators.openGameMode());
@@ -37,6 +39,7 @@ export const loadLevelString = (levelNumber, packName) => {
 }
 export const getPackInfo = () => {
 	return dispatch => {
+		dispatch(uiActionCreators.showLoader());
 		const levelsRef = firebase.database().ref("levelData");
 		const packInfo = [];
 		levelsRef.once("value").then(snapshot => {
@@ -49,6 +52,7 @@ export const getPackInfo = () => {
 			return packInfo;
 		}).then(packInfo => {
 			Promise.all(packInfo).then(resolvedPacks => {
+				dispatch(uiActionCreators.hideLoader());
 				dispatch(uiActionCreators.setPackInfo(resolvedPacks));
 			});
 		});

@@ -6,7 +6,8 @@ import LevelArea from '../components/LevelArea.jsx';
 const mapStateToProps = state => {
 	return {
 		packInfo: state.ui.packInfo,
-		userLevelData: state.game.user.levelData
+		userLevelData: state.game.user.levelData,
+		isLoading: state.ui.isLoading
 	};
 };
 const mapDispatchToProps = dispatch => {
