@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => {
+const Header = ({ openDashboard }) => {
 	return (
 		<div className='header'>
 			<div className='prism'>
@@ -13,6 +13,7 @@ const Header = () => {
 			<div className='subtitle'>
 				A Salt and Pepper Games Production
 			</div>
+			<i className='fa fa-info dashboard-open-button' onClick={openDashboard} />
 		</div>
 	);
 };

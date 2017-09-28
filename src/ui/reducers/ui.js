@@ -8,7 +8,8 @@ const initialState = {
 	isHelpOpen: false,
 	soundOn: true,
 	packInfo: [],
-	isLoading: false
+	isLoading: false,
+	dashboardOpen: false
 };
 
 const ui = (state = initialState, action) => {
@@ -38,6 +39,8 @@ const ui = (state = initialState, action) => {
 			return Object.assign({}, state, { isLoading: true });
 		case uiActionNames.HIDE_LOADING:
 			return Object.assign({}, state, { isLoading: false });
+		case uiActionNames.TOGGLE_DASHBOARD:
+			return Object.assign({}, state, { dashboardOpen: !state.dashboardOpen });
 		default:
 			return state;
 	}
