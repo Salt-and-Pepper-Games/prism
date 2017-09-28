@@ -9,7 +9,7 @@ class LevelArea extends React.Component {
 		return (
 			<div className='level-pack-area'>
 				{isLoading &&
-					<div id="loader-wrapper" className="margin-top-loader">
+					<div id="loader-wrapper">
 					    <div id="loader"></div>
 					</div>
 				}

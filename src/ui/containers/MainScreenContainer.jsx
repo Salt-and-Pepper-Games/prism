@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 
+import uiActionCreators from '../../actionCreators/uiActionCreators';
 import MainScreen from '../components/MainScreen.jsx';
 
 const mapStateToProps = state => {
@@ -10,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-
+		openDashboard: () => dispatch(uiActionCreators.toggleDashboard())
 	};
 };
 

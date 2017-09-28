@@ -26,6 +26,7 @@ export const saveData = (state, dispatch) => {
 			solved: alreadySolved || solved
 		});
 		// update local level completion data
+		console.log('saving data');
 		dispatch(updateLevelCompletionData(packName, levelNumber, data));
 		return data;
 	});

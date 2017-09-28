@@ -52,5 +52,10 @@ export default {
 		return {
 			type: uiActionNames.HIDE_LOADING
 		};
+	},
+	toggleDashboard: () => {
+		return {
+			type: uiActionNames.TOGGLE_DASHBOARD
+		};
 	}
 };

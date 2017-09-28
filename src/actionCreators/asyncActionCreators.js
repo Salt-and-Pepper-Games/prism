@@ -29,7 +29,7 @@ export const loadLevelString = (levelNumber, packName) => {
 						dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
 						dispatch(loadLevelAction(levelObject));
 						dispatch(uiActionCreators.openGameMode());
-					}, 1500);
+					}, 0);
 				} else {
 					dispatch(uiActionCreators.hideLoader());
 					dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
@@ -65,7 +65,7 @@ export const getPackInfo = () => {
 				setTimeout(() => {
 					dispatch(uiActionCreators.hideLoader());
 					dispatch(uiActionCreators.setPackInfo(resolvedPacks));
-				}, 1500);
+				}, 0);
 			});
 		});
 	};

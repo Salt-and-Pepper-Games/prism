@@ -10,6 +10,7 @@
     "howler": "^2.0.4",
     "konva": "^1.6.8",
     "lodash.isequal": "^4.5.0",
+    "numeral": "^2.0.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
