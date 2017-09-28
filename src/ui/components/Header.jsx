@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = ({ openDashboard }) => {
+const Header = ({ openDashboard, soundOn, toggleVolume }) => {
 	return (
 		<div className='header'>
 			<div className='prism'>
@@ -13,7 +13,10 @@ const Header = ({ openDashboard }) => {
 			<div className='subtitle'>
 				A Salt and Pepper Games Production
 			</div>
-			<i className='fa fa-info dashboard-open-button' onClick={openDashboard} />
+			<div className="main-buttons">
+				<i onClick={toggleVolume} className={`fa fa-${soundOn ? 'volume-up' : 'volume-off'} sound-toggle-main`} />
+				<i className='fa fa-info dashboard-toggle-main' onClick={openDashboard} />
+			</div>
 		</div>
 	);
 };

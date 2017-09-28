@@ -449,7 +449,7 @@ body {
 .move-count:hover {
   cursor: default; }
 
-.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover, .dashboard-open-button:hover {
+.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover {
   cursor: pointer;
   opacity: .75; }
 
@@ -636,19 +636,23 @@ body {
   flex-direction: column;
   align-items: center; }
 
-.dashboard-open-button {
+.main-buttons {
   position: absolute;
   left: 85%;
   top: 50%;
   transform: translate(0%, -50%);
   font-size: 3em;
-  transition: opacity .25s; }
+  transition: opacity .25s;
+  display: flex;
+  width: 10vw;
+  justify-content: space-between; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .dashboard-open-button {
+    .main-buttons {
       font-size: 1.5em;
       transform: translate(-50%, -50%);
       left: 50%;
-      top: 90%; } }
+      top: 90%;
+      width: 20vw; } }
 
 .stats-list, .leaderboards-list {
   line-height: 2em;
