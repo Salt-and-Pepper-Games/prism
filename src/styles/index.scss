@@ -12,6 +12,9 @@ body {
 .margin-top-loader {
     margin-top: 5em;
 }
+.blur {
+    filter: blur(5px);
+}
 
 #loader-wrapper {
     position: absolute;
@@ -29,6 +32,15 @@ body {
     transform: translate(-50%, -50%);
     width: 10em;
     height: 10em;
+    @include mobile {
+        width: 5em;
+        height: 5em;
+        -webkit-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        -moz-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        -ms-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        -o-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+    }
     border: 3px solid $red-less-opaque;
     background-color: $red-less-opaque;
     z-index: 1500;
@@ -73,6 +85,13 @@ body {
 }
 .level-pack-area {
     position: relative;
+}
+.header, .level-pack-area {
+    transition: .125s filter linear;
+    -webkit-transition: .125s -webkit-filter linear;
+    -moz-transition: .125s -moz-filter linear;
+    -ms-transition: .125s -ms-filter linear;
+    -o-transition: .125s -o-filter linear;
 }
 
 .main-screen, .game-area {
@@ -135,6 +154,9 @@ body {
     @include mobile {
         justify-content: center;
     }
+}
+.dashboard-toggle-main, .sound-toggle-main {
+    transition: opacity .25s;
 }
 .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
     position: relative;
@@ -319,7 +341,7 @@ body {
 
 .dashboard {
     @extend .level-pack;
-    height: fit-content;
+    height: 50vh;
     z-index: 3;
     background-color: $grey;
     color: $dark-black;
@@ -339,6 +361,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+.about-prism {
+    padding: 1em 2em;
+    line-height: 2em;
+    font-size: 1em;
 }
 .main-buttons {
     position: absolute;
@@ -363,10 +392,19 @@ body {
     line-height: 2em;
     margin-top: 0;
     align-self: center;
+    @include mobile {
+        line-height: 1.75em;
+        font-size: 1em;   
+    }
 }
 .stats-header, .leaderboards-header, .daily-challenge-header {
     font-weight: 300;
     margin-bottom: .5em;
+    @include mobile {
+        font-size: 1.75em;
+        margin-bottom: .25em;
+        margin-top: 0;
+    }
 }
 .stat {
     list-style: circle;

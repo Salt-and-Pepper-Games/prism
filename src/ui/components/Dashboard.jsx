@@ -51,14 +51,6 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 				<Slider {...settings}>
 					<div>
 						<div className="dashboard-panel">
-							<h1 className="daily-challenge-header">Daily Challenge</h1>
-							<svg>
-								
-							</svg>
-						</div>
-					</div>
-					<div>
-						<div className="dashboard-panel">
 							<h1 className="leaderboards-header">Leaderboards</h1>
 							<ul className="leaderboards-list">
 								<li>user1</li>
@@ -79,6 +71,13 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 								<li className="stat">{`Moves Made: ${numeral(stats.moves).format('0, 0')}`}</li>
 								<li className="stat">{`Total Playing Time: ${numeral(stats.elapsedTime/(1000)).format('00:00:00')}`}</li>
 							</ul>
+						</div>
+					</div>
+					<div>
+						<div className="dashboard-panel">
+							<p className="about-prism">
+								Bring the white square home by using the switches to combine colors and navigate obstacles.
+							</p>
 						</div>
 					</div>
 				</Slider>

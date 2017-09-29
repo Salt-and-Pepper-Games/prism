@@ -68,16 +68,56 @@
   100% {
     width: 10em;
     height: 10em; } }
-@-o-keyframes changeSizeRed {
+@keyframes changeSizeRedMobile {
   0% {
-    width: 10em;
-    height: 10em; }
-  50% {
     width: 5em;
     height: 5em; }
+  50% {
+    width: 2.5em;
+    height: 2.5em; }
   100% {
-    width: 10em;
-    height: 10em; } }
+    width: 5em;
+    height: 5em; } }
+@-moz-keyframes changeSizeRedMobile {
+  0% {
+    width: 5em;
+    height: 5em; }
+  50% {
+    width: 2.5em;
+    height: 2.5em; }
+  100% {
+    width: 5em;
+    height: 5em; } }
+@-webkit-keyframes changeSizeRedMobile {
+  0% {
+    width: 5em;
+    height: 5em; }
+  50% {
+    width: 2.5em;
+    height: 2.5em; }
+  100% {
+    width: 5em;
+    height: 5em; } }
+@-ms-keyframes changeSizeRedMobile {
+  0% {
+    width: 5em;
+    height: 5em; }
+  50% {
+    width: 2.5em;
+    height: 2.5em; }
+  100% {
+    width: 5em;
+    height: 5em; } }
+@-o-keyframes changeSizeRedMobile {
+  0% {
+    width: 5em;
+    height: 5em; }
+  50% {
+    width: 2.5em;
+    height: 2.5em; }
+  100% {
+    width: 5em;
+    height: 5em; } }
 @-o-keyframes changeSizeGreen {
   0% {
     top: 10%;
@@ -316,6 +356,9 @@ body {
 .margin-top-loader {
   margin-top: 5em; }
 
+.blur {
+  filter: blur(5px); }
+
 #loader-wrapper {
   position: absolute;
   top: 0;
@@ -341,6 +384,15 @@ body {
   -ms-animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
   -o-animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
   animation: fadein 1s, changeSizeRed 2s ease-in-out infinite; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    #loader {
+      width: 5em;
+      height: 5em;
+      -webkit-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+      -moz-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+      -ms-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+      -o-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+      animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite; } }
 
 #loader:before {
   content: "";
@@ -376,6 +428,13 @@ body {
 
 .level-pack-area {
   position: relative; }
+
+.header, .level-pack-area {
+  transition: .125s filter linear;
+  -webkit-transition: .125s -webkit-filter linear;
+  -moz-transition: .125s -moz-filter linear;
+  -ms-transition: .125s -ms-filter linear;
+  -o-transition: .125s -o-filter linear; }
 
 .main-screen, .game-area {
   transition: visibility 0s, opacity .25s;
@@ -437,6 +496,9 @@ body {
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .in-game-buttons {
       justify-content: center; } }
+
+.dashboard-toggle-main, .sound-toggle-main {
+  transition: opacity .25s; }
 
 .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
   position: relative;
@@ -615,7 +677,7 @@ body {
   font-size: 2em; }
 
 .dashboard {
-  height: fit-content;
+  height: 50vh;
   z-index: 3;
   background-color: #b6b5d0;
   color: #252525;
@@ -634,7 +696,14 @@ body {
 .dashboard-panel {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  justify-content: center;
+  height: 50vh; }
+
+.about-prism {
+  padding: 1em 2em;
+  line-height: 2em;
+  font-size: 1em; }
 
 .main-buttons {
   position: absolute;
@@ -658,10 +727,19 @@ body {
   line-height: 2em;
   margin-top: 0;
   align-self: center; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .stats-list, .leaderboards-list {
+      line-height: 1.75em;
+      font-size: 1em; } }
 
 .stats-header, .leaderboards-header, .daily-challenge-header {
   font-weight: 300;
   margin-bottom: .5em; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .stats-header, .leaderboards-header, .daily-challenge-header {
+      font-size: 1.75em;
+      margin-bottom: .25em;
+      margin-top: 0; } }
 
 .stat {
   list-style: circle; }
