@@ -438,6 +438,9 @@ body {
     .in-game-buttons {
       justify-content: center; } }
 
+.dashboard-toggle-main, .sound-toggle-main {
+  transition: opacity .25s; }
+
 .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
   position: relative;
   font-size: 5em;
@@ -635,6 +638,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center; }
+
+.about-prism {
+  padding: 1em 2em;
+  line-height: 2em;
+  font-size: 1em; }
 
 .main-buttons {
   position: absolute;
