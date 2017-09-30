@@ -667,7 +667,7 @@ body {
   font-size: 2em; }
 
 .dashboard {
-  height: 40vh;
+  height: 50vh;
   z-index: 3;
   background-color: #b6b5d0;
   color: #252525;
@@ -688,7 +688,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 40vh; }
+  height: 50vh; }
 
 .about-prism {
   padding: 1em 2em;
@@ -717,10 +717,19 @@ body {
   line-height: 2em;
   margin-top: 0;
   align-self: center; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .stats-list, .leaderboards-list {
+      line-height: 1.75em;
+      font-size: 1em; } }
 
 .stats-header, .leaderboards-header, .daily-challenge-header {
   font-weight: 300;
   margin-bottom: .5em; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .stats-header, .leaderboards-header, .daily-challenge-header {
+      font-size: 1.75em;
+      margin-bottom: .25em;
+      margin-top: 0; } }
 
 .stat {
   list-style: circle; }
