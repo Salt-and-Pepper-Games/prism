@@ -29,6 +29,15 @@ body {
     transform: translate(-50%, -50%);
     width: 10em;
     height: 10em;
+    @include mobile {
+        width: 5em;
+        height: 5em;
+        -webkit-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        -moz-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        -ms-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        -o-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+    }
     border: 3px solid $red-less-opaque;
     background-color: $red-less-opaque;
     z-index: 1500;
@@ -342,6 +351,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
 }
 .about-prism {
     padding: 1em 2em;

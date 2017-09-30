@@ -45,10 +45,33 @@
     100% { width: 10em; height: 10em; }
 }
 
-@-o-keyframes changeSizeRed {
-    0% { width: 10em; height: 10em; }
-    50% { width: 5em; height: 5em; }
-    100% { width: 10em; height: 10em; }
+@keyframes changeSizeRedMobile {
+    0% { width: 5em; height: 5em; }
+    50% { width: 2.5em; height: 2.5em; }
+    100% { width: 5em; height: 5em; }
+}
+@-moz-keyframes changeSizeRedMobile {
+    0% { width: 5em; height: 5em; }
+    50% { width: 2.5em; height: 2.5em; }
+    100% { width: 5em; height: 5em; }
+}
+
+@-webkit-keyframes changeSizeRedMobile {
+    0% { width: 5em; height: 5em; }
+    50% { width: 2.5em; height: 2.5em; }
+    100% { width: 5em; height: 5em; }
+}
+
+@-ms-keyframes changeSizeRedMobile {
+    0% { width: 5em; height: 5em; }
+    50% { width: 2.5em; height: 2.5em; }
+    100% { width: 5em; height: 5em; }
+}
+
+@-o-keyframes changeSizeRedMobile {
+    0% { width: 5em; height: 5em; }
+    50% { width: 2.5em; height: 2.5em; }
+    100% { width: 5em; height: 5em; }
 }
 @-o-keyframes changeSizeGreen {
     0% { top: 10%; left: 10%; bottom: 10%; right: 10%; border-radius: 1em; }

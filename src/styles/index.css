@@ -68,16 +68,56 @@
   100% {
     width: 10em;
     height: 10em; } }
-@-o-keyframes changeSizeRed {
+@keyframes changeSizeRedMobile {
   0% {
-    width: 10em;
-    height: 10em; }
-  50% {
     width: 5em;
     height: 5em; }
+  50% {
+    width: 2.5em;
+    height: 2.5em; }
   100% {
-    width: 10em;
-    height: 10em; } }
+    width: 5em;
+    height: 5em; } }
+@-moz-keyframes changeSizeRedMobile {
+  0% {
+    width: 5em;
+    height: 5em; }
+  50% {
+    width: 2.5em;
+    height: 2.5em; }
+  100% {
+    width: 5em;
+    height: 5em; } }
+@-webkit-keyframes changeSizeRedMobile {
+  0% {
+    width: 5em;
+    height: 5em; }
+  50% {
+    width: 2.5em;
+    height: 2.5em; }
+  100% {
+    width: 5em;
+    height: 5em; } }
+@-ms-keyframes changeSizeRedMobile {
+  0% {
+    width: 5em;
+    height: 5em; }
+  50% {
+    width: 2.5em;
+    height: 2.5em; }
+  100% {
+    width: 5em;
+    height: 5em; } }
+@-o-keyframes changeSizeRedMobile {
+  0% {
+    width: 5em;
+    height: 5em; }
+  50% {
+    width: 2.5em;
+    height: 2.5em; }
+  100% {
+    width: 5em;
+    height: 5em; } }
 @-o-keyframes changeSizeGreen {
   0% {
     top: 10%;
@@ -341,6 +381,15 @@ body {
   -ms-animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
   -o-animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
   animation: fadein 1s, changeSizeRed 2s ease-in-out infinite; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    #loader {
+      width: 5em;
+      height: 5em;
+      -webkit-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+      -moz-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+      -ms-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+      -o-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+      animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite; } }
 
 #loader:before {
   content: "";
@@ -637,7 +686,8 @@ body {
 .dashboard-panel {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  height: 100%; }
 
 .about-prism {
   padding: 1em 2em;
