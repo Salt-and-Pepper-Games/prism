@@ -667,7 +667,7 @@ body {
   font-size: 2em; }
 
 .dashboard {
-  height: fit-content;
+  height: 40vh;
   z-index: 3;
   background-color: #b6b5d0;
   color: #252525;
@@ -687,7 +687,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%; }
+  justify-content: center;
+  height: 40vh; }
 
 .about-prism {
   padding: 1em 2em;

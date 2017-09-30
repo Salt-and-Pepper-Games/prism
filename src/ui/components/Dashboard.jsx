@@ -76,10 +76,7 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 					<div>
 						<div className="dashboard-panel">
 							<p className="about-prism">
-								Salt and Pepper Games is proud to bring you Prism,
-								a puzzle game. Use red, green, and blue switches to
-								blend together different background colors and navigate
-								through blocks of different colors and reach home.
+								Bring the white square home by using the switches to combine colors and navigate obstacles.
 							</p>
 						</div>
 					</div>
