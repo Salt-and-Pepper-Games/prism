@@ -86,7 +86,7 @@ body {
 .level-pack-area {
     position: relative;
 }
-.header, .level-pack-area {
+.header, .level-pack-area, .before-game-board, .game-board-wrapper, .after-game-board {
     transition: .125s filter linear;
     -webkit-transition: .125s -webkit-filter linear;
     -moz-transition: .125s -moz-filter linear;

@@ -48,7 +48,7 @@ class GameArea extends React.Component {
 				<div className={`${inGame ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
 					
 					<HelpOverlay isHelpOpen={isHelpOpen} closeHelp={closeHelp} />
-					<div className="before-game-board">
+					<div className={`${isHelpOpen ? 'blur' : ''} before-game-board`}>
 						<div className="in-game-buttons">
 							<i
 								className="return-home-btn fa fa-sign-out fa-flip-horizontal"
@@ -65,10 +65,10 @@ class GameArea extends React.Component {
 							<i className="help-btn fa fa-question" onClick={openHelp} />
 						</div>
 					</div>
-					<div className={`game-wrapper-${currentPack ? currentPack.packColor : ''} game-board-wrapper`}>
+					<div className={`${isHelpOpen ? 'blur' : ''} game-wrapper-${currentPack ? currentPack.packColor : ''} game-board-wrapper`}>
 						<div className='game-board' id='game-root' tabIndex='0' />
 					</div>
-					<div className="after-game-board">
+					<div className={`${isHelpOpen ? 'blur' : ''} after-game-board`}>
 						<div className='in-game-buttons'>
 							<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
 						</div>
