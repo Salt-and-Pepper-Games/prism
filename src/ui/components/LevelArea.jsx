@@ -5,9 +5,9 @@ class LevelArea extends React.Component {
 		this.props.setPackInfo();
 	}
 	render() {
-		const { setCurrentPack, packInfo, userLevelData, isLoading } = this.props;
+		const { setCurrentPack, packInfo, userLevelData, isLoading, packOpen } = this.props;
 		return (
-			<div className='level-pack-area'>
+			<div className={`${packOpen ? 'blur' : ''} level-pack-area`}>
 				{isLoading &&
 					<div id="loader-wrapper">
 					    <div id="loader"></div>

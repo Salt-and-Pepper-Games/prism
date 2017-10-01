@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Header = ({ openDashboard, soundOn, toggleVolume }) => {
+const Header = ({ openDashboard, soundOn, toggleVolume, packOpen }) => {
 	return (
-		<div className='header'>
+		<div className={`${packOpen ? 'blur' : ''} header`}>
 			<div className='prism'>
 				<span className='letter P'>P</span>
 				<span className='letter R'>R</span>

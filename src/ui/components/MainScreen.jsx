@@ -4,12 +4,12 @@ import DashboardContainer from '../containers/DashboardContainer.jsx';
 import LevelAreaContainer from '../containers/LevelAreaContainer.jsx';
 import LevelPackContainer from '../containers/LevelPackContainer.jsx';
 
-const MainScreen = ({ inGame, openDashboard, toggleVolume, soundOn }) => {
+const MainScreen = ({ inGame, openDashboard, toggleVolume, soundOn, packOpen }) => {
 	return (
 		<div className={`${inGame ? 'hidden' : 'open'} main-screen`}>
-			<Header openDashboard={openDashboard} toggleVolume={toggleVolume} soundOn={soundOn} />
+			<Header packOpen={packOpen} openDashboard={openDashboard} toggleVolume={toggleVolume} soundOn={soundOn} />
 			<DashboardContainer />
-			<LevelAreaContainer />
+			<LevelAreaContainer packOpen={packOpen} />
 			<LevelPackContainer />
 		</div>
 	);

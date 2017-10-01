@@ -12,6 +12,9 @@ body {
 .margin-top-loader {
     margin-top: 5em;
 }
+.blur {
+    filter: blur(5px);
+}
 
 #loader-wrapper {
     position: absolute;

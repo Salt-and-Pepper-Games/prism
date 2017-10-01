@@ -6,7 +6,8 @@ import MainScreen from '../components/MainScreen.jsx';
 const mapStateToProps = state => {
 	return {
 		inGame: state.ui.inGame && state.game.board.loaded,
-		soundOn: state.ui.soundOn
+		soundOn: state.ui.soundOn,
+		packOpen: !!state.ui.currentPack || state.ui.dashboardOpen
 	};
 };
 
