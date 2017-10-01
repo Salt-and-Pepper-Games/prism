@@ -86,6 +86,13 @@ body {
 .level-pack-area {
     position: relative;
 }
+.header, .level-pack-area {
+    transition: .125s filter linear;
+    -webkit-transition: .125s -webkit-filter linear;
+    -moz-transition: .125s -moz-filter linear;
+    -ms-transition: .125s -ms-filter linear;
+    -o-transition: .125s -o-filter linear;
+}
 
 .main-screen, .game-area {
     transition: visibility 0s, opacity .25s;
