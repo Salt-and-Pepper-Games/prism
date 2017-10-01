@@ -7,7 +7,9 @@ const initialState = {
 	inGame: false,
 	isHelpOpen: false,
 	soundOn: true,
-	packInfo: []
+	packInfo: [],
+	isLoading: false,
+	dashboardOpen: false
 };
 
 const ui = (state = initialState, action) => {
@@ -33,6 +35,12 @@ const ui = (state = initialState, action) => {
 			return Object.assign({}, state, { isHelpOpen: false });
 		case uiActionNames.TOGGLE_SOUND:
 			return Object.assign({}, state, { soundOn: !state.soundOn });
+		case uiActionNames.SHOW_LOADING:
+			return Object.assign({}, state, { isLoading: true });
+		case uiActionNames.HIDE_LOADING:
+			return Object.assign({}, state, { isLoading: false });
+		case uiActionNames.TOGGLE_DASHBOARD:
+			return Object.assign({}, state, { dashboardOpen: !state.dashboardOpen });
 		default:
 			return state;
 	}

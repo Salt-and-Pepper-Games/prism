@@ -8,3 +8,14 @@ export const setLevelCompletionData = data => ({
 	type: types.SET_LEVEL_COMPLETION_DATA,
 	data
 });
+export const updateLevelCompletionData = (packName, levelNumber, data) => ({
+	type: types.UPDATE_LEVEL_COMPLETION_DATA,
+	packName,
+	levelNumber,
+	data
+});
+
+export const setUserStats = stats => ({
+	type: types.SET_USER_STATS,
+	stats
+});

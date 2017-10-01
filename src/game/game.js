@@ -14,6 +14,18 @@ let boardManager;
 
 let prevState;
 
+const fitStageToParent = stage => {
+	const size = Math.min(stage.container().offsetWidth, stage.container().offsetHeight);
+	// const size = Math.min(window.innerWidth, window.innerHeight);
+	const stageSize = Math.min(stage.width(), stage.height());
+	const scale = size / stageSize;
+
+	stage.width(stage.width() * scale);
+	stage.height(stage.height() * scale);
+	stage.scale({ x: scale, y: scale });
+	stage.draw();
+}
+
 /**
  * Initialize the game and start listening to the redux store
  * @function
@@ -22,14 +34,6 @@ let prevState;
  */
 export const initGame = (store) => {
 	prevState = store.getState();
-	// gotta do this first so that the board manager is ready and listening
-	// when we load a level
-	// i don't like this syntax because it doesn't say what it's doing at all
-	// just saying new BoardManager() is enough to get the whole game started but you wouldn't know
-	// from just seeing this line
-	// maybe add a start() function to boardManager
-	// window.requestAnimationFrame(animationLoop);
-	
 	const size = Math.min(window.innerWidth, window.innerHeight);
 
 	// initialize konva stage
@@ -44,6 +48,8 @@ export const initGame = (store) => {
 
 	store.subscribe(onStateChange.bind(null, store));
 	onStateChange(store);
+
+	window.addEventListener('resize', fitStageToParent.bind(this, stage));
 }
 
 const onStateChange = (store) => {

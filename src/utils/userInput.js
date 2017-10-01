@@ -9,7 +9,7 @@ export const setupInput = (s, root) => {
 	root.onclick = () => {
 		root.focus();
 	}
-	setupKeyboardInput(root);
+	setupKeyboardInput(window);
 	setupSwipeInput(root);
 }
 

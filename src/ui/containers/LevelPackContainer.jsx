@@ -6,7 +6,8 @@ const mapStateToProps = state => {
 	return {
 		isOpen: !!state.ui.currentPack,
 		currentPack: state.ui.currentPack,
-		cachedCurrentPack: state.ui.cachedCurrentPack
+		cachedCurrentPack: state.ui.cachedCurrentPack,
+		userLevelData: state.game.user.levelData
 	};
 };
 

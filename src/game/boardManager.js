@@ -2,13 +2,15 @@ import Konva from 'konva';
 
 import types from '../actionCreators/levelActionNames.js';
 import uiActionCreators from '../actionCreators/uiActionCreators';
-import {loadLevel, completeLevelAction} from '../actionCreators/levelActionCreators';
-import { closeLevel } from '../actionCreators/asyncActionCreators';
+import {loadLevel, closeLevelAction, completeLevelAction} from '../actionCreators/levelActionCreators';
+import { loadLevelString } from '../actionCreators/asyncActionCreators';
+import { saveData } from '../utils/firebaseListeners';
 import backgroundTypes from '../actionCreators/backgroundActionNames';
 import { setBackgroundColor } from '../actionCreators/backgroundActionCreators';
 import { addStateListener } from './game';
 import Board from './models/board';
 import isEqual from 'lodash.isequal';
+import { push } from 'react-router-redux';
 
 /**
  * Higher order redux-connected class to wrap around a board
@@ -72,8 +74,17 @@ export default class BoardManager {
 				if (px === game.board.home.x && game.board.home.y === py && !game.board.complete) {
 					// in the future dispatch a level end action but for now just cut to home screen
 					this.dispatch(completeLevelAction());
-					this.dispatch(uiActionCreators.closeGameMode());
-					this.dispatch(closeLevel(state));
+					saveData(state, this.dispatch);
+					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
+						// figure out how to navigate to a new url here
+						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
+						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
+					}
+					else {
+						this.dispatch(closeLevelAction());
+						this.dispatch(uiActionCreators.closeGameMode());
+						this.dispatch(push(`/`));
+					}
 				}
 			}
 			if (didBgChange) {

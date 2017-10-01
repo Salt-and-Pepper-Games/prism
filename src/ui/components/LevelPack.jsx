@@ -10,7 +10,7 @@ class LevelPack extends React.Component {
 		this.levelGrid = document.getElementById('levels-grid');
 	}
 	render() {
-		const { isOpen, currentPack, cachedCurrentPack, onClose, onLevelClick, history } = this.props;
+		const { isOpen, currentPack, cachedCurrentPack, onClose, onLevelClick, history, userLevelData } = this.props;
 		const levels = [];
 		if (cachedCurrentPack) {
 			for (let i = 1; i <= cachedCurrentPack.levelCount; i++) {
@@ -46,15 +46,21 @@ class LevelPack extends React.Component {
 						</div>
 						<i onClick={onClose} className='fa fa-close close-pack-btn'/>
 						<div id='levels-grid' className='levels-grid'>
-							{levels.map(level =>
-								<div
-									onClick={() => history.push(`${process.env.PUBLIC_URL}/game/${currentPack.packName}/${level}`)}
-									key={level}
-									className={`level-btn btn-${cachedCurrentPack.packColor}`}
-								>
-									<span className='level-btn-text'>{level}</span>
-								</div>
-							)}
+							{levels.map(level => {
+								let isSolved = false;
+								if (userLevelData[cachedCurrentPack.packName] && userLevelData[cachedCurrentPack.packName][level]) {
+									isSolved = userLevelData[cachedCurrentPack.packName][level].solved;
+								}
+								return (
+									<div
+										onClick={() => history.push(`/game/${currentPack.packName}/${level}`)}
+										key={level}
+										className={`level-btn btn-${cachedCurrentPack.packColor} level-${isSolved ? 'solved' : 'not-solved'}`}
+									>
+										<span className='level-btn-text'>{level}</span>
+									</div>
+								);
+							})}
 						</div>
 					</div>
 				</div>

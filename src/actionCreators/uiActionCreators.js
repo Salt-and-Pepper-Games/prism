@@ -42,5 +42,20 @@ export default {
 		return {
 			type: uiActionNames.TOGGLE_SOUND
 		};
+	},
+	showLoader: () => {
+		return {
+			type: uiActionNames.SHOW_LOADING
+		};
+	},
+	hideLoader: () => {
+		return {
+			type: uiActionNames.HIDE_LOADING
+		};
+	},
+	toggleDashboard: () => {
+		return {
+			type: uiActionNames.TOGGLE_DASHBOARD
+		};
 	}
 };

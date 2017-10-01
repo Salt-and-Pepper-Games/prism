@@ -1,39 +1,99 @@
-@mixin mobile {
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    @content;
-  }
-}
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-@-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
+@import 'colors';
+@import 'mixins';
+@import 'animations';
 
 body {
-    background-color: #fffdfc;
+    background-color: $white;
     margin: 0;
     padding: 0;
     font-family: "Josefin Sans", sans-serif;
-    color: #464B63;
+    color: $black;
 }
+.margin-top-loader {
+    margin-top: 5em;
+}
+.blur {
+    filter: blur(5px);
+}
+
+#loader-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+#loader {
+    display: block;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 10em;
+    height: 10em;
+    @include mobile {
+        width: 5em;
+        height: 5em;
+        -webkit-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        -moz-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        -ms-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        -o-animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+        animation: fadein 1s, changeSizeRedMobile 2s ease-in-out infinite;
+    }
+    border: 3px solid $red-less-opaque;
+    background-color: $red-less-opaque;
+    z-index: 1500;
+    border-radius: 1em;
+    -webkit-animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
+    -moz-animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
+    -ms-animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
+    -o-animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
+    animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
+}
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 10%;
+    bottom: 10%;
+    border: 3px solid $green-less-opaque;
+    background-color: $green-less-opaque;
+    border-radius: 1em;
+    -webkit-animation: fadein 1s, changeSizeGreen 1.33s ease-out infinite;
+    -moz-animation: fadein 1s, changeSizeGreen 1.33s ease-out infinite;
+    -ms-animation: fadein 1s, changeSizeGreen 1.33s ease-out infinite;
+    -o-animation: fadein 1s, changeSizeGreen 1.33s ease-out infinite;
+    animation: fadein 1s, changeSizeGreen 1.33s ease-out infinite;
+}
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    right: 20%;
+    bottom: 20%;
+    border: 3px solid $blue-less-opaque;
+    background-color: $blue-less-opaque;
+    border-radius: 1em;
+    -webkit-animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite;
+    -moz-animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite;
+    -ms-animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite;
+    -o-animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite;
+    animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite;
+}
+.level-pack-area {
+    position: relative;
+}
+.header, .level-pack-area, .before-game-board, .game-board-wrapper, .after-game-board {
+    transition: .125s filter linear;
+    -webkit-transition: .125s -webkit-filter linear;
+    -moz-transition: .125s -moz-filter linear;
+    -ms-transition: .125s -ms-filter linear;
+    -o-transition: .125s -o-filter linear;
+}
+
 .main-screen, .game-area {
     transition: visibility 0s, opacity .25s;
     -webkit-animation: fadein 1s;
@@ -48,12 +108,21 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
+    transition: visibility 2s, opacity 2s;
     @include mobile {
         flex-direction: column;
     }
 }
 .game-board-wrapper {
     flex: 2;
+    padding: .5em;
+    border-radius: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include mobile {
+        padding: 7em 0;
+    }
 }
 .game-board:focus {
     outline: none;
@@ -78,22 +147,29 @@ body {
         flex-direction: row;
     }
 }
-.bottom-game-buttons {
+.in-game-buttons {
     display: flex;
     align-items: center;
-    flex-basis: 33.33%;
+    flex-basis: 25%;
     @include mobile {
         justify-content: center;
     }
 }
-.return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn {
+.dashboard-toggle-main, .sound-toggle-main {
+    transition: opacity .25s;
+}
+.return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
+    position: relative;
     font-size: 5em;
     transition: opacity .25s;
     @include mobile {
         font-size: 3em;
     }
 }
-.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover {
+.move-count:hover {
+    cursor: default;
+}
+.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover {
     cursor: pointer;
     opacity: .75;    
 }
@@ -116,7 +192,7 @@ body {
     width: 60vh;
 }
 .help-text {
-    color: #fffdfc;
+    color: $white;
     padding: 1em 1em;
     font-size: 3em;
     @include mobile {
@@ -128,7 +204,7 @@ body {
     position: absolute;
     top: .5em;
     right: .5em;
-    color: #fffdfc;
+    color: $white;
     font-size: 5em;
     transition: opacity .25s;
     @include mobile {
@@ -141,8 +217,8 @@ body {
 }
 
 .open {
-    visibility: visible;
-    opacity: 1;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 .hidden {
     visibility: hidden;
@@ -162,13 +238,13 @@ body {
     transition: visibility .25s, opacity .25s;
 }
 .level-pack {
+    box-sizing: border-box;
     position: fixed;
     z-index: 3;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 1em;
-    border: 5px solid #464B63;
     width: 75vw;
     height: 80vh;
     visibility: hidden;
@@ -221,6 +297,7 @@ body {
     }
 }
 .level-btn {
+    box-sizing: border-box;
     position: relative;
     flex: 0 1 calc(20% - 2em);
     margin: 1em;
@@ -243,6 +320,12 @@ body {
     opacity: .75;
     cursor: pointer;    
 }
+.level-solved {
+    border: .35em solid;
+    @include mobile {
+        border: .25em solid;
+    }
+}
 
 .level-btn-text {
     position: absolute;
@@ -255,42 +338,84 @@ body {
     justify-content: center;
     font-size: 2em;
 }
-.btn-red {
-    background-color: #ff919c;
-}
-.btn-green {
-    background-color: #baff87;
-}
-.btn-blue {
-    background-color: #6aa5ff;
-}
-.btn-magenta {
-    background-color: #dc6eec;
-}
 
 .dashboard {
-    margin: 2em;
-    background-color: #fff3f3;
+    @extend .level-pack;
+    height: 50vh;
+    z-index: 3;
+    background-color: $grey;
+    color: $dark-black;
+    border: .5em solid $dark-black;
     border-radius: 1em;
+}
+.dashboard-bg {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: $grey-opaque;
 }
 .dashboard-panel {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+.about-prism {
+    padding: 1em 2em;
+    line-height: 2em;
+    font-size: 1em;
+}
+.main-buttons {
+    position: absolute;
+    left: 85%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    font-size: 3em;
+    transition: opacity .25s;
+    display: flex;
+    width: 10vw;
+    justify-content: space-between;
+    @include mobile {
+        font-size: 1.5em;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 90%;
+        width: 20vw;
+    }
 }
 
 .stats-list, .leaderboards-list {
     line-height: 2em;
     margin-top: 0;
-    align-self: left;
+    align-self: center;
+    @include mobile {
+        line-height: 1.75em;
+        font-size: 1em;   
+    }
 }
 .stats-header, .leaderboards-header, .daily-challenge-header {
     font-weight: 300;
     margin-bottom: .5em;
+    @include mobile {
+        font-size: 1.75em;
+        margin-bottom: .25em;
+        margin-top: 0;
+    }
+}
+.stat {
+    list-style: circle;
 }
 
 .header {
+    position: relative;
 	text-align: center;
+    @include mobile {
+        padding-bottom: 3em;
+    }
 }
 .prism {
     padding-top: .25em;
@@ -302,37 +427,37 @@ body {
         font-size: 5em;
     }
     .P {
-        color: #FF6978;
+        color: $red;
     }
     .R {
-        color: #4CEDDE;
+        color: $cyan;
     }
     .I {
-        color: #94EA54;
+        color: $green;
     }
     .S {
-        color: #C85ED8;
+        color: $magenta;
     }
     .M {
-        color: #3885F9;
+        color: $blue;
     }
 }
 .prism:hover {
 	cursor: default;
     .P {
-        color: #3885F9;
+        color: $blue;
     }
     .R {
-        color: #FF6978;
+        color: $red;
     }
     .I {
-        color: #4CEDDE;
+        color: $cyan;
     }
     .S {
-        color: #94EA54;
+        color: $green;
     }
     .M {
-        color: #C85ED8;
+        color: $magenta;
     }
 }
 .letter {
@@ -369,7 +494,7 @@ body {
 .pack-content-info {
     opacity: 0;
     visibility: hidden;
-    transition: visibility 0s, opacity .25s;
+    transition: visibility .25s, opacity .25s;
     font-size: 2vw;
     @include mobile {
         display: none;
@@ -382,20 +507,30 @@ body {
     opacity: 1;
     visibility: visible;
 }
-.pack-title {
+.difficulty {
     padding-top: 1em;
-    font-size: 3vw;
     @include mobile {
-        font-size: 5vw;
         padding-top: 0em;
     }
 }
+.pack-title {
+    font-size: 3vw;
+    @include mobile {
+        font-size: 5vw;
+    }
+}
 .pack {
+    box-sizing: border-box;
     position: relative;
     flex: 0 1 calc(33.33% - 6em);
     margin: 3em;
     border-radius: 3em;
-    transition: opacity .25s;
+    transition: background-color .25s;
+    -webkit-animation: fadein 2s;
+    -moz-animation: fadein 2s;
+    -ms-animation: fadein 2s;
+    -o-animation: fadein 2s;
+    animation: fadein 2s;
     @include mobile {
         flex-basis: calc(50% - 2em);
         margin: 1em;
@@ -409,33 +544,201 @@ body {
 }
 .pack:hover {
     cursor: pointer;
-    opacity: .75;
+}
+.pack.packblack:hover {
+    background-color: $black-less-opaque;
+}
+.pack.packwhite:hover {
+    background-color: $creamy-white-less-opaque;
+}
+.pack.packyellow:hover {
+    background-color: $yellow-less-opaque;
+}
+.pack.packcyan:hover {
+    background-color: $cyan-less-opaque;
+}
+.pack.packmagenta:hover {
+    background-color: $magenta-less-opaque;
+}
+.pack.packred:hover {
+    background-color: $red-less-opaque;
+}
+.pack.packgreen:hover {
+    background-color: $green-less-opaque;
+}
+.pack.packblue:hover {
+    background-color: $blue-less-opaque;
+}
+
+.packyellow {
+    color: $dark-yellow;
+    background-color: $yellow;
+    border: .35em solid $dark-yellow;
+    @include mobile {
+        border: .25em solid $dark-yellow;
+    }
+}
+.packyellowbg {
+    background-color: $yellow-opaque;
+}
+.packcyan {
+    color: $dark-cyan;
+    background-color: $cyan;
+    border: .35em solid $dark-cyan;
+    @include mobile {
+        border: .25em solid $dark-cyan;
+    }
+}
+.packcyanbg {
+    background-color: $cyan-opaque;
+}
+.packblack {
+    color: $dark-black;
+    background-color: $black;
+    border: .35em solid $dark-black;
+    @include mobile {
+        border: .25em solid $dark-black;
+    }
+}
+.packblackbg {
+    background-color: $black-opaque;
+}
+.packwhite {
+    color: $dark-white;
+    background-color: $creamy-white;
+    border: .35em solid $dark-white;
+    @include mobile {
+        border: .25em solid $dark-white;
+    }
+}
+.packwhitebg {
+    background-color: $creamy-white-opaque;
 }
 .packred {
-    color: #840010;
-    background-color: #FF6978;
+    color: $dark-red;
+    background-color: $red;
+    border: .35em solid $dark-red;
+    @include mobile {
+        border: .25em solid $dark-red;
+    }
 }
 .packredbg {
-    background-color: rgba(255, 105, 120, 0.35);
+    background-color: $red-opaque;
 }
 .packblue {
-    color: #003c96;
-    background-color: #3885F9;
+    color: $dark-blue;
+    background-color: $blue;
+    border: .35em solid $dark-blue;
+    @include mobile {
+        border: .25em solid $dark-blue;
+    }
 }
 .packbluebg {
-    background-color: rgba(56, 133, 249, 0.35);
+    background-color: $blue-opaque;
 }
 .packgreen {
-    color: #347900;
-    background-color: #94EA54;
+    color: $dark-green;
+    background-color: $green;
+    border: .35em solid $dark-green;
+    @include mobile {
+        border: .25em solid $dark-green;
+    }
 }
 .packgreenbg {
-    background-color: rgba(148, 234, 84, 0.35);
+    background-color: $green-opaque;
 }
 .packmagenta {
-    color: #700080;
-    background-color: #C85ED8;
+    color: $dark-magenta;
+    background-color: $magenta;
+    border: .35em solid $dark-magenta;
+    @include mobile {
+        border: .25em solid $dark-magenta;
+    }
 }
 .packmagentabg {
-    background-color: rgba(200, 94, 216, 0.35);
+    background-color: $magenta-opaque;
+}
+.game-area-yellow {
+    color: $dark-yellow;
+    background-color: $yellow;
+}
+.game-area-cyan {
+    color: $dark-cyan;
+    background-color: $cyan;
+}
+.game-area-white {
+    color: $dark-white;
+    background-color: $white;
+}
+.game-area-black {
+    color: $dark-black;
+    background-color: $black;
+}
+.game-area-red {
+    color: $dark-red;
+    background-color: $red;
+}
+.game-area-green {
+    color: $dark-green;
+    background-color: $green;
+}
+.game-area-blue {
+    color: $dark-blue;
+    background-color: $blue;
+}
+.game-area-magenta {
+    color: $dark-magenta;
+    background-color: $magenta;
+}
+.game-wrapper-yellow {
+    background-color: $light-yellow;
+}
+.game-wrapper-cyan {
+    background-color: $light-cyan;
+}
+
+.game-wrapper-white {
+    background-color: $creamy-white;
+}
+.game-wrapper-black {
+    background-color: $light-black;
+}
+.game-wrapper-red {
+    background-color: $light-red;
+    
+}
+.game-wrapper-green {
+    background-color: $light-green;
+    
+}
+.game-wrapper-blue {
+    background-color: $light-blue;
+    
+}
+.game-wrapper-magenta {
+    background-color: $light-magenta;
+}
+.btn-yellow {
+    background-color: $light-yellow;
+}
+.btn-cyan {
+    background-color: $light-cyan;
+}
+.btn-white {
+    background-color: $white;
+}
+.btn-black {
+    background-color: $light-black;
+}
+.btn-red {
+    background-color: $light-red;
+}
+.btn-green {
+    background-color: $light-green;
+}
+.btn-blue {
+    background-color: $light-blue;
+}
+.btn-magenta {
+    background-color: $light-magenta;
 }

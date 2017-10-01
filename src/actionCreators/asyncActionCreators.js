@@ -1,16 +1,21 @@
 import uiActionCreators from './uiActionCreators';
 import { closeLevelAction, loadLevelAction } from './levelActionCreators';
-import { setUserAction, setLevelCompletionData } from './userActionCreators';
-import firebase from '../utils/initFirebase';
+import { setUserStats, setUserAction, setLevelCompletionData } from './userActionCreators';
+import firebase from 'firebase';
 
 export const loadLevelString = (levelNumber, packName) => {
-	return dispatch => {
-		console.log(levelNumber, packName);
+	return (dispatch, store) => {
+		dispatch(uiActionCreators.showLoader());
 		const packRef = firebase.database().ref(`levelData/${packName}Pack`);
 		packRef.once("value").then(snapshot => {
 			const levelString = snapshot.child(`level${levelNumber}`).val();
-			const packInfo = snapshot.child(`packInfo`).val();
-			return { levelString, packInfo };
+			if (levelString) {
+				const packInfo = snapshot.child(`packInfo`).val();
+				return { levelString, packInfo };
+			}
+			else {
+				throw new Error("Level not found");
+			}
 		}).then(levelInfo => {
 			if (levelInfo) {
 				const levelObject = {
@@ -18,17 +23,33 @@ export const loadLevelString = (levelNumber, packName) => {
 					levelNumber: levelNumber,
 					packInfo: levelInfo.packInfo
 				};
-				dispatch(loadLevelAction(levelObject));
-				dispatch(uiActionCreators.openGameMode());
+				if (!store().ui.inGame) {
+					setTimeout(() => {
+						dispatch(uiActionCreators.hideLoader());
+						dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
+						dispatch(loadLevelAction(levelObject));
+						dispatch(uiActionCreators.openGameMode());
+					}, 0);
+				} else {
+					dispatch(uiActionCreators.hideLoader());
+					dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
+					dispatch(loadLevelAction(levelObject));
+					dispatch(uiActionCreators.openGameMode());
+				}
+				
 			// TODO: Add in error handling
 			} else {
 				console.log("There was an error loading the level");
 			}
+		})
+		.catch(err => {
+			console.log(err);
 		});
 	};
 }
 export const getPackInfo = () => {
 	return dispatch => {
+		dispatch(uiActionCreators.showLoader());
 		const levelsRef = firebase.database().ref("levelData");
 		const packInfo = [];
 		levelsRef.once("value").then(snapshot => {
@@ -41,28 +62,14 @@ export const getPackInfo = () => {
 			return packInfo;
 		}).then(packInfo => {
 			Promise.all(packInfo).then(resolvedPacks => {
-				dispatch(uiActionCreators.setPackInfo(resolvedPacks));
+				setTimeout(() => {
+					dispatch(uiActionCreators.hideLoader());
+					dispatch(uiActionCreators.setPackInfo(resolvedPacks));
+				}, 0);
 			});
 		});
 	};
 };
-
-export const closeLevel = (state) => {
-	return dispatch => {
-		// upload stuff to firebase
-		const levelNumber = state.game.board.levelNumber;
-		const packName = state.game.board.packInfo.packName;
-		const uid = state.game.user.id;
-		const solved = state.game.board.stats.solved;
-		const ref = firebase.database().ref(`users/${uid}/levelData/${packName}/${levelNumber}`);
-		ref.transaction(curr => {
-			return Object.assign({}, curr || {}, {
-				solved: (curr && curr.solved) || solved
-			});
-		});
-		dispatch(closeLevelAction());
-	}
-}
 
 export const setupFirebaseListeners = () => {
 		return dispatch => {
@@ -71,8 +78,8 @@ export const setupFirebaseListeners = () => {
 					dispatch(setUserAction(user));
 					firebase.database().ref(`users/${user.uid}`)
 						.once('value').then(snapshot => {
-							// TODO: this is where we would load user level completion data
 							dispatch(setLevelCompletionData(snapshot.child('levelData').val()));
+							dispatch(setUserStats(snapshot.child('stats').val()));
 						});
 				}
 				else {

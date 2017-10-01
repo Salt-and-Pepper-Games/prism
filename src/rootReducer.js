@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
-import game from './game/reducers';
-import ui from './ui/reducers/ui.js';
+export { default as game } from './game/reducers';
+export { default as ui } from './ui/reducers/ui';
 
 /**
  * The root reducer for the redux store
  *
  * @type {Function}
  */
-export default combineReducers({ game, ui });

@@ -39,6 +39,7 @@ export const defaultState = {
 }
 
 export default (state = defaultState, action) => {
+	console.log(action.type);
 	switch (action.type) {
 		case levelActions.LOAD_LEVEL:
 			console.log(action);
@@ -46,7 +47,7 @@ export default (state = defaultState, action) => {
 			Object.assign(newState, { 
 				loaded: true,
 				packInfo: action.packInfo,
-				levelNumber: action.levelNumber,
+				levelNumber: parseInt(action.levelNumber),
 				stats: Object.assign({}, defaultState.stats, {
 					startTime: Date.now(),
 					elapsedTime: 0

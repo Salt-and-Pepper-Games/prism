@@ -20,41 +20,64 @@ class GameArea extends React.Component {
 			const matchParams = nextProps.match.params;
 			this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
 		}
-		if (nextProps.inGame && !nextProps.isHelpOpen) {
-			// autofocus game
-			setTimeout(() => {
-				document.getElementById('game-root').focus();
-			}, 300);
-		}
 	}
 
 	render() {
-		const { inGame, returnToMainScreen, openHelp, closeHelp, isHelpOpen, toggleSound, soundOn, history } = this.props;
+		const {
+			isLoading,
+			moveCount,
+			loadLevel,
+			match,
+			inGame,
+			returnToMainScreen,
+			openHelp,
+			closeHelp,
+			isHelpOpen,
+			toggleSound,
+			soundOn,
+			history,
+			currentPack
+		} = this.props;
 		return (
-			<div className={`${inGame ? 'open' : 'hidden'} game-area`}>
-				<HelpOverlay isHelpOpen={isHelpOpen} closeHelp={closeHelp} />
-				<div className="before-game-board">
-					<i
-						className="return-home-btn fa fa-sign-out fa-flip-horizontal"
-						onClick={() => {
-							history.push(`${process.env.PUBLIC_URL}/`);
-							returnToMainScreen();
-						}}
-					/>
-					<i className="help-btn fa fa-question" onClick={openHelp} />
-				</div>
-				<div className="game-board-wrapper">
-					<div className='game-board' id='game-root' tabIndex='0' />
-				</div>
-				<div className="after-game-board">
-					<div className='bottom-game-buttons'>
-						<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
+			<div>
+				{(isLoading && !inGame) &&
+					<div id="loader-wrapper">
+					    <div id="loader"></div>
 					</div>
-					<div className='bottom-game-buttons'>
-						<i className={`hint-btn fa fa-magic`}/>
+				}
+				<div className={`${inGame ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
+					
+					<HelpOverlay isHelpOpen={isHelpOpen} closeHelp={closeHelp} />
+					<div className={`${isHelpOpen ? 'blur' : ''} before-game-board`}>
+						<div className="in-game-buttons">
+							<i
+								className="return-home-btn fa fa-sign-out fa-flip-horizontal"
+								onClick={() => {
+									history.push(`/`);
+									returnToMainScreen();
+								}}
+							/>
+						</div>
+						<div className="in-game-buttons">
+							<div className="move-count">{moveCount}</div>
+						</div>
+						<div className="in-game-buttons">
+							<i className="help-btn fa fa-question" onClick={openHelp} />
+						</div>
 					</div>
-					<div className='bottom-game-buttons'>
-						<i className={`reset-btn fa fa-refresh`}/>
+					<div className={`${isHelpOpen ? 'blur' : ''} game-wrapper-${currentPack ? currentPack.packColor : ''} game-board-wrapper`}>
+						<div className='game-board' id='game-root' tabIndex='0' />
+					</div>
+					<div className={`${isHelpOpen ? 'blur' : ''} after-game-board`}>
+						<div className='in-game-buttons'>
+							<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
+						</div>
+						<div className='in-game-buttons'>
+							<i className={`hint-btn fa fa-magic`}/>
+						</div>
+						<div className='in-game-buttons'>
+							<i onClick={() => loadLevel(match.params.levelNumber, match.params.packName)} className={`reset-btn fa fa-refresh`}/>
+						</div>
 					</div>
 				</div>
 			</div>
