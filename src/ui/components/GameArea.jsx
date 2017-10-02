@@ -4,12 +4,23 @@ import PropTypes from 'prop-types';
 import HelpOverlay from './HelpOverlay.jsx';
 import { withRouter } from 'react-router';
 import isEqual from 'lodash.isequal';
+import * as screenfull from 'screenfull';
 
 class GameArea extends React.Component {
+	constructor(props) {
+		super(props);
+		this.mq = window.matchMedia("(orientation: portrait)");
+	}
+
 	static contextTypes = {
 		store: PropTypes.object
 	}
 
+	componentWillMount() {
+		if (this.mq.matches) {
+			screenfull.request();
+		}
+	}
 	componentDidMount() {
 		initGame(this.context.store);
 		const matchParams = this.props.match.params;
@@ -19,6 +30,11 @@ class GameArea extends React.Component {
 		if (!isEqual(this.props.match, nextProps.match)) {
 			const matchParams = nextProps.match.params;
 			this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
+		}
+	}
+	componentWillUnmount() {
+		if (this.mq.matches) {
+			screenfull.exit();
 		}
 	}
 
