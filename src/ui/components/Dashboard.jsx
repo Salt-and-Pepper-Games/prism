@@ -41,16 +41,18 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 	if (isOpen) {
 		body.classList.add('modal-open');
 		html.classList.add('modal-open');
-		header.ontouchmove = e => e.preventDefault();
-		levelArea.ontouchmove = e => e.preventDefault();
-
+		if (header && levelArea) {
+			header.ontouchmove = e => e.preventDefault();
+			levelArea.ontouchmove = e => e.preventDefault();
+		}
 	} else {
 		body.classList.remove('modal-open');
 		html.classList.remove('modal-open');
-		header.ontouchmove = e => (true);
-		levelArea.ontouchmove = e => (true);
+		if (header && levelArea) {
+			header.ontouchmove = e => (true);
+			levelArea.ontouchmove = e => (true);	
+		}
 	}
-
 	return (
 		<div>
 			<div onClick={closeDashboard} className={`dashboard-bg ${isOpen ? 'open' : 'hidden'}`} />

@@ -24,8 +24,10 @@ class LevelPack extends React.Component {
 		if (isOpen) {
 			body.classList.add('modal-open');
 			html.classList.add('modal-open');
-			header.ontouchmove = e => e.preventDefault();
-			levelArea.ontouchmove = e => e.preventDefault();
+			if (header && levelArea) {
+				header.ontouchmove = e => e.preventDefault();
+				levelArea.ontouchmove = e => e.preventDefault();
+			}
 		} else {
 			if (this.levelGrid) {
 				this.levelGrid.style.overflowY = 'hidden';
@@ -36,8 +38,10 @@ class LevelPack extends React.Component {
 			}
 			body.classList.remove('modal-open');
 			html.classList.remove('modal-open');
-			header.ontouchmove = e => (true);
-			levelArea.ontouchmove = e => (true);
+			if (header && levelArea) {
+				header.ontouchmove = e => (true);
+				levelArea.ontouchmove = e => (true);
+			}
 		}
 		return (
 			<div>
