@@ -358,6 +358,9 @@ body {
     color: $dark-black;
     border: .5em solid $dark-black;
     border-radius: 1em;
+    @include landscape-mobile {
+        height: 60vh;
+    }
 }
 .dashboard-bg {
     position: fixed;
@@ -375,6 +378,9 @@ body {
     justify-content: center;
     height: 50vh;
     width: 100%;
+    @include landscape-mobile {
+        height: 60vh;
+    }
 }
 .about-prism {
     padding: 1em 2em;
