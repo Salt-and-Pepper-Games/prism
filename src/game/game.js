@@ -14,15 +14,25 @@ let boardManager;
 
 let prevState;
 
+const getStageSizeFromContainer = container => {
+	let size = Math.min(container.innerWidth, container.innerHeight);
+	const squareSize = Math.max(container.innerWidth, container.innerHeight) * .65;
+	return Math.min(size, squareSize);
+}
+
+
 const fitStageToParent = stage => {
-	const size = Math.min(stage.container().offsetWidth, stage.container().offsetHeight);
-	// const size = Math.min(window.innerWidth, window.innerHeight);
+	// const size = Math.min(stage.container().offsetWidth, stage.container().offsetHeight);
+	const size = getStageSizeFromContainer(window);
 	const stageSize = Math.min(stage.width(), stage.height());
 	const scale = size / stageSize;
 
-	stage.width(stage.width() * scale);
-	stage.height(stage.height() * scale);
-	stage.scale({ x: scale, y: scale });
+	// stage.width(stage.width() * scale);
+	// stage.height(stage.height() * scale);
+	stage.width(size);
+	stage.height(size);
+	// stage.scale({ x: scale, y: scale });
+	console.log(scale);
 	stage.draw();
 }
 
@@ -34,7 +44,7 @@ const fitStageToParent = stage => {
  */
 export const initGame = (store) => {
 	prevState = store.getState();
-	const size = Math.min(window.innerWidth, window.innerHeight);
+	const size = getStageSizeFromContainer(window);
 
 	// initialize konva stage
 	const stage = new Konva.Stage({
