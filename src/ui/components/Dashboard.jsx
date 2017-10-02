@@ -84,9 +84,9 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 										
 									</ul>
 									<ul className="stats-list">
-										<li className="stat">{`Something Else: ???`}</li>
 										<li className="stat">{`Moves Made: ${numeral(stats.moves).format('0, 0')}`}</li>
 										<li className="stat">{`Total Playing Time: ${numeral(stats.elapsedTime/(1000)).format('00:00:00')}`}</li>
+										<li className="stat">{`Something Else: 14`}</li>
 									</ul>
 								</div>
 							</div>
