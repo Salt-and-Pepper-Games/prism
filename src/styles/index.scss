@@ -265,6 +265,9 @@ body {
 }
 .pack-header {
     text-align: center;
+    @include mobile {
+        margin-bottom: .25em;
+    }
 }
 .close-pack-btn {
     position: absolute;
