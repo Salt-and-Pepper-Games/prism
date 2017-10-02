@@ -720,9 +720,9 @@ body {
       height: 60vh; } }
 
 .about-prism {
-  padding: 1em 2em;
+  padding: 1em 1.5em;
   line-height: 2em;
-  font-size: 1em; }
+  font-size: 1.25em; }
 
 .main-buttons {
   position: absolute;
