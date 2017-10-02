@@ -33,13 +33,15 @@ class App extends React.Component {
 		});
 		if (mq.matches || mq2.matches) {
 			document.getElementById('html').ontouchstart = () => {
-				this.mainTrack.play();
-				this.mainTrack.on('end', () => {
-					this.mainTrack2.play();
-				});
-				this.mainTrack2.on('end', () => {
+				if (!this.mainTrack.playing() && !this.mainTrack2.playing()) {
 					this.mainTrack.play();
-				});
+					this.mainTrack.on('end', () => {
+						this.mainTrack2.play();
+					});
+					this.mainTrack2.on('end', () => {
+						this.mainTrack.play();
+					});
+				}
 			}
 		}
 	}
