@@ -22,6 +22,8 @@ class LevelPack extends React.Component {
 		if (isOpen) {
 			body.classList.add('modal-open');
 			html.classList.add('modal-open');
+			body.ontouchmove = e => e.preventDefault();
+			html.ontouchmove = e => e.preventDefault();
 		} else {
 			if (this.levelGrid) {
 				this.levelGrid.style.overflowY = 'hidden';
@@ -32,6 +34,8 @@ class LevelPack extends React.Component {
 			}
 			body.classList.remove('modal-open');
 			html.classList.remove('modal-open');
+			body.ontouchmove = e => (true);
+			html.ontouchmove = e => (true);
 		}
 		return (
 			<div>
