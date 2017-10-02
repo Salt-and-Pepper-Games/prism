@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import numeral from 'numeral';
 
 const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
-	const mq = window.matchMedia("(orientation: portrait)");
+	const mq = window.matchMedia("only screen and (orientation: portrait), only screen and (max-width: 800px");
 	const settings = {
       dots: mq.matches,
       infinite: false,

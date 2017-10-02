@@ -405,7 +405,10 @@ body {
     align-self: center;
     @include mobile {
         line-height: 1.75em;
-        font-size: 1em;   
+        font-size: 1em;
+    }
+    @include landscape-mobile {
+        li:nth-of-type(1n+4) {display: none;}
     }
 }
 .stats-header, .leaderboards-header, .daily-challenge-header {
@@ -415,6 +418,9 @@ body {
         font-size: 1.75em;
         margin-bottom: .25em;
         margin-top: 0;
+    }
+    @include landscape-mobile {
+        font-size: 1.25em;
     }
 }
 .stat, .leaderboard-item {
