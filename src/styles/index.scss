@@ -374,6 +374,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 50vh;
+    width: 100%;
 }
 .about-prism {
     padding: 1em 2em;
@@ -402,6 +403,7 @@ body {
     display: flex;
     flex-direction: column;
     @include landscape-mobile {
+        width: 100%;
         flex-direction: row;
         justify-content: space-around;
     }

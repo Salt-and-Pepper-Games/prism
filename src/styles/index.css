@@ -709,7 +709,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh; }
+  height: 50vh;
+  width: 100%; }
 
 .about-prism {
   padding: 1em 2em;
@@ -739,6 +740,7 @@ body {
   flex-direction: column; }
   @media only screen and (max-width: 800px) and (orientation: landscape) {
     .stats-wrapper, .leaderboards-wrapper {
+      width: 100%;
       flex-direction: row;
       justify-content: space-around; } }
 
