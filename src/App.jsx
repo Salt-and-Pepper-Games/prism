@@ -31,19 +31,19 @@ class App extends React.Component {
 		this.mainTrack2.on('end', () => {
 			this.mainTrack.play();
 		});
-		if (mq.matches || mq2.matches) {
-			document.getElementById('html').ontouchstart = () => {
-				if (!this.mainTrack.playing() && !this.mainTrack2.playing()) {
-					this.mainTrack.play();
-					this.mainTrack.on('end', () => {
-						this.mainTrack2.play();
-					});
-					this.mainTrack2.on('end', () => {
-						this.mainTrack.play();
-					});
-				}
-			}
-		}
+		// if (mq.matches || mq2.matches) {
+		// 	document.getElementById('html').ontouchstart = () => {
+		// 		if (!this.mainTrack.playing() && !this.mainTrack2.playing()) {
+		// 			this.mainTrack.play();
+		// 			this.mainTrack.on('end', () => {
+		// 				this.mainTrack2.play();
+		// 			});
+		// 			this.mainTrack2.on('end', () => {
+		// 				this.mainTrack.play();
+		// 			});
+		// 		}
+		// 	}
+		// }
 	}
 	render() {
 		this.mainTrack.volume(this.props.soundOn ? 1.0 : 0.0);
