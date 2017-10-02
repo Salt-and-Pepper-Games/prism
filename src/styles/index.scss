@@ -109,7 +109,7 @@ body {
     height: 100vh;
     display: flex;
     transition: visibility 2s, opacity 2s;
-    @include game-mobile {
+    @include portrait-mobile {
         flex-direction: column;
     }
 }
@@ -120,7 +120,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    @include game-mobile {
+    @include portrait-mobile {
         padding: 7em 0;
     }
 }
@@ -133,7 +133,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    @include game-mobile {
+    @include portrait-mobile {
         flex-direction: row;
     }
 }
@@ -143,7 +143,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    @include game-mobile {
+    @include portrait-mobile {
         flex-direction: row;
     }
 }
@@ -151,7 +151,7 @@ body {
     display: flex;
     align-items: center;
     flex-basis: 33.33%;
-    @include game-mobile {
+    @include portrait-mobile {
         justify-content: center;
     }
 }
@@ -183,7 +183,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: visibility .26s, opacity .25s;
-    @include game-mobile {
+    @include portrait-mobile {
         flex-direction: column;
     }
 }
@@ -292,8 +292,11 @@ body {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     height: 64vh;
-    @include mobile {
-        height: 55vh;
+    @include portrait-mobile {
+        height: 60vh;
+    }
+    @include landscape-mobile {
+        height: 50vh;
     }
 }
 .level-btn {
@@ -304,13 +307,15 @@ body {
     border-radius: 2em;
     transition: opacity .25s;
     align-self: flex-start;
-    @include game-mobile {
+    @include portrait-mobile {
         flex-basis: calc(33.33% - 1em);
         margin: .5em;
         border-radius: 1em;
     }
-    @include mobile {
+    @include landscape-mobile {
         border-radius: 1em;
+        flex: 0 1 calc(20% - 1em);
+        margin: .5em;
     }
     transition: opacity .25s;
 }

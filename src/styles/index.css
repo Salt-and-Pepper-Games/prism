@@ -631,9 +631,12 @@ body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   height: 64vh; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .levels-grid {
-      height: 55vh; } }
+      height: 60vh; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .levels-grid {
+      height: 50vh; } }
 
 .level-btn {
   box-sizing: border-box;
@@ -649,9 +652,11 @@ body {
       flex-basis: calc(33.33% - 1em);
       margin: .5em;
       border-radius: 1em; } }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
     .level-btn {
-      border-radius: 1em; } }
+      border-radius: 1em;
+      flex: 0 1 calc(20% - 1em);
+      margin: .5em; } }
 
 .level-btn:after {
   content: "";
