@@ -103,10 +103,11 @@ body {
     animation: fadein 1s;
 }
 .game-area {
-    position: fixed;
+    position: absolute;
     top: 0;
-    width: 100vw;
-    height: 100vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     transition: visibility 2s, opacity 2s;
     @include portrait-mobile {
