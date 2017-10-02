@@ -39,6 +39,7 @@ function handleSwipe(start, end) {
 	if (absDx > 30 || absDy > 30) {
 		if (Math.abs(dx) > Math.abs(dy)) {
 			// horizontal swipe
+			
 			if (dx > 0) {
 				// swipe right
 				store.dispatch(playerActionCreators.moveRight());

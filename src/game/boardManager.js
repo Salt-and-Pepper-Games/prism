@@ -11,6 +11,31 @@ import { addStateListener } from './game';
 import Board from './models/board';
 import isEqual from 'lodash.isequal';
 import { push } from 'react-router-redux';
+import { Howl } from 'howler';
+import move from '../audio/ScrollUp.mp3';
+import blocked from '../audio/enterMenu.mp3';
+import switchToggle from '../audio/ScrollDown.mp3';
+import levelEnd from '../audio/ping.mp3';
+const moveSound = new Howl({
+	src: [move],
+	html5: true,
+	volume: 1.0
+});
+const blockedSound = new Howl({
+	src: [blocked],
+	html5: true,
+	volume: 1.0
+});
+const switchSound = new Howl({
+	src: [switchToggle],
+	html5: true,
+	volume: 1.0
+});
+const levelEndSound = new Howl({
+	src: [levelEnd],
+	html5: true,
+	volume: 1.0
+});
 
 /**
  * Higher order redux-connected class to wrap around a board
@@ -77,6 +102,7 @@ export default class BoardManager {
 					saveData(state, this.dispatch);
 					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
 						// figure out how to navigate to a new url here
+						levelEndSound.play();
 						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
 						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
 					}
@@ -86,9 +112,14 @@ export default class BoardManager {
 						this.dispatch(push(`/`));
 					}
 				}
-			}
-			if (didBgChange) {
-				this.board.setBackgroundColor(game.board.background);
+				else if (didBgChange) {
+					switchSound.play();
+					this.board.setBackgroundColor(game.board.background);
+				} else {
+					moveSound.play();
+				}
+			} else {
+				blockedSound.play();
 			}
 		}
 		else {
