@@ -723,6 +723,9 @@ body {
   padding: 1em 1.5em;
   line-height: 2em;
   font-size: 1.25em; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .about-prism {
+      font-size: 1em; } }
 
 .main-buttons {
   position: absolute;

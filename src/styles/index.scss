@@ -387,6 +387,9 @@ body {
     padding: 1em 1.5em;
     line-height: 2em;
     font-size: 1.25em;
+    @include mobile {
+        font-size: 1em;
+    }
 }
 .main-buttons {
     position: absolute;
