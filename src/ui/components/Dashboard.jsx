@@ -58,11 +58,11 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 						<div className="dashboard-panel">
 							<h1 className="leaderboards-header">Leaderboards</h1>
 							<ul className="leaderboards-list">
-								<li>user1</li>
-								<li>user2</li>
-								<li>user3</li>
-								<li>user4</li>
-								<li>user5</li>
+								<li className="leaderboard-item" >user1</li>
+								<li className="leaderboard-item" >user2</li>
+								<li className="leaderboard-item" >user3</li>
+								<li className="leaderboard-item" >user4</li>
+								<li className="leaderboard-item" >user5</li>
 							</ul>
 						</div>
 					</div>
