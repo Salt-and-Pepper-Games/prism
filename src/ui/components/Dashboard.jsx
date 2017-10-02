@@ -36,17 +36,19 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
     // stop scrolling outside modal
     const body = document.getElementById('body');
 	const html = document.getElementById('html');
+	const header = document.getElementById('header');
+	const levelArea = document.getElementById('level-area');
 	if (isOpen) {
 		body.classList.add('modal-open');
 		html.classList.add('modal-open');
-		body.ontouchmove = e => e.preventDefault();
-		html.ontouchmove = e => e.preventDefault();
+		header.ontouchmove = e => e.preventDefault();
+		levelArea.ontouchmove = e => e.preventDefault();
 
 	} else {
 		body.classList.remove('modal-open');
 		html.classList.remove('modal-open');
-		body.ontouchmove = e => (true);
-		html.ontouchmove = e => (true);
+		header.ontouchmove = e => (true);
+		levelArea.ontouchmove = e => (true);
 	}
 
 	return (
