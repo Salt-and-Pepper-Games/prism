@@ -398,17 +398,21 @@ body {
         width: 20vw;
     }
 }
-
+.stats-wrapper, .leaderboards-wrapper {
+    display: flex;
+    flex-direction: column;
+    @include landscape-mobile {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
 .stats-list, .leaderboards-list {
     line-height: 2em;
     margin-top: 0;
-    align-self: center;
+    margin-bottom: 0;
     @include mobile {
         line-height: 1.75em;
         font-size: 1em;
-    }
-    @include landscape-mobile {
-        li:nth-of-type(1n+4) {display: none;}
     }
 }
 .stats-header, .leaderboards-header, .daily-challenge-header {
@@ -423,8 +427,11 @@ body {
         font-size: 1.25em;
     }
 }
-.stat, .leaderboard-item {
+.stat {
     list-style: circle;
+}
+.leaderboard-item {
+    list-style: decimal;
 }
 
 .header {

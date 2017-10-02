@@ -58,25 +58,36 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 					<div>
 						<div className="dashboard-panel">
 							<h1 className="leaderboards-header">Leaderboards</h1>
-							<ul className="leaderboards-list">
-								<li className="leaderboard-item" >user1</li>
-								<li className="leaderboard-item" >user2</li>
-								<li className="leaderboard-item" >user3</li>
-								<li className="leaderboard-item" >user4</li>
-								<li className="leaderboard-item" >user5</li>
-							</ul>
+							<div className="leaderboards-wrapper">
+								<ol className="leaderboards-list first-list">
+									<li className="leaderboard-item" >user12341</li>
+									<li className="leaderboard-item" >user23531</li>
+									<li className="leaderboard-item" >user13553</li>
+								</ol>
+								<ol start="4" className="leaderboards-list">
+									<li className="leaderboard-item" >user43412</li>
+									<li className="leaderboard-item" >user63455</li>
+									<li className="leaderboard-item" >user66432</li>
+								</ol>
+							</div>
 						</div>
 					</div>
 					<div>
 						<div className="dashboard-panel">
 							<h1 className="stats-header">Stats</h1>
-							<ul className="stats-list">
-								<li className="stat">{`Packs Complete: ${packCompleteCount}`}</li>
-								<li className="stat">{`Levels Complete: ${numeral(uniqueLevelsComplete).format('0, 0')}`}</li>
-								<li className="stat">{`Switches Toggled: ${numeral(stats.switches).format('0, 0')}`}</li>
-								<li className="stat">{`Moves Made: ${numeral(stats.moves).format('0, 0')}`}</li>
-								<li className="stat">{`Total Playing Time: ${numeral(stats.elapsedTime/(1000)).format('00:00:00')}`}</li>
-							</ul>
+							<div className="stats-wrapper">
+								<ul className="stats-list first-list">
+									<li className="stat">{`Packs Complete: ${packCompleteCount}`}</li>
+									<li className="stat">{`Levels Complete: ${numeral(uniqueLevelsComplete).format('0, 0')}`}</li>
+									<li className="stat">{`Switches Toggled: ${numeral(stats.switches).format('0, 0')}`}</li>
+									
+								</ul>
+								<ul className="stats-list">
+									<li className="stat">{`Something Else: ???`}</li>
+									<li className="stat">{`Moves Made: ${numeral(stats.moves).format('0, 0')}`}</li>
+									<li className="stat">{`Total Playing Time: ${numeral(stats.elapsedTime/(1000)).format('00:00:00')}`}</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div>
