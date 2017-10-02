@@ -22,6 +22,8 @@ class App extends React.Component {
 		});
 	}
 	componentDidMount() {
+		const mq = window.matchMedia("only screen and (orientation: portrait)");
+		const mq2 = window.matchMedia("only screen and (max-width: 800px)");
 		this.mainTrack.play();
 		this.mainTrack.on('end', () => {
 			this.mainTrack2.play();
@@ -29,6 +31,17 @@ class App extends React.Component {
 		this.mainTrack2.on('end', () => {
 			this.mainTrack.play();
 		});
+		if (mq.matches || mq2.matches) {
+			document.getElementById('html').ontouchstart = () => {
+				this.mainTrack.play();
+				this.mainTrack.on('end', () => {
+					this.mainTrack2.play();
+				});
+				this.mainTrack2.on('end', () => {
+					this.mainTrack.play();
+				});
+			}
+		}
 	}
 	render() {
 		this.mainTrack.volume(this.props.soundOn ? 1.0 : 0.0);
