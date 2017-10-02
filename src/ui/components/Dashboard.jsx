@@ -33,15 +33,30 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
     	uniqueLevelsComplete += uniquePackLevelCount;
     }
 
+    // Disable scrolling.
+document.ontouchmove = function (e) {
+  e.preventDefault();
+}
+
+// Enable scrolling.
+document.ontouchmove = function (e) {
+  return true;
+}
+
     // stop scrolling outside modal
     const body = document.getElementById('body');
 	const html = document.getElementById('html');
 	if (isOpen) {
 		body.classList.add('modal-open');
 		html.classList.add('modal-open');
+		body.ontouchmove = e => e.preventDefault();
+		html.ontouchmove = e => e.preventDefault();
+
 	} else {
 		body.classList.remove('modal-open');
 		html.classList.remove('modal-open');
+		body.ontouchmove = e => (true);
+		html.ontouchmove = e => (true);
 	}
 
 	return (
