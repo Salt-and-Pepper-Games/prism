@@ -1,4 +1,9 @@
 @mixin mobile {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    @content;
+  }
+}
+@mixin game-mobile {
   @media only screen and (orientation: portrait) {
     @content;
   }

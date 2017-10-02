@@ -384,7 +384,7 @@ body {
   -ms-animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
   -o-animation: fadein 1s, changeSizeRed 2s ease-in-out infinite;
   animation: fadein 1s, changeSizeRed 2s ease-in-out infinite; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     #loader {
       width: 5em;
       height: 5em;
@@ -492,7 +492,7 @@ body {
 .in-game-buttons {
   display: flex;
   align-items: center;
-  flex-basis: 25%; }
+  flex-basis: 33.33%; }
   @media only screen and (orientation: portrait) {
     .in-game-buttons {
       justify-content: center; } }
@@ -504,7 +504,7 @@ body {
   position: relative;
   font-size: 5em;
   transition: opacity .25s; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
       font-size: 3em; } }
 
@@ -537,7 +537,7 @@ body {
   color: #fffdfc;
   padding: 1em 1em;
   font-size: 3em; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .help-text {
       font-size: 1.25em;
       padding: 1em 2em; } }
@@ -549,7 +549,7 @@ body {
   color: #fffdfc;
   font-size: 5em;
   transition: opacity .25s; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .help-overlay-close-btn {
       font-size: 3em; } }
 
@@ -590,7 +590,7 @@ body {
   visibility: hidden;
   opacity: 0;
   transition: visibility .25s, opacity .25s; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .level-pack, .dashboard {
       width: 90vw;
       height: 80vh; } }
@@ -612,7 +612,7 @@ body {
   right: 1em;
   font-size: 2em;
   transition: opacity .25s; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .close-pack-btn {
       top: .5em;
       right: .5em; } }
@@ -631,7 +631,7 @@ body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   height: 64vh; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .levels-grid {
       height: 60vh; } }
 
@@ -644,7 +644,7 @@ body {
   transition: opacity .25s;
   align-self: flex-start;
   transition: opacity .25s; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .level-btn {
       flex-basis: calc(33.33% - 1em);
       margin: .5em;
@@ -661,7 +661,7 @@ body {
 
 .level-solved {
   border: .35em solid; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .level-solved {
       border: .25em solid; } }
 
@@ -715,7 +715,7 @@ body {
   display: flex;
   width: 10vw;
   justify-content: space-between; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .main-buttons {
       font-size: 1.5em;
       transform: translate(-50%, -50%);
@@ -727,7 +727,7 @@ body {
   line-height: 2em;
   margin-top: 0;
   align-self: center; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .stats-list, .leaderboards-list {
       line-height: 1.75em;
       font-size: 1em; } }
@@ -735,7 +735,7 @@ body {
 .stats-header, .leaderboards-header, .daily-challenge-header {
   font-weight: 300;
   margin-bottom: .5em; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .stats-header, .leaderboards-header, .daily-challenge-header {
       font-size: 1.75em;
       margin-bottom: .25em;
@@ -747,7 +747,7 @@ body {
 .header {
   position: relative;
   text-align: center; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .header {
       padding-bottom: 3em; } }
 
@@ -756,7 +756,7 @@ body {
   display: inline-block;
   font-weight: 300;
   font-size: 7.5em; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .prism {
       font-weight: 400;
       font-size: 5em; } }
@@ -791,7 +791,7 @@ body {
 
 .subtitle {
   font-size: 1em; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .subtitle {
       font-size: .75em; } }
 
@@ -819,7 +819,7 @@ body {
   visibility: hidden;
   transition: visibility .25s, opacity .25s;
   font-size: 2vw; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-content-info {
       display: none; } }
 
@@ -832,13 +832,13 @@ body {
 
 .difficulty {
   padding-top: 1em; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .difficulty {
       padding-top: 0em; } }
 
 .pack-title {
   font-size: 3vw; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-title {
       font-size: 5vw; } }
 
@@ -854,7 +854,7 @@ body {
   -ms-animation: fadein 2s;
   -o-animation: fadein 2s;
   animation: fadein 2s; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack {
       flex-basis: calc(50% - 2em);
       margin: 1em;
@@ -896,7 +896,7 @@ body {
   color: #52501b;
   background-color: #fffa6c;
   border: 0.35em solid #52501b; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packyellow {
       border: 0.25em solid #52501b; } }
 
@@ -907,7 +907,7 @@ body {
   color: #173c38;
   background-color: #4CEDDE;
   border: 0.35em solid #173c38; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packcyan {
       border: 0.25em solid #173c38; } }
 
@@ -918,7 +918,7 @@ body {
   color: #252525;
   background-color: #464B63;
   border: 0.35em solid #252525; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packblack {
       border: 0.25em solid #252525; } }
 
@@ -929,7 +929,7 @@ body {
   color: #6f6f6f;
   background-color: #fff3f3;
   border: 0.35em solid #6f6f6f; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packwhite {
       border: 0.25em solid #6f6f6f; } }
 
@@ -940,7 +940,7 @@ body {
   color: #4e0009;
   background-color: #FF6978;
   border: 0.35em solid #4e0009; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packred {
       border: 0.25em solid #4e0009; } }
 
@@ -951,7 +951,7 @@ body {
   color: #003179;
   background-color: #5699fd;
   border: 0.35em solid #003179; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packblue {
       border: 0.25em solid #003179; } }
 
@@ -962,7 +962,7 @@ body {
   color: #225000;
   background-color: #94EA54;
   border: 0.35em solid #225000; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packgreen {
       border: 0.25em solid #225000; } }
 
@@ -973,7 +973,7 @@ body {
   color: #700080;
   background-color: #ff7bd6;
   border: 0.35em solid #700080; }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packmagenta {
       border: 0.25em solid #700080; } }
 
