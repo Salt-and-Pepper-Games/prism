@@ -42,7 +42,7 @@ class LevelPack extends React.Component {
 				<div className={`${isOpen ? `pack-open` : ''} level-pack ${cachedCurrentPack ? `pack${cachedCurrentPack.packColor}` : ''}`}>
 					<div className='level-pack-inner'>
 						<div className='pack-header'>
-							{cachedCurrentPack && <h1>{cachedCurrentPack.packName.toUpperCase()}</h1>}
+							{cachedCurrentPack && <h1 className="pack-header">{cachedCurrentPack.packName.toUpperCase()}</h1>}
 						</div>
 						<i onClick={onClose} className='fa fa-close close-pack-btn'/>
 						<div id='levels-grid' className='levels-grid'>
