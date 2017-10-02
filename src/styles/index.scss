@@ -293,7 +293,7 @@ body {
     -webkit-overflow-scrolling: touch;
     height: 64vh;
     @include mobile {
-        height: 60vh;
+        height: 55vh;
     }
 }
 .level-btn {
@@ -304,9 +304,12 @@ body {
     border-radius: 2em;
     transition: opacity .25s;
     align-self: flex-start;
-    @include mobile {
+    @include game-mobile {
         flex-basis: calc(33.33% - 1em);
         margin: .5em;
+        border-radius: 1em;
+    }
+    @include mobile {
         border-radius: 1em;
     }
     transition: opacity .25s;

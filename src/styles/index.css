@@ -633,7 +633,7 @@ body {
   height: 64vh; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .levels-grid {
-      height: 60vh; } }
+      height: 55vh; } }
 
 .level-btn {
   box-sizing: border-box;
@@ -644,10 +644,13 @@ body {
   transition: opacity .25s;
   align-self: flex-start;
   transition: opacity .25s; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .level-btn {
       flex-basis: calc(33.33% - 1em);
       margin: .5em;
+      border-radius: 1em; } }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .level-btn {
       border-radius: 1em; } }
 
 .level-btn:after {
