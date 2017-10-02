@@ -402,8 +402,8 @@ body {
 .stats-wrapper, .leaderboards-wrapper {
     display: flex;
     flex-direction: column;
+    width: 100%;
     @include landscape-mobile {
-        width: 100%;
         flex-direction: row;
         justify-content: space-around;
     }

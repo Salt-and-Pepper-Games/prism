@@ -737,10 +737,10 @@ body {
 
 .stats-wrapper, .leaderboards-wrapper {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  width: 100%; }
   @media only screen and (max-width: 800px) and (orientation: landscape) {
     .stats-wrapper, .leaderboards-wrapper {
-      width: 100%;
       flex-direction: row;
       justify-content: space-around; } }
 
