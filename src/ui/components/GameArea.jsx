@@ -17,7 +17,7 @@ class GameArea extends React.Component {
 	}
 
 	componentWillMount() {
-		if (this.mq.matches) {
+		if (this.mq.matches && screenfull.enabled) {
 			screenfull.request();
 		}
 	}
@@ -33,7 +33,7 @@ class GameArea extends React.Component {
 		}
 	}
 	componentWillUnmount() {
-		if (this.mq.matches) {
+		if (this.mq.matches && screenfull.enabled) {
 			screenfull.exit();
 		}
 	}
