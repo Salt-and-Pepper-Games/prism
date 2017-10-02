@@ -5,14 +5,15 @@ import Slider from 'react-slick';
 import numeral from 'numeral';
 
 const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
-	const mq = window.matchMedia("only screen and (orientation: portrait), only screen and (max-width: 800px)");
+	const mq = window.matchMedia("only screen and (orientation: portrait)");
+	const mq2 = window.matchMedia("only screen and (max-width: 800px)");
 	const settings = {
-      dots: mq.matches,
+      dots: mq.matches || mq2.matches,
       infinite: false,
       arrows: false,
       speed: 500,
-      slidesToShow: mq.matches ? 1 : 3,
-      slidesToScroll: mq.matches ? 1 : 3
+      slidesToShow: mq.matches || mq2.matches ? 1 : 3,
+      slidesToScroll: mq.matches || mq2.matches ? 1 : 3
     };
     numeral.nullFormat('...');
     numeral.zeroFormat('...');
