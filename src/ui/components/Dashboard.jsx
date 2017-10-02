@@ -75,18 +75,20 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 					<div>
 						<div className="dashboard-panel">
 							<h1 className="stats-header">Stats</h1>
-							<div className="stats-wrapper">
-								<ul className="stats-list first-list">
-									<li className="stat">{`Packs Complete: ${packCompleteCount}`}</li>
-									<li className="stat">{`Levels Complete: ${numeral(uniqueLevelsComplete).format('0, 0')}`}</li>
-									<li className="stat">{`Switches Toggled: ${numeral(stats.switches).format('0, 0')}`}</li>
-									
-								</ul>
-								<ul className="stats-list">
-									<li className="stat">{`Something Else: ???`}</li>
-									<li className="stat">{`Moves Made: ${numeral(stats.moves).format('0, 0')}`}</li>
-									<li className="stat">{`Total Playing Time: ${numeral(stats.elapsedTime/(1000)).format('00:00:00')}`}</li>
-								</ul>
+							<div className="stats-wrapper-wrapper">
+								<div className="stats-wrapper">
+									<ul className="stats-list first-list">
+										<li className="stat">{`Packs Complete: ${packCompleteCount}`}</li>
+										<li className="stat">{`Levels Complete: ${numeral(uniqueLevelsComplete).format('0, 0')}`}</li>
+										<li className="stat">{`Switches Toggled: ${numeral(stats.switches).format('0, 0')}`}</li>
+										
+									</ul>
+									<ul className="stats-list">
+										<li className="stat">{`Something Else: ???`}</li>
+										<li className="stat">{`Moves Made: ${numeral(stats.moves).format('0, 0')}`}</li>
+										<li className="stat">{`Total Playing Time: ${numeral(stats.elapsedTime/(1000)).format('00:00:00')}`}</li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>

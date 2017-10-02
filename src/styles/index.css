@@ -735,14 +735,26 @@ body {
       top: 90%;
       width: 20vw; } }
 
+.stats-wrapper-wrapper {
+  width: fit-content;
+  align-items: center; }
+
 .stats-wrapper, .leaderboards-wrapper {
   display: flex;
   flex-direction: column;
   width: 100%; }
+
+.leaderboards-wrapper {
+  align-items: center; }
   @media only screen and (max-width: 800px) and (orientation: landscape) {
-    .stats-wrapper, .leaderboards-wrapper {
+    .leaderboards-wrapper {
       flex-direction: row;
-      justify-content: space-around; } }
+      justify-content: center; } }
+
+@media only screen and (max-width: 800px) and (orientation: landscape) {
+  .stats-wrapper {
+    flex-direction: row;
+    justify-content: space-around; } }
 
 .stats-list, .leaderboards-list {
   line-height: 2em;

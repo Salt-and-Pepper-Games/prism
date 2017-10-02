@@ -399,10 +399,24 @@ body {
         width: 20vw;
     }
 }
+.stats-wrapper-wrapper {
+    width: fit-content;
+    align-items: center;
+}
+
 .stats-wrapper, .leaderboards-wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+.leaderboards-wrapper {
+    align-items: center;
+    @include landscape-mobile {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+.stats-wrapper {
     @include landscape-mobile {
         flex-direction: row;
         justify-content: space-around;
