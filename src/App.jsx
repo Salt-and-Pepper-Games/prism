@@ -13,12 +13,12 @@ class App extends React.Component {
 		this.mainTrack = new Howl({
 		  src: [mainTrack],
 		  html5: true,
-		  volume: .1
+		  volume: .25
 		});
 		this.mainTrack2 = new Howl({
 		  src: [demoTrack],
 		  html5: true,
-		  volume: .1
+		  volume: .5
 		});
 	}
 	componentDidMount() {
@@ -46,8 +46,8 @@ class App extends React.Component {
 		// }
 	}
 	render() {
-		this.mainTrack.volume(this.props.soundOn ? .1 : 0.0);
-		this.mainTrack2.volume(this.props.soundOn ? .1 : 0.0);
+		this.mainTrack.volume(this.props.soundOn ? .25 : 0.0);
+		this.mainTrack2.volume(this.props.soundOn ? .5 : 0.0);
 		return (
 			<HashRouter>
 				<div>

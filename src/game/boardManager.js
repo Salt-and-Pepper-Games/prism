@@ -13,8 +13,8 @@ import isEqual from 'lodash.isequal';
 import { push } from 'react-router-redux';
 import { Howl } from 'howler';
 import move from '../audio/ScrollUp.mp3';
-import blocked from '../audio/enterMenu.mp3';
-import switchToggle from '../audio/ScrollDown.mp3';
+import blocked from '../audio/ScrollDown.mp3';
+import switchToggle from '../audio/enterMenu.mp3';
 import levelEnd from '../audio/ping.mp3';
 const moveSound = new Howl({
 	src: [move],
