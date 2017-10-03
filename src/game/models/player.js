@@ -1,10 +1,17 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
+import MutableNumber from '../../utils/MutableNumber';
 
 export default class Player {
 	constructor(x, y, width, height, layer) {
 		this.color = colorIndices.PLAYER;
 		this.hasAltColor = false;
+
+		this.baseAnimTime = .35;
+		this.animTime = new MutableNumber(this.baseAnimTime);
+
+		this.movementAnimLength = .7;
+		this.movementAnimTime = new MutableNumber(this.baseAnimTime * this.movementAnimLength);
 
 		this.x = x;
 		this.y = y;
@@ -20,10 +27,6 @@ export default class Player {
 
 		this.cellWidth = layer.width() / width;
 		this.cellHeight = layer.height() / height;
-
-		//takes animation objects of type animation type, duration, enum
-		this.animationSpeed = 1;
-		this.animationQueue = [];
 
 		// this.model = new Konva.Rect({
 		// 	x: this.cellWidth * (x + .5),
@@ -92,41 +95,34 @@ export default class Player {
 
 		layer.add(this.model);
 
-		const playerAnim = new Konva.Animation(this.updatePlayer.bind(this), layer);
-		playerAnim.start();
+		// const playerAnim = new Konva.Animation(this.updatePlayer.bind(this), layer);
+		// playerAnim.start();
 	}
 
-	// Returns a boolean indicating is position actually changed.
+	// Returns a promise that resolves when the animation is complete
 	moveTo(x, y) {
 		const oldTargetX = this.targetX;
 		const oldTargetY = this.targetY;
 		this.targetX = x;
 		this.targetY = y;
-		this.pushAnimation(1000, this.moveToAnimation(oldTargetX, oldTargetY, this.targetX, this.targetY, this.targetY === oldTargetY));
-
-		const totalDuration = this.animationQueue.reduce(function(sum, value) {
-  			return sum + value.timeLeft;
-		}, 0);
-
-		this.animationSpeed = Math.min(totalDuration / 200.0, 100);
 
 		// this.x = x;
 		// this.y = y;
+		// return new Promise(resolve => {
 		// 	this.model.to({
-		// 	x: this.cellWidth * (x + .5),
-		// 	y: this.cellHeight * (y + .5),
-		// 	duration: .2,
-		// 	easing: Konva.Easings.StrongEaseOut
-		// });
-
+		// 		x: this.cellWidth * (x + .5),
+		// 		y: this.cellHeight * (y + .5),
+		// 		duration: this.movementAnimTime,
+		// 		// easing: moveToAnimation(oldTargetX, oldTargetY, x, y, x == oldTargetX),
+		// 		easing: Konva.Easings.EaseOut,
+		// 		onFinish: resolve
+		// 	});
+		// })
 	}
 
-	pushAnimation(duration, animation) {
-		this.animationQueue.push({
-			duration:duration,
-			timeLeft:duration,
-			animation:animation,
-		});
+	setAnimationMultiplier(n) {
+		this.animTime.set(this.baseAnimTime / n);
+		this.movementAnimTime.set(this.baseAnimTime * this.movementAnimLength / n);
 	}
 
 	/*squishAnimation(x, y, deltaX, deltaY, vertical) {
@@ -149,7 +145,8 @@ export default class Player {
 	}*/
 
 	moveToAnimation(x, y, targetX, targetY, vertical) {
-		return (time) => {
+		return (time, begin, change, duration) => {
+			time = time / duration;
 			const xDiff = targetX - x;
 			const yDiff = targetY - y;
 			const animationPos = Math.sin(time * Math.PI / 2.0);
@@ -168,23 +165,10 @@ export default class Player {
 	updatePlayer(frame) {
 		const { timeDiff } = frame;
 
-		if (this.animationQueue.length > 0) {
-			const currentAnimation = this.animationQueue[0];
-			currentAnimation.timeLeft -= this.animationSpeed * timeDiff;
-			currentAnimation.timeLeft = Math.max(currentAnimation.timeLeft, 0);
-			currentAnimation.animation(1 - currentAnimation.timeLeft / currentAnimation.duration);
-			if (currentAnimation.timeLeft === 0) {
-				this.animationQueue.shift();
-			}
-
 			//eye animation
 			// TODO make eye look at exit when it exists (for now we just look at top left corner)
-			const directionToCenter = Math.atan2(-this.y, -this.x);
-			this.eye.setRotation(directionToCenter / Math.PI * 180.0);
-		}
-		else {
-			return false;
-		}
+		const directionToCenter = Math.atan2(-this.y, -this.x);
+		this.eye.setRotation(directionToCenter / Math.PI * 180.0);
 	}
 
 	closeToTarget() {
@@ -195,32 +179,43 @@ export default class Player {
 	onBackgroundColor(color) {
 		const playerColor = colorIndices.WHITE;
 
+		const anims = [];
 		//Tween the color of the background colored components
-		this.backgroundColorGroup.forEach((modelComponent) => {
-			this.model.to({
-				fill: colorValues[color],
-				duration: .35,
-			});
-		});
-
-		if (color === playerColor && !this.hasAltColor) {
-			this.playerColorGroup.forEach((modelComponent) => {
-				modelComponent.to({
-					fill: altColorValues[this.color],
-					duration: .35,
+		anims.push(new Promise(resolve => {
+			this.backgroundColorGroup.forEach((modelComponent) => {
+				this.model.to({
+					fill: colorValues[color],
+					duration: this.animTime,
+					onFinish: resolve
 				});
 			});
+		}));
+
+		if (color === playerColor && !this.hasAltColor) {
+			anims.push(new Promise(resolve => {
+				this.playerColorGroup.forEach((modelComponent) => {
+					modelComponent.to({
+						fill: altColorValues[this.color],
+						duration: this.animTime,
+						onFinish: resolve
+					});
+				});
+			}));
 			this.hasAltColor = true;
 		}
 		else if (color !== playerColor && this.hasAltColor) {
-			this.playerColorGroup.forEach((modelComponent) => {
-				modelComponent.to({
-					fill: colorValues[this.color],
-					duration: .35,
+			anims.push(new Promise(resolve => {
+				this.playerColorGroup.forEach((modelComponent) => {
+					modelComponent.to({
+						fill: colorValues[this.color],
+						duration: this.animTime,
+						onFinish: resolve
+					});
 				});
-			});
+			}));
 			this.hasAltColor = false;
 		}
+		return Promise.all(anims);
 	}
 
 	destroy() {

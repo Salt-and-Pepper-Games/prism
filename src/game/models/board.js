@@ -42,20 +42,34 @@ export default class Board {
 	}
 
 	setPlayerPosition(x, y) {
-		this.player.moveTo(x, y);
+		return this.player.moveTo(x, y);
 	}
 
 	setBackgroundColor(color) {
-		this.background.setColor(color);
+		let promises = [];
+		promises.push(this.background.setColor(color));
 		for (let i=0; i<this.blocks.length; i++) {
 			for (let j=0; j<this.blocks[i].length; j++) {
 				if (this.blocks[i][j]) {
-					this.blocks[i][j].onBackgroundColor(color);
+					promises.push(this.blocks[i][j].onBackgroundColor(color));
 				}
 			}
 		}
-		this.home.onBackgroundColor(color);
-		this.player.onBackgroundColor(color);
+		promises.push(this.home.onBackgroundColor(color));
+		promises.push(this.player.onBackgroundColor(color));
+		return Promise.all(promises);
+	}
+
+	setAnimationMultiplier(speed) {
+		this.player.setAnimationMultiplier(speed);
+		// this.background.setAnimationMultiplier(speed);
+		// for (let i=0; i<this.blocks.length; i++) {
+		// 	for (let j=0; j<this.blocks[i].length; j++) {
+		// 		if (this.blocks[i][j]) {
+		// 			this.blocks[i][j].setAnimationMultiplier(speed);
+		// 		}
+		// 	}
+		// }
 	}
 
 	hasSwitch(x, y) {

@@ -11,6 +11,7 @@ import { addStateListener } from './game';
 import Board from './models/board';
 import isEqual from 'lodash.isequal';
 import { push } from 'react-router-redux';
+import AnimationManager from './animationManager';
 
 /**
  * Higher order redux-connected class to wrap around a board
@@ -40,6 +41,8 @@ export default class BoardManager {
 		stage.add(this.switchLayer);
 
 		this.stage = stage;
+
+		this.animationManager = new AnimationManager();
 	}
 
 	onStateChange(state, prevState) {
@@ -54,6 +57,7 @@ export default class BoardManager {
 			this.board = new Board(game.board, { boardLayer: this.boardLayer,
 				playerLayer: this.playerLayer,
 				switchLayer: this.switchLayer });
+			this.animationManager.setBoard(this.board);
 			this.stage.draw();
 		}
 		else if (this.board) {
@@ -68,9 +72,11 @@ export default class BoardManager {
 			const prevBg = prevGame.board.background;
 			const didBgChange = bg !== prevBg;
 
+			const animFrame = {};
 			// Check if the player actually moved before changing switch color.
 			if (didMove) {
-				this.board.setPlayerPosition(px, py);
+				// this.board.setPlayerPosition(px, py);
+				animFrame.player = { x: px, y: py };
 				if (px === game.board.home.x && game.board.home.y === py && !game.board.complete) {
 					// in the future dispatch a level end action but for now just cut to home screen
 					this.dispatch(completeLevelAction());
@@ -90,6 +96,8 @@ export default class BoardManager {
 			if (didBgChange) {
 				this.board.setBackgroundColor(game.board.background);
 			}
+			
+			this.animationManager.addFrame(animFrame);
 		}
 		else {
 			// receiving an action without a level loaded
