@@ -68,6 +68,7 @@ class LevelPack extends React.Component {
 											GameAudio.stop();
 											startTransition();
 											const id = GameAudio.play('enter_game');
+											GameAudio.volume(.5, id);
 											GameAudio.on('end', () => {
 												stopTransition();
 											}, id);

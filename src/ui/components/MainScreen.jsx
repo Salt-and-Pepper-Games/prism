@@ -13,11 +13,13 @@ class MainScreen extends React.Component {
 	componentDidMount() {
 		if (!this.props.transitionPlaying) {
 			this.loopID = GameAudio.play('main_loop');
+			GameAudio.volume(.2, this.loopID);
 		}
 	}
 	componentWillReceiveProps(nextProps) {
 		if (!nextProps.transitionPlaying && !GameAudio.playing(this.loopID)) {
-			GameAudio.play('main_loop');
+			this.loopID = GameAudio.play('main_loop');
+			GameAudio.fade(0, .2, 2500, this.loopID);
 		}
 	}
 	render() {

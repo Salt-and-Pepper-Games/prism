@@ -33,7 +33,8 @@ class GameArea extends React.Component {
 	}
 	componentWillReceiveProps(nextProps) {
 		if (!nextProps.transitionPlaying && !GameAudio.playing(this.loopID)) {
-			GameAudio.play('gameplay_loop');
+			const id = GameAudio.play('gameplay_loop');
+			GameAudio.fade(0, 1.0, 2500, id);
 		}
 		if (!isEqual(this.props.match, nextProps.match)) {
 			const matchParams = nextProps.match.params;
@@ -82,6 +83,7 @@ class GameArea extends React.Component {
 									GameAudio.stop();
 									startTransition();
 									const id = GameAudio.play('enter_game');
+									GameAudio.volume(.5, id);
 									GameAudio.on('end', () => {
 										stopTransition();
 									}, id);
