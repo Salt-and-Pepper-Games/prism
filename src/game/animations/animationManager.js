@@ -1,4 +1,5 @@
 import isEmpty from 'lodash.isempty';
+import Konva from 'konva';
 /**
  * This class handles the global syncronization of all animations
  * The goal is to prevent the different board components from being out of sync
@@ -12,6 +13,7 @@ export default class AnimationManager {
 		this.promiseChain = null;
 		this.speed = 1;
 		this.queuedAnimations = 0;
+		console.log(Konva.Tween.prototype);
 	}
 
 	addFrame(data) {
@@ -43,9 +45,9 @@ export default class AnimationManager {
 		if (player) {
 			promises.push(this.board.setPlayerPosition(player.x, player.y));
 		}
-		// if (background) {
-		// 	promises.push(this.board.setBackgroundColor(background));
-		// }
+		if (typeof background !== 'undefined') {
+			promises.push(this.board.setBackgroundColor(background));
+		}
 
 		if (promises.length > 0) {
 			console.log("Starting: " + this.queuedAnimations);
@@ -58,6 +60,7 @@ export default class AnimationManager {
 		else {
 			// not sure how this will work out
 			// shouldn't ever really happen ideally
+			console.log("NULLLLLLL");
 			return null;
 		}
 	}

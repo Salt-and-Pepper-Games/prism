@@ -8,10 +8,15 @@ export default class Player {
 		this.hasAltColor = false;
 
 		this.baseAnimTime = .35;
-		this.animTime = new MutableNumber(this.baseAnimTime);
+		this.animTime = new MutableNumber(this.baseAnimTime * 1000);
 
 		this.movementAnimLength = .7;
-		this.movementAnimTime = new MutableNumber(this.baseAnimTime * this.movementAnimLength);
+		this.movementAnimTime = new MutableNumber(this.baseAnimTime * 1000 * this.movementAnimLength);
+
+		this.colorAnimLength = 1;
+		this.colorAnimLength = new MutableNumber(this.baseAnimTime * 1000 * this.movementLength);
+
+		this.setAnimationMultiplier(1);
 
 		this.x = x;
 		this.y = y;
@@ -106,23 +111,28 @@ export default class Player {
 		this.targetX = x;
 		this.targetY = y;
 
-		// this.x = x;
-		// this.y = y;
-		// return new Promise(resolve => {
-		// 	this.model.to({
-		// 		x: this.cellWidth * (x + .5),
-		// 		y: this.cellHeight * (y + .5),
-		// 		duration: this.movementAnimTime,
-		// 		// easing: moveToAnimation(oldTargetX, oldTargetY, x, y, x == oldTargetX),
-		// 		easing: Konva.Easings.EaseOut,
-		// 		onFinish: resolve
-		// 	});
-		// })
+		this.x = x;
+		this.y = y;
+		return new Promise(resolve => {
+			let tween = new Konva.Tween({
+				node: this.model,
+				x: this.cellWidth * (x + .5),
+				y: this.cellHeight * (y + .5),
+				duration: 1,
+				easing: Konva.Easings.EaseOut,
+				onFinish: function() {
+					this.destroy();
+					resolve();
+				}
+			});
+			tween.tween.duration = this.movementAnimTime;
+			tween.play();
+		})
 	}
 
 	setAnimationMultiplier(n) {
-		this.animTime.set(this.baseAnimTime / n);
-		this.movementAnimTime.set(this.baseAnimTime * this.movementAnimLength / n);
+		this.animTime.set(this.baseAnimTime * 1000 / n);
+		this.movementAnimTime.set(this.baseAnimTime * 1000 * this.movementAnimLength / n);
 	}
 
 	/*squishAnimation(x, y, deltaX, deltaY, vertical) {

@@ -11,7 +11,7 @@ import { addStateListener } from './game';
 import Board from './models/board';
 import isEqual from 'lodash.isequal';
 import { push } from 'react-router-redux';
-import AnimationManager from './animationManager';
+import AnimationManager from './animations/animationManager';
 
 /**
  * Higher order redux-connected class to wrap around a board
@@ -94,7 +94,7 @@ export default class BoardManager {
 				}
 			}
 			if (didBgChange) {
-				this.board.setBackgroundColor(game.board.background);
+				animFrame.background = bg;
 			}
 			
 			this.animationManager.addFrame(animFrame);
