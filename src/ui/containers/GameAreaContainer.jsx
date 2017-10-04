@@ -1,18 +1,20 @@
 import { connect } from 'react-redux';
 
 import GameArea from '../components/GameArea.jsx';
-import uiActionCreators from '../../actionCreators/uiActionCreators';
+import * as uiActionCreators from '../../actionCreators/uiActionCreators';
+import * as soundActionCreators from '../../actionCreators/soundActionCreators';
 import * as levelActionCreators from '../../actionCreators/levelActionCreators';
 import * as asyncActionCreators from '../../actionCreators/asyncActionCreators';
 
 const mapStateToProps = state => {
 	return {
-		inGame: state.ui.inGame && state.game.board.loaded,
-		isHelpOpen: state.ui.isHelpOpen,
-		soundOn: state.ui.soundOn,
-		currentPack: state.ui.currentPack,
+		inGame: state.ui.ui.inGame && state.game.board.loaded,
+		isHelpOpen: state.ui.ui.isHelpOpen,
+		soundOn: state.ui.sound.soundOn,
+		currentPack: state.ui.ui.currentPack,
 		moveCount: state.game.board.stats.moves,
-		isLoading: state.ui.isLoading
+		isLoading: state.ui.ui.isLoading,
+		transitionPlaying: state.ui.sound.transitionPlaying
 	};
 };
 
@@ -24,7 +26,9 @@ const mapDispatchToProps = dispatch => {
 		},
 		openHelp: () => dispatch(uiActionCreators.openHelp()),
 		closeHelp: () => dispatch(uiActionCreators.closeHelp()),
-		toggleSound: () => dispatch(uiActionCreators.toggleSound()),
+		toggleSound: () => dispatch(soundActionCreators.toggleSound()),
+		startTransition: () => dispatch(soundActionCreators.startTransitionPlaying()),
+		stopTransition: () => dispatch(soundActionCreators.stopTransitionPlaying()),
 		loadLevel: (levelNumber, packName) => dispatch(asyncActionCreators.loadLevelString(levelNumber, packName))
 	};
 };

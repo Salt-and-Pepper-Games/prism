@@ -1,7 +1,7 @@
 import Konva from 'konva';
 
 import types from '../actionCreators/levelActionNames.js';
-import uiActionCreators from '../actionCreators/uiActionCreators';
+import * as uiActionCreators from '../actionCreators/uiActionCreators';
 import {loadLevel, closeLevelAction, completeLevelAction} from '../actionCreators/levelActionCreators';
 import { loadLevelString } from '../actionCreators/asyncActionCreators';
 import { saveData } from '../utils/firebaseListeners';
@@ -11,32 +11,9 @@ import { addStateListener } from './game';
 import Board from './models/board';
 import isEqual from 'lodash.isequal';
 import { push } from 'react-router-redux';
-import { Howl } from 'howler';
-import move from '../audio/ScrollUp.mp3';
-import blocked from '../audio/ScrollDown.mp3';
-import switchToggle from '../audio/enterMenu.mp3';
-import levelEnd from '../audio/ping.mp3';
-const moveSound = new Howl({
-	src: [move],
-	html5: true,
-	volume: 1.0
-});
-const blockedSound = new Howl({
-	src: [blocked],
-	html5: true,
-	volume: 1.0
-});
-const switchSound = new Howl({
-	src: [switchToggle],
-	html5: true,
-	volume: 1.0
-});
-const levelEndSound = new Howl({
-	src: [levelEnd],
-	html5: true,
-	volume: 1.0
-});
-
+import GameAudio from '../utils/AudioManager';
+import playerActionNames from '../actionCreators/playerActionNames';
+const playerMoves = Object.keys(playerActionNames);
 /**
  * Higher order redux-connected class to wrap around a board
  * Basically the non-react equivalent of react-redux's connect()
@@ -102,7 +79,9 @@ export default class BoardManager {
 					saveData(state, this.dispatch);
 					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
 						// figure out how to navigate to a new url here
-						levelEndSound.play();
+						if (playerMoves.includes(state.lastAction.type)) {
+							GameAudio.play('level_end');
+						}
 						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
 						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
 					}
@@ -113,13 +92,19 @@ export default class BoardManager {
 					}
 				}
 				else if (didBgChange) {
-					switchSound.play();
+					if (playerMoves.includes(state.lastAction.type)) {
+						GameAudio.play('switch_toggle');
+					}
 					this.board.setBackgroundColor(game.board.background);
 				} else {
-					moveSound.play();
+					if (playerMoves.includes(state.lastAction.type)) {
+						GameAudio.play('move');
+					}
 				}
 			} else {
-				blockedSound.play();
+				if (playerMoves.includes(state.lastAction.type)) {
+					GameAudio.play('move_blocked');	
+				}
 			}
 		}
 		else {

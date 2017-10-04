@@ -1,4 +1,4 @@
-import uiActionCreators from './uiActionCreators';
+import * as uiActionCreators from './uiActionCreators';
 import { closeLevelAction, loadLevelAction } from './levelActionCreators';
 import { setUserStats, setUserAction, setLevelCompletionData } from './userActionCreators';
 import firebase from 'firebase';

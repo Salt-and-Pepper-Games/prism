@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import GameAudio from '../../utils/AudioManager';
 
 class LevelPack extends React.Component {
 	constructor(props) {
@@ -10,7 +11,17 @@ class LevelPack extends React.Component {
 		this.levelGrid = document.getElementById('levels-grid');
 	}
 	render() {
-		const { isOpen, currentPack, cachedCurrentPack, onClose, onLevelClick, history, userLevelData } = this.props;
+		const {
+			isOpen,
+			currentPack,
+			cachedCurrentPack,
+			onClose,
+			onLevelClick,
+			history,
+			userLevelData,
+			startTransition,
+			stopTransition
+		} = this.props;
 		const levels = [];
 		if (cachedCurrentPack) {
 			for (let i = 1; i <= cachedCurrentPack.levelCount; i++) {
@@ -53,7 +64,15 @@ class LevelPack extends React.Component {
 								}
 								return (
 									<div
-										onClick={() => history.push(`/game/${currentPack.packName}/${level}`)}
+										onClick={() => {
+											GameAudio.stop();
+											startTransition();
+											const id = GameAudio.play('enter_game');
+											GameAudio.on('end', () => {
+												stopTransition();
+											}, id);
+											history.push(`/game/${currentPack.packName}/${level}`);
+										}}
 										key={level}
 										className={`level-btn btn-${cachedCurrentPack.packColor} level-${isSolved ? 'solved' : 'not-solved'}`}
 									>
