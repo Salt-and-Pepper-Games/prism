@@ -14,13 +14,10 @@ for (const sprite in AudioInfo.spritemap) {
 	];
 }
 
-const mq = window.matchMedia("(orientation: portrait)");
-const mq2 = window.matchMedia("only screen and (max-width: 800px) and (orientation: landscape)");
-
 const GameAudio = new Howl({
   src: [GameAudioMP3, GameAudioM4A, GameAudioOGG, GameAudioAC3],
   sprite: spriteMap,
-  html5: !(mq.matches && mq2.matches),
+  html5: true,
   volume: 1.0
 });
 
