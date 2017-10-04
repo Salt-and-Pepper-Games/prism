@@ -1,22 +1,19 @@
 import Konva from 'konva';
 import { colorValues } from '../colors';
 import MutableNumber from '../../utils/MutableNumber';
+import BaseModel from './baseModel';
 
-export default class Background {
+export default class Background extends BaseModel {
 	constructor(color, layer) {
-		this.color = color;
-		this.baseAnimTime = .35;
-		this.animTime = new MutableNumber(this.baseAnimTime * 1000);
-
-		this.model = new Konva.Rect({
+		let model = new Konva.Rect({
 			x: 0,
 			y: 0,
 			width: layer.width(),
 			height: layer.height(),
 			fill: colorValues[color]
 		});
+		super(color, model, layer);
 
-		layer.add(this.model);
 		this.model.setZIndex(1);
 	}
 
@@ -40,12 +37,12 @@ export default class Background {
 		});
 	}
 
-	setAnimationMultiplier(n) {
-		this.animTime.set(this.baseAnimTime * 1000 / n);
-	}
+	// setAnimationMultiplier(n) {
+	// 	this.animTime.set(this.baseAnimTime * 1000 / n);
+	// }
 
-	destroy() {
-		this.model.destroy();
-	}
+	// destroy() {
+	// 	this.model.destroy();
+	// }
 }
 

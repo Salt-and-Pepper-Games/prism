@@ -1,34 +1,40 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
+import BaseModel from './baseModel';
 
-export default class Player {
+export default class Home extends BaseModel {
 	constructor(x, y, width, height, layer) {
-		this.color = colorIndices.WHITE;
+		let color = colorIndices.WHITE;
+		let cellWidth = layer.width() / width;
+		let cellHeight = layer.height() / height;
+		width = .7 * layer.width() / width;
+		height = .7 * layer.height() / height;
+		let model = new Konva.Rect({
+			x: cellWidth * (x + .5),
+			y: cellHeight * (y + .5),
+			offsetX: width / 2,
+			offsetY: height / 2,
+			width: width,
+			height: height,
+			cornerRadius: 10,
+			fill: colorValues[color]
+		});
+		super(color, model, layer);
+
 		this.hasAltColor = false;
+		this.width = width;
+		this.height = height;
+		this.cellWidth = cellWidth;
+		this.cellHeight = cellHeight;
 
 		this.x = x;
 		this.y = y;
 
-		this.width = .7 * layer.width() / width;
-		this.height = .7 * layer.height() / height;
 
-		this.cellWidth = layer.width() / width;
-		this.cellHeight = layer.height() / height;
-
-		setTimeout(() => {
-			this.model = new Konva.Rect({
-				x: this.cellWidth * (x + .5),
-				y: this.cellHeight * (y + .5),
-				offsetX: this.width / 2,
-				offsetY: this.height / 2,
-				width: this.width,
-				height: this.height,
-				cornerRadius: 10,
-				fill: colorValues[this.color]
-			});
-			layer.add(this.model);
-			layer.draw();
-		}, 0);
+		// setTimeout(() => {
+		// 	layer.add(this.model);
+		// 	layer.draw();
+		// }, 0);
 	}
 
 
@@ -55,8 +61,8 @@ export default class Player {
 		}
 	}
 
-	destroy() {
-		this.model.destroy();
-	}
+	// destroy() {
+	// 	this.model.destroy();
+	// }
 }
 

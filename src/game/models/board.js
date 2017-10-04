@@ -47,7 +47,7 @@ export default class Board {
 
 	setBackgroundColor(color) {
 		let promises = [];
-		// promises.push(this.background.setColor(color));
+		promises.push(this.background.setColor(color));
 		for (let i=0; i<this.blocks.length; i++) {
 			for (let j=0; j<this.blocks[i].length; j++) {
 				if (this.blocks[i][j]) {
@@ -55,22 +55,23 @@ export default class Board {
 				}
 			}
 		}
-		promises.push(this.home.onBackgroundColor(color));
-		promises.push(this.player.onBackgroundColor(color));
-		// return Promise.all(promises);
-		return this.background.setColor(color);
+		// promises.push(this.home.onBackgroundColor(color));
+		// promises.push(this.player.onBackgroundColor(color));
+		return Promise.all(promises)
+			.then(() => { "Set background fully resolved" });
+		// return this.background.setColor(color);
 	}
 
 	setAnimationMultiplier(speed) {
 		this.player.setAnimationMultiplier(speed);
 		this.background.setAnimationMultiplier(speed);
-		// for (let i=0; i<this.blocks.length; i++) {
-		// 	for (let j=0; j<this.blocks[i].length; j++) {
-		// 		if (this.blocks[i][j]) {
-		// 			this.blocks[i][j].setAnimationMultiplier(speed);
-		// 		}
-		// 	}
-		// }
+		for (let i=0; i<this.blocks.length; i++) {
+			for (let j=0; j<this.blocks[i].length; j++) {
+				if (this.blocks[i][j]) {
+					this.blocks[i][j].setAnimationMultiplier(speed);
+				}
+			}
+		}
 	}
 
 	hasSwitch(x, y) {

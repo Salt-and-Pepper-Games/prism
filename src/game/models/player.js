@@ -1,20 +1,85 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
 import MutableNumber from '../../utils/MutableNumber';
+import { moveToAnimation } from '../animations/movementAnimations';
+import BaseModel from './baseModel';
 
-export default class Player {
+export default class Player extends BaseModel {
 	constructor(x, y, width, height, layer) {
-		this.color = colorIndices.PLAYER;
+		let color = colorIndices.PLAYER;
+		let cellWidth = layer.width() / width;
+		let cellHeight = layer.height() / height;
+		width = .7 * layer.width() / width;
+		height = .7 * layer.height() / height;
+
+		let model = new Konva.Group({
+			x: cellWidth * (x + .5),
+			y: cellHeight * (y + .5),
+		});
+
+		let body = new Konva.Rect({
+			x:0, 
+			y:0,
+			width: width,
+			height: height,
+			offsetX: width / 2,
+			offsetY: height / 2,
+			fill: colorValues[colorIndices.WHITE],
+			cornerRadius: 10,
+			strokeWidth: 0,
+		});
+
+		let eyehole = new Konva.Ellipse({
+			x:0,
+			y:0,
+			width: width / 1.2,
+			height: height / 1.8,
+			fill: colorValues[colorIndices.BLACK],
+			strokeWidth: 0,
+		});
+
+		let iris = new Konva.Ellipse({
+			x:0,
+			y:0,
+			width: width / 1.7,
+			height: height / 1.7,
+			fill: colorValues[colorIndices.WHITE],
+			strokeWidth: 0,
+		});
+
+		let eye = new Konva.Ellipse({
+			x: 0,
+			y: 0,
+			offsetX: -width / 12,
+			width: width / 3.2,
+			height: height / 3.2,
+			fill: colorValues[colorIndices.BLACK],
+			strokeWidth: 0,
+		});
+		model.add(body);
+		model.add(eyehole);
+		model.add(iris);
+		model.add(eye);
+		super(color, model, layer);
+
+		this.model = model;
+		this.body = body;
+		this.eyehole = eyehole;
+		this.iris = iris;
+		this.eye = eye;
+
+		this.width = width;
+		this.height = height;
+		this.cellWidth = cellWidth;
+		this.cellHeight = cellHeight;
+
 		this.hasAltColor = false;
 
-		this.baseAnimTime = .35;
-		this.animTime = new MutableNumber(this.baseAnimTime * 1000);
-
 		this.movementAnimLength = .7;
-		this.movementAnimTime = new MutableNumber(this.baseAnimTime * 1000 * this.movementAnimLength);
+		this.movementAnimTime = new MutableNumber(this.animTime * this.movementAnimLength);
 
 		this.colorAnimLength = 1;
-		this.colorAnimLength = new MutableNumber(this.baseAnimTime * 1000 * this.movementLength);
+		this.colorAnimLength = new MutableNumber(this.animTime * this.colorAnimLength);
 
 		this.setAnimationMultiplier(1);
 
@@ -27,11 +92,6 @@ export default class Player {
 		this.dx = 0;
 		this.dy = 0; // for animating
 
-		this.width = .7 * layer.width() / width;
-		this.height = .7 * layer.height() / height;
-
-		this.cellWidth = layer.width() / width;
-		this.cellHeight = layer.height() / height;
 
 		// this.model = new Konva.Rect({
 		// 	x: this.cellWidth * (x + .5),
@@ -45,60 +105,9 @@ export default class Player {
 		// });
 
 		//build the eye model
-		this.model = new Konva.Group({
-			x: this.cellWidth * (x + .5),
-			y: this.cellHeight * (y + .5),
-		});
-
-		this.body = new Konva.Rect({
-			x:0, 
-			y:0,
-			width: this.width,
-			height: this.height,
-			offsetX: this.width / 2,
-			offsetY: this.height / 2,
-			fill: colorValues[colorIndices.WHITE],
-			cornerRadius: 10,
-			strokeWidth: 0,
-		});
-
-		this.eyehole = new Konva.Ellipse({
-			x:0,
-			y:0,
-			width: this.width / 1.2,
-			height: this.height / 1.8,
-			fill: colorValues[colorIndices.BLACK],
-			strokeWidth: 0,
-		});
-
-		this.iris = new Konva.Ellipse({
-			x:0,
-			y:0,
-			width: this.width / 1.7,
-			height: this.height / 1.7,
-			fill: colorValues[colorIndices.WHITE],
-			strokeWidth: 0,
-		});
-
-		this.eye = new Konva.Ellipse({
-			x: 0,
-			y: 0,
-			offsetX: -this.width / 12,
-			width: this.width / 3.2,
-			height: this.height / 3.2,
-			fill: colorValues[colorIndices.BLACK],
-			strokeWidth: 0,
-		});
 
 		this.backgroundColorGroup = [this.eye, this.eyehole];
 		this.playerColorGroup = [this.body, this.iris];
-
-		this.model.add(this.body);
-		this.model.add(this.eyehole);
-		this.model.add(this.iris);
-		this.model.add(this.eye);
-
-		layer.add(this.model);
 
 		// const playerAnim = new Konva.Animation(this.updatePlayer.bind(this), layer);
 		// playerAnim.start();
@@ -113,26 +122,13 @@ export default class Player {
 
 		this.x = x;
 		this.y = y;
-		return new Promise(resolve => {
-			let tween = new Konva.Tween({
-				node: this.model,
-				x: this.cellWidth * (x + .5),
-				y: this.cellHeight * (y + .5),
-				duration: 1,
-				easing: Konva.Easings.EaseOut,
-				onFinish: function() {
-					this.destroy();
-					resolve();
-				}
-			});
-			tween.tween.duration = this.movementAnimTime;
-			tween.play();
-		})
+		let anim = moveToAnimation(this.model, this.cellWidth * (x + .5), this.cellHeight * (y + .5), this.movementAnimTime);
+		return anim.play();
 	}
 
 	setAnimationMultiplier(n) {
-		this.animTime.set(this.baseAnimTime * 1000 / n);
-		this.movementAnimTime.set(this.baseAnimTime * 1000 * this.movementAnimLength / n);
+		super.setAnimationMultiplier(n);
+		this.movementAnimTime.set(this.animTime * this.movementAnimLength);
 	}
 
 	/*squishAnimation(x, y, deltaX, deltaY, vertical) {
@@ -228,8 +224,8 @@ export default class Player {
 		return Promise.all(anims);
 	}
 
-	destroy() {
-		this.model.destroy();
-	}
+	// destroy() {
+	// 	this.model.destroy();
+	// }
 }
 
