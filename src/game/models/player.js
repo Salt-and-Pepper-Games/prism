@@ -129,6 +129,7 @@ export default class Player extends BaseModel {
 	setAnimationMultiplier(n) {
 		super.setAnimationMultiplier(n);
 		this.movementAnimTime.set(this.animTime * this.movementAnimLength);
+		this.colorAnimTime.set(this.animTime * this.colorAnimLength);
 	}
 
 	/*squishAnimation(x, y, deltaX, deltaY, vertical) {
