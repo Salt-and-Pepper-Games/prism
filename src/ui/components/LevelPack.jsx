@@ -20,7 +20,8 @@ class LevelPack extends React.Component {
 			history,
 			userLevelData,
 			startTransition,
-			stopTransition
+			stopTransition,
+			soundOn
 		} = this.props;
 		const levels = [];
 		if (cachedCurrentPack) {
@@ -68,7 +69,7 @@ class LevelPack extends React.Component {
 											GameAudio.stop();
 											startTransition();
 											const id = GameAudio.play('enter_game');
-											GameAudio.volume(.5, id);
+											GameAudio.volume(soundOn ? .5 : 0.0, id);
 											GameAudio.on('end', () => {
 												stopTransition();
 											}, id);

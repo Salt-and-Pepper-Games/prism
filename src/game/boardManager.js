@@ -81,7 +81,7 @@ export default class BoardManager {
 						// figure out how to navigate to a new url here
 						if (playerMoves.includes(state.lastAction.type)) {
 							const levelEndID = GameAudio.play('level_end');
-							GameAudio.volume(1.0, levelEndID);
+							GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, levelEndID);
 						}
 						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
 						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
@@ -95,19 +95,19 @@ export default class BoardManager {
 				else if (didBgChange) {
 					if (playerMoves.includes(state.lastAction.type)) {
 						const switchID = GameAudio.play('switch_toggle');
-						GameAudio.volume(1.0, switchID);
+						GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, switchID);
 					}
 					this.board.setBackgroundColor(game.board.background);
 				} else {
 					if (playerMoves.includes(state.lastAction.type)) {
 						const moveID = GameAudio.play('move');
-						GameAudio.volume(1.0, moveID);
+						GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, moveID);
 					}
 				}
 			} else {
 				if (playerMoves.includes(state.lastAction.type)) {
 					const moveBlockedID = GameAudio.play('move_blocked');	
-					GameAudio.volume(1.0, moveBlockedID);
+					GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, moveBlockedID);
 				}
 			}
 		}
