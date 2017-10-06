@@ -2,6 +2,7 @@ import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
 import MutableNumber from '../../utils/MutableNumber';
 import { moveToAnimation } from '../animations/movementAnimations';
+import { setColorAnimation } from '../animations/colorAnimations';
 import BaseModel from './baseModel';
 
 export default class Player extends BaseModel {
@@ -79,7 +80,7 @@ export default class Player extends BaseModel {
 		this.movementAnimTime = new MutableNumber(this.animTime * this.movementAnimLength);
 
 		this.colorAnimLength = 1;
-		this.colorAnimLength = new MutableNumber(this.animTime * this.colorAnimLength);
+		this.colorAnimTime = new MutableNumber(this.animTime * this.colorAnimLength);
 
 		this.setAnimationMultiplier(1);
 
@@ -151,23 +152,23 @@ export default class Player extends BaseModel {
 		};
 	}*/
 
-	moveToAnimation(x, y, targetX, targetY, vertical) {
-		return (time, begin, change, duration) => {
-			time = time / duration;
-			const xDiff = targetX - x;
-			const yDiff = targetY - y;
-			const animationPos = Math.sin(time * Math.PI / 2.0);
-			this.x = x + xDiff * animationPos;
-			this.y = y + yDiff * animationPos;
-			this.model.setX(this.cellWidth * (this.x + .5));
-			this.model.setY(this.cellHeight * (this.y + .5));
-			if (vertical) {
-				this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-			} else {
-				this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-			}
-		};
-	}
+	// moveToAnimation(x, y, targetX, targetY, vertical) {
+	// 	return (time, begin, change, duration) => {
+	// 		time = time / duration;
+	// 		const xDiff = targetX - x;
+	// 		const yDiff = targetY - y;
+	// 		const animationPos = Math.sin(time * Math.PI / 2.0);
+	// 		this.x = x + xDiff * animationPos;
+	// 		this.y = y + yDiff * animationPos;
+	// 		this.model.setX(this.cellWidth * (this.x + .5));
+	// 		this.model.setY(this.cellHeight * (this.y + .5));
+	// 		if (vertical) {
+	// 			this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
+	// 		} else {
+	// 			this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
+	// 		}
+	// 	};
+	// }
 
 	updatePlayer(frame) {
 		const { timeDiff } = frame;
@@ -188,38 +189,23 @@ export default class Player extends BaseModel {
 
 		const anims = [];
 		//Tween the color of the background colored components
-		anims.push(new Promise(resolve => {
-			this.backgroundColorGroup.forEach((modelComponent) => {
-				this.model.to({
-					fill: colorValues[color],
-					duration: this.animTime,
-					onFinish: resolve
-				});
-			});
-		}));
+		this.backgroundColorGroup.forEach((modelComponent) => {
+			let anim = setColorAnimation(modelComponent, colorValues[color], this.animTime);
+			anims.push(anim.play());
+		});
 
 		if (color === playerColor && !this.hasAltColor) {
-			anims.push(new Promise(resolve => {
-				this.playerColorGroup.forEach((modelComponent) => {
-					modelComponent.to({
-						fill: altColorValues[this.color],
-						duration: this.animTime,
-						onFinish: resolve
-					});
-				});
-			}));
+			this.playerColorGroup.forEach(modelComponent => {
+				let anim = setColorAnimation(modelComponent, altColorValues[color], this.animTime);
+				anims.push(anim.play());
+			});
 			this.hasAltColor = true;
 		}
 		else if (color !== playerColor && this.hasAltColor) {
-			anims.push(new Promise(resolve => {
-				this.playerColorGroup.forEach((modelComponent) => {
-					modelComponent.to({
-						fill: colorValues[this.color],
-						duration: this.animTime,
-						onFinish: resolve
-					});
-				});
-			}));
+			this.playerColorGroup.forEach((modelComponent) => {
+				let anim = setColorAnimation(modelComponent, colorValues[this.color], this.animTime);
+				anims.push(anim.play());
+			});
 			this.hasAltColor = false;
 		}
 		return Promise.all(anims);

@@ -25,9 +25,9 @@ export default class AnimationManager {
 		if (this.promiseChain && this.queuedAnimations > 0) {
 			this.queuedAnimations += 1;
 			console.log("Queued: " + this.queuedAnimations);
-			if (this.queuedAnimations > this.speed) {
+			// if (this.queuedAnimations > this.speed) {
 				this.speed = this.queuedAnimations;
-			}
+			// }
 			this.promiseChain = this.promiseChain.then(() => this.animateData(data));
 		}
 		else {

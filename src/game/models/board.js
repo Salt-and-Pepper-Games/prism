@@ -56,7 +56,7 @@ export default class Board {
 			}
 		}
 		// promises.push(this.home.onBackgroundColor(color));
-		// promises.push(this.player.onBackgroundColor(color));
+		promises.push(this.player.onBackgroundColor(color));
 		return Promise.all(promises)
 			.then(() => { "Set background fully resolved" });
 		// return this.background.setColor(color);
