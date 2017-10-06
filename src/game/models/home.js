@@ -1,6 +1,7 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
 import BaseModel from './baseModel';
+import { setColorAnimation } from '../animations/colorAnimations';
 
 export default class Home extends BaseModel {
 	constructor(x, y, width, height, layer) {
@@ -42,22 +43,17 @@ export default class Home extends BaseModel {
 		const homeColor = colorIndices.WHITE;
 
 		if (color === homeColor && !this.hasAltColor) {
-			let tween = new Konva.Tween({
-				node: this.model,
-				fill: altColorValues[this.color],
-				duration: .35,
-			});
-			tween.play();
+			let anim = setColorAnimation(this.model, altColorValues[this.color], this.animTime);
 			this.hasAltColor = true;
+			return anim.play();
 		}
 		else if (color !== homeColor && this.hasAltColor) {
-			let tween = new Konva.Tween({
-				node: this.model,
-				fill: colorValues[this.color],
-				duration: .35,
-			});
-			tween.play();
+			let anim = setColorAnimation(this.model, colorValues[this.color], this.animTime);
 			this.hasAltColor = false;
+			return anim.play();
+		}
+		else {
+			return Promise.resolve();
 		}
 	}
 
