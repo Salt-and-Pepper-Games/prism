@@ -7,7 +7,7 @@ import { Howl } from 'howler';
 
 const mq = window.matchMedia("only screen and (orientation: portrait)");
 const mq2 = window.matchMedia("only screen and (max-width: 800px) and (orientation: landscape)");
-const mobileDisplacement = (mq.matches || mq2.matches) ? 2000 : 0;
+const mobileDisplacement = (mq.matches || mq2.matches) ? 1500 : 0;
 
 const spriteMap = {};
 for (const sprite in AudioInfo.spritemap) {
