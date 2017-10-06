@@ -93,9 +93,10 @@ export default class BoardManager {
 						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
 					}
 					else {
-						this.dispatch(closeLevelAction());
-						this.dispatch(uiActionCreators.closeGameMode());
-						this.dispatch(push(`/`));
+						this.dispatch(uiActionCreators.togglePackComplete());
+						// this.dispatch(closeLevelAction());
+						// this.dispatch(uiActionCreators.closeGameMode());
+						// this.dispatch(push(`/`));
 					}
 				} else if (didBgChange) {
 					animFrame.background = bg;

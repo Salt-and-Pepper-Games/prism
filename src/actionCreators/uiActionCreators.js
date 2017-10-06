@@ -53,3 +53,8 @@ export const toggleDashboard = () => {
 		type: uiActionNames.TOGGLE_DASHBOARD
 	};
 };
+export const togglePackComplete = () => {
+	return {
+		type: uiActionNames.TOGGLE_PACK_COMPLETE
+	};
+};

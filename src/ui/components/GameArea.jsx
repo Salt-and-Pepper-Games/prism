@@ -4,24 +4,17 @@ import PropTypes from 'prop-types';
 import HelpOverlay from './HelpOverlay.jsx';
 import { withRouter } from 'react-router';
 import isEqual from 'lodash.isequal';
-import * as screenfull from 'screenfull';
 import GameAudio from '../../utils/AudioManager';
+import PackCompleteModalContainer from '../containers/PackCompleteModalContainer.jsx';
 
 class GameArea extends React.Component {
 	constructor(props) {
 		super(props);
-		this.mq = window.matchMedia("(orientation: portrait)");
 		this.loopID;
 	}
 
 	static contextTypes = {
 		store: PropTypes.object
-	}
-
-	componentWillMount() {
-		if (this.mq.matches && screenfull.enabled) {
-			screenfull.request();
-		}
 	}
 	componentDidMount() {
 		if (!this.props.transitionPlaying) {
@@ -43,11 +36,6 @@ class GameArea extends React.Component {
 		if (!isEqual(this.props.match, nextProps.match)) {
 			const matchParams = nextProps.match.params;
 			this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
-		}
-	}
-	componentWillUnmount() {
-		if (this.mq.matches && screenfull.enabled) {
-			screenfull.exit();
 		}
 	}
 
@@ -77,7 +65,7 @@ class GameArea extends React.Component {
 					</div>
 				}
 				<div className={`${inGame ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
-					
+					<PackCompleteModalContainer />
 					<HelpOverlay isHelpOpen={isHelpOpen} closeHelp={closeHelp} />
 					<div className={`${isHelpOpen ? 'blur' : ''} before-game-board`}>
 						<div className="in-game-buttons">
