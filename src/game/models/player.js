@@ -76,7 +76,7 @@ export default class Player extends BaseModel {
 
 		this.hasAltColor = false;
 
-		this.movementAnimLength = .7;
+		this.movementAnimLength = 1;
 		this.movementAnimTime = new MutableNumber(this.animTime * this.movementAnimLength);
 
 		this.colorAnimLength = 1;

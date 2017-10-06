@@ -11,7 +11,6 @@ export const moveToAnimation = (node, x, y, duration) => {
 					duration: 1,
 					easing: Konva.Easings.EaseOut,
 					onFinish: function() {
-						console.log("movement animation finished");
 						this.destroy();
 						resolve();
 					}

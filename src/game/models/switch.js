@@ -86,8 +86,7 @@ export default class Switch extends BaseModel {
 				this.hasAltColor = false;
 			}
 		}
-		return Promise.all(anims)
-			.then(() => { console.log("Switch animations all done") });
+		return Promise.all(anims);
 	}
 }
 

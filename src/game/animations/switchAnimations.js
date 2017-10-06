@@ -10,7 +10,6 @@ export const switchOnAnimation = (node, duration) => ({
 			offsetY: 0,
 			easing: Konva.Easings.EaseIn,
 			onFinish: function() {
-				console.log("Switch on animation finished");
 				this.destroy();
 				resolve();
 			}
@@ -31,7 +30,6 @@ export const switchOffAnimation = (node, shadowOffsetRatio, duration) => ({
 			offsetY: node.height() * shadowOffsetRatio,
 			easing: Konva.Easings.EaseIn,
 			onFinish: function() {
-				console.log("Switch off animation finished");
 				this.destroy();
 				resolve();
 			}

@@ -7,7 +7,6 @@ export const setColorAnimation = (node, color, duration) => ({
 				node: node,
 				fill: color,
 				onFinish: function() {
-					console.log("color animation finished");
 					this.destroy();
 					resolve();
 				}

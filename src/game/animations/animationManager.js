@@ -13,25 +13,22 @@ export default class AnimationManager {
 		this.promiseChain = null;
 		this.speed = 1;
 		this.queuedAnimations = 0;
-		console.log(Konva.Tween.prototype);
+		// console.log(Konva.Tween.prototype);
 	}
 
 	addFrame(data) {
 		// this.frames.unshift(data);
-		console.log(data);
 		if (isEmpty(data)) {
 			return;
 		}
 		if (this.promiseChain && this.queuedAnimations > 0) {
 			this.queuedAnimations += 1;
-			console.log("Queued: " + this.queuedAnimations);
 			// if (this.queuedAnimations > this.speed) {
 				this.speed = this.queuedAnimations;
 			// }
 			this.promiseChain = this.promiseChain.then(() => this.animateData(data));
 		}
 		else {
-			console.log("Resetting speed");
 			this.speed = 1;
 			this.queuedAnimations = 1;
 			this.promiseChain = this.animateData(data);
@@ -50,10 +47,8 @@ export default class AnimationManager {
 		}
 
 		if (promises.length > 0) {
-			console.log("Starting: " + this.queuedAnimations);
 			return Promise.all(promises).then(() => {
 				this.queuedAnimations -= 1;
-				console.log("Finished: " + this.queuedAnimations);
 			});
 			// return Promise.all(promises);
 		}

@@ -17,6 +17,8 @@ export const blockTypes = {
  */
 export default class Board {
 	constructor({ bgColor=0, blocks, player, enemies, home }, { boardLayer, playerLayer, switchLayer }) {
+		this.background = new Background(bgColor, boardLayer);
+
 		this.blocks = [];
 		this.width = blocks.length;
 		this.height = blocks[0].length;
@@ -35,10 +37,9 @@ export default class Board {
 				// }
 			}
 		}
+		this.home = new Home(home.x, home.y, this.width, this.height, boardLayer);
 		this.player = new Player(player.x, player.y, this.width, this.height, playerLayer);
 		this.enemies = enemies;
-		this.home = new Home(home.x, home.y, this.width, this.height, boardLayer);
-		this.background = new Background(bgColor, boardLayer);
 	}
 
 	setPlayerPosition(x, y) {

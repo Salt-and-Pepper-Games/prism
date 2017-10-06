@@ -13,8 +13,6 @@ export default class Background extends BaseModel {
 			fill: colorValues[color]
 		});
 		super(color, model, layer);
-
-		this.model.setZIndex(1);
 	}
 
 	setColor(color) {
@@ -26,13 +24,11 @@ export default class Background extends BaseModel {
 				duration: 1,
 				easing: Konva.Easings.EaseOut,
 				onFinish: function() {
-					console.log("BG FINISHED");
 					this.destroy();
 					resolve();
 				}
 			});
 			tween.tween.duration = this.animTime;
-			console.log("Animating to bgcolor: " + color);
 			tween.play();
 		});
 	}
