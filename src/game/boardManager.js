@@ -83,7 +83,7 @@ export default class BoardManager {
 					// in the future dispatch a level end action but for now just cut to home screen
 					this.dispatch(completeLevelAction());
 					saveData(state, this.dispatch);
-					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
+					if (game.board.levelNumber < game.board.packInfo.levelCount) {
 						// figure out how to navigate to a new url here
 						if (playerMoves.includes(state.lastAction.type)) {
 							const levelEndID = GameAudio.play('level_end');

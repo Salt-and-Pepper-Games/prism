@@ -167,15 +167,6 @@ body {
         font-size: 3em;
     }
 }
-
-.pack-complete-exit-btn, .pack-complete-restart-btn {
-    position: relative;
-    font-size: 3em;
-    transition: opacity .25s;
-    @include mobile {
-        font-size: 2em;
-    }
-}
 .move-count:hover {
     cursor: default;
 }
@@ -252,19 +243,36 @@ body {
     transform: translate(-50%, -50%);
     border-radius: 1em;
     width: 45vw;
-    height: 50vh;
+    height: 40vh;
     visibility: hidden;
     opacity: 0;
     transition: visibility .25s, opacity .25s;
     @include mobile {
         width: 80vw;
-        height: 50vh;
+        height: 35vh;
         padding: 1em;
     }
     @include landscape-mobile {
         width: 50vw;
         height: 80vh;
     }
+}
+.pack-complete-modal-inner {
+    background-color: $light-red;
+    border-radius: 1em;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include mobile {
+        padding: 15% 0;
+    }
+}
+.pack-complete-modal-inner-white {
+    @extend .pack-complete-modal-inner;
+    background-color: $white !important;
 }
 .pack-complete-text-wrapper {
     display: flex;
@@ -273,8 +281,10 @@ body {
     align-items: center;
 }
 .pack-complete-text {
+    margin-top: 0;
     font-size: 1.5em;
     line-height: 1.5em;
+    text-align: center;
     @include mobile {
         font-size: 1em;
     }
@@ -282,17 +292,46 @@ body {
         line-height: 1em;
     }
 }
-.pack-complete-modal-btn {
-    margin-top: 2em;
+.pack-complete-percentage {
+    align-self: center;
+    font-size: 5em;
+    margin: 0;
+    @include mobile {
+        font-size: 3em;
+    }
+}
+.pack-complete-percentage-label {
+    @extend .pack-complete-text;
+    margin-top: .5em;
+    margin-bottom: 0.15em;
+}
+.pack-complete-btn-wrapper {
     display: flex;
-    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.pack-complete-modal-btn {
+    margin-top: -7.5em;
+    display: flex;
+    width: 85%;
     justify-content: space-between;
     @include mobile {
-        margin-top: 1em;
-        width: 75%;
+        margin-top: -4.5em;
+        width: 90%;
     }
     @include landscape-mobile {
-        margin-top: .25em;
+        margin-top: -3.5em;
+        width: 97%;
+    }
+}
+.pack-complete-exit-btn, .pack-complete-restart-btn {
+    position: relative;
+    align-self: center;
+    font-size: 3em;
+    transition: opacity .25s;
+    @include mobile {
+        font-size: 2em;
     }
 }
 
