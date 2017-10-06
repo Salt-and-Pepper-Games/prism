@@ -8,7 +8,8 @@ const mapStateToProps = state => {
 		isOpen: !!state.ui.ui.currentPack,
 		currentPack: state.ui.ui.currentPack,
 		cachedCurrentPack: state.ui.ui.cachedCurrentPack,
-		userLevelData: state.game.user.levelData
+		userLevelData: state.game.user.levelData,
+		soundOn: state.ui.sound.soundOn
 	};
 };
 

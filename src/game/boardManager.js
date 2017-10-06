@@ -77,10 +77,6 @@ export default class BoardManager {
 			const animFrame = {};
 			// Check if the player actually moved before changing switch color.
 			if (didMove) {
-				if (playerMoves.includes(state.lastAction.type)) {
-					const moveID = GameAudio.play('move');
-					GameAudio.volume(1.0, moveID);
-				}
 				// this.board.setPlayerPosition(px, py);
 				animFrame.player = { x: px, y: py };
 				if (px === game.board.home.x && game.board.home.y === py && !game.board.complete) {
@@ -91,7 +87,7 @@ export default class BoardManager {
 						// figure out how to navigate to a new url here
 						if (playerMoves.includes(state.lastAction.type)) {
 							const levelEndID = GameAudio.play('level_end');
-							GameAudio.volume(1.0, levelEndID);
+							GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, levelEndID);
 						}
 						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
 						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
@@ -101,19 +97,22 @@ export default class BoardManager {
 						this.dispatch(uiActionCreators.closeGameMode());
 						this.dispatch(push(`/`));
 					}
+				} else if (didBgChange) {
+					animFrame.background = bg;
+					if (playerMoves.includes(state.lastAction.type)) {
+						const switchID = GameAudio.play('switch_toggle');
+						GameAudio.volume(1.0, switchID);
+					}
+				} else {
+					if (playerMoves.includes(state.lastAction.type)) {
+						const moveID = GameAudio.play('move');
+						GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, moveID);
+					}
 				}
-			}
-			if (didBgChange) {
-				animFrame.background = bg;
-				if (playerMoves.includes(state.lastAction.type)) {
-					const switchID = GameAudio.play('switch_toggle');
-					GameAudio.volume(1.0, switchID);
-				}
-			}
-			else if (!didBgChange && !didMove) {
+			} else if (!didBgChange && !didMove) {
 				if (playerMoves.includes(state.lastAction.type)) {
 					const moveBlockedID = GameAudio.play('move_blocked');	
-					GameAudio.volume(1.0, moveBlockedID);
+					GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, moveBlockedID);
 				}
 			}
 			
