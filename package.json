@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "audiosprite": "^0.7.0",
+    "child_process": "^1.0.2",
     "clone": "^2.1.1",
     "firebase": "^4.3.1",
     "fs": "0.0.1-security",
@@ -22,6 +24,7 @@
     "react-slick": "^0.15.4",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "screenfull": "^3.3.1",
     "slick-carousel": "^1.7.1"
   },
   "scripts": {
@@ -29,7 +32,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "npm run build&&gh-pages -d build"
+    "deploy": "npm run build&&gh-pages -d build",
+    "audiosprite": "audiosprite"
   },
   "homepage": "https://salt-and-pepper-games.github.io/prism",
   "devDependencies": {

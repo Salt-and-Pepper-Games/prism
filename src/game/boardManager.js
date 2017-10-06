@@ -1,7 +1,7 @@
 import Konva from 'konva';
 
 import types from '../actionCreators/levelActionNames.js';
-import uiActionCreators from '../actionCreators/uiActionCreators';
+import * as uiActionCreators from '../actionCreators/uiActionCreators';
 import {loadLevel, closeLevelAction, completeLevelAction} from '../actionCreators/levelActionCreators';
 import { loadLevelString } from '../actionCreators/asyncActionCreators';
 import { saveData } from '../utils/firebaseListeners';
@@ -12,7 +12,9 @@ import Board from './models/board';
 import isEqual from 'lodash.isequal';
 import { push } from 'react-router-redux';
 import AnimationManager from './animations/animationManager';
-
+import GameAudio from '../utils/AudioManager';
+import playerActionNames from '../actionCreators/playerActionNames';
+const playerMoves = Object.keys(playerActionNames);
 /**
  * Higher order redux-connected class to wrap around a board
  * Basically the non-react equivalent of react-redux's connect()
@@ -75,6 +77,10 @@ export default class BoardManager {
 			const animFrame = {};
 			// Check if the player actually moved before changing switch color.
 			if (didMove) {
+				if (playerMoves.includes(state.lastAction.type)) {
+					const moveID = GameAudio.play('move');
+					GameAudio.volume(1.0, moveID);
+				}
 				// this.board.setPlayerPosition(px, py);
 				animFrame.player = { x: px, y: py };
 				if (px === game.board.home.x && game.board.home.y === py && !game.board.complete) {
@@ -83,6 +89,10 @@ export default class BoardManager {
 					saveData(state, this.dispatch);
 					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
 						// figure out how to navigate to a new url here
+						if (playerMoves.includes(state.lastAction.type)) {
+							const levelEndID = GameAudio.play('level_end');
+							GameAudio.volume(1.0, levelEndID);
+						}
 						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
 						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
 					}
@@ -95,6 +105,16 @@ export default class BoardManager {
 			}
 			if (didBgChange) {
 				animFrame.background = bg;
+				if (playerMoves.includes(state.lastAction.type)) {
+					const switchID = GameAudio.play('switch_toggle');
+					GameAudio.volume(1.0, switchID);
+				}
+			}
+			else if (!didBgChange && !didMove) {
+				if (playerMoves.includes(state.lastAction.type)) {
+					const moveBlockedID = GameAudio.play('move_blocked');	
+					GameAudio.volume(1.0, moveBlockedID);
+				}
 			}
 			
 			this.animationManager.addFrame(animFrame);

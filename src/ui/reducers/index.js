@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
-import ui from './ui.js'
+import ui from './ui';
+import sound from './sound';
 
-export default combineReducers({ ui });
+export default combineReducers({ ui, sound });

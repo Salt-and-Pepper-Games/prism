@@ -5,14 +5,15 @@ import Slider from 'react-slick';
 import numeral from 'numeral';
 
 const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
-	const mq = window.matchMedia("(orientation: portrait)");
+	const mq = window.matchMedia("only screen and (orientation: portrait)");
+	const mq2 = window.matchMedia("only screen and (max-width: 800px)");
 	const settings = {
-      dots: mq.matches,
+      dots: mq.matches || mq2.matches,
       infinite: false,
       arrows: false,
       speed: 500,
-      slidesToShow: mq.matches ? 1 : 3,
-      slidesToScroll: mq.matches ? 1 : 3
+      slidesToShow: mq.matches || mq2.matches ? 1 : 3,
+      slidesToScroll: mq.matches || mq2.matches ? 1 : 3
     };
     numeral.nullFormat('...');
     numeral.zeroFormat('...');
@@ -39,9 +40,14 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 	if (isOpen) {
 		body.classList.add('modal-open');
 		html.classList.add('modal-open');
+		body.ontouchmove = e => e.preventDefault();
+		html.ontouchmove = e => e.preventDefault();
+
 	} else {
 		body.classList.remove('modal-open');
 		html.classList.remove('modal-open');
+		body.ontouchmove = e => (true);
+		html.ontouchmove = e => (true);
 	}
 
 	return (
@@ -52,25 +58,38 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 					<div>
 						<div className="dashboard-panel">
 							<h1 className="leaderboards-header">Leaderboards</h1>
-							<ul className="leaderboards-list">
-								<li>user1</li>
-								<li>user2</li>
-								<li>user3</li>
-								<li>user4</li>
-								<li>user5</li>
-							</ul>
+							<div className="leaderboards-wrapper">
+								<ol className="leaderboards-list first-list">
+									<li className="leaderboard-item" >user12341</li>
+									<li className="leaderboard-item" >user23531</li>
+									<li className="leaderboard-item" >user13553</li>
+								</ol>
+								<ol start="4" className="leaderboards-list">
+									<li className="leaderboard-item" >user43412</li>
+									<li className="leaderboard-item" >user63455</li>
+									<li className="leaderboard-item" >user66432</li>
+								</ol>
+							</div>
 						</div>
 					</div>
 					<div>
 						<div className="dashboard-panel">
 							<h1 className="stats-header">Stats</h1>
-							<ul className="stats-list">
-								<li className="stat">{`Packs Complete: ${packCompleteCount}`}</li>
-								<li className="stat">{`Levels Complete: ${numeral(uniqueLevelsComplete).format('0, 0')}`}</li>
-								<li className="stat">{`Switches Toggled: ${numeral(stats.switches).format('0, 0')}`}</li>
-								<li className="stat">{`Moves Made: ${numeral(stats.moves).format('0, 0')}`}</li>
-								<li className="stat">{`Total Playing Time: ${numeral(stats.elapsedTime/(1000)).format('00:00:00')}`}</li>
-							</ul>
+							<div className="stats-wrapper-wrapper">
+								<div className="stats-wrapper">
+									<ul className="stats-list first-list">
+										<li className="stat">{`Packs Complete: ${packCompleteCount}`}</li>
+										<li className="stat">{`Levels Complete: ${numeral(uniqueLevelsComplete).format('0, 0')}`}</li>
+										<li className="stat">{`Switches Toggled: ${numeral(stats.switches).format('0, 0')}`}</li>
+										
+									</ul>
+									<ul className="stats-list">
+										<li className="stat">{`Moves Made: ${numeral(stats.moves).format('0, 0')}`}</li>
+										<li className="stat">{`Total Playing Time: ${numeral(stats.elapsedTime/(1000)).format('00:00:00')}`}</li>
+										<li className="stat">{`Something Else: 14`}</li>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div>

@@ -103,13 +103,14 @@ body {
     animation: fadein 1s;
 }
 .game-area {
-    position: fixed;
+    position: absolute;
     top: 0;
-    width: 100vw;
-    height: 100vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     transition: visibility 2s, opacity 2s;
-    @include mobile {
+    @include portrait-mobile {
         flex-direction: column;
     }
 }
@@ -120,7 +121,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    @include mobile {
+    @include portrait-mobile {
         padding: 7em 0;
     }
 }
@@ -133,7 +134,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    @include mobile {
+    @include portrait-mobile {
         flex-direction: row;
     }
 }
@@ -143,15 +144,15 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    @include mobile {
+    @include portrait-mobile {
         flex-direction: row;
     }
 }
 .in-game-buttons {
     display: flex;
     align-items: center;
-    flex-basis: 25%;
-    @include mobile {
+    flex-basis: 33.33%;
+    @include portrait-mobile {
         justify-content: center;
     }
 }
@@ -183,7 +184,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: visibility .26s, opacity .25s;
-    @include mobile {
+    @include portrait-mobile {
         flex-direction: column;
     }
 }
@@ -265,6 +266,9 @@ body {
 }
 .pack-header {
     text-align: center;
+    @include mobile {
+        margin-bottom: .25em;
+    }
 }
 .close-pack-btn {
     position: absolute;
@@ -292,8 +296,11 @@ body {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     height: 64vh;
-    @include mobile {
+    @include portrait-mobile {
         height: 60vh;
+    }
+    @include landscape-mobile {
+        height: 40vh;
     }
 }
 .level-btn {
@@ -304,10 +311,15 @@ body {
     border-radius: 2em;
     transition: opacity .25s;
     align-self: flex-start;
-    @include mobile {
+    @include portrait-mobile {
         flex-basis: calc(33.33% - 1em);
         margin: .5em;
         border-radius: 1em;
+    }
+    @include landscape-mobile {
+        border-radius: 1em;
+        flex: 0 1 calc(20% - 1em);
+        margin: .5em;
     }
     transition: opacity .25s;
 }
@@ -347,6 +359,9 @@ body {
     color: $dark-black;
     border: .5em solid $dark-black;
     border-radius: 1em;
+    @include landscape-mobile {
+        height: 60vh;
+    }
 }
 .dashboard-bg {
     position: fixed;
@@ -363,11 +378,18 @@ body {
     align-items: center;
     justify-content: center;
     height: 50vh;
+    width: 100%;
+    @include landscape-mobile {
+        height: 60vh;
+    }
 }
 .about-prism {
-    padding: 1em 2em;
+    padding: 1em 1.5em;
     line-height: 2em;
-    font-size: 1em;
+    font-size: 1.25em;
+    @include mobile {
+        font-size: 1em;
+    }
 }
 .main-buttons {
     position: absolute;
@@ -387,14 +409,36 @@ body {
         width: 20vw;
     }
 }
+.stats-wrapper-wrapper {
+    width: fit-content;
+    align-items: center;
+}
 
+.stats-wrapper, .leaderboards-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.leaderboards-wrapper {
+    align-items: center;
+    @include landscape-mobile {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+.stats-wrapper {
+    @include landscape-mobile {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
 .stats-list, .leaderboards-list {
     line-height: 2em;
     margin-top: 0;
-    align-self: center;
+    margin-bottom: 0;
     @include mobile {
         line-height: 1.75em;
-        font-size: 1em;   
+        font-size: 1em;
     }
 }
 .stats-header, .leaderboards-header, .daily-challenge-header {
@@ -405,9 +449,15 @@ body {
         margin-bottom: .25em;
         margin-top: 0;
     }
+    @include landscape-mobile {
+        font-size: 1.25em;
+    }
 }
 .stat {
     list-style: circle;
+}
+.leaderboard-item {
+    list-style: decimal;
 }
 
 .header {

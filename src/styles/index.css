@@ -445,13 +445,14 @@ body {
   animation: fadein 1s; }
 
 .game-area {
-  position: fixed;
+  position: absolute;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   transition: visibility 2s, opacity 2s; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .game-area {
       flex-direction: column; } }
 
@@ -462,7 +463,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .game-board-wrapper {
       padding: 7em 0; } }
 
@@ -475,7 +476,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .before-game-board {
       flex-direction: row; } }
 
@@ -485,15 +486,15 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .after-game-board {
       flex-direction: row; } }
 
 .in-game-buttons {
   display: flex;
   align-items: center;
-  flex-basis: 25%; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  flex-basis: 33.33%; }
+  @media only screen and (orientation: portrait) {
     .in-game-buttons {
       justify-content: center; } }
 
@@ -525,7 +526,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: visibility .26s, opacity .25s; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .help-overlay {
       flex-direction: column; } }
 
@@ -605,6 +606,9 @@ body {
 
 .pack-header {
   text-align: center; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-header {
+      margin-bottom: .25em; } }
 
 .close-pack-btn {
   position: absolute;
@@ -631,9 +635,12 @@ body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   height: 64vh; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .levels-grid {
       height: 60vh; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .levels-grid {
+      height: 40vh; } }
 
 .level-btn {
   box-sizing: border-box;
@@ -644,11 +651,16 @@ body {
   transition: opacity .25s;
   align-self: flex-start;
   transition: opacity .25s; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .level-btn {
       flex-basis: calc(33.33% - 1em);
       margin: .5em;
       border-radius: 1em; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .level-btn {
+      border-radius: 1em;
+      flex: 0 1 calc(20% - 1em);
+      margin: .5em; } }
 
 .level-btn:after {
   content: "";
@@ -683,6 +695,9 @@ body {
   color: #252525;
   border: 0.5em solid #252525;
   border-radius: 1em; }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .dashboard {
+      height: 60vh; } }
 
 .dashboard-bg {
   position: fixed;
@@ -698,12 +713,19 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh; }
+  height: 50vh;
+  width: 100%; }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .dashboard-panel {
+      height: 60vh; } }
 
 .about-prism {
-  padding: 1em 2em;
+  padding: 1em 1.5em;
   line-height: 2em;
-  font-size: 1em; }
+  font-size: 1.25em; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .about-prism {
+      font-size: 1em; } }
 
 .main-buttons {
   position: absolute;
@@ -723,10 +745,31 @@ body {
       top: 90%;
       width: 20vw; } }
 
+.stats-wrapper-wrapper {
+  width: fit-content;
+  align-items: center; }
+
+.stats-wrapper, .leaderboards-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%; }
+
+.leaderboards-wrapper {
+  align-items: center; }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .leaderboards-wrapper {
+      flex-direction: row;
+      justify-content: center; } }
+
+@media only screen and (max-width: 800px) and (orientation: landscape) {
+  .stats-wrapper {
+    flex-direction: row;
+    justify-content: space-around; } }
+
 .stats-list, .leaderboards-list {
   line-height: 2em;
   margin-top: 0;
-  align-self: center; }
+  margin-bottom: 0; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .stats-list, .leaderboards-list {
       line-height: 1.75em;
@@ -740,9 +783,15 @@ body {
       font-size: 1.75em;
       margin-bottom: .25em;
       margin-top: 0; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .stats-header, .leaderboards-header, .daily-challenge-header {
+      font-size: 1.25em; } }
 
 .stat {
   list-style: circle; }
+
+.leaderboard-item {
+  list-style: decimal; }
 
 .header {
   position: relative;
