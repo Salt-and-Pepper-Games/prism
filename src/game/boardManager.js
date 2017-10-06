@@ -101,7 +101,7 @@ export default class BoardManager {
 					animFrame.background = bg;
 					if (playerMoves.includes(state.lastAction.type)) {
 						const switchID = GameAudio.play('switch_toggle');
-						GameAudio.volume(1.0, switchID);
+						GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, switchID);
 					}
 				} else {
 					if (playerMoves.includes(state.lastAction.type)) {
