@@ -249,7 +249,7 @@ body {
     transition: visibility .25s, opacity .25s;
     @include mobile {
         width: 80vw;
-        height: 50vh;
+        height: 35vh;
         padding: 1em;
     }
     @include landscape-mobile {

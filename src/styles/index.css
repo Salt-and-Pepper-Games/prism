@@ -591,7 +591,7 @@ body {
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-complete-modal {
       width: 80vw;
-      height: 50vh;
+      height: 35vh;
       padding: 1em; } }
   @media only screen and (max-width: 800px) and (orientation: landscape) {
     .pack-complete-modal {
