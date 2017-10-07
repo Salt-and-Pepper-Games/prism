@@ -23,7 +23,7 @@ const PackCompleteModal = ({
 					<div className="pack-complete-text-wrapper">
 						<p className='pack-complete-text'>{`${currentPack ? startCase(currentPack.packName) : '...'} pack completed.`}</p>
 						<p className='pack-complete-percentage'>{`0%`}</p>
-						<p className='pack-complete-text'>{`Perfection`}</p>
+						<p className='pack-complete-percentage-label'>{`Perfection`}</p>
 					</div>
 					<div className="pack-complete-modal-btn">
 						<div className='pack-complete-btn-wrapper'>

@@ -300,6 +300,11 @@ body {
         font-size: 3em;
     }
 }
+.pack-complete-percentage-label {
+    @extend .pack-complete-text;
+    margin-top: .5em;
+    margin-bottom: 0.15em;
+}
 .pack-complete-btn-wrapper {
     display: flex;
     flex-direction: column;

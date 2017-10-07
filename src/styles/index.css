@@ -620,16 +620,16 @@ body {
   justify-content: center;
   align-items: center; }
 
-.pack-complete-text {
+.pack-complete-text, .pack-complete-percentage-label {
   margin-top: 0;
   font-size: 1.5em;
   line-height: 1.5em;
   text-align: center; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .pack-complete-text {
+    .pack-complete-text, .pack-complete-percentage-label {
       font-size: 1em; } }
   @media only screen and (max-width: 800px) and (orientation: landscape) {
-    .pack-complete-text {
+    .pack-complete-text, .pack-complete-percentage-label {
       line-height: 1em; } }
 
 .pack-complete-percentage {
@@ -639,6 +639,10 @@ body {
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-complete-percentage {
       font-size: 3em; } }
+
+.pack-complete-percentage-label {
+  margin-top: .5em;
+  margin-bottom: 0.15em; }
 
 .pack-complete-btn-wrapper {
   display: flex;
