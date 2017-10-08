@@ -1,3 +1,4 @@
+import Tween from './Tween';
 import isEmpty from 'lodash.isempty';
 import Konva from 'konva';
 /**
@@ -7,9 +8,6 @@ import Konva from 'konva';
 export default class AnimationManager {
 	AnimationManager() {
 		this.board = null;
-		// the frames queue
-		// each element is a dictionary containing all of the state changes that need to be animated
-		this.frames = [];
 		this.promiseChain = null;
 		this.speed = 1;
 		this.queuedAnimations = 0;
@@ -17,15 +15,15 @@ export default class AnimationManager {
 	}
 
 	addFrame(data) {
-		// this.frames.unshift(data);
 		if (isEmpty(data)) {
 			return;
 		}
 		if (this.promiseChain && this.queuedAnimations > 0) {
 			this.queuedAnimations += 1;
-			// if (this.queuedAnimations > this.speed) {
+			if (this.queuedAnimations > this.speed) {
 				this.speed = this.queuedAnimations;
-			// }
+				Tween.setCurrentTweenSpeed(this.speed);
+			}
 			this.promiseChain = this.promiseChain.then(() => this.animateData(data));
 		}
 		else {
@@ -49,6 +47,9 @@ export default class AnimationManager {
 		if (promises.length > 0) {
 			return Promise.all(promises).then(() => {
 				this.queuedAnimations -= 1;
+				// this.speed = this.queuedAnimations;
+				this.board.setAnimationMultiplier(this.speed);
+				Tween.setCurrentTweenSpeed(this.speed);
 			});
 			// return Promise.all(promises);
 		}

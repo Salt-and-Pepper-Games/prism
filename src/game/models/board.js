@@ -64,6 +64,7 @@ export default class Board {
 	setAnimationMultiplier(speed) {
 		this.player.setAnimationMultiplier(speed);
 		this.background.setAnimationMultiplier(speed);
+		this.home.setAnimationMultiplier(speed);
 		for (let i=0; i<this.blocks.length; i++) {
 			for (let j=0; j<this.blocks[i].length; j++) {
 				if (this.blocks[i][j]) {

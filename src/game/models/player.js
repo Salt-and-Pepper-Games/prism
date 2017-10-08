@@ -1,7 +1,8 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
 import MutableNumber from '../../utils/MutableNumber';
-import { moveToAnimation } from '../animations/movementAnimations';
+// import { moveToAnimation } from '../animations/movementAnimations';
+import Tween from '../animations/Tween';
 import { setColorAnimation } from '../animations/colorAnimations';
 import BaseModel from './baseModel';
 
@@ -123,7 +124,11 @@ export default class Player extends BaseModel {
 
 		this.x = x;
 		this.y = y;
-		let anim = moveToAnimation(this.model, this.cellWidth * (x + .5), this.cellHeight * (y + .5), this.movementAnimTime);
+		// let anim = moveToAnimation(this.model, this.cellWidth * (x + .5), this.cellHeight * (y + .5), this.movementAnimTime);
+		let anim = new Tween(this.model, {
+			x: this.cellWidth * (x + .5),
+			y: this.cellHeight * (y + .5)
+		}, this.movementAnimTime, this.layer);
 		return anim.play();
 	}
 
