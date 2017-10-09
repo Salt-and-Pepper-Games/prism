@@ -47,7 +47,7 @@ export default class AnimationManager {
 		if (promises.length > 0) {
 			return Promise.all(promises).then(() => {
 				this.queuedAnimations -= 1;
-				// this.speed = this.queuedAnimations;
+				this.speed = this.queuedAnimations;
 				this.board.setAnimationMultiplier(this.speed);
 				Tween.setCurrentTweenSpeed(this.speed);
 			});

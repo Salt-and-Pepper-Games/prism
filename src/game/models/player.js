@@ -125,10 +125,14 @@ export default class Player extends BaseModel {
 		this.x = x;
 		this.y = y;
 		// let anim = moveToAnimation(this.model, this.cellWidth * (x + .5), this.cellHeight * (y + .5), this.movementAnimTime);
-		let anim = new Tween(this.model, {
+		let anim = new Tween({
+			node: this.model, 
+			to: {
 			x: this.cellWidth * (x + .5),
 			y: this.cellHeight * (y + .5)
-		}, this.movementAnimTime, this.layer);
+			}, 
+			duration: this.movementAnimTime, 
+			layer: this.layer});
 		return anim.play();
 	}
 

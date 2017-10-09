@@ -7,23 +7,16 @@ export default class Tween {
 	static nextId = 0;
 	static animation = new Konva.Animation(({timeDiff, lastTime, time, frameRate}) => {
 		// run all tweens here
-		// console.log("Frame");
-		// console.log(Tween.layers);
-		// console.log(Tween.animation.getLayers().slice(0));
 		for (let key in Tween.tweens) {
 			if (Tween.tweens.hasOwnProperty(key)) {
 				let tween = Tween.tweens[key];
-				tween.elapsedTime += timeDiff;
+				tween.progress += tween.speed * timeDiff / tween.duration;
 				let finish = false;
-				if (tween.elapsedTime >= tween.duration) {
-					console.log("Finished");
+				if (tween.progress >= 1) {
 					finish = true;
+					tween.progress = 1;
 				}
-				let t = finish ? 1 : tween.easing(tween.elapsedTime / tween.duration);
-				console.log(t);
-				for (let prop in tween.to) {
-					tween.node[prop](t * tween.to[prop] + (1 - t) * tween.from[prop]);
-				}
+				tween.animationFunction(tween.progress);
 				if (finish) {
 					tween.onFinish();
 				}
@@ -31,14 +24,25 @@ export default class Tween {
 		}
 	});
 
-	constructor(node, to, duration, layer) {
-		this.node = node;
-		this.to = to;
+	constructor({node, to, duration, layer, animationFunction}) {
+		if (animationFunction) {
+			this.animationFunction = animationFunction;
+		}
+		else {
+			this.node = node;
+			this.to = to;
+			this.easing = t => t;
+			this.animationFunction = function(t) {
+				t = this.easing(t);
+				for (let prop in this.to) {
+					this.node[prop](t * this.to[prop] + (1 - t) * this.from[prop]);
+				}
+			};
+		}
 		this.duration = duration;
-		this.baseDuration = duration;
 		this.layer = layer;
-		this.easing = t => t;
-		this.elapsedTime = 0;
+		this.speed = 1;
+		this.progress = 0;
 	}
 
 	static setCurrentTweenSpeed(n) {
@@ -49,15 +53,7 @@ export default class Tween {
 	}
 
 	setSpeedMultiplier(n) {
-		console.log("Setting current speed to " + n);
-		let currTime = new Date().getTime();
-		if (this.startTime) {
-			let remaining = (this.startTime + this.baseDuration - currTime);
-			this.duration = this.baseDuration - ((n-1)/n * remaining);
-		}
-		else {
-			this.duration = this.baseDuration / n;
-		}
+		this.speed = n;
 	}
 
 	play() {
