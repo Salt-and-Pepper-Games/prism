@@ -8,4 +8,6 @@ export const CLOSE_HELP = 'CLOSE_HELP';
 export const SHOW_LOADING = 'SHOW_LOADING';
 export const HIDE_LOADING = 'HIDE_LOADING';
 export const TOGGLE_DASHBOARD = 'TOGGLE_DASHBOARD';
+export const TOGGLE_PACK_COMPLETE = 'TOGGLE_PACK_COMPLETE';
+
 

@@ -7,7 +7,8 @@ const initialState = {
 	isHelpOpen: false,
 	packInfo: [],
 	isLoading: false,
-	dashboardOpen: false
+	dashboardOpen: false,
+	packComplete: false
 };
 
 const ui = (state = initialState, action) => {
@@ -35,6 +36,8 @@ const ui = (state = initialState, action) => {
 			return Object.assign({}, state, { isLoading: false });
 		case uiActionNames.TOGGLE_DASHBOARD:
 			return Object.assign({}, state, { dashboardOpen: !state.dashboardOpen });
+		case uiActionNames.TOGGLE_PACK_COMPLETE:
+			return Object.assign({}, state, { packComplete: !state.packComplete });
 		default:
 			return state;
 	}
