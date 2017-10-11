@@ -14,7 +14,8 @@ const mapStateToProps = state => {
 		currentPack: state.ui.ui.currentPack,
 		moveCount: state.game.board.stats.moves,
 		isLoading: state.ui.ui.isLoading,
-		transitionPlaying: state.ui.sound.transitionPlaying
+		transitionPlaying: state.ui.sound.transitionPlaying,
+		audioLoaded: state.ui.sound.audioLoaded
 	};
 };
 
@@ -29,7 +30,8 @@ const mapDispatchToProps = dispatch => {
 		toggleSound: () => dispatch(soundActionCreators.toggleSound()),
 		startTransition: () => dispatch(soundActionCreators.startTransitionPlaying()),
 		stopTransition: () => dispatch(soundActionCreators.stopTransitionPlaying()),
-		loadLevel: (levelNumber, packName) => dispatch(asyncActionCreators.loadLevelString(levelNumber, packName))
+		loadLevel: (levelNumber, packName) => dispatch(asyncActionCreators.loadLevelString(levelNumber, packName)),
+		triggerAudioLoaded: () => dispatch(soundActionCreators.triggerAudioLoaded())
 	};
 };
 

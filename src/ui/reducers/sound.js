@@ -2,7 +2,8 @@ import * as soundActionNames from '../../actionCreators/soundActionNames';
 
 const initialState = {
 	soundOn: true,
-	transitionPlaying: false
+	transitionPlaying: false,
+	audioLoaded: false
 };
 
 const sound = (state = initialState, action) => {
@@ -13,6 +14,8 @@ const sound = (state = initialState, action) => {
 			return Object.assign({}, state, { transitionPlaying: true });
 		case soundActionNames.STOP_TRANSITION_PLAYING:
 			return Object.assign({}, state, { transitionPlaying: false });
+		case soundActionNames.AUDIO_LOADED:
+			return Object.assign({}, state, { audioLoaded: true });
 		default:
 			return state;
 	}

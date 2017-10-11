@@ -7,7 +7,8 @@ const mapStateToProps = state => {
 	return {
 		packInfo: state.ui.ui.packInfo,
 		userLevelData: state.game.user.levelData,
-		isLoading: state.ui.ui.isLoading
+		isLoading: state.ui.ui.isLoading,
+		audioLoaded: state.ui.sound.audioLoaded
 	};
 };
 const mapDispatchToProps = dispatch => {

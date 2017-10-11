@@ -15,3 +15,8 @@ export const stopTransitionPlaying = () => {
 		type: soundActionNames.STOP_TRANSITION_PLAYING
 	};
 };
+export const triggerAudioLoaded = () => {
+	return {
+		type: soundActionNames.AUDIO_LOADED
+	};
+};
