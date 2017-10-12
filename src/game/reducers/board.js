@@ -47,7 +47,7 @@ export default (state = defaultState, action) => {
 			Object.assign(newState, { 
 				loaded: true,
 				packInfo: action.packInfo,
-				levelNumber: parseInt(action.levelNumber),
+				levelNumber: parseInt(action.levelNumber, 10),
 				stats: Object.assign({}, defaultState.stats, {
 					startTime: Date.now(),
 					elapsedTime: 0
@@ -159,18 +159,18 @@ const parseBoard = lines => {
 		// 	data[i] = data[i].split(' ')
 		// }
 		const player = {
-			x: parseInt(characters[0]),
-			y: parseInt(characters[1])
+			x: parseInt(characters[0], 10),
+			y: parseInt(characters[1], 10)
 		}
 
 		const home = {
-			x: parseInt(characters[2]),
-			y: parseInt(characters[3])
+			x: parseInt(characters[2], 10),
+			y: parseInt(characters[3], 10)
 		}
 
 		const size = {
-			width: parseInt(characters[4]),
-			height: parseInt(characters[5])
+			width: parseInt(characters[4], 10),
+			height: parseInt(characters[5], 10)
 		}
 
 		const data = [];

@@ -15,7 +15,7 @@ function color(hex) {
 		return { r, g, b };
 	}
 	else {
-		throw 'InvalidColorFormat';
+		throw new Error('InvalidColorFormat');
 	}
 }
 

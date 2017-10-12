@@ -1,6 +1,5 @@
 import Tween from './Tween';
 import isEmpty from 'lodash.isempty';
-import Konva from 'konva';
 /**
  * This class handles the global syncronization of all animations
  * The goal is to prevent the different board components from being out of sync

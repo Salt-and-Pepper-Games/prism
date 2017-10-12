@@ -1,7 +1,6 @@
 import Konva from 'konva';
 import { colorValues } from '../colors';
 import { setColorAnimation } from '../animations/colorAnimations';
-import MutableNumber from '../../utils/MutableNumber';
 import BaseModel from './baseModel';
 
 export default class Background extends BaseModel {

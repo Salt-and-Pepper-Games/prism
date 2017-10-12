@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 export { default as game } from './game/reducers';
 export { default as ui } from './ui/reducers';
 

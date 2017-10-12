@@ -1,4 +1,3 @@
-import Konva from 'konva';
 import Tween from './Tween';
 
 export const switchOnAnimation = (node, duration) => new Tween({

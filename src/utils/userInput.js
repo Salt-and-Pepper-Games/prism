@@ -1,5 +1,4 @@
 import * as playerActionCreators from '../actionCreators/playerActionCreators';
-import { closeCurrentPack } from '../actionCreators/uiActionCreators';
 let store;
 let touchStart;
 
@@ -32,8 +31,8 @@ function setupKeyboardInput(root) {
 }
 
 function handleSwipe(start, end) {
-	let dx = parseInt(end.clientX) - parseInt(start.clientX); 
-	let dy = parseInt(end.clientY) - parseInt(start.clientY); 
+	let dx = parseInt(end.clientX, 10) - parseInt(start.clientX, 10); 
+	let dy = parseInt(end.clientY, 10) - parseInt(start.clientY, 10); 
 	let absDx = Math.abs(dx);
 	let absDy = Math.abs(dy);
 	if (absDx > 30 || absDy > 30) {

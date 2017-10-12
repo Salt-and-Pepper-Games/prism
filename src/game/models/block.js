@@ -2,7 +2,6 @@ import Konva from 'konva';
 import { blockTypes } from './board';
 import { colorValues, altColorValues } from '../colors';
 import { setColorAnimation } from '../animations/colorAnimations';
-import MutableNumber from '../../utils/MutableNumber';
 import BaseModel from './baseModel';
 
 export default class Block extends BaseModel {

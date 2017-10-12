@@ -1,12 +1,8 @@
 import Konva from 'konva';
 
-import types from '../actionCreators/levelActionNames.js';
 import * as uiActionCreators from '../actionCreators/uiActionCreators';
-import {loadLevel, closeLevelAction, completeLevelAction} from '../actionCreators/levelActionCreators';
-import { loadLevelString } from '../actionCreators/asyncActionCreators';
+import { completeLevelAction } from '../actionCreators/levelActionCreators';
 import { saveData } from '../utils/firebaseListeners';
-import backgroundTypes from '../actionCreators/backgroundActionNames';
-import { setBackgroundColor } from '../actionCreators/backgroundActionCreators';
 import { addStateListener } from './game';
 import Board from './models/board';
 import isEqual from 'lodash.isequal';
@@ -25,10 +21,6 @@ export default class BoardManager {
 	board = null;
 
 	constructor(stage, dispatch) {
-		this.stopStateListener = addStateListener(this.onStateChange.bind(this));
-		// is this bad practice? how else do i get at the store?
-		this.dispatch = dispatch;
-
 		// where we will put background and blocks
 		this.boardLayer = new Konva.Layer();
 		// give background rounded edges
@@ -45,6 +37,12 @@ export default class BoardManager {
 		this.stage = stage;
 
 		this.animationManager = new AnimationManager();
+	}
+
+	startStateListener(dispatch) {
+		this.stopStateListener = addStateListener(this.onStateChange.bind(this));
+		// is this bad practice? how else do i get at the store?
+		this.dispatch = dispatch;
 	}
 
 	onStateChange(state, prevState) {

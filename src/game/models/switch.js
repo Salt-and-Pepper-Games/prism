@@ -1,6 +1,6 @@
 import Konva from 'konva';
 import { blockTypes } from './board';
-import { colorIndices, altColorValues, colorValues } from '../colors';
+import { altColorValues, colorValues } from '../colors';
 import { switchOnAnimation, switchOffAnimation } from '../animations/switchAnimations';
 import { setColorAnimation } from '../animations/colorAnimations';
 import BaseModel from './baseModel';

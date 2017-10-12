@@ -114,11 +114,6 @@ export default class Player extends BaseModel {
 
 	// Returns a promise that resolves when the animation is complete
 	moveTo(x, y) {
-		const oldTargetX = this.targetX;
-		const oldTargetY = this.targetY;
-		this.targetX = x;
-		this.targetY = y;
-
 		this.x = x;
 		this.y = y;
 		let anim = moveToAnimation(this.model, this.cellWidth * (x + .5), this.cellHeight * (y + .5), this.movementAnimTime);
@@ -163,10 +158,8 @@ export default class Player extends BaseModel {
 	// }
 
 	updatePlayer(frame) {
-		const { timeDiff } = frame;
-
-			//eye animation
-			// TODO make eye look at exit when it exists (for now we just look at top left corner)
+		//eye animation
+		// TODO make eye look at exit when it exists (for now we just look at top left corner)
 		const directionToCenter = Math.atan2(-this.y, -this.x);
 		this.eye.setRotation(directionToCenter / Math.PI * 180.0);
 	}

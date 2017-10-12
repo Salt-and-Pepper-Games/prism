@@ -99,7 +99,7 @@ export default class Tween {
 		else {
 			Tween.layerCounts[this.layer._id] = 1;
 		}
-		if (Tween.layerCounts[this.layer._id] == 1) {
+		if (Tween.layerCounts[this.layer._id] === 1) {
 			Tween.layers.push(this.layer);
 			Tween.animation.setLayers(Tween.layers);
 		}
@@ -117,7 +117,7 @@ export default class Tween {
 
 	destroy() {
 		delete Tween.tweens[this.id];
-		if (Object.keys(Tween.tweens).length == 0) {
+		if (Object.keys(Tween.tweens).length === 0) {
 			Tween.animation.stop();
 		}
 		Tween.layerCounts[this.layer._id] -= 1;

@@ -1,4 +1,3 @@
-import Konva from 'konva';
 import Tween from './Tween';
 
 export const setColorAnimation = (node, color, duration) => new Tween({
