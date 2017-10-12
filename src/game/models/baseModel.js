@@ -10,10 +10,6 @@ export default class BaseModel {
 		layer.add(model);
 	}
 
-	setAnimationMultiplier(n) {
-		this.animTime.set(this.baseAnimTime * 1000 / n);
-	}
-
 	destroy() {
 		this.model.destroy();
 	}

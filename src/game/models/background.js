@@ -1,5 +1,6 @@
 import Konva from 'konva';
 import { colorValues } from '../colors';
+import { setColorAnimation } from '../animations/colorAnimations';
 import MutableNumber from '../../utils/MutableNumber';
 import BaseModel from './baseModel';
 
@@ -17,20 +18,21 @@ export default class Background extends BaseModel {
 
 	setColor(color) {
 		this.color = color;
-		return new Promise(resolve => {
-			let tween = new Konva.Tween({
-				node: this.model,
-				fill: colorValues[color],
-				duration: 1,
-				easing: Konva.Easings.EaseOut,
-				onFinish: function() {
-					this.destroy();
-					resolve();
-				}
-			});
-			tween.tween.duration = this.animTime;
-			tween.play();
-		});
+		return setColorAnimation(this.model, colorValues[this.color], this.animTime).play();
+		// return new Promise(resolve => {
+		// 	let tween = new Konva.Tween({
+		// 		node: this.model,
+		// 		fill: colorValues[color],
+		// 		duration: 1,
+		// 		easing: Konva.Easings.EaseOut,
+		// 		onFinish: function() {
+		// 			this.destroy();
+		// 			resolve();
+		// 		}
+		// 	});
+		// 	tween.tween.duration = this.animTime;
+		// 	tween.play();
+		// });
 	}
 
 	// setAnimationMultiplier(n) {

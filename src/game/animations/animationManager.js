@@ -31,11 +31,13 @@ export default class AnimationManager {
 			this.queuedAnimations = 1;
 			this.promiseChain = this.animateData(data);
 		}
-		this.board.setAnimationMultiplier(this.speed);
+		// this.board.setAnimationMultiplier(this.speed);
+		Tween.setCurrentTweenSpeed(this.speed);
+		return this.promiseChain;
 	}
 
 	animateData(data) {
-		const { player, background } = data;
+		const { player, background, destroy, board } = data;
 		const promises = [];
 		if (player) {
 			promises.push(this.board.setPlayerPosition(player.x, player.y));
@@ -43,15 +45,30 @@ export default class AnimationManager {
 		if (typeof background !== 'undefined') {
 			promises.push(this.board.setBackgroundColor(background));
 		}
+		if (destroy) {
+			// destroy a board
+			// TODO: animation for destroying a board
+			// promises.push(this.board.destroy());
+			this.board.destroy();
+			this.queuedAnimations = 0;
+			this.speed = 1;
+		}
+		if (board) {
+			// loading a whole new board
+			// TODO: animation for loading a board
+			this.setBoard(board);
+			data.stage.draw();
+			// promises.push(this.board.load());
+			// promises.push(Promise.resolve());
+		}
 
 		if (promises.length > 0) {
 			return Promise.all(promises).then(() => {
 				this.queuedAnimations -= 1;
 				this.speed = this.queuedAnimations;
-				this.board.setAnimationMultiplier(this.speed);
+				// this.board.setAnimationMultiplier(this.speed);
 				Tween.setCurrentTweenSpeed(this.speed);
 			});
-			// return Promise.all(promises);
 		}
 		else {
 			// not sure how this will work out

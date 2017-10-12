@@ -37,36 +37,16 @@ export default class Block extends BaseModel {
 
 		this.cellWidth = cellWidth;
 		this.cellHeight = cellHeight;
-
-		this.model = model;
-
-		// TODO: fix this weird bug
-		// if you take out the setTimeout stuff, the block at (0, 5) won't display
-		// it'll load fine, but it won't render
-		// it's the first block added to the layer so it's gotta be that something in the layer
-		// is not ready
-		// setTimeout(() => {
-		// 	layer.add(this.model);
-		// 	layer.draw();
-		// }, 0);
 	}
 
 	onBackgroundColor(color) {
 		if (color === this.color && !this.hasAltColor) {
 			let anim = setColorAnimation(this.model, altColorValues[this.color], this.animTime);
-			// this.model.to({
-			// 	fill: altColorValues[this.color],
-			// 	duration: .35,
-			// });
 			this.hasAltColor = true;
 			return anim.play();
 		}
 		else if (color !== this.color && this.hasAltColor) {
 			let anim = setColorAnimation(this.model, colorValues[this.color], this.animTime);
-			// this.model.to({
-			// 	fill: colorValues[this.color],
-			// 	duration: .35,
-			// });
 			this.hasAltColor = false;
 			return anim.play();
 		}
@@ -74,13 +54,5 @@ export default class Block extends BaseModel {
 			return Promise.resolve();
 		}
 	}
-
-	// setAnimationMultiplier(n) {
-	// 	this.animDuration.set(this.baseAnimDuration * 1000 / n);
-	// }
-	
-	// destroy() {
-	// 	this.model.destroy();
-	// }
 }
 

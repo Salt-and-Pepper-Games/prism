@@ -1,8 +1,7 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
 import MutableNumber from '../../utils/MutableNumber';
-// import { moveToAnimation } from '../animations/movementAnimations';
-import Tween from '../animations/Tween';
+import { moveToAnimation } from '../animations/movementAnimations';
 import { setColorAnimation } from '../animations/colorAnimations';
 import BaseModel from './baseModel';
 
@@ -83,8 +82,6 @@ export default class Player extends BaseModel {
 		this.colorAnimLength = 1;
 		this.colorAnimTime = new MutableNumber(this.animTime * this.colorAnimLength);
 
-		this.setAnimationMultiplier(1);
-
 		this.x = x;
 		this.y = y;
 
@@ -124,22 +121,8 @@ export default class Player extends BaseModel {
 
 		this.x = x;
 		this.y = y;
-		// let anim = moveToAnimation(this.model, this.cellWidth * (x + .5), this.cellHeight * (y + .5), this.movementAnimTime);
-		let anim = new Tween({
-			node: this.model, 
-			to: {
-			x: this.cellWidth * (x + .5),
-			y: this.cellHeight * (y + .5)
-			}, 
-			duration: this.movementAnimTime, 
-			layer: this.layer});
+		let anim = moveToAnimation(this.model, this.cellWidth * (x + .5), this.cellHeight * (y + .5), this.movementAnimTime);
 		return anim.play();
-	}
-
-	setAnimationMultiplier(n) {
-		super.setAnimationMultiplier(n);
-		this.movementAnimTime.set(this.animTime * this.movementAnimLength);
-		this.colorAnimTime.set(this.animTime * this.colorAnimLength);
 	}
 
 	/*squishAnimation(x, y, deltaX, deltaY, vertical) {

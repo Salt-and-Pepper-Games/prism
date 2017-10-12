@@ -54,13 +54,23 @@ export default class BoardManager {
 		if (!isEqual(prevGame.board.levelNumber, game.board.levelNumber) ||
 				!isEqual(prevGame.board.packInfo, game.board.packInfo)) {
 			if (this.board) {
-				this.board.destroy();
+				const levelEndID = GameAudio.play('level_end');
+				GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, levelEndID);
+				// this.board.destroy();
+				let animFrame = {
+					destroy: this.board
+				};
+				this.animationManager.addFrame(animFrame);
 			}
 			this.board = new Board(game.board, { boardLayer: this.boardLayer,
 				playerLayer: this.playerLayer,
 				switchLayer: this.switchLayer });
-			this.animationManager.setBoard(this.board);
-			this.stage.draw();
+			this.animationManager.addFrame({
+				board: this.board,
+				stage: this.stage
+			});
+			// this.animationManager.setBoard(this.board);
+			// this.stage.draw();
 		}
 		else if (this.board) {
 			// handle other actions here
@@ -85,10 +95,10 @@ export default class BoardManager {
 					saveData(state, this.dispatch);
 					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
 						// figure out how to navigate to a new url here
-						if (playerMoves.includes(state.lastAction.type)) {
-							const levelEndID = GameAudio.play('level_end');
-							GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, levelEndID);
-						}
+						// if (playerMoves.includes(state.lastAction.type)) {
+						// 	const levelEndID = GameAudio.play('level_end');
+						// 	GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, levelEndID);
+						// }
 						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
 						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
 					}

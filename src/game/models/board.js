@@ -61,18 +61,18 @@ export default class Board {
 		return Promise.all(promises);
 	}
 
-	setAnimationMultiplier(speed) {
-		this.player.setAnimationMultiplier(speed);
-		this.background.setAnimationMultiplier(speed);
-		this.home.setAnimationMultiplier(speed);
-		for (let i=0; i<this.blocks.length; i++) {
-			for (let j=0; j<this.blocks[i].length; j++) {
-				if (this.blocks[i][j]) {
-					this.blocks[i][j].setAnimationMultiplier(speed);
-				}
-			}
-		}
-	}
+	// setAnimationMultiplier(speed) {
+		// this.player.setAnimationMultiplier(speed);
+		// this.background.setAnimationMultiplier(speed);
+		// this.home.setAnimationMultiplier(speed);
+		// for (let i=0; i<this.blocks.length; i++) {
+		// 	for (let j=0; j<this.blocks[i].length; j++) {
+		// 		if (this.blocks[i][j]) {
+		// 			this.blocks[i][j].setAnimationMultiplier(speed);
+		// 		}
+		// 	}
+		// }
+	// }
 
 	hasSwitch(x, y) {
 		return this.blocks[x] && this.blocks[x][y] && this.blocks[x][y].type === blockTypes.SWITCH;
