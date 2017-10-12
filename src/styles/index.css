@@ -509,14 +509,6 @@ body {
     .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
       font-size: 3em; } }
 
-.pack-complete-exit-btn, .pack-complete-restart-btn {
-  position: relative;
-  font-size: 3em;
-  transition: opacity .25s; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .pack-complete-exit-btn, .pack-complete-restart-btn {
-      font-size: 2em; } }
-
 .move-count:hover {
   cursor: default; }
 
@@ -592,19 +584,35 @@ body {
   transform: translate(-50%, -50%);
   border-radius: 1em;
   width: 45vw;
-  height: 50vh;
+  height: 40vh;
   visibility: hidden;
   opacity: 0;
   transition: visibility .25s, opacity .25s; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-complete-modal {
       width: 80vw;
-      height: 50vh;
+      height: 35vh;
       padding: 1em; } }
   @media only screen and (max-width: 800px) and (orientation: landscape) {
     .pack-complete-modal {
       width: 50vw;
       height: 80vh; } }
+
+.pack-complete-modal-inner, .pack-complete-modal-inner-white {
+  background-color: #ff919c;
+  border-radius: 1em;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-complete-modal-inner, .pack-complete-modal-inner-white {
+      padding: 15% 0; } }
+
+.pack-complete-modal-inner-white {
+  background-color: #fffdfc !important; }
 
 .pack-complete-text-wrapper {
   display: flex;
@@ -612,28 +620,58 @@ body {
   justify-content: center;
   align-items: center; }
 
-.pack-complete-text {
+.pack-complete-text, .pack-complete-percentage-label {
+  margin-top: 0;
   font-size: 1.5em;
-  line-height: 1.5em; }
+  line-height: 1.5em;
+  text-align: center; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .pack-complete-text {
+    .pack-complete-text, .pack-complete-percentage-label {
       font-size: 1em; } }
   @media only screen and (max-width: 800px) and (orientation: landscape) {
-    .pack-complete-text {
+    .pack-complete-text, .pack-complete-percentage-label {
       line-height: 1em; } }
 
-.pack-complete-modal-btn {
-  margin-top: 2em;
+.pack-complete-percentage {
+  align-self: center;
+  font-size: 5em;
+  margin: 0; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-complete-percentage {
+      font-size: 3em; } }
+
+.pack-complete-percentage-label {
+  margin-top: .5em;
+  margin-bottom: 0.15em; }
+
+.pack-complete-btn-wrapper {
   display: flex;
-  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center; }
+
+.pack-complete-modal-btn {
+  margin-top: -7.5em;
+  display: flex;
+  width: 85%;
   justify-content: space-between; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-complete-modal-btn {
-      margin-top: 1em;
-      width: 75%; } }
+      margin-top: -4.5em;
+      width: 90%; } }
   @media only screen and (max-width: 800px) and (orientation: landscape) {
     .pack-complete-modal-btn {
-      margin-top: .25em; } }
+      margin-top: -3.5em;
+      width: 97%; } }
+
+.pack-complete-exit-btn, .pack-complete-restart-btn {
+  position: relative;
+  align-self: center;
+  font-size: 3em;
+  transition: opacity .25s; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-complete-exit-btn, .pack-complete-restart-btn {
+      font-size: 2em; } }
 
 .open {
   visibility: visible !important;

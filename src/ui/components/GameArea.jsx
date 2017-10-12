@@ -18,19 +18,21 @@ class GameArea extends React.Component {
 	}
 	componentDidMount() {
 		if (!this.props.transitionPlaying) {
-			this.loopID = GameAudio.play('gameplay_loop');
+			if (!this.props.audioLoaded) {
+				GameAudio.on('load', this.props.triggerAudioLoaded);
+			}
 		}
 		initGame(this.context.store);
 		const matchParams = this.props.match.params;
 		this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
 	}
 	componentWillReceiveProps(nextProps) {
-		if (!nextProps.transitionPlaying && !GameAudio.playing(this.loopID)) {
-			const id = GameAudio.play('gameplay_loop');
+		if (!nextProps.isLoading && !nextProps.transitionPlaying && nextProps.audioLoaded && !GameAudio.playing(this.loopID)) {
+			this.loopID = GameAudio.play('gameplay_loop');
 			if (nextProps.soundOn) {
-				GameAudio.fade(0, 1.0, 2500, id);
+				GameAudio.fade(0, 1.0, 2500, this.loopID);
 			} else {
-				GameAudio.volume(0.0, id);
+				GameAudio.volume(0.0, this.loopID);
 			}
 		}
 		if (!isEqual(this.props.match, nextProps.match)) {
@@ -55,16 +57,17 @@ class GameArea extends React.Component {
 			history,
 			currentPack,
 			startTransition,
-			stopTransition
+			stopTransition,
+			audioLoaded
 		} = this.props;
 		return (
 			<div>
-				{(isLoading && !inGame) &&
+				{((isLoading && !inGame) || !audioLoaded) &&
 					<div id="loader-wrapper">
 					    <div id="loader"></div>
 					</div>
 				}
-				<div className={`${inGame ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
+				<div className={`${(inGame && audioLoaded) ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
 					<PackCompleteModalContainer />
 					<HelpOverlay isHelpOpen={isHelpOpen} closeHelp={closeHelp} />
 					<div className={`${isHelpOpen ? 'blur' : ''} before-game-board`}>

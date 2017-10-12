@@ -6,49 +6,44 @@
     "GameAudio.ac3"
   ],
   "spritemap": {
-    "GameAudio": {
-      "start": 0,
-      "end": 810,
-      "loop": false
-    },
     "demo_loop": {
-      "start": 811,
-      "end": 862.9978004535147,
+      "start": 0,
+      "end": 51.99780045351474,
       "loop": false
     },
     "enter_game": {
-      "start": 864,
-      "end": 869.4073469387755,
+      "start": 53.5,
+      "end": 58.90734693877551,
       "loop": false
     },
     "gameplay_loop": {
-      "start": 871,
-      "end": 1384.8808163265307,
+      "start": 61,
+      "end": 574.8808163265306,
       "loop": true
     },
     "level_end": {
-      "start": 1386,
-      "end": 1387.5673469387755,
+      "start": 576.5,
+      "end": 578.0673469387755,
       "loop": false
     },
     "main_loop": {
-      "start": 1389,
-      "end": 1508.614693877551,
+      "start": 580,
+      "end": 699.614693877551,
       "loop": true
     },
     "move": {
-      "start": 1510,
-      "end": 1510.3395918367346,
+      "start": 701.5,
+      "end": 701.8395918367347,
       "loop": false
     },
     "move_blocked": {
-      "start": 1512,
-      "end": 1512.2351020408164,
+      "start": 704,
+      "end": 704.2351020408163,
       "loop": false
     },
     "switch_toggle": {
-      "start": 1514,
-      "end": 1514.444081632653,
+      "start": 706.5,
+      "end": 706.944081632653,
       "loop": false
     }
   }

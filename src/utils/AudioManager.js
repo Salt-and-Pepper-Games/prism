@@ -8,7 +8,7 @@ import { Howl } from 'howler';
 const spriteMap = {};
 for (const sprite in AudioInfo.spritemap) {
 	spriteMap[sprite] = [
-		AudioInfo.spritemap[sprite].start * 1000,
+		(AudioInfo.spritemap[sprite].start * 1000),
 		(AudioInfo.spritemap[sprite].end - AudioInfo.spritemap[sprite].start) * 1000,
 		AudioInfo.spritemap[sprite].loop
 	];
@@ -17,7 +17,8 @@ for (const sprite in AudioInfo.spritemap) {
 const GameAudio = new Howl({
   src: [GameAudioMP3, GameAudioM4A, GameAudioOGG, GameAudioAC3],
   sprite: spriteMap,
-  html5: true,
+  preload: true,
+  html5: false,
   volume: 1.0
 });
 
