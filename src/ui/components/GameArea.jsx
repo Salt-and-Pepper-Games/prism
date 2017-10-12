@@ -10,7 +10,7 @@ import PackCompleteModalContainer from '../containers/PackCompleteModalContainer
 class GameArea extends React.Component {
 	constructor(props) {
 		super(props);
-		this.loopID;
+		this.loopID = null;
 	}
 
 	static contextTypes = {
