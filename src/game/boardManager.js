@@ -122,6 +122,22 @@ export default class BoardManager {
 				if (playerMoves.includes(state.lastAction.type)) {
 					const moveBlockedID = GameAudio.play('move_blocked');	
 					GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, moveBlockedID);
+					switch (state.lastAction.type) {
+						case playerActionNames.MOVE_LEFT:
+							animFrame.squish = { dx: -1, dy: 0 };
+							break;
+						case playerActionNames.MOVE_RIGHT:
+							animFrame.squish = { dx: 1, dy: 0 };
+							break;
+						case playerActionNames.MOVE_UP:
+							animFrame.squish = { dx: 0, dy: -1 };
+							break;
+						case playerActionNames.MOVE_DOWN:
+							animFrame.squish = { dx: 0, dy: 1 };
+							break;
+						default:
+							break;
+					}
 				}
 			}
 			

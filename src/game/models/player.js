@@ -1,7 +1,7 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
 import MutableNumber from '../../utils/MutableNumber';
-import { moveToAnimation } from '../animations/movementAnimations';
+import { squishAnimation, moveToAnimation } from '../animations/movementAnimations';
 import { setColorAnimation } from '../animations/colorAnimations';
 import BaseModel from './baseModel';
 
@@ -120,6 +120,16 @@ export default class Player extends BaseModel {
 		return anim.play();
 	}
 
+	/**
+	 * Squish animation for attempting to move the direction specified by (dx, dy)
+	 * @param {Number} dx - should be 1, 0, or -1
+	 * @param {Number} dy - should be 1, 0, or -1
+	 */
+	onSquish(dx, dy) {
+		let anim = squishAnimation(this.model, this.x, this.y, dx, dy, this.width / this.cellWidth, this.height / this.cellHeight, this.cellWidth, this.cellHeight, this.animTime);
+		return anim.play();
+	}
+
 	/*squishAnimation(x, y, deltaX, deltaY, vertical) {
 		return (time) => {
 			const xDiff = targetX - x;
@@ -138,24 +148,6 @@ export default class Player extends BaseModel {
 			}
 		};
 	}*/
-
-	// moveToAnimation(x, y, targetX, targetY, vertical) {
-	// 	return (time, begin, change, duration) => {
-	// 		time = time / duration;
-	// 		const xDiff = targetX - x;
-	// 		const yDiff = targetY - y;
-	// 		const animationPos = Math.sin(time * Math.PI / 2.0);
-	// 		this.x = x + xDiff * animationPos;
-	// 		this.y = y + yDiff * animationPos;
-	// 		this.model.setX(this.cellWidth * (this.x + .5));
-	// 		this.model.setY(this.cellHeight * (this.y + .5));
-	// 		if (vertical) {
-	// 			this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-	// 		} else {
-	// 			this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-	// 		}
-	// 	};
-	// }
 
 	updatePlayer(frame) {
 		//eye animation

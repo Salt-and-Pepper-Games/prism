@@ -46,6 +46,10 @@ export default class Board {
 		return this.player.moveTo(x, y);
 	}
 
+	onPlayerSquish(dx, dy) {
+		return this.player.onSquish(dx, dy);
+	}
+
 	setBackgroundColor(color) {
 		let promises = [];
 		promises.push(this.background.setColor(color));

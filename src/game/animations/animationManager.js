@@ -36,7 +36,7 @@ export default class AnimationManager {
 	}
 
 	animateData(data) {
-		const { player, background, destroy, board } = data;
+		const { squish, player, background, destroy, board } = data;
 		const promises = [];
 		if (player) {
 			promises.push(this.board.setPlayerPosition(player.x, player.y));
@@ -59,6 +59,9 @@ export default class AnimationManager {
 			data.stage.draw();
 			// promises.push(this.board.load());
 			// promises.push(Promise.resolve());
+		}
+		if (squish) {
+			promises.push(this.board.onPlayerSquish(squish.dx, squish.dy));
 		}
 
 		if (promises.length > 0) {
