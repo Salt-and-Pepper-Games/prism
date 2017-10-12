@@ -8,7 +8,7 @@ import GameAudio from '../../utils/AudioManager';
 class MainScreen extends React.Component {
 	constructor(props) {
 		super(props);
-		this.loopID;
+		this.loopID = null;
 	}
 	componentDidMount() {
 		if (!this.props.transitionPlaying) {

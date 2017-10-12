@@ -6,13 +6,6 @@ import GameAreaContainer from './ui/containers/GameAreaContainer.jsx';
 import GameAudio from './utils/AudioManager.js';
 
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-	componentDidMount() {
-		const mq = window.matchMedia("only screen and (orientation: portrait)");
-		const mq2 = window.matchMedia("only screen and (max-width: 800px)");
-	}
 	render() {
 		GameAudio.volume(this.props.soundOn ? 1.0 : 0.0);
 		return (

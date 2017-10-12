@@ -16,7 +16,6 @@ class LevelPack extends React.Component {
 			currentPack,
 			cachedCurrentPack,
 			onClose,
-			onLevelClick,
 			history,
 			userLevelData,
 			startTransition,
