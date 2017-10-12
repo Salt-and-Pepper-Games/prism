@@ -6,6 +6,7 @@ import isEmpty from 'lodash.isempty';
  */
 export default class AnimationManager {
 	AnimationManager() {
+		console.log("SETTING UP ANIMATION MANAGER!!!!!!");
 		this.board = null;
 		this.promiseChain = null;
 		this.speed = 1;
@@ -61,6 +62,7 @@ export default class AnimationManager {
 			// promises.push(Promise.resolve());
 		}
 		if (squish) {
+			console.log("QUEUING UP SQUISH ANIMATION");
 			promises.push(this.board.onPlayerSquish(squish.dx, squish.dy));
 		}
 

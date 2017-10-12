@@ -21,6 +21,11 @@ export default class BoardManager {
 	board = null;
 
 	constructor(stage, dispatch) {
+		this.setStage(stage);
+		this.animationManager = new AnimationManager();
+	}
+
+	setStage(stage) {
 		// where we will put background and blocks
 		this.boardLayer = new Konva.Layer();
 		// give background rounded edges
@@ -35,8 +40,6 @@ export default class BoardManager {
 		stage.add(this.switchLayer);
 
 		this.stage = stage;
-
-		this.animationManager = new AnimationManager();
 	}
 
 	startStateListener(dispatch) {
@@ -121,6 +124,7 @@ export default class BoardManager {
 			} else if (!didBgChange && !didMove) {
 				if (playerMoves.includes(state.lastAction.type)) {
 					const moveBlockedID = GameAudio.play('move_blocked');	
+					console.log("move blocked");
 					GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, moveBlockedID);
 					switch (state.lastAction.type) {
 						case playerActionNames.MOVE_LEFT:

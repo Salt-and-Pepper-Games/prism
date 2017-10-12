@@ -63,6 +63,7 @@ function handleSwipe(start, end) {
 }
 
 function handleKey(e) {
+	console.log("Got key input");
 	let doDefault = false;
 	const code = e.keyCode;
 	switch (code) {

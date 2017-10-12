@@ -9,6 +9,7 @@ const stateListeners = {};
 let nextStateListenerId = 0;
 
 let boardManager;
+let stage;
 
 let prevState;
 
@@ -45,21 +46,25 @@ export const initGame = (store) => {
 	const size = getStageSizeFromContainer(window);
 
 	// initialize konva stage
-	const stage = new Konva.Stage({
+	stage = new Konva.Stage({
 		container: 'game-root',
 		width: size,
 		height: size
 	});
 	setupInput(store, stage.container());
 
-	boardManager = new BoardManager(stage, store.dispatch);
-	boardManager.startStateListener(store.dispatch);
-
-	store.subscribe(onStateChange.bind(null, store));
-	onStateChange(store);
-
-	window.addEventListener('resize', fitStageToParent.bind(this, stage));
+	if (!boardManager) {
+		boardManager = new BoardManager(stage, store.dispatch);
+		boardManager.startStateListener(store.dispatch);
+		store.subscribe(onStateChange.bind(null, store));
+		onStateChange(store);
+		window.addEventListener('resize', fitStageToParent.bind(this, stage));
+	}
+	else {
+		boardManager.setStage(stage);
+	}
 }
+
 
 const onStateChange = (store) => {
 	const state = store.getState();
