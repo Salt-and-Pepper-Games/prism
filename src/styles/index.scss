@@ -582,6 +582,7 @@ body {
 .header {
     position: relative;
 	text-align: center;
+    padding-bottom: 1em;
     @include mobile {
         padding-bottom: 3em;
     }
