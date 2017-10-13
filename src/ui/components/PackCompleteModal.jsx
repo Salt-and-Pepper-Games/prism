@@ -27,7 +27,7 @@ const PackCompleteModal = ({
 					</div>
 					<div className="pack-complete-modal-btn">
 						<div className='pack-complete-btn-wrapper'>
-							<p className="pack-complete-text">Home</p>
+							<p className="pack-complete-text btn-label">Home</p>
 							<i
 								className="pack-complete-exit-btn fa fa-sign-out fa-flip-horizontal"
 								onClick={() => {
@@ -43,7 +43,7 @@ const PackCompleteModal = ({
 							/>
 						</div>
 						<div className='pack-complete-btn-wrapper'>
-							<p className="pack-complete-text">Replay</p>
+							<p className="pack-complete-text btn-label">Replay</p>
 							<i
 								onClick={() => restartPack(history, currentPack ? currentPack.packName : '')}
 								className={`pack-complete-restart-btn fa fa-refresh`}

@@ -292,6 +292,11 @@ body {
         line-height: 1em;
     }
 }
+.btn-label {
+    @include mobile {
+        margin-bottom: .25em;
+    }
+}
 .pack-complete-percentage {
     align-self: center;
     font-size: 5em;
