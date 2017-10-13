@@ -18,7 +18,9 @@ export default class Home extends BaseModel {
 			width: width,
 			height: height,
 			cornerRadius: 10,
-			fill: colorValues[color]
+			fill: colorValues[color],
+			stroke: "#000000",
+			strokeWeight: 5
 		});
 		super(color, model, layer);
 
