@@ -15,7 +15,7 @@ for (const sprite in AudioInfo.spritemap) {
 }
 
 const GameAudio = new Howl({
-  src: [GameAudioMP3, GameAudioM4A, GameAudioOGG, GameAudioAC3],
+  src: [GameAudioOGG, GameAudioMP3, GameAudioM4A, GameAudioAC3],
   sprite: spriteMap,
   preload: true,
   html5: false,
