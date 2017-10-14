@@ -11,34 +11,49 @@
       "end": 5.40734693877551,
       "loop": false
     },
-    "gameplay_loop": {
+    "exit_game": {
       "start": 7,
-      "end": 520.8808163265306,
+      "end": 8.56734693877551,
       "loop": false
     },
-    "level_end": {
-      "start": 522,
-      "end": 523.5673469387755,
+    "gameplay_loop": {
+      "start": 10,
+      "end": 523.8808163265306,
+      "loop": false
+    },
+    "level_complete": {
+      "start": 525,
+      "end": 526.5673469387755,
       "loop": false
     },
     "main_loop": {
-      "start": 525,
-      "end": 644.614693877551,
+      "start": 528,
+      "end": 647.614693877551,
       "loop": false
     },
     "move": {
-      "start": 646,
-      "end": 646.3395918367347,
+      "start": 649,
+      "end": 649.3395918367347,
       "loop": false
     },
     "move_blocked": {
-      "start": 648,
-      "end": 648.2351020408163,
+      "start": 651,
+      "end": 651.2351020408163,
+      "loop": false
+    },
+    "pack_complete": {
+      "start": 653,
+      "end": 654.5673469387755,
+      "loop": false
+    },
+    "reset_level": {
+      "start": 656,
+      "end": 657.5673469387755,
       "loop": false
     },
     "switch_toggle": {
-      "start": 650,
-      "end": 650.444081632653,
+      "start": 659,
+      "end": 659.444081632653,
       "loop": false
     }
   }

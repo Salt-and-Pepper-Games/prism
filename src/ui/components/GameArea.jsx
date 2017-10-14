@@ -77,7 +77,7 @@ class GameArea extends React.Component {
 								onClick={() => {
 									GameAudio.stop();
 									startTransition();
-									const id = GameAudio.play('enter_game');
+									const id = GameAudio.play('exit_game');
 									GameAudio.volume(soundOn ? .5 : 0.0, id);
 									GameAudio.on('end', () => {
 										stopTransition();
@@ -105,7 +105,14 @@ class GameArea extends React.Component {
 							<i className={`hint-btn fa fa-magic`}/>
 						</div>
 						<div className='in-game-buttons'>
-							<i onClick={() => loadLevel(match.params.levelNumber, match.params.packName)} className={`reset-btn fa fa-refresh`}/>
+							<i 
+								onClick={() => {
+									const id = GameAudio.play('reset_level');
+									GameAudio.volume(soundOn ? .5 : 0.0, id);
+									loadLevel(match.params.levelNumber, match.params.packName);
+								}}
+								className={`reset-btn fa fa-refresh`}
+							/>
 						</div>
 					</div>
 				</div>
