@@ -750,6 +750,7 @@ body {
 .levels-grid {
   display: flex;
   flex-flow: row wrap;
+  align-content: flex-start;
   position: relative;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -1010,6 +1011,9 @@ body {
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .pack-title {
       font-size: 5vw; } }
+
+.packtutorial {
+  order: -1; }
 
 .pack {
   box-sizing: border-box;
