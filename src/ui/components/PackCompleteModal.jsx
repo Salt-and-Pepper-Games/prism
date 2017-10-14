@@ -33,7 +33,7 @@ const PackCompleteModal = ({
 								onClick={() => {
 									GameAudio.stop();
 									startTransition();
-									const id = GameAudio.play('enter_game');
+									const id = GameAudio.play('exit_game');
 									GameAudio.volume(soundOn ? .5 : 0.0, id);
 									GameAudio.on('end', () => {
 										stopTransition();

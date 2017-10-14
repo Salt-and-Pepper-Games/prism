@@ -95,14 +95,19 @@ export default class BoardManager {
 					if (game.board.levelNumber < game.board.packInfo.levelCount) {
 						// figure out how to navigate to a new url here
 						if (playerMoves.includes(state.lastAction.type)) {
-							const levelEndID = GameAudio.play('level_end');
-							GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, levelEndID);
+							const levelEndID = GameAudio.play('level_complete');
+							const duration = GameAudio.duration(levelEndID);
+							GameAudio.volume(state.ui.sound.soundOn ? 0.5 : 0.0, levelEndID);
+							// GameAudio.fade(0.0, state.ui.sound.soundOn ? 0.5 : 0.0, duration*1000/2, levelEndID);
+							// GameAudio.fade(state.ui.sound.soundOn ? 0.0 : 0.5, 0.0, duration*1000/2, levelEndID);
 						}
 						
 						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
 						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
 					}
 					else {
+						const packCompleteID = GameAudio.play('pack_complete');
+						GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, packCompleteID);
 						this.dispatch(uiActionCreators.togglePackComplete());
 						// this.dispatch(closeLevelAction());
 						// this.dispatch(uiActionCreators.closeGameMode());
