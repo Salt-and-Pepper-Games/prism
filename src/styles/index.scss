@@ -83,6 +83,21 @@ body {
     -o-animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite;
     animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite;
 }
+#loader-text {
+    display: block;
+    position: fixed;
+    left: 50%;
+    top: 75%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    width: 10em;
+    height: 10em;
+    -webkit-animation: fadeinout 2s ease-in-out infinite;
+    -moz-animation: fadeinout 2s ease-in-out infinite;
+    -ms-animation: fadeinout 2s ease-in-out infinite;
+    -o-animation: fadeinout 2s ease-in-out infinite;
+    animation: fadeinout 2s ease-in-out infinite;
+}
 .level-pack-area {
     position: relative;
 }

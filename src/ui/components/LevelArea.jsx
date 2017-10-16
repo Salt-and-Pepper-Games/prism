@@ -11,6 +11,7 @@ class LevelArea extends React.Component {
 				{(isLoading || !audioLoaded) &&
 					<div id="loader-wrapper">
 					    <div id="loader"></div>
+					    <div id="loader-text">Loading...</div>
 					</div>
 				}
 				{!(isLoading || !audioLoaded) &&

@@ -65,6 +65,7 @@ class GameArea extends React.Component {
 				{((isLoading && !inGame) || !audioLoaded) &&
 					<div id="loader-wrapper">
 					    <div id="loader"></div>
+					    <div id="loader-text">Loading...</div>
 					</div>
 				}
 				<div className={`${(inGame && audioLoaded) ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
