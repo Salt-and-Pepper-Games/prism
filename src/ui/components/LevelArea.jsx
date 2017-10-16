@@ -24,16 +24,17 @@ class LevelArea extends React.Component {
 									solvedCount += userPackData[level].solved ? 1 : 0;
 								}
 							}
+							const percentComplete = Math.floor((solvedCount / pack.levelCount) * 100);
 							return (
 								<div
 									key={pack.packName}
-									className={`pack pack${pack.packColor} pack${pack.packName}`}
+									className={`pack pack${pack.packColor}${percentComplete === 100 ? 'complete' : ''} pack${pack.packName}`}
 									onClick={() => setCurrentPack(pack)}
 								>
 									<div className={`pack-content`}>
 										<p className="pack-content-info difficulty">{pack.packSize ? `${pack.packSize}x${pack.packSize}` : 'Mixed size'}</p>
 										<p className='pack-title'>{pack.packName.toUpperCase()}</p>
-										<p className="pack-content-info completion">{`${Math.floor((solvedCount / pack.levelCount) * 100)}% complete`}</p>
+										<p className="pack-content-info completion">{`${percentComplete}% complete`}</p>
 									</div>
 								</div>
 							);
