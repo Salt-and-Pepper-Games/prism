@@ -51,7 +51,7 @@ export const saveData = (state, dispatch) => {
 	});
 
 	// updating internal level stats
-	const levelStatsRef = firebase.database().ref('levelStats');
+	const levelStatsRef = firebase.database().ref(`levelStats/${packName}/${levelNumber}`);
 	const levelStatsData = stats;
 	stats.userId = uid;
 	stats.levelNumber = levelNumber;
