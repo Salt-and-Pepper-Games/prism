@@ -30,7 +30,7 @@ class GameArea extends React.Component {
 		if (!nextProps.isLoading && !nextProps.transitionPlaying && nextProps.audioLoaded && !GameAudio.playing(this.loopID)) {
 			this.loopID = GameAudio.play('gameplay_loop');
 			if (nextProps.soundOn) {
-				GameAudio.fade(0, 1.0, 2500, this.loopID);
+				GameAudio.fade(0, 1.0, 1250, this.loopID);
 			} else {
 				GameAudio.volume(0.0, this.loopID);
 			}
@@ -65,6 +65,7 @@ class GameArea extends React.Component {
 				{((isLoading && !inGame) || !audioLoaded) &&
 					<div id="loader-wrapper">
 					    <div id="loader"></div>
+					    <div id="loader-text">Loading...</div>
 					</div>
 				}
 				<div className={`${(inGame && audioLoaded) ? 'open' : 'hidden'} game-area game-area-${currentPack ? currentPack.packColor : ''}`}>
