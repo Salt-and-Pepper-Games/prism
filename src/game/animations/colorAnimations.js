@@ -1,3 +1,4 @@
+import Konva from 'konva';
 import Tween from './Tween';
 
 export const setColorAnimation = (node, color, duration) => new Tween({
@@ -9,19 +10,18 @@ export const setColorAnimation = (node, color, duration) => new Tween({
 	layer: node.layer
 });
 
-// export const setColorAnimation = (node, color, duration) => ({
-// 	play: () => {
-// 		return new Promise(resolve => {
-// 			let tween = new Konva.Tween({
-// 				node: node,
-// 				fill: color,
-// 				onFinish: function() {
-// 					this.destroy();
-// 					resolve();
-// 				}
-// 			});
-// 			tween.tween.duration = duration;
-// 			tween.play();
-// 		});
-// 	}
-// });
+export const setImageColorAnimation = (node, color, duration) => {
+	console.log(node);
+	let { r, g, b, a} = Konva.Util.colorToRGBA(color);
+	console.log(r,g,b,a);
+	return new Tween({
+		node,
+		to: {
+			red: r,
+			green: g,
+			blue: b,
+			alpha: a
+		},
+		duration
+	});
+}

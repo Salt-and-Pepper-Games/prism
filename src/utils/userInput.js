@@ -12,7 +12,7 @@ disableActions[levelActionNames.COMPLETE_LEVEL] = true;
 disableActions[uiActionNames.OPEN_HELP] = true;
 
 let enableActions = {};
-enableActions[levelActionNames.LOAD_LEVEL] = true, 
+enableActions[levelActionNames.LOAD_LEVEL] = true;
 enableActions[uiActionNames.CLOSE_HELP] = true;
 
 export const setupInput = (s, root) => {

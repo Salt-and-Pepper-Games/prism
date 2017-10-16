@@ -13,109 +13,17 @@ export const colorIndices = {
 
 const colorValues = {};
 
-const setupRGB = () => {
-	colorValues[colorIndices.RED] = "#FF6978";
-	colorValues[colorIndices.GREEN] = "#94EA54";
-	colorValues[colorIndices.BLUE] = "#5699fd";
+colorValues[colorIndices.RED] = "#FF6978";
+colorValues[colorIndices.GREEN] = "#94EA54";
+colorValues[colorIndices.BLUE] = "#5699fd";
 
-	colorValues[colorIndices.YELLOW] = "#fffa6c";
-	colorValues[colorIndices.MAGENTA] = "#ff7bd6";
-	colorValues[colorIndices.CYAN] = "#4CEDDE";
+colorValues[colorIndices.YELLOW] = "#fffa6c";
+colorValues[colorIndices.MAGENTA] = "#ff7bd6";
+colorValues[colorIndices.CYAN] = "#4CEDDE";
 
-	colorValues[colorIndices.BLACK] = "#464B63";
-	colorValues[colorIndices.WHITE] = "#fffdfc";
-	colorValues[colorIndices.PLAYER] = "#fffdfc";
-}
-
-// colorValues[colorIndices.BLACK] = "#fffdfc";
-// colorValues[colorIndices.WHITE] = "#63474d";
-// colorValues[colorIndices.PLAYER] = "#63474d";
-
-const setupRBY = () => {
-	colorValues[colorIndices.RED] = "#FF6978"; // red
-	colorValues[colorIndices.GREEN] = "#fffa6c"; // yellow
-	colorValues[colorIndices.BLUE] = "#5699fd"; // blue
-
-	colorValues[colorIndices.YELLOW] = "#EFA364"; // orange
-	colorValues[colorIndices.MAGENTA] = "#c361ed"; // purple
-	colorValues[colorIndices.CYAN] = "#94ea54"; // green
-
-	colorValues[colorIndices.BLACK] = "#464B63";
-	colorValues[colorIndices.WHITE] = "#fffdfc";
-	colorValues[colorIndices.PLAYER] = "#fffdfc";
-}
-
-const randColor = () => {
-	let r = Math.floor(Math.random() * 255).toString(16);
-	if (r.length == 1) {
-		r = "0" + r;
-	}
-	let g = Math.floor(Math.random() * 255).toString(16);
-	if (g.length == 1) {
-		g = "0" + g;
-	}
-	let b = Math.floor(Math.random() * 255).toString(16);
-	if (b.length == 1) {
-		b = "0" + b;
-	}
-	return "#" + r + g + b;
-}
-
-const setupWBR = () => {
-	colorValues[colorIndices.RED] = "#FF6978"; // red
-	colorValues[colorIndices.GREEN] = "#fffdfc"; // white
-	colorValues[colorIndices.BLUE] = "#464b63"; // black
-	setupSecondaryColors();
-	
-	// colorValues[colorIndices.YELLOW] = "#FFADB5"; // pink
-	// colorValues[colorIndices.MAGENTA] = "#8c3a42"; // maroon
-	// colorValues[colorIndices.CYAN] = "#888888"; // grey
-
-	// colorValues[colorIndices.BLACK] = "#284673"; // navy
-	// colorValues[colorIndices.WHITE] = "#d0e3fe"; // light blue???
-	// colorValues[colorIndices.PLAYER] = colorValues[colorIndices.WHITE];
-}
-
-const setupRandom = () => {
-	colorValues[colorIndices.RED] = randColor();
-	colorValues[colorIndices.GREEN] = randColor();
-	colorValues[colorIndices.BLUE] = randColor();
-	setupSecondaryColors();
-}
-
-const setupRGW = () => {
-	// colorValues[colorIndices.RED] = "#DF495C";
-	// colorValues[colorIndices.GREEN] = "#2f44c7";
-	// colorValues[colorIndices.BLUE] = "#E9D7E8";
-	colorValues[colorIndices.RED] = "#FF6978";
-	colorValues[colorIndices.GREEN] = "#94EA54";
-	colorValues[colorIndices.BLUE] = "#5699fd";
-	setupSecondaryColors();
-}
-
-function setupSecondaryColors() {
-	let r = colorValues[colorIndices.RED];
-	let g = colorValues[colorIndices.GREEN];
-	let b = colorValues[colorIndices.BLUE];
-	let yi = colorIndices.YELLOW;
-	let mi = colorIndices.MAGENTA;
-	let ci = colorIndices.CYAN;
-	let wi = colorIndices.WHITE;
-	let pi = colorIndices.PLAYER;
-	colorValues[yi] = lerpColor(r, g, .5);
-	colorValues[mi] = lerpColor(r, b, .5);
-	colorValues[ci] = lerpColor(g, b, .5);
-
-	let y = colorValues[yi];
-	let m = colorValues[mi];
-	let c = colorValues[ci];
-
-	colorValues[wi] = lerpColor(lerpColor(y, m, .5), c, .5);
-	colorValues[pi] = colorValues[wi];
-	colorValues[colorIndices.BLACK] = "#284673";
-}
-
-setupRGW();
+colorValues[colorIndices.BLACK] = "#464B63";
+colorValues[colorIndices.WHITE] = "#fffdfc";
+colorValues[colorIndices.PLAYER] = "#fffdfc";
 
 export { colorValues };
 
