@@ -117,7 +117,7 @@ export default class BoardManager {
 					animFrame.background = bg;
 					if (playerMoves.includes(state.lastAction.type)) {
 						const switchID = GameAudio.play('switch_toggle');
-						GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, switchID);
+						GameAudio.volume(state.ui.sound.soundOn ? 2.0 : 0.0, switchID);
 					}
 				} else {
 					if (playerMoves.includes(state.lastAction.type)) {
@@ -129,7 +129,7 @@ export default class BoardManager {
 				if (playerMoves.includes(state.lastAction.type)) {
 					const moveBlockedID = GameAudio.play('move_blocked');	
 					console.log("move blocked");
-					GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, moveBlockedID);
+					GameAudio.volume(state.ui.sound.soundOn ? 2.0 : 0.0, moveBlockedID);
 					switch (state.lastAction.type) {
 						case playerActionNames.MOVE_LEFT:
 							animFrame.squish = { dx: -1, dy: 0 };

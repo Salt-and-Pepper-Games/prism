@@ -38,7 +38,7 @@
     },
     "move_blocked": {
       "start": 651,
-      "end": 651.2351020408163,
+      "end": 651.2231065759637,
       "loop": false
     },
     "pack_complete": {
@@ -53,7 +53,7 @@
     },
     "switch_toggle": {
       "start": 664,
-      "end": 664.444081632653,
+      "end": 664.4320861678004,
       "loop": false
     }
   }
