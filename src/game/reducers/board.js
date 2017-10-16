@@ -23,6 +23,7 @@ export const defaultState = {
 	loaded: false,
 	blocks: null,
 	player: null,
+	playerStart: null,
 	home: null,
 	enemies: null,
 	background: colorIndices.BLACK,
@@ -67,6 +68,8 @@ export default (state = defaultState, action) => {
 				packInfo: null,
 				levelNumber: null
 			});
+		case levelActions.RESTART_LEVEL:
+			return getStateFromRestart(state);
 		case playerActions.MOVE_UP:
 			return getStateFromMovement(state, state.player.x, state.player.y - 1);
 		case playerActions.MOVE_DOWN:
@@ -80,6 +83,14 @@ export default (state = defaultState, action) => {
 		default:
 			return state;
 	}
+}
+
+function getStateFromRestart(oldBoard) {
+	const board = getStateFromBgColor(oldBoard, colorIndices.BLACK);
+	Object.assign(board, {
+		player: board.playerStart
+	});
+	return board;
 }
 
 function getStateFromMovement(oldBoard, x, y) {
@@ -193,6 +204,7 @@ const parseBoard = lines => {
 		return {
 			blocks,
 			player,
+			playerStart: player,
 			home,
 			enemies: null
 		};

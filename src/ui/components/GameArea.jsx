@@ -58,7 +58,8 @@ class GameArea extends React.Component {
 			currentPack,
 			startTransition,
 			stopTransition,
-			audioLoaded
+			audioLoaded,
+			restartLevel
 		} = this.props;
 		return (
 			<div>
@@ -105,7 +106,7 @@ class GameArea extends React.Component {
 							<i className={`hint-btn fa fa-magic`}/>
 						</div>
 						<div className='in-game-buttons'>
-							<i onClick={() => loadLevel(match.params.levelNumber, match.params.packName)} className={`reset-btn fa fa-refresh`}/>
+							<i onClick={restartLevel} className={`reset-btn fa fa-refresh`}/>
 						</div>
 					</div>
 				</div>
