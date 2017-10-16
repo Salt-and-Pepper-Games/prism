@@ -96,7 +96,7 @@ export default class BoardManager {
 						// figure out how to navigate to a new url here
 						if (playerMoves.includes(state.lastAction.type)) {
 							const levelEndID = GameAudio.play('level_complete');
-							const duration = GameAudio.duration(levelEndID);
+							// const duration = GameAudio.duration(levelEndID);
 							GameAudio.volume(state.ui.sound.soundOn ? 0.375 : 0.0, levelEndID);
 							// GameAudio.fade(0.0, state.ui.sound.soundOn ? 0.5 : 0.0, duration*1000/2, levelEndID);
 							// GameAudio.fade(state.ui.sound.soundOn ? 0.0 : 0.5, 0.0, duration*1000/2, levelEndID);

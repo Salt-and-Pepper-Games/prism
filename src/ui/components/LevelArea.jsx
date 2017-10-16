@@ -31,7 +31,7 @@ class LevelArea extends React.Component {
 									onClick={() => setCurrentPack(pack)}
 								>
 									<div className={`pack-content`}>
-										<p className="pack-content-info difficulty">easy</p>
+										<p className="pack-content-info difficulty">{pack.packSize ? `${pack.packSize}x${pack.packSize}` : 'Mixed size'}</p>
 										<p className='pack-title'>{pack.packName.toUpperCase()}</p>
 										<p className="pack-content-info completion">{`${Math.floor((solvedCount / pack.levelCount) * 100)}% complete`}</p>
 									</div>
