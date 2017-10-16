@@ -96,7 +96,10 @@ export default class BoardManager {
 						// figure out how to navigate to a new url here
 						if (playerMoves.includes(state.lastAction.type)) {
 							const levelEndID = GameAudio.play('level_complete');
-							GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, levelEndID);
+							const duration = GameAudio.duration(levelEndID);
+							GameAudio.volume(state.ui.sound.soundOn ? 0.5 : 0.0, levelEndID);
+							// GameAudio.fade(0.0, state.ui.sound.soundOn ? 0.5 : 0.0, duration*1000/2, levelEndID);
+							// GameAudio.fade(state.ui.sound.soundOn ? 0.0 : 0.5, 0.0, duration*1000/2, levelEndID);
 						}
 						
 						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
