@@ -129,25 +129,6 @@ export default class Player extends BaseModel {
 		return anim.play();
 	}
 
-	/*squishAnimation(x, y, deltaX, deltaY, vertical) {
-		return (time) => {
-			const xDiff = targetX - x;
-			const yDiff = targetY - y;
-			const animationPos = Math.sin(time * Math.PI / 2.0);
-			this.x = x + xDiff * animationPos;
-			this.y = y + yDiff * animationPos;
-			this.model.setX(this.cellWidth * (this.x + .5));
-			this.model.setY(this.cellHeight * (this.y + .5));
-			if (vertical) {
-				this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-				this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-			} else {
-				this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-				this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-			}
-		};
-	}*/
-
 	updatePlayer(frame) {
 		//eye animation
 		// TODO make eye look at exit when it exists (for now we just look at top left corner)
@@ -186,9 +167,5 @@ export default class Player extends BaseModel {
 		}
 		return Promise.all(anims);
 	}
-
-	// destroy() {
-	// 	this.model.destroy();
-	// }
 }
 

@@ -9,6 +9,7 @@ const PackCompleteModal = ({
 	userLevelData,
 	returnToMainScreen,
 	restartPack,
+	restartLevel,
 	soundOn,
 	startTransition,
 	stopTransition,
@@ -45,7 +46,16 @@ const PackCompleteModal = ({
 						<div className='pack-complete-btn-wrapper'>
 							<p className="pack-complete-text btn-label">Replay</p>
 							<i
-								onClick={() => restartPack(history, currentPack ? currentPack.packName : '')}
+								onClick={
+									() => {
+										if (currentPack.levelCount > 1) {
+											return restartPack(history, currentPack ? currentPack.packName : '')
+										}
+										else {
+											return restartLevel()
+										}
+									}
+								}
 								className={`pack-complete-restart-btn fa fa-refresh`}
 							/>
 						</div>

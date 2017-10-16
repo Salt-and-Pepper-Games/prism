@@ -25,6 +25,7 @@ export default class BaseModel {
 		return destroyAnimation(this.model, this.baseOffsetX - this.baseWidth/2, this.baseOffsetY - this.baseHeight/2, this.animTime).play()
 			.then(() => {
 				this.model.destroy();
+				this.layer.batchDraw();
 			});
 	}
 

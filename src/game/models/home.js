@@ -46,7 +46,7 @@ export default class Home extends BaseModel {
 
 		}
 
-		imageObj.src = '/images/home.png';
+		imageObj.src = `${process.env.PUBLIC_URL}/images/home.png`;
 
 		this.hasAltColor = false;
 		this.width = width;

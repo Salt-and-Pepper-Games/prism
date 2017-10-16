@@ -14,3 +14,7 @@ export const closeLevelAction = () => ({
 export const completeLevelAction = () => ({
 	type: types.COMPLETE_LEVEL
 })
+
+export const restartLevelAction = () => ({
+	type: types.RESTART_LEVEL
+});

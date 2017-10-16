@@ -31,6 +31,7 @@ const mapDispatchToProps = dispatch => {
 		startTransition: () => dispatch(soundActionCreators.startTransitionPlaying()),
 		stopTransition: () => dispatch(soundActionCreators.stopTransitionPlaying()),
 		loadLevel: (levelNumber, packName) => dispatch(asyncActionCreators.loadLevelString(levelNumber, packName)),
+		restartLevel: () => dispatch(levelActionCreators.restartLevelAction()),
 		triggerAudioLoaded: () => dispatch(soundActionCreators.triggerAudioLoaded())
 	};
 };

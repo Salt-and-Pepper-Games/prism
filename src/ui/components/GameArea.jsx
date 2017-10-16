@@ -45,8 +45,6 @@ class GameArea extends React.Component {
 		const {
 			isLoading,
 			moveCount,
-			loadLevel,
-			match,
 			inGame,
 			returnToMainScreen,
 			openHelp,
@@ -58,7 +56,8 @@ class GameArea extends React.Component {
 			currentPack,
 			startTransition,
 			stopTransition,
-			audioLoaded
+			audioLoaded,
+			restartLevel
 		} = this.props;
 		return (
 			<div>
@@ -110,7 +109,7 @@ class GameArea extends React.Component {
 								onClick={() => {
 									const id = GameAudio.play('reset_level');
 									GameAudio.volume(soundOn ? .5 : 0.0, id);
-									loadLevel(match.params.levelNumber, match.params.packName);
+									restartLevel();
 								}}
 								className={`reset-btn fa fa-refresh`}
 							/>
