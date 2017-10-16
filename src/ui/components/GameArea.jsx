@@ -30,7 +30,7 @@ class GameArea extends React.Component {
 		if (!nextProps.isLoading && !nextProps.transitionPlaying && nextProps.audioLoaded && !GameAudio.playing(this.loopID)) {
 			this.loopID = GameAudio.play('gameplay_loop');
 			if (nextProps.soundOn) {
-				GameAudio.fade(0, 1.0, 2500, this.loopID);
+				GameAudio.fade(0, 1.0, 1250, this.loopID);
 			} else {
 				GameAudio.volume(0.0, this.loopID);
 			}
