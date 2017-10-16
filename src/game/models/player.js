@@ -63,7 +63,6 @@ export default class Player extends BaseModel {
 		model.add(eye);
 		super(color, model, layer);
 
-		this.model = model;
 		this.body = body;
 		this.eyehole = eyehole;
 		this.iris = iris;

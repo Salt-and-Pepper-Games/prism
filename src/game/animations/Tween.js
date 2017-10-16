@@ -44,7 +44,9 @@ export default class Tween {
 						this.node[prop](newColor);
 					}
 					else {
-						this.node[prop](t * this.to[prop] + (1 - t) * this.from[prop]);
+						let newVal = t * this.to[prop] + (1 - t) * this.from[prop];
+						// console.log("Setting " + prop + " to " + newVal);
+						this.node[prop](newVal);
 					}
 				}
 			};

@@ -6,7 +6,6 @@ import isEmpty from 'lodash.isempty';
  */
 export default class AnimationManager {
 	AnimationManager() {
-		console.log("SETTING UP ANIMATION MANAGER!!!!!!");
 		this.board = null;
 		this.promiseChain = null;
 		this.speed = 1;
@@ -48,8 +47,8 @@ export default class AnimationManager {
 		if (destroy) {
 			// destroy a board
 			// TODO: animation for destroying a board
-			// promises.push(this.board.destroy());
-			this.board.destroy();
+			promises.push(this.board.destroy());
+			// this.board.destroy();
 			this.queuedAnimations = 0;
 			this.speed = 1;
 		}
@@ -58,11 +57,11 @@ export default class AnimationManager {
 			// TODO: animation for loading a board
 			this.setBoard(board);
 			data.stage.draw();
+			promises.push(this.board.onLoad());
 			// promises.push(this.board.load());
 			// promises.push(Promise.resolve());
 		}
 		if (squish) {
-			console.log("QUEUING UP SQUISH ANIMATION");
 			promises.push(this.board.onPlayerSquish(squish.dx, squish.dy));
 		}
 
@@ -70,8 +69,10 @@ export default class AnimationManager {
 			Tween.setCurrentTweenSpeed(this.speed);
 			return Promise.all(promises).then(() => {
 				this.queuedAnimations -= 1;
-				this.speed = this.queuedAnimations;
-				Tween.setCurrentTweenSpeed(this.speed);
+				if (this.queuedAnimations > 0) {
+					this.speed = this.queuedAnimations;
+					Tween.setCurrentTweenSpeed(this.speed);
+				}
 			});
 		}
 		else {

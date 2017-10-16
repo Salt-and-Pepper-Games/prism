@@ -1,7 +1,7 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
 import BaseModel from './baseModel';
-import { setColorAnimation } from '../animations/colorAnimations';
+import { setImageColorAnimation } from '../animations/colorAnimations';
 
 export default class Home extends BaseModel {
 	constructor(x, y, width, height, layer) {
@@ -10,6 +10,7 @@ export default class Home extends BaseModel {
 		let cellHeight = layer.height() / height;
 		width = .7 * layer.width() / width;
 		height = .7 * layer.height() / height;
+
 		let model = new Konva.Rect({
 			x: cellWidth * (x + .5),
 			y: cellHeight * (y + .5),
@@ -18,9 +19,34 @@ export default class Home extends BaseModel {
 			width: width,
 			height: height,
 			cornerRadius: 10,
-			fill: colorValues[color]
+			fill: colorValues[color],
+			stroke: "#000000",
+			strokeWeight: 5
 		});
+		// model.opacity(0);
+
 		super(color, model, layer);
+
+		let imageObj = new Image();
+		imageObj.onload = () => {
+			model.destroy();
+			model = new Konva.Image({
+				x: x * cellWidth,
+				y: y * cellHeight,
+				width: cellWidth,
+				height: cellHeight,
+				image: imageObj
+			});
+			model.cache();
+			model.filters([Konva.Filters.RGBA]);
+
+			super(color, model, layer);
+			setImageColorAnimation(model, colorValues[color], 1).play();
+			this.onLoad();
+
+		}
+
+		imageObj.src = '/images/home.png';
 
 		this.hasAltColor = false;
 		this.width = width;
@@ -30,12 +56,6 @@ export default class Home extends BaseModel {
 
 		this.x = x;
 		this.y = y;
-
-
-		// setTimeout(() => {
-		// 	layer.add(this.model);
-		// 	layer.draw();
-		// }, 0);
 	}
 
 
@@ -43,12 +63,13 @@ export default class Home extends BaseModel {
 		const homeColor = colorIndices.WHITE;
 
 		if (color === homeColor && !this.hasAltColor) {
-			let anim = setColorAnimation(this.model, altColorValues[this.color], this.animTime);
+			console.log("Changing home to alt color");
+			let anim = setImageColorAnimation(this.model, altColorValues[this.color], this.animTime);
 			this.hasAltColor = true;
 			return anim.play();
 		}
 		else if (color !== homeColor && this.hasAltColor) {
-			let anim = setColorAnimation(this.model, colorValues[this.color], this.animTime);
+			let anim = setImageColorAnimation(this.model, colorValues[this.color], this.animTime);
 			this.hasAltColor = false;
 			return anim.play();
 		}

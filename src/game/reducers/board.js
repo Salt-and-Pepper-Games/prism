@@ -1,5 +1,5 @@
 import backgroundActions from '../../actionCreators/backgroundActionNames';
-import levelActions from '../../actionCreators/levelActionNames';
+import * as levelActions from '../../actionCreators/levelActionNames';
 import playerActions from '../../actionCreators/playerActionNames';
 import { blockTypes } from '../models/board';
 import { colorIndices } from '../colors';
