@@ -25,6 +25,10 @@ const mapDispatchToProps = dispatch => {
 			dispatch(uiActionCreators.togglePackComplete());
 			history.push(`/game/${packName}/1`);
 		},
+		restartLevel: () => {
+			dispatch(uiActionCreators.togglePackComplete());
+			dispatch(levelActionCreators.restartLevelAction());
+		},
 		startTransition: () => dispatch(soundActionCreators.startTransitionPlaying()),
 		stopTransition: () => dispatch(soundActionCreators.stopTransitionPlaying())
 	};

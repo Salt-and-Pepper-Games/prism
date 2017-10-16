@@ -45,8 +45,6 @@ class GameArea extends React.Component {
 		const {
 			isLoading,
 			moveCount,
-			loadLevel,
-			match,
 			inGame,
 			returnToMainScreen,
 			openHelp,
