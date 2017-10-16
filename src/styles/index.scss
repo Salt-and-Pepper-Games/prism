@@ -170,11 +170,15 @@ body {
 .move-count:hover {
     cursor: default;
 }
-.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover,
+.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover,
 .pack-complete-exit-btn:hover, .pack-complete-restart-btn:hover {
     cursor: pointer;
     opacity: .75;    
 }
+.hint-btn:hover {
+    cursor: not-allowed;
+}
+
 .help-overlay {
     position: fixed;
     z-index: 2;
