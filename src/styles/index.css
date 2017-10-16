@@ -517,6 +517,9 @@ body {
   cursor: pointer;
   opacity: .75; }
 
+.hint-btn {
+  opacity: .75; }
+
 .hint-btn:hover {
   cursor: not-allowed; }
 
