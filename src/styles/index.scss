@@ -784,6 +784,13 @@ body {
         border: .25em solid $dark-yellow;
     }
 }
+.packyellowcomplete {
+    @extend .packyellow;
+    border: 1em solid $dark-yellow;
+    @include mobile {
+        border: .5em solid $dark-yellow;
+    }
+}
 .packyellowbg {
     background-color: $yellow-opaque;
 }
@@ -793,6 +800,13 @@ body {
     border: .35em solid $dark-cyan;
     @include mobile {
         border: .25em solid $dark-cyan;
+    }
+}
+.packcyancomplete {
+    @extend .packcyan;
+    border: 1em solid $dark-cyan;
+    @include mobile {
+        border: .5em solid $dark-cyan;
     }
 }
 .packcyanbg {
@@ -806,6 +820,13 @@ body {
         border: .25em solid $dark-black;
     }
 }
+.packblackcomplete {
+    @extend .packblack;
+    border: 1em solid $dark-black;
+    @include mobile {
+        border: .5em solid $dark-black;
+    }
+}
 .packblackbg {
     background-color: $black-opaque;
 }
@@ -815,6 +836,13 @@ body {
     border: .35em solid $dark-white;
     @include mobile {
         border: .25em solid $dark-white;
+    }
+}
+.packwhitecomplete {
+    @extend .packwhite;
+    border: 1em solid $dark-white;
+    @include mobile {
+        border: .5em solid $dark-white;
     }
 }
 .packwhitebg {
@@ -828,6 +856,13 @@ body {
         border: .25em solid $dark-red;
     }
 }
+.packredcomplete {
+    @extend .packred;
+    border: 1em solid $dark-red;
+    @include mobile {
+        border: .5em solid $dark-red;
+    }
+}
 .packredbg {
     background-color: $red-opaque;
 }
@@ -837,6 +872,13 @@ body {
     border: .35em solid $dark-blue;
     @include mobile {
         border: .25em solid $dark-blue;
+    }
+}
+.packbluecomplete {
+    @extend .packblue;
+    border: 1em solid $dark-blue;
+    @include mobile {
+        border: .5em solid $dark-blue;
     }
 }
 .packbluebg {
@@ -850,6 +892,13 @@ body {
         border: .25em solid $dark-green;
     }
 }
+.packgreencomplete {
+    @extend .packgreen;
+    border: 1em solid $dark-green;
+    @include mobile {
+        border: .5em solid $dark-green;
+    }
+}
 .packgreenbg {
     background-color: $green-opaque;
 }
@@ -859,6 +908,13 @@ body {
     border: .35em solid $dark-magenta;
     @include mobile {
         border: .25em solid $dark-magenta;
+    }
+}
+.packmagentacomplete {
+    @extend .packmagenta;
+    border: 1em solid $dark-magenta;
+    @include mobile {
+        border: .5em solid $dark-magenta;
     }
 }
 .packmagentabg {

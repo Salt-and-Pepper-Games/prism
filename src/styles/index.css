@@ -1069,114 +1069,162 @@ body {
 .pack:hover {
   cursor: pointer; }
 
-.pack.packblack:hover {
+.pack.packblack:hover, .pack.packblackcomplete:hover {
   background-color: rgba(70, 75, 99, 0.8); }
 
-.pack.packwhite:hover {
+.pack.packwhite:hover, .pack.packwhitecomplete:hover {
   background-color: rgba(255, 243, 243, 0.8); }
 
-.pack.packyellow:hover {
+.pack.packyellow:hover, .pack.packyellowcomplete:hover {
   background-color: rgba(255, 250, 108, 0.8); }
 
-.pack.packcyan:hover {
+.pack.packcyan:hover, .pack.packcyancomplete:hover {
   background-color: rgba(76, 237, 222, 0.8); }
 
-.pack.packmagenta:hover {
+.pack.packmagenta:hover, .pack.packmagentacomplete:hover {
   background-color: rgba(255, 123, 214, 0.8); }
 
-.pack.packred:hover {
+.pack.packred:hover, .pack.packredcomplete:hover {
   background-color: rgba(255, 105, 120, 0.8); }
 
-.pack.packgreen:hover {
+.pack.packgreen:hover, .pack.packgreencomplete:hover {
   background-color: rgba(148, 234, 84, 0.8); }
 
-.pack.packblue:hover {
+.pack.packblue:hover, .pack.packbluecomplete:hover {
   background-color: rgba(86, 153, 253, 0.8); }
 
-.packyellow {
+.packyellow, .packyellowcomplete {
   color: #52501b;
   background-color: #fffa6c;
   border: 0.35em solid #52501b; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packyellow {
+    .packyellow, .packyellowcomplete {
       border: 0.25em solid #52501b; } }
+
+.packyellowcomplete {
+  border: 1em solid #52501b; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packyellowcomplete {
+      border: 0.5em solid #52501b; } }
 
 .packyellowbg {
   background-color: rgba(255, 250, 108, 0.35); }
 
-.packcyan {
+.packcyan, .packcyancomplete {
   color: #173c38;
   background-color: #4CEDDE;
   border: 0.35em solid #173c38; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packcyan {
+    .packcyan, .packcyancomplete {
       border: 0.25em solid #173c38; } }
+
+.packcyancomplete {
+  border: 1em solid #173c38; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packcyancomplete {
+      border: 0.5em solid #173c38; } }
 
 .packcyanbg {
   background-color: rgba(76, 237, 222, 0.35); }
 
-.packblack {
+.packblack, .packblackcomplete {
   color: #252525;
   background-color: #464B63;
   border: 0.35em solid #252525; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packblack {
+    .packblack, .packblackcomplete {
       border: 0.25em solid #252525; } }
+
+.packblackcomplete {
+  border: 1em solid #252525; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packblackcomplete {
+      border: 0.5em solid #252525; } }
 
 .packblackbg {
   background-color: rgba(70, 75, 99, 0.35); }
 
-.packwhite {
+.packwhite, .packwhitecomplete {
   color: #6f6f6f;
   background-color: #fff3f3;
   border: 0.35em solid #6f6f6f; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packwhite {
+    .packwhite, .packwhitecomplete {
       border: 0.25em solid #6f6f6f; } }
+
+.packwhitecomplete {
+  border: 1em solid #6f6f6f; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packwhitecomplete {
+      border: 0.5em solid #6f6f6f; } }
 
 .packwhitebg {
   background-color: rgba(255, 243, 243, 0.35); }
 
-.packred {
+.packred, .packredcomplete {
   color: #4e0009;
   background-color: #FF6978;
   border: 0.35em solid #4e0009; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packred {
+    .packred, .packredcomplete {
       border: 0.25em solid #4e0009; } }
+
+.packredcomplete {
+  border: 1em solid #4e0009; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packredcomplete {
+      border: 0.5em solid #4e0009; } }
 
 .packredbg {
   background-color: rgba(255, 105, 120, 0.35); }
 
-.packblue {
+.packblue, .packbluecomplete {
   color: #003179;
   background-color: #5699fd;
   border: 0.35em solid #003179; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packblue {
+    .packblue, .packbluecomplete {
       border: 0.25em solid #003179; } }
+
+.packbluecomplete {
+  border: 1em solid #003179; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packbluecomplete {
+      border: 0.5em solid #003179; } }
 
 .packbluebg {
   background-color: rgba(86, 153, 253, 0.35); }
 
-.packgreen {
+.packgreen, .packgreencomplete {
   color: #225000;
   background-color: #94EA54;
   border: 0.35em solid #225000; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packgreen {
+    .packgreen, .packgreencomplete {
       border: 0.25em solid #225000; } }
+
+.packgreencomplete {
+  border: 1em solid #225000; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packgreencomplete {
+      border: 0.5em solid #225000; } }
 
 .packgreenbg {
   background-color: rgba(148, 234, 84, 0.35); }
 
-.packmagenta {
+.packmagenta, .packmagentacomplete {
   color: #700080;
   background-color: #ff7bd6;
   border: 0.35em solid #700080; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packmagenta {
+    .packmagenta, .packmagentacomplete {
       border: 0.25em solid #700080; } }
+
+.packmagentacomplete {
+  border: 1em solid #700080; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packmagentacomplete {
+      border: 0.5em solid #700080; } }
 
 .packmagentabg {
   background-color: rgba(255, 123, 214, 0.35); }
