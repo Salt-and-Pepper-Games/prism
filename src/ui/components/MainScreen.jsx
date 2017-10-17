@@ -17,18 +17,28 @@ class MainScreen extends React.Component {
 			}
 		}
 	}
-	componentWillReceiveProps(nextProps) {
-		if (!nextProps.isLoading && !nextProps.transitionPlaying && nextProps.audioLoaded && !GameAudio.playing(this.loopID)) {
+	render() {
+		const {
+			isLoading,
+			transitionPlaying,
+			audioLoaded, inGame,
+			openDashboard,
+			toggleVolume,
+			soundOn,
+			packOpen
+		} = this.props;
+		if (!isLoading && !transitionPlaying && audioLoaded && !GameAudio.playing(this.loopID)) {
 			this.loopID = GameAudio.play('main_loop');
-			if (nextProps.soundOn) {
+			if (soundOn) {
 				GameAudio.fade(0, .2, 2500, this.loopID);
 			} else {
 				GameAudio.volume(0.0, this.loopID);
 			}
+		} else if (!soundOn) {
+			GameAudio.volume(0.0, this.loopID);
+		} else {
+			GameAudio.volume(0.2, this.loopID);
 		}
-	}
-	render() {
-		const { inGame, openDashboard, toggleVolume, soundOn, packOpen } = this.props;
 		return (
 			<div className={`${inGame ? 'hidden' : 'open'} main-screen`}>
 				<Header packOpen={packOpen} openDashboard={openDashboard} toggleVolume={toggleVolume} soundOn={soundOn} />

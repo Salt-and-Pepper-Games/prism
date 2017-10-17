@@ -102,6 +102,9 @@ body {
     -ms-animation-delay: 0s, 1s;
     -o-animation-delay: 0s, 1s;
     animation-delay: 0s, 1s;
+    @include mobile {
+        top: 85%;
+    }
 }
 .level-pack-area {
     position: relative;
