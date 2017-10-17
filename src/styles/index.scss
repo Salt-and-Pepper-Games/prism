@@ -87,11 +87,11 @@ body {
     display: block;
     position: fixed;
     left: 50%;
-    top: 75%;
+    top: 70%;
+    font-size: 2em;
     text-align: center;
     transform: translate(-50%, -50%);
     width: 10em;
-    height: 10em;
     -webkit-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
     -moz-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
     -ms-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
@@ -103,7 +103,8 @@ body {
     -o-animation-delay: 0s, 1s;
     animation-delay: 0s, 1s;
     @include mobile {
-        top: 85%;
+        top: 75%;
+        font-size: 1em;
     }
 }
 .level-pack-area {
