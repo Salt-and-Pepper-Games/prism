@@ -57,23 +57,6 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 				<Slider {...settings}>
 					<div>
 						<div className="dashboard-panel">
-							<h1 className="leaderboards-header">Leaderboards</h1>
-							<div className="leaderboards-wrapper">
-								<ol className="leaderboards-list first-list">
-									<li className="leaderboard-item" >user12341</li>
-									<li className="leaderboard-item" >user23531</li>
-									<li className="leaderboard-item" >user13553</li>
-								</ol>
-								<ol start="4" className="leaderboards-list">
-									<li className="leaderboard-item" >user43412</li>
-									<li className="leaderboard-item" >user63455</li>
-									<li className="leaderboard-item" >user66432</li>
-								</ol>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div className="dashboard-panel">
 							<h1 className="stats-header">Stats</h1>
 							<div className="stats-wrapper-wrapper">
 								<div className="stats-wrapper">
@@ -97,6 +80,22 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 							<p className="about-prism">
 								Bring the white square home by using the switches to combine colors and navigate obstacles.
 							</p>
+						</div>
+					</div>
+					<div>
+						<div className="dashboard-panel">
+							<div className="leaderboards-wrapper">
+								<h1 className="credits-header">Design</h1>
+								<ol className="credits-list first-list">
+									<li className="credit-item" >Simon Ever-Hale</li>
+									<li className="credit-item" >Sam Grund</li>
+									<li className="credit-item" >Peter Stefek</li>
+								</ol>
+								<h1 className="credits-header">Sound</h1>
+								<ol start="4" className="credits-list">
+									<li className="credit-item" >Isaac Pearl</li>
+								</ol>
+							</div>
 						</div>
 					</div>
 				</Slider>
