@@ -27,14 +27,6 @@ class GameArea extends React.Component {
 		this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
 	}
 	componentWillReceiveProps(nextProps) {
-		if (!nextProps.isLoading && !nextProps.transitionPlaying && nextProps.audioLoaded && !GameAudio.playing(this.loopID)) {
-			this.loopID = GameAudio.play('gameplay_loop');
-			if (nextProps.soundOn) {
-				GameAudio.fade(0, 1.0, 1250, this.loopID);
-			} else {
-				GameAudio.volume(0.0, this.loopID);
-			}
-		}
 		if (!isEqual(this.props.match, nextProps.match)) {
 			const matchParams = nextProps.match.params;
 			this.props.loadLevel(matchParams.levelNumber, matchParams.packName);
@@ -57,8 +49,21 @@ class GameArea extends React.Component {
 			startTransition,
 			stopTransition,
 			audioLoaded,
-			restartLevel
+			restartLevel,
+			transitionPlaying
 		} = this.props;
+		if (!isLoading && !transitionPlaying && audioLoaded && !GameAudio.playing(this.loopID)) {
+			this.loopID = GameAudio.play('gameplay_loop');
+			if (soundOn) {
+				GameAudio.fade(0, 1.0, 1250, this.loopID);
+			} else {
+				GameAudio.volume(0.0, this.loopID);
+			}
+		} else if (!soundOn) {
+			GameAudio.volume(0.0, this.loopID);
+		} else {
+			GameAudio.volume(1.0, this.loopID);
+		}
 		return (
 			<div>
 				{((isLoading && !inGame) || !audioLoaded) &&

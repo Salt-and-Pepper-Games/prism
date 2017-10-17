@@ -447,6 +447,9 @@ body {
   -ms-animation-delay: 0s, 1s;
   -o-animation-delay: 0s, 1s;
   animation-delay: 0s, 1s; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    #loader-text {
+      top: 85%; } }
 
 .level-pack-area {
   position: relative; }

@@ -34,7 +34,7 @@ class LevelArea extends React.Component {
 									style={isTutorial ? {} : {order: `${pack.packSize ? pack.packSize : 999}`}}
 								>
 									<div className={`pack-content`}>
-										<p className="pack-content-info difficulty">{pack.packSize ? `${pack.packSize}x${pack.packSize}` : 'Mixed size'}</p>
+										<p className="pack-content-info difficulty">{pack.packSize ? `${pack.packSize}x${pack.packSize}` : 'Mixed'}</p>
 										<p className='pack-title'>{pack.packName.toUpperCase()}</p>
 										<p className="pack-content-info completion">{`${percentComplete}% complete`}</p>
 									</div>
