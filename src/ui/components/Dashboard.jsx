@@ -54,6 +54,7 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 		<div>
 			<div onClick={closeDashboard} className={`dashboard-bg ${isOpen ? 'open' : 'hidden'}`} />
 			<div className={`dashboard ${isOpen ? 'open' : 'hidden'}`}>
+				<i onClick={closeDashboard} className='fa fa-close close-dashboard-btn'/>
 				<Slider {...settings}>
 					<div>
 						<div className="dashboard-panel">

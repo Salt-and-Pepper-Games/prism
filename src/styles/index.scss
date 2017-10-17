@@ -195,9 +195,17 @@ body {
     cursor: default;
 }
 .return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover,
-.pack-complete-exit-btn:hover, .pack-complete-restart-btn:hover {
+.pack-complete-exit-btn:hover, .pack-complete-restart-btn:hover, .close-dashboard-btn:hover {
     cursor: pointer;
     opacity: .75;    
+}
+.close-dashboard-btn {
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    font-size: 2em;
+    transition: opacity .25s;
+    z-index: 3;
 }
 .hint-btn {
     opacity: .75;
@@ -627,6 +635,9 @@ body {
 }
 .credits-header {
     font-size: 1.75em;
+    @include mobile {
+        font-size: 1.5em;
+    }
 }
 .stat {
     list-style: circle;
