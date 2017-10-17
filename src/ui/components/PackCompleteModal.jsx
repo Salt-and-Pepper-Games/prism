@@ -49,6 +49,8 @@ const PackCompleteModal = ({
 								onClick={
 									() => {
 										if (currentPack.levelCount > 1) {
+											const id = GameAudio.play('enter_game');
+											GameAudio.volume(soundOn ? .5 : 0.0, id);
 											return restartPack(history, currentPack ? currentPack.packName : '')
 										}
 										else {
