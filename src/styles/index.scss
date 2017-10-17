@@ -602,6 +602,7 @@ body {
     padding-left: 0;
 }
 .credits-section {
+    margin-bottom: 1em;
     @include landscape-mobile {
         display: flex;
         flex-direction: column;
@@ -612,6 +613,7 @@ body {
 }
 .stats-header, .credits-header {
     font-weight: 300;
+    margin-top: 0;
     margin-bottom: .5em;
     text-align: center;
     @include mobile {
