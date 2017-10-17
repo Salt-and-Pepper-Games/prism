@@ -35,7 +35,8 @@ export const defaultState = {
 		switches: 0,
 		startTime: null,
 		elapsedTime: null,
-		solved: false
+		solved: false,
+		restarts: 0
 	}
 }
 
@@ -86,7 +87,7 @@ export default (state = defaultState, action) => {
 
 function getStateFromRestart(oldBoard) {
 	const board = getStateFromBgColor(oldBoard, colorIndices.BLACK);
-	const resetStats = Object.assign({}, oldBoard.stats, { moves: 0, switches: 0 });
+	const resetStats = Object.assign({}, oldBoard.stats, { restarts: oldBoard.stats.restarts + 1 });
 	Object.assign(board, {
 		player: board.playerStart,
 		stats: resetStats
