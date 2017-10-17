@@ -84,17 +84,27 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 					</div>
 					<div>
 						<div className="dashboard-panel">
-							<div className="leaderboards-wrapper">
-								<h1 className="credits-header">Design</h1>
-								<ol className="credits-list first-list">
-									<li className="credit-item" >Simon Ever-Hale</li>
-									<li className="credit-item" >Sam Grund</li>
-									<li className="credit-item" >Peter Stefek</li>
-								</ol>
-								<h1 className="credits-header">Sound</h1>
-								<ol start="4" className="credits-list">
-									<li className="credit-item" >Isaac Pearl</li>
-								</ol>
+							<div className="credits-wrapper">
+								<div className="credits-section">
+									<h1 className="credits-header">Design</h1>
+									<ol className="credits-list first-list">
+										<li className="credit-item" >Simon Ever-Hale</li>
+										<li className="credit-item" >Sam Grund</li>
+										<li className="credit-item" >Peter Stefek</li>
+									</ol>
+								</div>
+								<div className="credits-section">
+									<h1 className="credits-header">Music & Sound</h1>
+									<ol start="4" className="credits-list">
+										<li className="credit-item" >Isaac Pearl</li>
+									</ol>
+								</div>
+								<div className="credits-section">
+									<h1 className="credits-header">Special Thanks</h1>
+									<ol start="4" className="credits-list">
+										<li className="credit-item" >Jonah Bregstone</li>
+									</ol>
+								</div>
 							</div>
 						</div>
 					</div>

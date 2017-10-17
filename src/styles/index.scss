@@ -509,14 +509,14 @@ body {
 
 .dashboard {
     @extend .level-pack;
-    height: 50vh;
+    height: 65vh;
     z-index: 3;
     background-color: $grey;
     color: $dark-black;
     border: .5em solid $dark-black;
     border-radius: 1em;
-    @include landscape-mobile {
-        height: 60vh;
+    @include mobile {
+        height: 80vh;
     }
 }
 .dashboard-bg {
@@ -533,10 +533,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    height: 65vh;
     width: 100%;
-    @include landscape-mobile {
-        height: 60vh;
+    @include mobile {
+        height: 80vh;
     }
 }
 .about-prism {
@@ -570,16 +570,17 @@ body {
     align-items: center;
 }
 
-.stats-wrapper, .leaderboards-wrapper {
+.stats-wrapper, .credits-wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-.leaderboards-wrapper {
+.credits-wrapper {
     align-items: center;
     @include landscape-mobile {
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-around;
+        align-items: flex-start;
     }
 }
 .stats-wrapper {
@@ -600,9 +601,19 @@ body {
 .credits-list {
     padding-left: 0;
 }
-.stats-header, .credits-header, .daily-challenge-header {
+.credits-section {
+    @include landscape-mobile {
+        display: flex;
+        flex-direction: column;
+    }
+    @include portrait-mobile {
+        margin-bottom: .5em;
+    }
+}
+.stats-header, .credits-header {
     font-weight: 300;
     margin-bottom: .5em;
+    text-align: center;
     @include mobile {
         font-size: 1.75em;
         margin-bottom: .25em;
