@@ -432,11 +432,11 @@ body {
   display: block;
   position: fixed;
   left: 50%;
-  top: 75%;
+  top: 70%;
+  font-size: 2em;
   text-align: center;
   transform: translate(-50%, -50%);
   width: 10em;
-  height: 10em;
   -webkit-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
   -moz-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
   -ms-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
@@ -449,7 +449,8 @@ body {
   animation-delay: 0s, 1s; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     #loader-text {
-      top: 85%; } }
+      top: 75%;
+      font-size: 1em; } }
 
 .level-pack-area {
   position: relative; }
