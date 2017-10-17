@@ -79,7 +79,7 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 					<div>
 						<div className="dashboard-panel">
 							<p className="about-prism">
-								Bring the white square home by using the switches to combine colors and navigate obstacles.
+								PRISM
 							</p>
 						</div>
 					</div>
