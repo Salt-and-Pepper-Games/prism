@@ -103,6 +103,7 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 									<h1 className="credits-header">Special Thanks</h1>
 									<ol start="4" className="credits-list">
 										<li className="credit-item" >Jonah Bregstone</li>
+										<li className="credit-item" >Daniel Karcher</li>
 									</ol>
 								</div>
 							</div>
