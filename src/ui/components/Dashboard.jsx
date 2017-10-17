@@ -54,24 +54,8 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 		<div>
 			<div onClick={closeDashboard} className={`dashboard-bg ${isOpen ? 'open' : 'hidden'}`} />
 			<div className={`dashboard ${isOpen ? 'open' : 'hidden'}`}>
+				<i onClick={closeDashboard} className='fa fa-close close-dashboard-btn'/>
 				<Slider {...settings}>
-					<div>
-						<div className="dashboard-panel">
-							<h1 className="leaderboards-header">Leaderboards</h1>
-							<div className="leaderboards-wrapper">
-								<ol className="leaderboards-list first-list">
-									<li className="leaderboard-item" >user12341</li>
-									<li className="leaderboard-item" >user23531</li>
-									<li className="leaderboard-item" >user13553</li>
-								</ol>
-								<ol start="4" className="leaderboards-list">
-									<li className="leaderboard-item" >user43412</li>
-									<li className="leaderboard-item" >user63455</li>
-									<li className="leaderboard-item" >user66432</li>
-								</ol>
-							</div>
-						</div>
-					</div>
 					<div>
 						<div className="dashboard-panel">
 							<h1 className="stats-header">Stats</h1>
@@ -95,8 +79,35 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
 					<div>
 						<div className="dashboard-panel">
 							<p className="about-prism">
-								Bring the white square home by using the switches to combine colors and navigate obstacles.
+								PRISM
 							</p>
+						</div>
+					</div>
+					<div>
+						<div className="dashboard-panel">
+							<div className="credits-wrapper">
+								<div className="credits-section">
+									<h1 className="credits-header">Design</h1>
+									<ol className="credits-list first-list">
+										<li className="credit-item" >Simon Ever-Hale</li>
+										<li className="credit-item" >Sam Grund</li>
+										<li className="credit-item" >Peter Stefek</li>
+									</ol>
+								</div>
+								<div className="credits-section">
+									<h1 className="credits-header">Music & Sound</h1>
+									<ol start="4" className="credits-list">
+										<li className="credit-item" >Isaac Pearl</li>
+									</ol>
+								</div>
+								<div className="credits-section">
+									<h1 className="credits-header">Special Thanks</h1>
+									<ol start="4" className="credits-list">
+										<li className="credit-item" >Jonah Bregstone</li>
+										<li className="credit-item" >Daniel Karcher</li>
+									</ol>
+								</div>
+							</div>
 						</div>
 					</div>
 				</Slider>

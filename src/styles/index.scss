@@ -195,9 +195,17 @@ body {
     cursor: default;
 }
 .return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover,
-.pack-complete-exit-btn:hover, .pack-complete-restart-btn:hover {
+.pack-complete-exit-btn:hover, .pack-complete-restart-btn:hover, .close-dashboard-btn:hover {
     cursor: pointer;
     opacity: .75;    
+}
+.close-dashboard-btn {
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    font-size: 2em;
+    transition: opacity .25s;
+    z-index: 3;
 }
 .hint-btn {
     opacity: .75;
@@ -509,14 +517,14 @@ body {
 
 .dashboard {
     @extend .level-pack;
-    height: 50vh;
+    height: 65vh;
     z-index: 3;
     background-color: $grey;
     color: $dark-black;
     border: .5em solid $dark-black;
     border-radius: 1em;
-    @include landscape-mobile {
-        height: 60vh;
+    @include mobile {
+        height: 80vh;
     }
 }
 .dashboard-bg {
@@ -533,18 +541,18 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    height: 65vh;
     width: 100%;
-    @include landscape-mobile {
-        height: 60vh;
+    @include mobile {
+        height: 80vh;
     }
 }
 .about-prism {
     padding: 1em 1.5em;
     line-height: 2em;
-    font-size: 1.25em;
+    font-size: 5em;
     @include mobile {
-        font-size: 1em;
+        font-size: 3em;
     }
 }
 .main-buttons {
@@ -570,16 +578,17 @@ body {
     align-items: center;
 }
 
-.stats-wrapper, .leaderboards-wrapper {
+.stats-wrapper, .credits-wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-.leaderboards-wrapper {
+.credits-wrapper {
     align-items: center;
     @include landscape-mobile {
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-around;
+        align-items: flex-start;
     }
 }
 .stats-wrapper {
@@ -588,7 +597,7 @@ body {
         justify-content: space-around;
     }
 }
-.stats-list, .leaderboards-list {
+.stats-list, .credits-list {
     line-height: 2em;
     margin-top: 0;
     margin-bottom: 0;
@@ -597,9 +606,24 @@ body {
         font-size: 1em;
     }
 }
-.stats-header, .leaderboards-header, .daily-challenge-header {
+.credits-list {
+    padding-left: 0;
+}
+.credits-section {
+    margin-bottom: 1em;
+    @include landscape-mobile {
+        display: flex;
+        flex-direction: column;
+    }
+    @include portrait-mobile {
+        margin-bottom: .5em;
+    }
+}
+.stats-header, .credits-header {
     font-weight: 300;
+    margin-top: 0;
     margin-bottom: .5em;
+    text-align: center;
     @include mobile {
         font-size: 1.75em;
         margin-bottom: .25em;
@@ -609,11 +633,18 @@ body {
         font-size: 1.25em;
     }
 }
+.credits-header {
+    font-size: 1.75em;
+    @include mobile {
+        font-size: 1.5em;
+    }
+}
 .stat {
     list-style: circle;
 }
-.leaderboard-item {
-    list-style: decimal;
+.credit-item {
+    list-style: none;
+    text-align: center;
 }
 
 .header {
