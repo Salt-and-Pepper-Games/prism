@@ -1,4 +1,4 @@
-import types from './levelActionNames';
+import * as types from './levelActionNames';
 
 export const loadLevelAction = ({ levelString, levelNumber, packInfo }) => ({
 	type: types.LOAD_LEVEL,
@@ -14,3 +14,7 @@ export const closeLevelAction = () => ({
 export const completeLevelAction = () => ({
 	type: types.COMPLETE_LEVEL
 })
+
+export const restartLevelAction = () => ({
+	type: types.RESTART_LEVEL
+});

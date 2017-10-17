@@ -1,34 +1,61 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
+import BaseModel from './baseModel';
+import { setImageColorAnimation } from '../animations/colorAnimations';
 
-export default class Player {
+export default class Home extends BaseModel {
 	constructor(x, y, width, height, layer) {
-		this.color = colorIndices.WHITE;
+		let color = colorIndices.WHITE;
+		let cellWidth = layer.width() / width;
+		let cellHeight = layer.height() / height;
+		width = .7 * layer.width() / width;
+		height = .7 * layer.height() / height;
+
+		let model = new Konva.Rect({
+			x: cellWidth * (x + .5),
+			y: cellHeight * (y + .5),
+			offsetX: width / 2,
+			offsetY: height / 2,
+			width: width,
+			height: height,
+			cornerRadius: 10,
+			fill: colorValues[color],
+			stroke: "#000000",
+			strokeWeight: 5
+		});
+		// model.opacity(0);
+
+		super(color, model, layer);
+
+		let imageObj = new Image();
+		imageObj.onload = () => {
+			model.destroy();
+			model = new Konva.Image({
+				x: x * cellWidth,
+				y: y * cellHeight,
+				width: cellWidth,
+				height: cellHeight,
+				image: imageObj
+			});
+			model.cache();
+			model.filters([Konva.Filters.RGBA]);
+
+			super(color, model, layer);
+			setImageColorAnimation(model, colorValues[color], 1).play();
+			this.onLoad();
+
+		}
+
+		imageObj.src = `${process.env.PUBLIC_URL}/images/home.png`;
+
 		this.hasAltColor = false;
+		this.width = width;
+		this.height = height;
+		this.cellWidth = cellWidth;
+		this.cellHeight = cellHeight;
 
 		this.x = x;
 		this.y = y;
-
-		this.width = .7 * layer.width() / width;
-		this.height = .7 * layer.height() / height;
-
-		this.cellWidth = layer.width() / width;
-		this.cellHeight = layer.height() / height;
-
-		setTimeout(() => {
-			this.model = new Konva.Rect({
-				x: this.cellWidth * (x + .5),
-				y: this.cellHeight * (y + .5),
-				offsetX: this.width / 2,
-				offsetY: this.height / 2,
-				width: this.width,
-				height: this.height,
-				cornerRadius: 10,
-				fill: colorValues[this.color]
-			});
-			layer.add(this.model);
-			layer.draw();
-		}, 0);
 	}
 
 
@@ -36,27 +63,23 @@ export default class Player {
 		const homeColor = colorIndices.WHITE;
 
 		if (color === homeColor && !this.hasAltColor) {
-			let tween = new Konva.Tween({
-				node: this.model,
-				fill: altColorValues[this.color],
-				duration: .35,
-			});
-			tween.play();
+			console.log("Changing home to alt color");
+			let anim = setImageColorAnimation(this.model, altColorValues[this.color], this.animTime);
 			this.hasAltColor = true;
+			return anim.play();
 		}
 		else if (color !== homeColor && this.hasAltColor) {
-			let tween = new Konva.Tween({
-				node: this.model,
-				fill: colorValues[this.color],
-				duration: .35,
-			});
-			tween.play();
+			let anim = setImageColorAnimation(this.model, colorValues[this.color], this.animTime);
 			this.hasAltColor = false;
+			return anim.play();
+		}
+		else {
+			return Promise.resolve();
 		}
 	}
 
-	destroy() {
-		this.model.destroy();
-	}
+	// destroy() {
+	// 	this.model.destroy();
+	// }
 }
 

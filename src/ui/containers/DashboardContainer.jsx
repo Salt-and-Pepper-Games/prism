@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import Dashboard from '../components/Dashboard.jsx';
-import uiActionCreators from '../../actionCreators/uiActionCreators';
+import * as uiActionCreators from '../../actionCreators/uiActionCreators';
 
 const mapStateToProps = state => {
 	return {
 		stats: state.game.user.stats,
 		levelData: state.game.user.levelData,
-		packInfo: state.ui.packInfo,
-		isOpen: state.ui.dashboardOpen
+		packInfo: state.ui.ui.packInfo,
+		isOpen: state.ui.ui.dashboardOpen
 	};
 };
 

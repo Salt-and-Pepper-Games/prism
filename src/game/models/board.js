@@ -17,6 +17,8 @@ export const blockTypes = {
  */
 export default class Board {
 	constructor({ bgColor=0, blocks, player, enemies, home }, { boardLayer, playerLayer, switchLayer }) {
+		this.background = new Background(bgColor, boardLayer);
+
 		this.blocks = [];
 		this.width = blocks.length;
 		this.height = blocks[0].length;
@@ -35,46 +37,71 @@ export default class Board {
 				// }
 			}
 		}
+		this.home = new Home(home.x, home.y, this.width, this.height, boardLayer);
 		this.player = new Player(player.x, player.y, this.width, this.height, playerLayer);
 		this.enemies = enemies;
-		this.home = new Home(home.x, home.y, this.width, this.height, boardLayer);
-		this.background = new Background(bgColor, boardLayer);
 	}
 
 	setPlayerPosition(x, y) {
-		this.player.moveTo(x, y);
+		return this.player.moveTo(x, y);
+	}
+
+	onPlayerSquish(dx, dy) {
+		return this.player.onSquish(dx, dy);
 	}
 
 	setBackgroundColor(color) {
-		this.background.setColor(color);
+		let promises = [];
+		promises.push(this.background.setColor(color));
 		for (let i=0; i<this.blocks.length; i++) {
 			for (let j=0; j<this.blocks[i].length; j++) {
 				if (this.blocks[i][j]) {
-					this.blocks[i][j].onBackgroundColor(color);
+					promises.push(this.blocks[i][j].onBackgroundColor(color));
 				}
 			}
 		}
-		this.home.onBackgroundColor(color);
-		this.player.onBackgroundColor(color);
+		promises.push(this.home.onBackgroundColor(color));
+		promises.push(this.player.onBackgroundColor(color));
+		return Promise.all(promises);
 	}
 
 	hasSwitch(x, y) {
 		return this.blocks[x] && this.blocks[x][y] && this.blocks[x][y].type === blockTypes.SWITCH;
 	}
 
-	destroy() {
+	onLoad() {
+		let promises = [];
 		for (let i=0; i<this.width; i++) {
 			for (let j=0; j<this.height; j++) {
 				if (this.blocks[i][j]) {
-					this.blocks[i][j].destroy();
+					promises.push(this.blocks[i][j].onLoad());
 				}
 			}
 		}
 		// for (let enemy in this.enemies) {
 		// 	enemy.destroy();
 		// }
-		this.home.destroy();
-		this.player.destroy();
-		this.background.destroy();
+		promises.push(this.home.onLoad());
+		promises.push(this.player.onLoad());
+		promises.push(this.background.onLoad());
+		return Promise.all(promises);
+	}
+
+	destroy() {
+		let promises = [];
+		for (let i=0; i<this.width; i++) {
+			for (let j=0; j<this.height; j++) {
+				if (this.blocks[i][j]) {
+					promises.push(this.blocks[i][j].destroy());
+				}
+			}
+		}
+		// for (let enemy in this.enemies) {
+		// 	enemy.destroy();
+		// }
+		promises.push(this.home.destroy());
+		promises.push(this.player.destroy());
+		promises.push(this.background.destroy());
+		return Promise.all(promises);
 	}
 }

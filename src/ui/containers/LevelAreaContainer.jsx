@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
-import uiActionCreators from '../../actionCreators/uiActionCreators';
+import * as uiActionCreators from '../../actionCreators/uiActionCreators';
 import * as asyncActionCreators from '../../actionCreators/asyncActionCreators';
 import LevelArea from '../components/LevelArea.jsx';
 
 const mapStateToProps = state => {
 	return {
-		packInfo: state.ui.packInfo,
+		packInfo: state.ui.ui.packInfo,
 		userLevelData: state.game.user.levelData,
-		isLoading: state.ui.isLoading
+		isLoading: state.ui.ui.isLoading,
+		audioLoaded: state.ui.sound.audioLoaded
 	};
 };
 const mapDispatchToProps = dispatch => {

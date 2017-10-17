@@ -83,6 +83,29 @@ body {
     -o-animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite;
     animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite;
 }
+#loader-text {
+    display: block;
+    position: fixed;
+    left: 50%;
+    top: 75%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    width: 10em;
+    height: 10em;
+    -webkit-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
+    -moz-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
+    -ms-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
+    -o-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
+    animation: fadein 1s, fadeinout 2s ease-in-out infinite;
+    -webkit-animation-delay: 0s, 1s;
+    -moz-animation-delay: 0s, 1s;
+    -ms-animation-delay: 0s, 1s;
+    -o-animation-delay: 0s, 1s;
+    animation-delay: 0s, 1s;
+    @include mobile {
+        top: 85%;
+    }
+}
 .level-pack-area {
     position: relative;
 }
@@ -103,13 +126,14 @@ body {
     animation: fadein 1s;
 }
 .game-area {
-    position: fixed;
+    position: absolute;
     top: 0;
-    width: 100vw;
-    height: 100vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     transition: visibility 2s, opacity 2s;
-    @include mobile {
+    @include portrait-mobile {
         flex-direction: column;
     }
 }
@@ -120,7 +144,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    @include mobile {
+    @include portrait-mobile {
         padding: 7em 0;
     }
 }
@@ -133,7 +157,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    @include mobile {
+    @include portrait-mobile {
         flex-direction: row;
     }
 }
@@ -143,15 +167,15 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    @include mobile {
+    @include portrait-mobile {
         flex-direction: row;
     }
 }
 .in-game-buttons {
     display: flex;
     align-items: center;
-    flex-basis: 25%;
-    @include mobile {
+    flex-basis: 33.33%;
+    @include portrait-mobile {
         justify-content: center;
     }
 }
@@ -169,10 +193,18 @@ body {
 .move-count:hover {
     cursor: default;
 }
-.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover {
+.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover,
+.pack-complete-exit-btn:hover, .pack-complete-restart-btn:hover {
     cursor: pointer;
     opacity: .75;    
 }
+.hint-btn {
+    opacity: .75;
+}
+.hint-btn:hover {
+    cursor: not-allowed;
+}
+
 .help-overlay {
     position: fixed;
     z-index: 2;
@@ -183,7 +215,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: visibility .26s, opacity .25s;
-    @include mobile {
+    @include portrait-mobile {
         flex-direction: column;
     }
 }
@@ -215,6 +247,129 @@ body {
     opacity: .75;
     cursor: pointer;   
 }
+
+.pack-complete-modal-overlay {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .25s, opacity .25s;
+}
+.pack-complete-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: fixed;
+    padding: 1em;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1em;
+    width: 45vw;
+    height: 40vh;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .25s, opacity .25s;
+    @include mobile {
+        width: 80vw;
+        height: 35vh;
+        padding: 1em;
+    }
+    @include landscape-mobile {
+        width: 50vw;
+        height: 80vh;
+    }
+}
+.pack-complete-modal-inner {
+    background-color: $light-red;
+    border-radius: 1em;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include mobile {
+        padding: 15% 0;
+    }
+}
+.pack-complete-modal-inner-white {
+    @extend .pack-complete-modal-inner;
+    background-color: $white !important;
+}
+.pack-complete-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.pack-complete-text {
+    margin-top: 0;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    text-align: center;
+    @include mobile {
+        font-size: .75em;
+    }
+    @include landscape-mobile {
+        line-height: 1em;
+    }
+}
+.btn-label {
+    @include mobile {
+        margin-bottom: .25em;
+    }
+}
+.pack-complete-percentage {
+    align-self: center;
+    font-size: 5em;
+    margin: 0;
+    @include mobile {
+        font-size: 3em;
+    }
+}
+.pack-complete-percentage-label {
+    @extend .pack-complete-text;
+    margin-top: .5em;
+    margin-bottom: 0.15em;
+}
+.pack-complete-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.pack-complete-modal-btn {
+    margin-top: -7.5em;
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+    @include mobile {
+        margin-top: -4.5em;
+        width: 90%;
+    }
+    @include landscape-mobile {
+        margin-top: -3.5em;
+        width: 97%;
+    }
+}
+.pack-complete-exit-btn, .pack-complete-restart-btn {
+    position: relative;
+    align-self: center;
+    font-size: 3em;
+    transition: opacity .25s;
+    @include mobile {
+        font-size: 2em;
+    }
+}
+
 
 .open {
     visibility: visible !important;
@@ -265,6 +420,9 @@ body {
 }
 .pack-header {
     text-align: center;
+    @include mobile {
+        margin-bottom: .25em;
+    }
 }
 .close-pack-btn {
     position: absolute;
@@ -288,12 +446,16 @@ body {
 .levels-grid {
     display: flex;
     flex-flow: row wrap;
+    align-content: flex-start;
     position: relative;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     height: 64vh;
-    @include mobile {
+    @include portrait-mobile {
         height: 60vh;
+    }
+    @include landscape-mobile {
+        height: 40vh;
     }
 }
 .level-btn {
@@ -304,10 +466,15 @@ body {
     border-radius: 2em;
     transition: opacity .25s;
     align-self: flex-start;
-    @include mobile {
+    @include portrait-mobile {
         flex-basis: calc(33.33% - 1em);
         margin: .5em;
         border-radius: 1em;
+    }
+    @include landscape-mobile {
+        border-radius: 1em;
+        flex: 0 1 calc(20% - 1em);
+        margin: .5em;
     }
     transition: opacity .25s;
 }
@@ -347,6 +514,9 @@ body {
     color: $dark-black;
     border: .5em solid $dark-black;
     border-radius: 1em;
+    @include landscape-mobile {
+        height: 60vh;
+    }
 }
 .dashboard-bg {
     position: fixed;
@@ -363,11 +533,18 @@ body {
     align-items: center;
     justify-content: center;
     height: 50vh;
+    width: 100%;
+    @include landscape-mobile {
+        height: 60vh;
+    }
 }
 .about-prism {
-    padding: 1em 2em;
+    padding: 1em 1.5em;
     line-height: 2em;
-    font-size: 1em;
+    font-size: 1.25em;
+    @include mobile {
+        font-size: 1em;
+    }
 }
 .main-buttons {
     position: absolute;
@@ -387,14 +564,36 @@ body {
         width: 20vw;
     }
 }
+.stats-wrapper-wrapper {
+    width: fit-content;
+    align-items: center;
+}
 
+.stats-wrapper, .leaderboards-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.leaderboards-wrapper {
+    align-items: center;
+    @include landscape-mobile {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+.stats-wrapper {
+    @include landscape-mobile {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
 .stats-list, .leaderboards-list {
     line-height: 2em;
     margin-top: 0;
-    align-self: center;
+    margin-bottom: 0;
     @include mobile {
         line-height: 1.75em;
-        font-size: 1em;   
+        font-size: 1em;
     }
 }
 .stats-header, .leaderboards-header, .daily-challenge-header {
@@ -405,14 +604,21 @@ body {
         margin-bottom: .25em;
         margin-top: 0;
     }
+    @include landscape-mobile {
+        font-size: 1.25em;
+    }
 }
 .stat {
     list-style: circle;
+}
+.leaderboard-item {
+    list-style: decimal;
 }
 
 .header {
     position: relative;
 	text-align: center;
+    padding-bottom: 1em;
     @include mobile {
         padding-bottom: 3em;
     }
@@ -519,6 +725,9 @@ body {
         font-size: 5vw;
     }
 }
+.packtutorial {
+    order: -1;
+}
 .pack {
     box-sizing: border-box;
     position: relative;
@@ -578,6 +787,13 @@ body {
         border: .25em solid $dark-yellow;
     }
 }
+.packyellowcomplete {
+    @extend .packyellow;
+    border: 1em solid $dark-yellow;
+    @include mobile {
+        border: .5em solid $dark-yellow;
+    }
+}
 .packyellowbg {
     background-color: $yellow-opaque;
 }
@@ -587,6 +803,13 @@ body {
     border: .35em solid $dark-cyan;
     @include mobile {
         border: .25em solid $dark-cyan;
+    }
+}
+.packcyancomplete {
+    @extend .packcyan;
+    border: 1em solid $dark-cyan;
+    @include mobile {
+        border: .5em solid $dark-cyan;
     }
 }
 .packcyanbg {
@@ -600,6 +823,13 @@ body {
         border: .25em solid $dark-black;
     }
 }
+.packblackcomplete {
+    @extend .packblack;
+    border: 1em solid $dark-black;
+    @include mobile {
+        border: .5em solid $dark-black;
+    }
+}
 .packblackbg {
     background-color: $black-opaque;
 }
@@ -609,6 +839,13 @@ body {
     border: .35em solid $dark-white;
     @include mobile {
         border: .25em solid $dark-white;
+    }
+}
+.packwhitecomplete {
+    @extend .packwhite;
+    border: 1em solid $dark-white;
+    @include mobile {
+        border: .5em solid $dark-white;
     }
 }
 .packwhitebg {
@@ -622,6 +859,13 @@ body {
         border: .25em solid $dark-red;
     }
 }
+.packredcomplete {
+    @extend .packred;
+    border: 1em solid $dark-red;
+    @include mobile {
+        border: .5em solid $dark-red;
+    }
+}
 .packredbg {
     background-color: $red-opaque;
 }
@@ -631,6 +875,13 @@ body {
     border: .35em solid $dark-blue;
     @include mobile {
         border: .25em solid $dark-blue;
+    }
+}
+.packbluecomplete {
+    @extend .packblue;
+    border: 1em solid $dark-blue;
+    @include mobile {
+        border: .5em solid $dark-blue;
     }
 }
 .packbluebg {
@@ -644,6 +895,13 @@ body {
         border: .25em solid $dark-green;
     }
 }
+.packgreencomplete {
+    @extend .packgreen;
+    border: 1em solid $dark-green;
+    @include mobile {
+        border: .5em solid $dark-green;
+    }
+}
 .packgreenbg {
     background-color: $green-opaque;
 }
@@ -653,6 +911,13 @@ body {
     border: .35em solid $dark-magenta;
     @include mobile {
         border: .25em solid $dark-magenta;
+    }
+}
+.packmagentacomplete {
+    @extend .packmagenta;
+    border: 1em solid $dark-magenta;
+    @include mobile {
+        border: .5em solid $dark-magenta;
     }
 }
 .packmagentabg {

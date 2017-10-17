@@ -1,9 +1,33 @@
 import Konva from 'konva';
 import { blockTypes } from './board';
-import { colorIndices, altColorValues, colorValues } from '../colors';
+import { altColorValues, colorValues } from '../colors';
+import { switchOnAnimation, switchOffAnimation } from '../animations/switchAnimations';
+import { setColorAnimation } from '../animations/colorAnimations';
+import BaseModel from './baseModel';
 
-export default class Switch {
+export default class Switch extends BaseModel {
 	constructor(color, x, y, width, height, layer) {
+		let cellWidth = layer.width() / width;
+		let cellHeight = layer.height() / height;
+		let shadowOffsetRatio = .1;
+		width = .5 * layer.width() / width;
+		height = .5 * layer.height() / height;
+
+		let model = new Konva.Circle({
+			x: cellWidth * (x + .5),
+			y: cellHeight * (y + .5),
+			radius: cellWidth / 4,
+			fill: colorValues[color],
+			// stroke: "rgba(30, 30, 30, .3)",
+			shadowBlur: 0,
+			shadowColor: "#000000",
+			shadowOffsetX: width * shadowOffsetRatio,
+			shadowOffsetY: height * shadowOffsetRatio,
+			offsetX: width * shadowOffsetRatio,
+			offsetY: height * shadowOffsetRatio,
+		});
+		super(color, model, layer);
+		
 		this.type = blockTypes.SWITCH;
 		this.color = color;
 		this.pressed = false;
@@ -12,13 +36,12 @@ export default class Switch {
 		this.x = x;
 		this.y = y;
 
-		this.width = .5 * layer.width() / width;
-		this.height = .5 * layer.height() / height;
+		this.width = width;
+		this.height = height;
+		this.cellWidth = cellWidth;
+		this.cellHeight = cellHeight;
 
-		this.cellWidth = layer.width() / width;
-		this.cellHeight = layer.height() / height;
-
-		this.shadowOffsetRatio = .1;
+		this.shadowOffsetRatio = shadowOffsetRatio;
 
 		// this.model = new Konva.Rect({
 		// 	x: this.cellWidth * (x + .5),
@@ -36,70 +59,34 @@ export default class Switch {
 		// 	shadowOffsetY: this.height * .1,
 		// });
 
-		this.model = new Konva.Circle({
-			x: this.cellWidth * (x + .5),
-			y: this.cellHeight * (y + .5),
-			radius: this.cellWidth / 4,
-			fill: colorValues[color],
-			// stroke: "rgba(30, 30, 30, .3)",
-			shadowBlur: 0,
-			shadowColor: "#000000",
-			shadowOffsetX: this.width * this.shadowOffsetRatio,
-			shadowOffsetY: this.height * this.shadowOffsetRatio,
-			offsetX: this.width * this.shadowOffsetRatio,
-			offsetY: this.height * this.shadowOffsetRatio,
-		});
 
 		layer.add(this.model);
 	}
 
 	onBackgroundColor(color) {
+		const anims = [];
 		const shouldBePressed = color & this.color;
 		if (shouldBePressed && !this.isPressed) {
-			this.model.to({
-				shadowOffsetX: 0,
-				shadowOffsetY: 0,
-				offsetX: 0,
-				offsetY: 0,
-				easing: Konva.Easings.EaseIn,
-				duration: .15
-			});
+			anims.push(switchOnAnimation(this.model, this.animTime).play());
 			this.isPressed = true;
 		}
 		else if (!shouldBePressed && this.isPressed) {
-			this.model.to({
-				shadowBlur: 0,
-				shadowOffsetX: this.width * this.shadowOffsetRatio,
-				shadowOffsetY: this.height * this.shadowOffsetRatio,
-				offsetX: this.width * this.shadowOffsetRatio,
-				offsetY: this.height * this.shadowOffsetRatio,
-				easing: Konva.Easings.EaseIn,
-				duration: .15
-			});
+			anims.push(switchOffAnimation(this.model, this.shadowOffsetRatio, this.animTime).play());
 			this.isPressed = false;
 		}
 		if (color === this.color) {
 			if (!this.hasAltColor) {
-				this.model.to({
-					fill: altColorValues[this.color],
-					duration: .35,
-				});
+				anims.push(setColorAnimation(this.model, altColorValues[this.color], this.animTime).play());
 				this.hasAltColor = true;
 			}
 		}
 		else {
 			if (this.hasAltColor) {
-				this.model.to({
-					fill: colorValues[this.color],
-					duration: .35,
-				});
+				anims.push(setColorAnimation(this.model, colorValues[this.color], this.animTime).play());
 				this.hasAltColor = false;
 			}
 		}
-	}
-
-	destroy() {
-		this.model.destroy();
+		return Promise.all(anims);
 	}
 }
 

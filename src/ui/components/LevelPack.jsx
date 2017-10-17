@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import GameAudio from '../../utils/AudioManager';
 
 class LevelPack extends React.Component {
 	constructor(props) {
@@ -10,7 +11,17 @@ class LevelPack extends React.Component {
 		this.levelGrid = document.getElementById('levels-grid');
 	}
 	render() {
-		const { isOpen, currentPack, cachedCurrentPack, onClose, onLevelClick, history, userLevelData } = this.props;
+		const {
+			isOpen,
+			currentPack,
+			cachedCurrentPack,
+			onClose,
+			history,
+			userLevelData,
+			startTransition,
+			stopTransition,
+			soundOn
+		} = this.props;
 		const levels = [];
 		if (cachedCurrentPack) {
 			for (let i = 1; i <= cachedCurrentPack.levelCount; i++) {
@@ -42,7 +53,7 @@ class LevelPack extends React.Component {
 				<div className={`${isOpen ? `pack-open` : ''} level-pack ${cachedCurrentPack ? `pack${cachedCurrentPack.packColor}` : ''}`}>
 					<div className='level-pack-inner'>
 						<div className='pack-header'>
-							{cachedCurrentPack && <h1>{cachedCurrentPack.packName.toUpperCase()}</h1>}
+							{cachedCurrentPack && <h1 className="pack-header">{cachedCurrentPack.packName.toUpperCase()}</h1>}
 						</div>
 						<i onClick={onClose} className='fa fa-close close-pack-btn'/>
 						<div id='levels-grid' className='levels-grid'>
@@ -53,7 +64,16 @@ class LevelPack extends React.Component {
 								}
 								return (
 									<div
-										onClick={() => history.push(`/game/${currentPack.packName}/${level}`)}
+										onClick={() => {
+											GameAudio.stop();
+											startTransition();
+											const id = GameAudio.play('enter_game');
+											GameAudio.volume(soundOn ? .5 : 0.0, id);
+											GameAudio.on('end', () => {
+												stopTransition();
+											}, id);
+											history.push(`/game/${currentPack.packName}/${level}`);
+										}}
 										key={level}
 										className={`level-btn btn-${cachedCurrentPack.packColor} level-${isSolved ? 'solved' : 'not-solved'}`}
 									>

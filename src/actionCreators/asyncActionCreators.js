@@ -1,5 +1,5 @@
-import uiActionCreators from './uiActionCreators';
-import { closeLevelAction, loadLevelAction } from './levelActionCreators';
+import * as uiActionCreators from './uiActionCreators';
+import { loadLevelAction } from './levelActionCreators';
 import { setUserStats, setUserAction, setLevelCompletionData } from './userActionCreators';
 import firebase from 'firebase';
 
@@ -23,19 +23,10 @@ export const loadLevelString = (levelNumber, packName) => {
 					levelNumber: levelNumber,
 					packInfo: levelInfo.packInfo
 				};
-				if (!store().ui.inGame) {
-					setTimeout(() => {
-						dispatch(uiActionCreators.hideLoader());
-						dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
-						dispatch(loadLevelAction(levelObject));
-						dispatch(uiActionCreators.openGameMode());
-					}, 0);
-				} else {
-					dispatch(uiActionCreators.hideLoader());
-					dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
-					dispatch(loadLevelAction(levelObject));
-					dispatch(uiActionCreators.openGameMode());
-				}
+				dispatch(uiActionCreators.hideLoader());
+				dispatch(uiActionCreators.setCurrentPack(levelInfo.packInfo));
+				dispatch(loadLevelAction(levelObject));
+				dispatch(uiActionCreators.openGameMode());
 				
 			// TODO: Add in error handling
 			} else {

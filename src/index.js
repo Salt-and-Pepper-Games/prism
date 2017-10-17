@@ -13,9 +13,15 @@ import { setupFirebaseListeners } from './actionCreators/asyncActionCreators';
 
 const history = createHistory();
 
+// last action reducer
+const lastAction = (state = null, action) => {
+	return action;
+};
+
 const store = createStore(
 	combineReducers({...reducers,
-		router: routerReducer
+		router: routerReducer,
+		lastAction
 	}),
 	applyMiddleware(thunk, routerMiddleware(history))
 );

@@ -18,6 +18,46 @@
     opacity: 0; }
   to {
     opacity: 1; } }
+@-o-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@keyframes fadeinout {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: .25; }
+  100% {
+    opacity: 1; } }
+@-moz-keyframes fadeinout {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: .25; }
+  100% {
+    opacity: 1; } }
+@-webkit-keyframes fadeinout {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: .25; }
+  100% {
+    opacity: 1; } }
+@-ms-keyframes fadeinout {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: .25; }
+  100% {
+    opacity: 1; } }
+@-o-keyframes fadeinout {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: .25; }
+  100% {
+    opacity: 1; } }
 @-o-keyframes changeSizeRed {
   0% {
     width: 10em;
@@ -213,25 +253,6 @@
     bottom: 10%;
     right: 10%;
     border-radius: 1em; } }
-@-o-keyframes changeSizeGreen {
-  0% {
-    top: 10%;
-    left: 10%;
-    bottom: 10%;
-    right: 10%;
-    border-radius: 1em; }
-  50% {
-    top: 15%;
-    left: 15%;
-    bottom: 15%;
-    right: 15%;
-    border-radius: .5em; }
-  100% {
-    top: 10%;
-    left: 10%;
-    bottom: 10%;
-    right: 10%;
-    border-radius: 1em; } }
 @-o-keyframes changeSizeBlue {
   0% {
     top: 20%;
@@ -309,25 +330,6 @@
     right: 20%;
     border-radius: 1em; } }
 @-ms-keyframes changeSizeBlue {
-  0% {
-    top: 20%;
-    left: 20%;
-    bottom: 20%;
-    right: 20%;
-    border-radius: 1em; }
-  50% {
-    top: 30%;
-    left: 30%;
-    bottom: 30%;
-    right: 30%;
-    border-radius: .5em; }
-  100% {
-    top: 20%;
-    left: 20%;
-    bottom: 20%;
-    right: 20%;
-    border-radius: 1em; } }
-@-o-keyframes changeSizeBlue {
   0% {
     top: 20%;
     left: 20%;
@@ -426,6 +428,29 @@ body {
   -o-animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite;
   animation: fadein 1s, changeSizeBlue .66s ease-in-out infinite; }
 
+#loader-text {
+  display: block;
+  position: fixed;
+  left: 50%;
+  top: 75%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  width: 10em;
+  height: 10em;
+  -webkit-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
+  -moz-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
+  -ms-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
+  -o-animation: fadein 1s, fadeinout 2s ease-in-out infinite;
+  animation: fadein 1s, fadeinout 2s ease-in-out infinite;
+  -webkit-animation-delay: 0s, 1s;
+  -moz-animation-delay: 0s, 1s;
+  -ms-animation-delay: 0s, 1s;
+  -o-animation-delay: 0s, 1s;
+  animation-delay: 0s, 1s; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    #loader-text {
+      top: 85%; } }
+
 .level-pack-area {
   position: relative; }
 
@@ -445,13 +470,14 @@ body {
   animation: fadein 1s; }
 
 .game-area {
-  position: fixed;
+  position: absolute;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   transition: visibility 2s, opacity 2s; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .game-area {
       flex-direction: column; } }
 
@@ -462,7 +488,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .game-board-wrapper {
       padding: 7em 0; } }
 
@@ -475,7 +501,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .before-game-board {
       flex-direction: row; } }
 
@@ -485,15 +511,15 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .after-game-board {
       flex-direction: row; } }
 
 .in-game-buttons {
   display: flex;
   align-items: center;
-  flex-basis: 25%; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  flex-basis: 33.33%; }
+  @media only screen and (orientation: portrait) {
     .in-game-buttons {
       justify-content: center; } }
 
@@ -511,9 +537,16 @@ body {
 .move-count:hover {
   cursor: default; }
 
-.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .hint-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover {
+.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover,
+.pack-complete-exit-btn:hover, .pack-complete-restart-btn:hover {
   cursor: pointer;
   opacity: .75; }
+
+.hint-btn {
+  opacity: .75; }
+
+.hint-btn:hover {
+  cursor: not-allowed; }
 
 .help-overlay {
   position: fixed;
@@ -525,7 +558,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: visibility .26s, opacity .25s; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .help-overlay {
       flex-direction: column; } }
 
@@ -556,6 +589,124 @@ body {
 .help-overlay-close-btn:hover {
   opacity: .75;
   cursor: pointer; }
+
+.pack-complete-modal-overlay {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .25s, opacity .25s; }
+
+.pack-complete-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  position: fixed;
+  padding: 1em;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1em;
+  width: 45vw;
+  height: 40vh;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .25s, opacity .25s; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-complete-modal {
+      width: 80vw;
+      height: 35vh;
+      padding: 1em; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .pack-complete-modal {
+      width: 50vw;
+      height: 80vh; } }
+
+.pack-complete-modal-inner, .pack-complete-modal-inner-white {
+  background-color: #ff919c;
+  border-radius: 1em;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-complete-modal-inner, .pack-complete-modal-inner-white {
+      padding: 15% 0; } }
+
+.pack-complete-modal-inner-white {
+  background-color: #fffdfc !important; }
+
+.pack-complete-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.pack-complete-text, .pack-complete-percentage-label {
+  margin-top: 0;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  text-align: center; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-complete-text, .pack-complete-percentage-label {
+      font-size: .75em; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .pack-complete-text, .pack-complete-percentage-label {
+      line-height: 1em; } }
+
+@media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  .btn-label {
+    margin-bottom: .25em; } }
+
+.pack-complete-percentage {
+  align-self: center;
+  font-size: 5em;
+  margin: 0; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-complete-percentage {
+      font-size: 3em; } }
+
+.pack-complete-percentage-label {
+  margin-top: .5em;
+  margin-bottom: 0.15em; }
+
+.pack-complete-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center; }
+
+.pack-complete-modal-btn {
+  margin-top: -7.5em;
+  display: flex;
+  width: 85%;
+  justify-content: space-between; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-complete-modal-btn {
+      margin-top: -4.5em;
+      width: 90%; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .pack-complete-modal-btn {
+      margin-top: -3.5em;
+      width: 97%; } }
+
+.pack-complete-exit-btn, .pack-complete-restart-btn {
+  position: relative;
+  align-self: center;
+  font-size: 3em;
+  transition: opacity .25s; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-complete-exit-btn, .pack-complete-restart-btn {
+      font-size: 2em; } }
 
 .open {
   visibility: visible !important;
@@ -605,6 +756,9 @@ body {
 
 .pack-header {
   text-align: center; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .pack-header {
+      margin-bottom: .25em; } }
 
 .close-pack-btn {
   position: absolute;
@@ -627,13 +781,17 @@ body {
 .levels-grid {
   display: flex;
   flex-flow: row wrap;
+  align-content: flex-start;
   position: relative;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   height: 64vh; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .levels-grid {
       height: 60vh; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .levels-grid {
+      height: 40vh; } }
 
 .level-btn {
   box-sizing: border-box;
@@ -644,11 +802,16 @@ body {
   transition: opacity .25s;
   align-self: flex-start;
   transition: opacity .25s; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .level-btn {
       flex-basis: calc(33.33% - 1em);
       margin: .5em;
       border-radius: 1em; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .level-btn {
+      border-radius: 1em;
+      flex: 0 1 calc(20% - 1em);
+      margin: .5em; } }
 
 .level-btn:after {
   content: "";
@@ -683,6 +846,9 @@ body {
   color: #252525;
   border: 0.5em solid #252525;
   border-radius: 1em; }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .dashboard {
+      height: 60vh; } }
 
 .dashboard-bg {
   position: fixed;
@@ -698,12 +864,19 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh; }
+  height: 50vh;
+  width: 100%; }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .dashboard-panel {
+      height: 60vh; } }
 
 .about-prism {
-  padding: 1em 2em;
+  padding: 1em 1.5em;
   line-height: 2em;
-  font-size: 1em; }
+  font-size: 1.25em; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .about-prism {
+      font-size: 1em; } }
 
 .main-buttons {
   position: absolute;
@@ -723,10 +896,31 @@ body {
       top: 90%;
       width: 20vw; } }
 
+.stats-wrapper-wrapper {
+  width: fit-content;
+  align-items: center; }
+
+.stats-wrapper, .leaderboards-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%; }
+
+.leaderboards-wrapper {
+  align-items: center; }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .leaderboards-wrapper {
+      flex-direction: row;
+      justify-content: center; } }
+
+@media only screen and (max-width: 800px) and (orientation: landscape) {
+  .stats-wrapper {
+    flex-direction: row;
+    justify-content: space-around; } }
+
 .stats-list, .leaderboards-list {
   line-height: 2em;
   margin-top: 0;
-  align-self: center; }
+  margin-bottom: 0; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .stats-list, .leaderboards-list {
       line-height: 1.75em;
@@ -740,13 +934,20 @@ body {
       font-size: 1.75em;
       margin-bottom: .25em;
       margin-top: 0; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .stats-header, .leaderboards-header, .daily-challenge-header {
+      font-size: 1.25em; } }
 
 .stat {
   list-style: circle; }
 
+.leaderboard-item {
+  list-style: decimal; }
+
 .header {
   position: relative;
-  text-align: center; }
+  text-align: center;
+  padding-bottom: 1em; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .header {
       padding-bottom: 3em; } }
@@ -842,6 +1043,9 @@ body {
     .pack-title {
       font-size: 5vw; } }
 
+.packtutorial {
+  order: -1; }
+
 .pack {
   box-sizing: border-box;
   position: relative;
@@ -868,114 +1072,162 @@ body {
 .pack:hover {
   cursor: pointer; }
 
-.pack.packblack:hover {
+.pack.packblack:hover, .pack.packblackcomplete:hover {
   background-color: rgba(70, 75, 99, 0.8); }
 
-.pack.packwhite:hover {
+.pack.packwhite:hover, .pack.packwhitecomplete:hover {
   background-color: rgba(255, 243, 243, 0.8); }
 
-.pack.packyellow:hover {
+.pack.packyellow:hover, .pack.packyellowcomplete:hover {
   background-color: rgba(255, 250, 108, 0.8); }
 
-.pack.packcyan:hover {
+.pack.packcyan:hover, .pack.packcyancomplete:hover {
   background-color: rgba(76, 237, 222, 0.8); }
 
-.pack.packmagenta:hover {
+.pack.packmagenta:hover, .pack.packmagentacomplete:hover {
   background-color: rgba(255, 123, 214, 0.8); }
 
-.pack.packred:hover {
+.pack.packred:hover, .pack.packredcomplete:hover {
   background-color: rgba(255, 105, 120, 0.8); }
 
-.pack.packgreen:hover {
+.pack.packgreen:hover, .pack.packgreencomplete:hover {
   background-color: rgba(148, 234, 84, 0.8); }
 
-.pack.packblue:hover {
+.pack.packblue:hover, .pack.packbluecomplete:hover {
   background-color: rgba(86, 153, 253, 0.8); }
 
-.packyellow {
+.packyellow, .packyellowcomplete {
   color: #52501b;
   background-color: #fffa6c;
   border: 0.35em solid #52501b; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packyellow {
+    .packyellow, .packyellowcomplete {
       border: 0.25em solid #52501b; } }
+
+.packyellowcomplete {
+  border: 1em solid #52501b; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packyellowcomplete {
+      border: 0.5em solid #52501b; } }
 
 .packyellowbg {
   background-color: rgba(255, 250, 108, 0.35); }
 
-.packcyan {
+.packcyan, .packcyancomplete {
   color: #173c38;
   background-color: #4CEDDE;
   border: 0.35em solid #173c38; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packcyan {
+    .packcyan, .packcyancomplete {
       border: 0.25em solid #173c38; } }
+
+.packcyancomplete {
+  border: 1em solid #173c38; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packcyancomplete {
+      border: 0.5em solid #173c38; } }
 
 .packcyanbg {
   background-color: rgba(76, 237, 222, 0.35); }
 
-.packblack {
+.packblack, .packblackcomplete {
   color: #252525;
   background-color: #464B63;
   border: 0.35em solid #252525; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packblack {
+    .packblack, .packblackcomplete {
       border: 0.25em solid #252525; } }
+
+.packblackcomplete {
+  border: 1em solid #252525; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packblackcomplete {
+      border: 0.5em solid #252525; } }
 
 .packblackbg {
   background-color: rgba(70, 75, 99, 0.35); }
 
-.packwhite {
+.packwhite, .packwhitecomplete {
   color: #6f6f6f;
   background-color: #fff3f3;
   border: 0.35em solid #6f6f6f; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packwhite {
+    .packwhite, .packwhitecomplete {
       border: 0.25em solid #6f6f6f; } }
+
+.packwhitecomplete {
+  border: 1em solid #6f6f6f; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packwhitecomplete {
+      border: 0.5em solid #6f6f6f; } }
 
 .packwhitebg {
   background-color: rgba(255, 243, 243, 0.35); }
 
-.packred {
+.packred, .packredcomplete {
   color: #4e0009;
   background-color: #FF6978;
   border: 0.35em solid #4e0009; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packred {
+    .packred, .packredcomplete {
       border: 0.25em solid #4e0009; } }
+
+.packredcomplete {
+  border: 1em solid #4e0009; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packredcomplete {
+      border: 0.5em solid #4e0009; } }
 
 .packredbg {
   background-color: rgba(255, 105, 120, 0.35); }
 
-.packblue {
+.packblue, .packbluecomplete {
   color: #003179;
   background-color: #5699fd;
   border: 0.35em solid #003179; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packblue {
+    .packblue, .packbluecomplete {
       border: 0.25em solid #003179; } }
+
+.packbluecomplete {
+  border: 1em solid #003179; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packbluecomplete {
+      border: 0.5em solid #003179; } }
 
 .packbluebg {
   background-color: rgba(86, 153, 253, 0.35); }
 
-.packgreen {
+.packgreen, .packgreencomplete {
   color: #225000;
   background-color: #94EA54;
   border: 0.35em solid #225000; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packgreen {
+    .packgreen, .packgreencomplete {
       border: 0.25em solid #225000; } }
+
+.packgreencomplete {
+  border: 1em solid #225000; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packgreencomplete {
+      border: 0.5em solid #225000; } }
 
 .packgreenbg {
   background-color: rgba(148, 234, 84, 0.35); }
 
-.packmagenta {
+.packmagenta, .packmagentacomplete {
   color: #700080;
   background-color: #ff7bd6;
   border: 0.35em solid #700080; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .packmagenta {
+    .packmagenta, .packmagentacomplete {
       border: 0.25em solid #700080; } }
+
+.packmagentacomplete {
+  border: 1em solid #700080; }
+  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+    .packmagentacomplete {
+      border: 0.5em solid #700080; } }
 
 .packmagentabg {
   background-color: rgba(255, 123, 214, 0.35); }

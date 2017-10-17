@@ -1,5 +1,5 @@
 import backgroundActions from '../../actionCreators/backgroundActionNames';
-import levelActions from '../../actionCreators/levelActionNames';
+import * as levelActions from '../../actionCreators/levelActionNames';
 import playerActions from '../../actionCreators/playerActionNames';
 import { blockTypes } from '../models/board';
 import { colorIndices } from '../colors';
@@ -23,6 +23,7 @@ export const defaultState = {
 	loaded: false,
 	blocks: null,
 	player: null,
+	playerStart: null,
 	home: null,
 	enemies: null,
 	background: colorIndices.BLACK,
@@ -47,7 +48,7 @@ export default (state = defaultState, action) => {
 			Object.assign(newState, { 
 				loaded: true,
 				packInfo: action.packInfo,
-				levelNumber: parseInt(action.levelNumber),
+				levelNumber: parseInt(action.levelNumber, 10),
 				stats: Object.assign({}, defaultState.stats, {
 					startTime: Date.now(),
 					elapsedTime: 0
@@ -67,6 +68,8 @@ export default (state = defaultState, action) => {
 				packInfo: null,
 				levelNumber: null
 			});
+		case levelActions.RESTART_LEVEL:
+			return getStateFromRestart(state);
 		case playerActions.MOVE_UP:
 			return getStateFromMovement(state, state.player.x, state.player.y - 1);
 		case playerActions.MOVE_DOWN:
@@ -80,6 +83,16 @@ export default (state = defaultState, action) => {
 		default:
 			return state;
 	}
+}
+
+function getStateFromRestart(oldBoard) {
+	const board = getStateFromBgColor(oldBoard, colorIndices.BLACK);
+	const resetStats = Object.assign({}, oldBoard.stats, { moves: 0, switches: 0 });
+	Object.assign(board, {
+		player: board.playerStart,
+		stats: resetStats
+	});
+	return board;
 }
 
 function getStateFromMovement(oldBoard, x, y) {
@@ -159,18 +172,18 @@ const parseBoard = lines => {
 		// 	data[i] = data[i].split(' ')
 		// }
 		const player = {
-			x: parseInt(characters[0]),
-			y: parseInt(characters[1])
+			x: parseInt(characters[0], 10),
+			y: parseInt(characters[1], 10)
 		}
 
 		const home = {
-			x: parseInt(characters[2]),
-			y: parseInt(characters[3])
+			x: parseInt(characters[2], 10),
+			y: parseInt(characters[3], 10)
 		}
 
 		const size = {
-			width: parseInt(characters[4]),
-			height: parseInt(characters[5])
+			width: parseInt(characters[4], 10),
+			height: parseInt(characters[5], 10)
 		}
 
 		const data = [];
@@ -193,6 +206,7 @@ const parseBoard = lines => {
 		return {
 			blocks,
 			player,
+			playerStart: player,
 			home,
 			enemies: null
 		};

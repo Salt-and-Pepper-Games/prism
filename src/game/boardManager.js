@@ -1,17 +1,16 @@
 import Konva from 'konva';
 
-import types from '../actionCreators/levelActionNames.js';
-import uiActionCreators from '../actionCreators/uiActionCreators';
-import {loadLevel, closeLevelAction, completeLevelAction} from '../actionCreators/levelActionCreators';
-import { loadLevelString } from '../actionCreators/asyncActionCreators';
+import * as uiActionCreators from '../actionCreators/uiActionCreators';
+import { completeLevelAction } from '../actionCreators/levelActionCreators';
 import { saveData } from '../utils/firebaseListeners';
-import backgroundTypes from '../actionCreators/backgroundActionNames';
-import { setBackgroundColor } from '../actionCreators/backgroundActionCreators';
 import { addStateListener } from './game';
 import Board from './models/board';
 import isEqual from 'lodash.isequal';
 import { push } from 'react-router-redux';
-
+import AnimationManager from './animations/animationManager';
+import GameAudio from '../utils/AudioManager';
+import playerActionNames from '../actionCreators/playerActionNames';
+const playerMoves = Object.keys(playerActionNames);
 /**
  * Higher order redux-connected class to wrap around a board
  * Basically the non-react equivalent of react-redux's connect()
@@ -22,10 +21,11 @@ export default class BoardManager {
 	board = null;
 
 	constructor(stage, dispatch) {
-		this.stopStateListener = addStateListener(this.onStateChange.bind(this));
-		// is this bad practice? how else do i get at the store?
-		this.dispatch = dispatch;
+		this.setStage(stage);
+		this.animationManager = new AnimationManager();
+	}
 
+	setStage(stage) {
 		// where we will put background and blocks
 		this.boardLayer = new Konva.Layer();
 		// give background rounded edges
@@ -42,19 +42,34 @@ export default class BoardManager {
 		this.stage = stage;
 	}
 
+	startStateListener(dispatch) {
+		this.stopStateListener = addStateListener(this.onStateChange.bind(this));
+		// is this bad practice? how else do i get at the store?
+		this.dispatch = dispatch;
+	}
+
 	onStateChange(state, prevState) {
 		const { game } = state;
 		let prevGame = prevState.game;
-		// if (action.type === types.LOAD_LEVEL) {
+
 		if (!isEqual(prevGame.board.levelNumber, game.board.levelNumber) ||
 				!isEqual(prevGame.board.packInfo, game.board.packInfo)) {
 			if (this.board) {
-				this.board.destroy();
+				// this.board.destroy();
+				let animFrame = {
+					destroy: this.board
+				};
+				this.animationManager.addFrame(animFrame);
 			}
 			this.board = new Board(game.board, { boardLayer: this.boardLayer,
 				playerLayer: this.playerLayer,
 				switchLayer: this.switchLayer });
-			this.stage.draw();
+			this.animationManager.addFrame({
+				board: this.board,
+				stage: this.stage
+			});
+			// this.animationManager.setBoard(this.board);
+			// this.stage.draw();
 		}
 		else if (this.board) {
 			// handle other actions here
@@ -68,28 +83,73 @@ export default class BoardManager {
 			const prevBg = prevGame.board.background;
 			const didBgChange = bg !== prevBg;
 
+			const animFrame = {};
 			// Check if the player actually moved before changing switch color.
 			if (didMove) {
-				this.board.setPlayerPosition(px, py);
+				// this.board.setPlayerPosition(px, py);
+				animFrame.player = { x: px, y: py };
 				if (px === game.board.home.x && game.board.home.y === py && !game.board.complete) {
 					// in the future dispatch a level end action but for now just cut to home screen
 					this.dispatch(completeLevelAction());
 					saveData(state, this.dispatch);
-					if (game.board.levelNumber < game.board.packInfo.levelCount - 1) {
+					if (game.board.levelNumber < game.board.packInfo.levelCount) {
 						// figure out how to navigate to a new url here
+						if (playerMoves.includes(state.lastAction.type)) {
+							const levelEndID = GameAudio.play('level_complete');
+							// const duration = GameAudio.duration(levelEndID);
+							GameAudio.volume(state.ui.sound.soundOn ? 0.375 : 0.0, levelEndID);
+							// GameAudio.fade(0.0, state.ui.sound.soundOn ? 0.5 : 0.0, duration*1000/2, levelEndID);
+							// GameAudio.fade(state.ui.sound.soundOn ? 0.0 : 0.5, 0.0, duration*1000/2, levelEndID);
+						}
+						
 						this.dispatch(push(`/game/${game.board.packInfo.packName}/${parseInt(game.board.levelNumber, 10) + 1}`));
 						// this.dispatch(loadLevelString(game.board.levelNumber + 1, game.board.packInfo.packName));
 					}
 					else {
-						this.dispatch(closeLevelAction());
-						this.dispatch(uiActionCreators.closeGameMode());
-						this.dispatch(push(`/`));
+						const packCompleteID = GameAudio.play('pack_complete');
+						GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, packCompleteID);
+						this.dispatch(uiActionCreators.togglePackComplete());
+						// this.dispatch(closeLevelAction());
+						// this.dispatch(uiActionCreators.closeGameMode());
+						// this.dispatch(push(`/`));
+					}
+				} else if (didBgChange) {
+					animFrame.background = bg;
+					if (playerMoves.includes(state.lastAction.type)) {
+						const switchID = GameAudio.play('switch_toggle');
+						GameAudio.volume(state.ui.sound.soundOn ? 2.0 : 0.0, switchID);
+					}
+				} else {
+					if (playerMoves.includes(state.lastAction.type)) {
+						const moveID = GameAudio.play('move');
+						GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, moveID);
+					}
+				}
+			} else if (!didBgChange && !didMove) {
+				if (playerMoves.includes(state.lastAction.type)) {
+					const moveBlockedID = GameAudio.play('move_blocked');	
+					console.log("move blocked");
+					GameAudio.volume(state.ui.sound.soundOn ? 2.0 : 0.0, moveBlockedID);
+					switch (state.lastAction.type) {
+						case playerActionNames.MOVE_LEFT:
+							animFrame.squish = { dx: -1, dy: 0 };
+							break;
+						case playerActionNames.MOVE_RIGHT:
+							animFrame.squish = { dx: 1, dy: 0 };
+							break;
+						case playerActionNames.MOVE_UP:
+							animFrame.squish = { dx: 0, dy: -1 };
+							break;
+						case playerActionNames.MOVE_DOWN:
+							animFrame.squish = { dx: 0, dy: 1 };
+							break;
+						default:
+							break;
 					}
 				}
 			}
-			if (didBgChange) {
-				this.board.setBackgroundColor(game.board.background);
-			}
+			
+			this.animationManager.addFrame(animFrame);
 		}
 		else {
 			// receiving an action without a level loaded

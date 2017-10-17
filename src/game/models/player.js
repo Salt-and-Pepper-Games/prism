@@ -1,10 +1,85 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
+import MutableNumber from '../../utils/MutableNumber';
+import { squishAnimation, moveToAnimation } from '../animations/movementAnimations';
+import { setColorAnimation } from '../animations/colorAnimations';
+import BaseModel from './baseModel';
 
-export default class Player {
+export default class Player extends BaseModel {
 	constructor(x, y, width, height, layer) {
-		this.color = colorIndices.PLAYER;
+		let color = colorIndices.PLAYER;
+		let cellWidth = layer.width() / width;
+		let cellHeight = layer.height() / height;
+		width = .7 * layer.width() / width;
+		height = .7 * layer.height() / height;
+
+		let model = new Konva.Group({
+			x: cellWidth * (x + .5),
+			y: cellHeight * (y + .5),
+		});
+
+		let body = new Konva.Rect({
+			x:0, 
+			y:0,
+			width: width,
+			height: height,
+			offsetX: width / 2,
+			offsetY: height / 2,
+			fill: colorValues[colorIndices.WHITE],
+			cornerRadius: 10,
+			strokeWidth: 0,
+		});
+
+		let eyehole = new Konva.Ellipse({
+			x:0,
+			y:0,
+			width: width / 1.2,
+			height: height / 1.8,
+			fill: colorValues[colorIndices.BLACK],
+			strokeWidth: 0,
+		});
+
+		let iris = new Konva.Ellipse({
+			x:0,
+			y:0,
+			width: width / 1.7,
+			height: height / 1.7,
+			fill: colorValues[colorIndices.WHITE],
+			strokeWidth: 0,
+		});
+
+		let eye = new Konva.Ellipse({
+			x: 0,
+			y: 0,
+			offsetX: -width / 12,
+			width: width / 3.2,
+			height: height / 3.2,
+			fill: colorValues[colorIndices.BLACK],
+			strokeWidth: 0,
+		});
+		model.add(body);
+		model.add(eyehole);
+		model.add(iris);
+		model.add(eye);
+		super(color, model, layer);
+
+		this.body = body;
+		this.eyehole = eyehole;
+		this.iris = iris;
+		this.eye = eye;
+
+		this.width = width;
+		this.height = height;
+		this.cellWidth = cellWidth;
+		this.cellHeight = cellHeight;
+
 		this.hasAltColor = false;
+
+		this.movementAnimLength = 1;
+		this.movementAnimTime = new MutableNumber(this.animTime * this.movementAnimLength);
+
+		this.colorAnimLength = 1;
+		this.colorAnimTime = new MutableNumber(this.animTime * this.colorAnimLength);
 
 		this.x = x;
 		this.y = y;
@@ -15,15 +90,6 @@ export default class Player {
 		this.dx = 0;
 		this.dy = 0; // for animating
 
-		this.width = .7 * layer.width() / width;
-		this.height = .7 * layer.height() / height;
-
-		this.cellWidth = layer.width() / width;
-		this.cellHeight = layer.height() / height;
-
-		//takes animation objects of type animation type, duration, enum
-		this.animationSpeed = 1;
-		this.animationQueue = [];
 
 		// this.model = new Konva.Rect({
 		// 	x: this.cellWidth * (x + .5),
@@ -37,154 +103,37 @@ export default class Player {
 		// });
 
 		//build the eye model
-		this.model = new Konva.Group({
-			x: this.cellWidth * (x + .5),
-			y: this.cellHeight * (y + .5),
-		});
-
-		this.body = new Konva.Rect({
-			x:0, 
-			y:0,
-			width: this.width,
-			height: this.height,
-			offsetX: this.width / 2,
-			offsetY: this.height / 2,
-			fill: colorValues[colorIndices.WHITE],
-			cornerRadius: 10,
-			strokeWidth: 0,
-		});
-
-		this.eyehole = new Konva.Ellipse({
-			x:0,
-			y:0,
-			width: this.width / 1.2,
-			height: this.height / 1.8,
-			fill: colorValues[colorIndices.BLACK],
-			strokeWidth: 0,
-		});
-
-		this.iris = new Konva.Ellipse({
-			x:0,
-			y:0,
-			width: this.width / 1.7,
-			height: this.height / 1.7,
-			fill: colorValues[colorIndices.WHITE],
-			strokeWidth: 0,
-		});
-
-		this.eye = new Konva.Ellipse({
-			x: 0,
-			y: 0,
-			offsetX: -this.width / 12,
-			width: this.width / 3.2,
-			height: this.height / 3.2,
-			fill: colorValues[colorIndices.BLACK],
-			strokeWidth: 0,
-		});
 
 		this.backgroundColorGroup = [this.eye, this.eyehole];
 		this.playerColorGroup = [this.body, this.iris];
 
-		this.model.add(this.body);
-		this.model.add(this.eyehole);
-		this.model.add(this.iris);
-		this.model.add(this.eye);
-
-		layer.add(this.model);
-
-		const playerAnim = new Konva.Animation(this.updatePlayer.bind(this), layer);
-		playerAnim.start();
+		// const playerAnim = new Konva.Animation(this.updatePlayer.bind(this), layer);
+		// playerAnim.start();
 	}
 
-	// Returns a boolean indicating is position actually changed.
+	// Returns a promise that resolves when the animation is complete
 	moveTo(x, y) {
-		const oldTargetX = this.targetX;
-		const oldTargetY = this.targetY;
-		this.targetX = x;
-		this.targetY = y;
-		this.pushAnimation(1000, this.moveToAnimation(oldTargetX, oldTargetY, this.targetX, this.targetY, this.targetY === oldTargetY));
-
-		const totalDuration = this.animationQueue.reduce(function(sum, value) {
-  			return sum + value.timeLeft;
-		}, 0);
-
-		this.animationSpeed = Math.min(totalDuration / 200.0, 100);
-
-		// this.x = x;
-		// this.y = y;
-		// 	this.model.to({
-		// 	x: this.cellWidth * (x + .5),
-		// 	y: this.cellHeight * (y + .5),
-		// 	duration: .2,
-		// 	easing: Konva.Easings.StrongEaseOut
-		// });
-
+		this.x = x;
+		this.y = y;
+		let anim = moveToAnimation(this.model, this.cellWidth * (x + .5), this.cellHeight * (y + .5), this.movementAnimTime);
+		return anim.play();
 	}
 
-	pushAnimation(duration, animation) {
-		this.animationQueue.push({
-			duration:duration,
-			timeLeft:duration,
-			animation:animation,
-		});
-	}
-
-	/*squishAnimation(x, y, deltaX, deltaY, vertical) {
-		return (time) => {
-			const xDiff = targetX - x;
-			const yDiff = targetY - y;
-			const animationPos = Math.sin(time * Math.PI / 2.0);
-			this.x = x + xDiff * animationPos;
-			this.y = y + yDiff * animationPos;
-			this.model.setX(this.cellWidth * (this.x + .5));
-			this.model.setY(this.cellHeight * (this.y + .5));
-			if (vertical) {
-				this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-				this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-			} else {
-				this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-				this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-			}
-		};
-	}*/
-
-	moveToAnimation(x, y, targetX, targetY, vertical) {
-		return (time) => {
-			const xDiff = targetX - x;
-			const yDiff = targetY - y;
-			const animationPos = Math.sin(time * Math.PI / 2.0);
-			this.x = x + xDiff * animationPos;
-			this.y = y + yDiff * animationPos;
-			this.model.setX(this.cellWidth * (this.x + .5));
-			this.model.setY(this.cellHeight * (this.y + .5));
-			if (vertical) {
-				this.model.setScaleY(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-			} else {
-				this.model.setScaleX(Math.cos(time * 2 * Math.PI) * 0.09 + 0.91);
-			}
-		};
+	/**
+	 * Squish animation for attempting to move the direction specified by (dx, dy)
+	 * @param {Number} dx - should be 1, 0, or -1
+	 * @param {Number} dy - should be 1, 0, or -1
+	 */
+	onSquish(dx, dy) {
+		let anim = squishAnimation(this.model, this.x, this.y, dx, dy, this.width / this.cellWidth, this.height / this.cellHeight, this.cellWidth, this.cellHeight, this.animTime);
+		return anim.play();
 	}
 
 	updatePlayer(frame) {
-		const { timeDiff } = frame;
-
-		if (this.animationQueue.length > 0) {
-			const currentAnimation = this.animationQueue[0];
-			currentAnimation.timeLeft -= this.animationSpeed * timeDiff;
-			currentAnimation.timeLeft = Math.max(currentAnimation.timeLeft, 0);
-			currentAnimation.animation(1 - currentAnimation.timeLeft / currentAnimation.duration);
-			if (currentAnimation.timeLeft === 0) {
-				this.animationQueue.shift();
-			}
-
-			//eye animation
-			// TODO make eye look at exit when it exists (for now we just look at top left corner)
-			const directionToCenter = Math.atan2(-this.y, -this.x);
-			this.eye.setRotation(directionToCenter / Math.PI * 180.0);
-		}
-		else {
-			return false;
-		}
+		//eye animation
+		// TODO make eye look at exit when it exists (for now we just look at top left corner)
+		const directionToCenter = Math.atan2(-this.y, -this.x);
+		this.eye.setRotation(directionToCenter / Math.PI * 180.0);
 	}
 
 	closeToTarget() {
@@ -195,36 +144,28 @@ export default class Player {
 	onBackgroundColor(color) {
 		const playerColor = colorIndices.WHITE;
 
+		const anims = [];
 		//Tween the color of the background colored components
 		this.backgroundColorGroup.forEach((modelComponent) => {
-			this.model.to({
-				fill: colorValues[color],
-				duration: .35,
-			});
+			let anim = setColorAnimation(modelComponent, colorValues[color], this.animTime);
+			anims.push(anim.play());
 		});
 
 		if (color === playerColor && !this.hasAltColor) {
-			this.playerColorGroup.forEach((modelComponent) => {
-				modelComponent.to({
-					fill: altColorValues[this.color],
-					duration: .35,
-				});
+			this.playerColorGroup.forEach(modelComponent => {
+				let anim = setColorAnimation(modelComponent, altColorValues[color], this.animTime);
+				anims.push(anim.play());
 			});
 			this.hasAltColor = true;
 		}
 		else if (color !== playerColor && this.hasAltColor) {
 			this.playerColorGroup.forEach((modelComponent) => {
-				modelComponent.to({
-					fill: colorValues[this.color],
-					duration: .35,
-				});
+				let anim = setColorAnimation(modelComponent, colorValues[this.color], this.animTime);
+				anims.push(anim.play());
 			});
 			this.hasAltColor = false;
 		}
-	}
-
-	destroy() {
-		this.model.destroy();
+		return Promise.all(anims);
 	}
 }
 
