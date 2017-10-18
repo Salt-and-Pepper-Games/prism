@@ -1000,7 +1000,7 @@ body {
   .prism .I {
     color: #94EA54; }
   .prism .S {
-    color: #ff7bd6; }
+    color: #b16cf5; }
   .prism .M {
     color: #5699fd; }
 
@@ -1015,7 +1015,7 @@ body {
   .prism:hover .S {
     color: #94EA54; }
   .prism:hover .M {
-    color: #ff7bd6; }
+    color: #b16cf5; }
 
 .letter {
   padding-left: 5px;
@@ -1117,7 +1117,7 @@ body {
   background-color: rgba(76, 237, 222, 0.8); }
 
 .pack.packmagenta:hover, .pack.packmagentacomplete:hover {
-  background-color: rgba(255, 123, 214, 0.8); }
+  background-color: rgba(177, 108, 245, 0.8); }
 
 .pack.packred:hover, .pack.packredcomplete:hover {
   background-color: rgba(255, 105, 120, 0.8); }
@@ -1248,21 +1248,21 @@ body {
   background-color: rgba(148, 234, 84, 0.35); }
 
 .packmagenta, .packmagentacomplete {
-  color: #700080;
-  background-color: #ff7bd6;
-  border: 0.35em solid #700080; }
+  color: #4b2e67;
+  background-color: #b16cf5;
+  border: 0.35em solid #4b2e67; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packmagenta, .packmagentacomplete {
-      border: 0.25em solid #700080; } }
+      border: 0.25em solid #4b2e67; } }
 
 .packmagentacomplete {
-  border: 1em solid #700080; }
+  border: 1em solid #4b2e67; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .packmagentacomplete {
-      border: 0.5em solid #700080; } }
+      border: 0.5em solid #4b2e67; } }
 
 .packmagentabg {
-  background-color: rgba(255, 123, 214, 0.35); }
+  background-color: rgba(177, 108, 245, 0.35); }
 
 .game-area-yellow {
   color: #52501b;
@@ -1293,8 +1293,8 @@ body {
   background-color: #5699fd; }
 
 .game-area-magenta {
-  color: #700080;
-  background-color: #ff7bd6; }
+  color: #4b2e67;
+  background-color: #b16cf5; }
 
 .game-wrapper-yellow {
   background-color: #fffcc0; }
@@ -1318,7 +1318,7 @@ body {
   background-color: #6aa5ff; }
 
 .game-wrapper-magenta {
-  background-color: #ff99e0; }
+  background-color: #c182ff; }
 
 .btn-yellow {
   background-color: #fffcc0; }
@@ -1342,6 +1342,6 @@ body {
   background-color: #6aa5ff; }
 
 .btn-magenta {
-  background-color: #ff99e0; }
+  background-color: #c182ff; }
 
 /*# sourceMappingURL=index.css.map */

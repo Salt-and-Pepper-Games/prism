@@ -18,7 +18,7 @@ colorValues[colorIndices.GREEN] = "#94EA54";
 colorValues[colorIndices.BLUE] = "#5699fd";
 
 colorValues[colorIndices.YELLOW] = "#fffa6c";
-colorValues[colorIndices.MAGENTA] = "#ff7bd6";
+colorValues[colorIndices.MAGENTA] = "#b16cf5";
 colorValues[colorIndices.CYAN] = "#4CEDDE";
 
 colorValues[colorIndices.BLACK] = "#464B63";
