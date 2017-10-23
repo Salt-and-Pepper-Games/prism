@@ -19,6 +19,18 @@ export default class Player extends BaseModel {
 			height
 		});
 
+		const text = new Konva.Text({
+			x: 0,
+			y: 0,
+			width: width,
+			height: height,
+			text: '0',
+			fontSize: height,
+			offsetX: width/2,
+			offsetY: height/2,
+			align: 'center'
+		});
+
 		let body = new Konva.Rect({
 			x:0, 
 			y:0,
@@ -59,15 +71,17 @@ export default class Player extends BaseModel {
 			strokeWidth: 0,
 		});
 		model.add(body);
-		model.add(eyehole);
-		model.add(iris);
-		model.add(eye);
+		// model.add(eyehole);
+		// model.add(iris);
+		// model.add(eye);
+		model.add(text);
 		super(color, model, layer);
 
 		this.body = body;
 		this.eyehole = eyehole;
 		this.iris = iris;
 		this.eye = eye;
+		this.text = text;
 
 		this.width = width;
 		this.height = height;
@@ -105,11 +119,10 @@ export default class Player extends BaseModel {
 
 		//build the eye model
 
-		this.backgroundColorGroup = [this.eye, this.eyehole];
-		this.playerColorGroup = [this.body, this.iris];
-
-		// const playerAnim = new Konva.Animation(this.updatePlayer.bind(this), layer);
-		// playerAnim.start();
+		// this.backgroundColorGroup = [this.eye, this.eyehole];
+		this.backgroundColorGroup = [];
+		// this.playerColorGroup = [this.body, this.iris];
+		this.playerColorGroup = [this.body];
 	}
 
 	// Returns a promise that resolves when the animation is complete
@@ -143,6 +156,7 @@ export default class Player extends BaseModel {
 	}
 
 	onBackgroundColor(color) {
+		this.text.setText(color.toString());
 		const playerColor = colorIndices.WHITE;
 
 		const anims = [];
