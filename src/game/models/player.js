@@ -15,6 +15,8 @@ export default class Player extends BaseModel {
 		let model = new Konva.Group({
 			x: cellWidth * (x + .5),
 			y: cellHeight * (y + .5),
+			width,
+			height
 		});
 
 		let body = new Konva.Rect({

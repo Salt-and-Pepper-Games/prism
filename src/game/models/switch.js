@@ -13,19 +13,53 @@ export default class Switch extends BaseModel {
 		width = .5 * layer.width() / width;
 		height = .5 * layer.height() / height;
 
-		let model = new Konva.Circle({
+		const model = new Konva.Group({
 			x: cellWidth * (x + .5),
 			y: cellHeight * (y + .5),
+			width: width,
+			height: height,
+			offsetX: width * shadowOffsetRatio,
+			offsetY: height * shadowOffsetRatio,
+		});
+
+		const circle = new Konva.Circle({
+			x: 0,
+			y: 0,
 			radius: cellWidth / 4,
-			fill: colorValues[color],
+			fill: colorValues[7],
 			// stroke: "rgba(30, 30, 30, .3)",
 			shadowBlur: 0,
 			shadowColor: "#000000",
 			shadowOffsetX: width * shadowOffsetRatio,
 			shadowOffsetY: height * shadowOffsetRatio,
-			offsetX: width * shadowOffsetRatio,
-			offsetY: height * shadowOffsetRatio,
 		});
+
+		Object.assign(model, {
+			shadowOffsetX: circle.shadowOffsetX.bind(circle),
+			shadowOffsetY: circle.shadowOffsetY.bind(circle),
+			shadowBlur: circle.shadowBlur.bind(circle),
+			fill: circle.fill.bind(circle)
+		});
+		
+
+		const text = new Konva.Text({
+			x: 0,
+			y: 0,
+			offsetX: width/2,
+			offsetY: height/2,
+			text: color,
+			fontSize: height,
+			fontFamily: 'Calibri',
+			fill: 'black',
+			align: 'center',
+			width: width,
+			height: height,
+		});
+		// // delegate the model fill function to the rect's
+		// model.fill = rect.fill.bind(rect);
+
+		model.add(circle);
+		model.add(text);
 		super(color, model, layer);
 		
 		this.type = blockTypes.SWITCH;
@@ -74,18 +108,18 @@ export default class Switch extends BaseModel {
 			anims.push(switchOffAnimation(this.model, this.shadowOffsetRatio, this.animTime).play());
 			this.isPressed = false;
 		}
-		if (color === this.color) {
-			if (!this.hasAltColor) {
-				anims.push(setColorAnimation(this.model, altColorValues[this.color], this.animTime).play());
-				this.hasAltColor = true;
-			}
-		}
-		else {
-			if (this.hasAltColor) {
-				anims.push(setColorAnimation(this.model, colorValues[this.color], this.animTime).play());
-				this.hasAltColor = false;
-			}
-		}
+		// if (color === this.color) {
+		// 	if (!this.hasAltColor) {
+		// 		anims.push(setColorAnimation(this.model, altColorValues[7], this.animTime).play());
+		// 		this.hasAltColor = true;
+		// 	}
+		// }
+		// else {
+		// 	if (this.hasAltColor) {
+		// 		anims.push(setColorAnimation(this.model, colorValues[7], this.animTime).play());
+		// 		this.hasAltColor = false;
+		// 	}
+		// }
 		return Promise.all(anims);
 	}
 }

@@ -25,6 +25,13 @@ colorValues[colorIndices.BLACK] = "#464B63";
 colorValues[colorIndices.WHITE] = "#fffdfc";
 colorValues[colorIndices.PLAYER] = "#fffdfc";
 
+// de-saturating
+for (let val in colorValues) {
+	if (colorValues.hasOwnProperty(val)) {
+		colorValues[val] = lerpColor(colorValues[val], "#aaaaaa", .3);
+	}
+}
+
 export { colorValues };
 
 const black = "#000000";
