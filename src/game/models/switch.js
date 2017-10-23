@@ -26,7 +26,8 @@ export default class Switch extends BaseModel {
 			x: 0,
 			y: 0,
 			radius: cellWidth / 4,
-			fill: colorValues[7],
+			// fill: colorValues[7],
+			fill: colorValues[color],
 			// stroke: "rgba(30, 30, 30, .3)",
 			shadowBlur: 0,
 			shadowColor: "#000000",
@@ -46,9 +47,9 @@ export default class Switch extends BaseModel {
 			x: 0,
 			y: 0,
 			offsetX: width/2,
-			offsetY: height/2,
-			text: color,
-			fontSize: height,
+			offsetY: width/4,
+			text: '+' + color,
+			fontSize: width/2,
 			fontFamily: 'Calibri',
 			fill: 'black',
 			align: 'center',
@@ -62,6 +63,7 @@ export default class Switch extends BaseModel {
 		model.add(text);
 		super(color, model, layer);
 		
+		this.text = text;
 		this.type = blockTypes.SWITCH;
 		this.color = color;
 		this.pressed = false;
@@ -101,10 +103,12 @@ export default class Switch extends BaseModel {
 		const anims = [];
 		const shouldBePressed = color & this.color;
 		if (shouldBePressed && !this.isPressed) {
+			this.text.setText('-' + this.color);
 			anims.push(switchOnAnimation(this.model, this.animTime).play());
 			this.isPressed = true;
 		}
 		else if (!shouldBePressed && this.isPressed) {
+			this.text.setText('+' + this.color);
 			anims.push(switchOffAnimation(this.model, this.shadowOffsetRatio, this.animTime).play());
 			this.isPressed = false;
 		}
