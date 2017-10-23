@@ -1,6 +1,5 @@
 import Konva from 'konva';
 import { altColorValues, colorIndices, colorValues } from '../colors';
-import MutableNumber from '../../utils/MutableNumber';
 import { squishAnimation, moveToAnimation } from '../animations/movementAnimations';
 import { setColorAnimation } from '../animations/colorAnimations';
 import BaseModel from './baseModel';
@@ -76,10 +75,10 @@ export default class Player extends BaseModel {
 		this.hasAltColor = false;
 
 		this.movementAnimLength = 1;
-		this.movementAnimTime = new MutableNumber(this.animTime * this.movementAnimLength);
+		this.movementAnimTime = this.animTime * this.movementAnimLength;
 
 		this.colorAnimLength = 1;
-		this.colorAnimTime = new MutableNumber(this.animTime * this.colorAnimLength);
+		this.colorAnimTime = this.animTime * this.colorAnimLength;
 
 		this.x = x;
 		this.y = y;
