@@ -48,8 +48,8 @@ export default class Switch extends BaseModel {
 			y: 0,
 			offsetX: width/2,
 			offsetY: width/4,
-			// text: '+' + color,
-			text: color,
+			text: '+' + color,
+			// text: color,
 			fontSize: width/2,
 			fontFamily: 'Calibri',
 			fill: 'black',
@@ -104,23 +104,24 @@ export default class Switch extends BaseModel {
 		const anims = [];
 		const shouldBePressed = color & this.color;
 		if (shouldBePressed && !this.isPressed) {
-			// this.text.setText('-' + this.color);
+			this.text.setText('-' + this.color);
 			// this.text.setText((color - this.color).toString());
 			anims.push(switchOnAnimation(this.model, this.animTime).play());
 			this.isPressed = true;
 		}
 		else if (!shouldBePressed && this.isPressed) {
-			// this.text.setText('+' + this.color);
+			this.text.setText('+' + this.color);
 			// this.text.setText((color + this.color).toString());
 			anims.push(switchOffAnimation(this.model, this.shadowOffsetRatio, this.animTime).play());
 			this.isPressed = false;
 		}
-		if (this.isPressed) {
-			this.text.setText((color - this.color).toString());
-		}
-		else {
-			this.text.setText((color + this.color).toString());
-		}
+		// if (this.isPressed) {
+		// 	this.text.setText((color - this.color).toString());
+		// }
+		// else {
+		// 	this.text.setText((color + this.color).toString());
+		// }
+
 		// if (color === this.color) {
 		// 	if (!this.hasAltColor) {
 		// 		anims.push(setColorAnimation(this.model, altColorValues[7], this.animTime).play());
