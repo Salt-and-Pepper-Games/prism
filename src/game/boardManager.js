@@ -122,13 +122,16 @@ export default class BoardManager {
 				} else {
 					if (playerMoves.includes(state.lastAction.type)) {
 						const moveID = GameAudio.play('move');
+						GameAudio.rate(Math.random() * .2 + .9, moveID);
 						GameAudio.volume(state.ui.sound.soundOn ? 1.0 : 0.0, moveID);
+
 					}
 				}
 			} else if (!didBgChange && !didMove) {
 				if (playerMoves.includes(state.lastAction.type)) {
 					const moveBlockedID = GameAudio.play('move_blocked');	
 					console.log("move blocked");
+					GameAudio.rate(Math.random() * .2 + .9, moveBlockedID);
 					GameAudio.volume(state.ui.sound.soundOn ? 2.0 : 0.0, moveBlockedID);
 					switch (state.lastAction.type) {
 						case playerActionNames.MOVE_LEFT:
