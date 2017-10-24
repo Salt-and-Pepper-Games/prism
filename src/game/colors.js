@@ -43,6 +43,15 @@ altColorValues[colorIndices.WHITE] = lerpColor(colorValues[colorIndices.PLAYER],
 
 export { altColorValues };
 
+const shadowColorValues = {};
+for (let index in colorIndices) {
+	if (colorIndices.hasOwnProperty(index)) {
+		const color = colorIndices[index];
+		shadowColorValues[color] = lerpColor(colorValues[color], black, .8);
+	}
+}
+export { shadowColorValues };
+
 function pad(n) {
 	if (n.length < 2) {
 		return "0".repeat(2 - n.length) + n;

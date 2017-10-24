@@ -43,23 +43,6 @@ export default class Switch extends BaseModel {
 
 		this.shadowOffsetRatio = shadowOffsetRatio;
 
-		// this.model = new Konva.Rect({
-		// 	x: this.cellWidth * (x + .5),
-		// 	y: this.cellHeight * (y + .5),
-		// 	offsetX: this.width / 2,
-		// 	offsetY: this.height / 2,
-		// 	width: this.width,
-		// 	height: this.height,
-		// 	cornerRadius: 10,
-		// 	fill: colorValues[color],
-		// 	// stroke: "rgba(30, 30, 30, .3)",
-		// 	shadowBlur: 0,
-		// 	shadowColor: "#000000",
-		// 	shadowOffsetX: this.width * .1,
-		// 	shadowOffsetY: this.height * .1,
-		// });
-
-
 		layer.add(this.model);
 	}
 
