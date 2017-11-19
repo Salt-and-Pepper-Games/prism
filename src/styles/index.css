@@ -527,21 +527,28 @@ body {
 .dashboard-toggle-main, .sound-toggle-main {
   transition: opacity .25s; }
 
-.return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
+.return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .undo-btn, .move-count {
   position: relative;
   font-size: 5em;
   transition: opacity .25s; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
-    .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .hint-btn, .move-count {
+    .return-home-btn, .help-btn, .sound-toggle-btn, .reset-btn, .undo-btn, .move-count {
       font-size: 3em; } }
 
 .move-count:hover {
   cursor: default; }
 
-.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover,
+.return-home-btn:hover, .help-btn:hover, .sound-toggle-btn:hover, .reset-btn:hover, .undo-btn:hover, .sound-toggle-main:hover, .dashboard-toggle-main:hover,
 .pack-complete-exit-btn:hover, .pack-complete-restart-btn:hover, .close-dashboard-btn:hover {
   cursor: pointer;
   opacity: .75; }
+
+.undo-btn {
+  -ms-transform: rotate(315deg);
+  /* IE 9 */
+  -webkit-transform: rotate(315deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(315deg); }
 
 .close-dashboard-btn {
   position: absolute;
@@ -550,12 +557,6 @@ body {
   font-size: 2em;
   transition: opacity .25s;
   z-index: 3; }
-
-.hint-btn {
-  opacity: .75; }
-
-.hint-btn:hover {
-  cursor: not-allowed; }
 
 .help-overlay {
   position: fixed;

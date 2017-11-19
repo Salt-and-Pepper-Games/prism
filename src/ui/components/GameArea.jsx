@@ -107,7 +107,7 @@ class GameArea extends React.Component {
 							<i onClick={toggleSound} className={`sound-toggle-btn fa fa-${soundOn ? 'volume-up' : 'volume-off'}`}/>
 						</div>
 						<div className='in-game-buttons'>
-							<i className={`hint-btn fa fa-magic`}/>
+							<i className={`undo-btn fa fa-mail-reply`}/>
 						</div>
 						<div className='in-game-buttons'>
 							<i 
