@@ -15,3 +15,7 @@ export const moveLeft = () => ({
 export const moveRight = () => ({
 	type: types.MOVE_RIGHT
 });
+
+export const undo = () => ({
+	type: types.UNDO
+});

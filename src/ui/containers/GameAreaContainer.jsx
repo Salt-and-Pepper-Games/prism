@@ -5,6 +5,7 @@ import * as uiActionCreators from '../../actionCreators/uiActionCreators';
 import * as soundActionCreators from '../../actionCreators/soundActionCreators';
 import * as levelActionCreators from '../../actionCreators/levelActionCreators';
 import * as asyncActionCreators from '../../actionCreators/asyncActionCreators';
+import * as playerActionCreators from '../../actionCreators/playerActionCreators';
 
 const mapStateToProps = state => {
 	return {
@@ -32,6 +33,7 @@ const mapDispatchToProps = dispatch => {
 		stopTransition: () => dispatch(soundActionCreators.stopTransitionPlaying()),
 		loadLevel: (levelNumber, packName) => dispatch(asyncActionCreators.loadLevelString(levelNumber, packName)),
 		restartLevel: () => dispatch(levelActionCreators.restartLevelAction()),
+		undoMove: () => dispatch(playerActionCreators.undo()),
 		triggerAudioLoaded: () => dispatch(soundActionCreators.triggerAudioLoaded())
 	};
 };

@@ -86,6 +86,7 @@ export default class BoardManager {
 			const animFrame = {};
 			// Check if the player actually moved before changing switch color.
 			if (didMove) {
+				console.log(game.board.stats.moveSequence);
 				// this.board.setPlayerPosition(px, py);
 				animFrame.player = { x: px, y: py };
 				if (px === game.board.home.x && game.board.home.y === py && !game.board.complete) {

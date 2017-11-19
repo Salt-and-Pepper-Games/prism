@@ -4,6 +4,14 @@ import playerActions from '../../actionCreators/playerActionNames';
 import { blockTypes } from '../models/board';
 import { colorIndices } from '../colors';
 
+const moveTypes = {
+	NONE: 0,
+	LEFT: 'l',
+	RIGHT: 'r',
+	UP: 'u',
+	DOWN: 'd'
+};
+
 const charMap = {
 	EMPTY: 'e',
 	RED_BLOCK: 'r',
@@ -16,7 +24,7 @@ const charMap = {
 	RED_SWITCH: 'R',
 	GREEN_SWITCH: 'G',
 	BLUE_SWITCH: 'B'
-}
+};
 
 
 export const defaultState = {
@@ -31,12 +39,33 @@ export const defaultState = {
 	levelNumber: null,
 	complete: false,
 	stats: {
+		moveSequence: [],
 		moves: 0,
 		switches: 0,
 		startTime: null,
 		elapsedTime: null,
 		solved: false,
 		restarts: 0
+	}
+}
+
+function getMoveType(oldX, oldY, newX, newY) {
+	let dx = newX - oldX;
+	let dy = newY - oldY;
+	if (dx > 0) {
+		return moveTypes.RIGHT;
+	}
+	else if (dx < 0) {
+		return moveTypes.LEFT;
+	}
+	else if (dy > 0) {
+		return moveTypes.DOWN;
+	}
+	else if (dy < 0) {
+		return moveTypes.UP;
+	}
+	else {
+		return moveTypes.NONE;
 	}
 }
 
@@ -78,6 +107,8 @@ export default (state = defaultState, action) => {
 			return getStateFromMovement(state, state.player.x - 1, state.player.y);
 		case playerActions.MOVE_RIGHT:
 			return getStateFromMovement(state, state.player.x + 1, state.player.y);
+		case playerActions.UNDO:
+			return getStateFromUndo(state);
 		case backgroundActions.SET_COLOR:
 			return getStateFromBgColor(state, action.color);
 		default:
@@ -87,12 +118,58 @@ export default (state = defaultState, action) => {
 
 function getStateFromRestart(oldBoard) {
 	const board = getStateFromBgColor(oldBoard, colorIndices.BLACK);
-	const resetStats = Object.assign({}, oldBoard.stats, { restarts: oldBoard.stats.restarts + 1 });
+	const resetStats = Object.assign({}, oldBoard.stats, { 
+		moveSequence: [],
+		restarts: oldBoard.stats.restarts + 1 
+	});
 	Object.assign(board, {
 		player: board.playerStart,
 		stats: resetStats
 	});
 	return board;
+}
+
+function getStateFromUndo(oldBoard) {
+	if (oldBoard.stats.moveSequence.length > 0) {
+		const newMoveSequence = oldBoard.stats.moveSequence.slice();
+		const lastMove = newMoveSequence.pop();
+		let { x, y } = oldBoard.player;
+		const oldBlock = oldBoard.blocks[x][y];
+		switch (lastMove) {
+			case moveTypes.UP:
+				y += 1;
+				break;
+			case moveTypes.DOWN:
+				y -= 1;
+				break;
+			case moveTypes.LEFT:
+				x += 1;
+				break;
+			case moveTypes.RIGHT:
+				x -= 1;
+				break;
+			default:
+				return oldBoard;
+		}
+		let newState = oldBoard;
+		// if we're on a switch and want to undo, we need to hit that switch
+		if (oldBlock && oldBlock.type === blockTypes.SWITCH) {
+			newState = getStateFromBgColor(oldBoard, oldBoard.background ^ oldBlock.color);
+		}
+		// move the player back
+		newState = Object.assign({}, newState, {
+			player: { x, y },
+			stats: Object.assign({}, newState.stats, {
+		// remove move from move sequence, decrement movve counter
+				moveSequence: newMoveSequence,
+				moves: newState.stats.moves - 1
+			})
+		});
+		return newState;
+	}
+	else {
+		return oldBoard;
+	}
 }
 
 function getStateFromMovement(oldBoard, x, y) {
@@ -106,10 +183,12 @@ function getStateFromMovement(oldBoard, x, y) {
 		else {
 			newBoard = Object.assign({}, oldBoard);
 		}
+		const moveType = getMoveType(oldBoard.player.x, oldBoard.player.y, x, y);
 		Object.assign(newBoard, {
 			player: { x, y },
-			// stat tracking for move count
+			// stat tracking for move count, move sequence
 			stats: Object.assign({}, newBoard.stats, {
+				moveSequence: oldBoard.stats.moveSequence.concat(moveType),
 				moves: oldBoard.stats.moves + 1,
 				elapsedTime: Date.now() - oldBoard.stats.startTime,
 				solved: x === newBoard.home.x && y === newBoard.home.y
