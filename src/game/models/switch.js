@@ -1,6 +1,6 @@
 import Konva from 'konva';
 import { blockTypes } from './board';
-import { altColorValues, colorValues } from '../colors';
+import { altColorValues, colorValues, shadowColorValues } from '../colors';
 import { switchOnAnimation, switchOffAnimation } from '../animations/switchAnimations';
 import { setColorAnimation } from '../animations/colorAnimations';
 import BaseModel from './baseModel';
@@ -20,7 +20,7 @@ export default class Switch extends BaseModel {
 			fill: colorValues[color],
 			// stroke: "rgba(30, 30, 30, .3)",
 			shadowBlur: 0,
-			shadowColor: "#000000",
+			shadowColor: shadowColorValues[color],
 			shadowOffsetX: width * shadowOffsetRatio,
 			shadowOffsetY: height * shadowOffsetRatio,
 			offsetX: width * shadowOffsetRatio,
