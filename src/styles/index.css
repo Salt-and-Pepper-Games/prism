@@ -558,7 +558,7 @@ body {
   transition: opacity .25s;
   z-index: 3; }
 
-.help-overlay {
+.help-overlay, .help-overlay-slider {
   position: fixed;
   z-index: 2;
   background-color: rgba(70, 75, 99, 0.95);
@@ -569,8 +569,27 @@ body {
   justify-content: center;
   transition: visibility .26s, opacity .25s; }
   @media only screen and (orientation: portrait) {
-    .help-overlay {
+    .help-overlay, .help-overlay-slider {
       flex-direction: column; } }
+
+.help-slide {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  @media only screen and (orientation: portrait) {
+    .help-slide {
+      flex-direction: column; } }
+
+.help-overlay-slider {
+  background-color: rgba(70, 75, 99, 0);
+  opacity: 1;
+  height: 100vh;
+  width: 90vw; }
+  @media only screen and (orientation: portrait) {
+    .help-overlay-slider {
+      width: 80vw; } }
 
 .venndiagram {
   height: 45vh;
@@ -587,6 +606,7 @@ body {
 
 .help-overlay-close-btn {
   position: absolute;
+  z-index: 3;
   top: .5em;
   right: .5em;
   color: #fffdfc;

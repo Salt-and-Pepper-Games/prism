@@ -11,7 +11,6 @@ const Dashboard = ({ stats, levelData, packInfo, isOpen, closeDashboard }) => {
       dots: mq.matches || mq2.matches,
       infinite: false,
       arrows: false,
-      speed: 500,
       slidesToShow: mq.matches || mq2.matches ? 1 : 3,
       slidesToScroll: mq.matches || mq2.matches ? 1 : 3
     };

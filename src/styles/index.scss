@@ -229,6 +229,26 @@ body {
         flex-direction: column;
     }
 }
+.help-slide {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include portrait-mobile {
+        flex-direction: column;
+    }
+}
+.help-overlay-slider {
+    @extend .help-overlay;
+    background-color: rgba(70, 75, 99, 0);
+    opacity: 1;
+    height: 100vh;
+    width: 90vw;
+    @include portrait-mobile {
+        width: 80vw;
+    }
+}
 .venndiagram {
     height: 45vh;
     width: 60vh;
@@ -244,6 +264,7 @@ body {
 }
 .help-overlay-close-btn {
     position: absolute;
+    z-index: 3;
     top: .5em;
     right: .5em;
     color: $white;
