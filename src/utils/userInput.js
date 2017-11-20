@@ -1,7 +1,13 @@
 import * as playerActionCreators from '../actionCreators/playerActionCreators';
+import * as levelActionCreators from '../actionCreators/levelActionCreators';
+import * as uiActionCreators from '../actionCreators/uiActionCreators';
+import * as soundActionCreators from '../actionCreators/soundActionCreators';
 import * as levelActionNames from '../actionCreators/levelActionNames';
 import * as uiActionNames from '../actionCreators/uiActionNames';
+import { push } from 'react-router-redux';
 import { addStateListener } from '../game/game';
+import GameAudio from './AudioManager';
+
 let store;
 let touchStart;
 let enableInput = false;
@@ -97,6 +103,19 @@ function handleKey(e) {
 		let doDefault = false;
 		const code = e.keyCode;
 		switch (code) {
+			case 27:
+				// return to main screen
+				GameAudio.stop();
+				store.dispatch(soundActionCreators.startTransitionPlaying());
+				const id = GameAudio.play('exit_game');
+				GameAudio.volume(store.getState().ui.sound.soundOn ? .5 : 0.0, id);
+				GameAudio.on('end', () => {
+					store.dispatch(soundActionCreators.stopTransitionPlaying());
+				}, id);
+				store.dispatch(uiActionCreators.closeGameMode());
+				store.dispatch(levelActionCreators.closeLevelAction());
+				store.dispatch(push("/"));
+				break;
 			case 37:
 				// left
 				store.dispatch(playerActionCreators.moveLeft());
@@ -112,6 +131,28 @@ function handleKey(e) {
 			case 40:
 				// down
 				store.dispatch(playerActionCreators.moveDown());
+				break;
+			case 72:
+				// help
+				if (store.getState().ui.ui.isHelpOpen) {
+					store.dispatch(uiActionCreators.closeHelp());
+				} else {
+					store.dispatch(uiActionCreators.openHelp());
+				}
+				break;
+			case 82:
+				// reset
+				const id2 = GameAudio.play('reset_level');
+				GameAudio.volume(store.getState().ui.sound.soundOn ? .5 : 0.0, id2);
+				store.dispatch(levelActionCreators.restartLevelAction());
+				break;
+			case 85:
+				// undo
+				store.dispatch(playerActionCreators.undo());
+				break;
+			case 86:
+				// volume
+				store.dispatch(soundActionCreators.toggleSound());
 				break;
 			default:
 				doDefault = true;

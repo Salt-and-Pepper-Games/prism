@@ -120,7 +120,8 @@ function getStateFromRestart(oldBoard) {
 	const board = getStateFromBgColor(oldBoard, colorIndices.BLACK);
 	const resetStats = Object.assign({}, oldBoard.stats, { 
 		moveSequence: [],
-		restarts: oldBoard.stats.restarts + 1 
+		restarts: oldBoard.stats.restarts + 1,
+		moves: 0
 	});
 	Object.assign(board, {
 		player: board.playerStart,

@@ -230,7 +230,7 @@ body {
     }
 }
 .help-slide {
-    height: 100vh;
+    height: 90vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -239,11 +239,22 @@ body {
         flex-direction: column;
     }
 }
+.help-slide-2 {
+    @extend .help-slide;
+    flex-direction: column;
+}
+.help-row {
+    display: flex;
+    align-items: center;
+    @include mobile {
+        flex-direction: column;
+    }
+}
 .help-overlay-slider {
     @extend .help-overlay;
     background-color: rgba(70, 75, 99, 0);
     opacity: 1;
-    height: 100vh;
+    height: 90vh;
     width: 90vw;
     @include portrait-mobile {
         width: 80vw;
@@ -253,14 +264,35 @@ body {
     height: 45vh;
     width: 60vh;
 }
+.help-img {
+    height: 20vw;
+    width: 20vw;
+    margin: 1em 2em;
+    border-radius: 1em;
+    @include mobile {
+        height: 30vw;
+        width: 30vw;
+        margin: 0em;
+    }
+}
 .help-text {
     color: $white;
     padding: 1em 1em;
     font-size: 3em;
+    width: 90%;
     @include mobile {
         font-size: 1.25em;
         padding: 1em 2em;
+        margin: 0;
+        text-align: center;
+        line-height: 1.25em;
     }
+}
+.bold {
+    font-weight: 800;
+}
+.help-left, .help-right {
+    font-size: 3em;
 }
 .help-overlay-close-btn {
     position: absolute;
