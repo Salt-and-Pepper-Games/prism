@@ -590,7 +590,7 @@ body {
     border: .5em solid $dark-black;
     border-radius: 1em;
     @include mobile {
-        height: 80vh;
+        height: 70vh;
     }
 }
 .dashboard-bg {
@@ -610,7 +610,7 @@ body {
     height: 65vh;
     width: 100%;
     @include mobile {
-        height: 80vh;
+        height: 70vh;
     }
 }
 .about-prism {

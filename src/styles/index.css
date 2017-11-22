@@ -922,7 +922,7 @@ body {
   border-radius: 1em; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .dashboard {
-      height: 80vh; } }
+      height: 70vh; } }
 
 .dashboard-bg {
   position: fixed;
@@ -942,7 +942,7 @@ body {
   width: 100%; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .dashboard-panel {
-      height: 80vh; } }
+      height: 70vh; } }
 
 .about-prism {
   padding: 1em 1.5em;
