@@ -253,9 +253,10 @@ body {
     @extend .help-overlay;
     background-color: rgba(70, 75, 99, 0);
     opacity: 1;
-    height: 80vh;
+    height: 90vh;
     width: 90vw;
     @include portrait-mobile {
+        height: 75vh;
         width: 80vw;
     }
 }
