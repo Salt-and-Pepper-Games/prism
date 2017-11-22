@@ -635,11 +635,11 @@ body {
   width: 90%; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .help-text {
-      font-size: 1em;
+      font-size: .75em;
       padding: 1em 2em;
       margin: 0;
       text-align: center;
-      line-height: 1.25em; } }
+      line-height: 1em; } }
 
 .bold {
   font-weight: 800; }

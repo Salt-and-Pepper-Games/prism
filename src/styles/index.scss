@@ -292,11 +292,11 @@ body {
     font-size: 3em;
     width: 90%;
     @include mobile {
-        font-size: 1em;
+        font-size: .75em;
         padding: 1em 2em;
         margin: 0;
         text-align: center;
-        line-height: 1.25em;
+        line-height: 1em;
     }
 }
 .bold {
