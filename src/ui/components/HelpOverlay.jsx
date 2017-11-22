@@ -4,7 +4,9 @@ import "slick-carousel/slick/slick-theme.css";
 import Venndiagram from '../../images/venndiagram-2.png';
 import Slider from 'react-slick';
 import gif1 from '../../images/prism-gif.gif';
-import gif2 from '../../images/prism-gif.gif';
+import gif2 from '../../images/prism-gif-2.gif';
+import gif3 from '../../images/prism-gif-3.gif';
+import gif4 from '../../images/prism-gif-4.gif';
 // import omit from 'lodash.omit';
 
 // const leftArrow = (props) => {
@@ -64,13 +66,13 @@ const HelpOverlay = ({ isHelpOpen, closeHelp }) => {
 				<div>
 					<div className="help-slide-2">
 						<div className="help-row">
-							<img className="help-img" src={gif1} alt=""/>
+							<img className="help-img" src={gif3} alt=""/>
 							<p className="help-text">
 								Turning a switch <span className="bold">on</span> will add its color to the color pool. Turning it <span className="bold">off</span> will remove it from the pool.
 							</p>
 						</div>
 						<div className="help-row">
-							<img className="help-img" src={gif2} alt=""/>
+							<img className="help-img" src={gif4} alt=""/>
 							<p className="help-text">
 								Colors in the color pool mix together to generate the background color.
 							</p>

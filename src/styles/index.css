@@ -602,18 +602,25 @@ body {
       width: 80vw; } }
 
 .venndiagram {
-  height: 45vh;
-  width: 60vh; }
+  display: block;
+  max-height: 45vh;
+  max-width: 60vh;
+  height: auto;
+  width: auto; }
 
 .help-img {
-  height: 20vw;
-  width: 20vw;
+  padding: .5em;
+  background-color: #fffdfc;
+  max-height: 18vw;
+  max-width: 18vw;
+  height: auto;
+  width: auto;
   margin: 1em 2em;
   border-radius: 1em; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .help-img {
-      height: 30vw;
-      width: 30vw;
+      max-height: 30vw;
+      max-width: 30vw;
       margin: 0em; } }
 
 .help-text {
