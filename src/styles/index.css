@@ -563,8 +563,10 @@ body {
   z-index: 2;
   background-color: rgba(70, 75, 99, 0.95);
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   align-items: center;
   justify-content: center;
   transition: visibility .26s, opacity .25s; }
@@ -572,23 +574,21 @@ body {
     .help-overlay, .help-overlay-slider {
       flex-direction: column; } }
 
-.help-slide, .help-slide-2 {
+.help-slide {
   height: 90vh;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center; }
-  @media only screen and (orientation: portrait) {
-    .help-slide, .help-slide-2 {
-      flex-direction: column; } }
-
-.help-slide-2 {
+  justify-content: center;
   flex-direction: column; }
+  @media only screen and (orientation: portrait) {
+    .help-slide {
+      flex-direction: column; } }
 
 .help-row {
   display: flex;
   align-items: center; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .help-row {
       flex-direction: column; } }
 

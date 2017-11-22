@@ -40,15 +40,17 @@ const HelpOverlay = ({ isHelpOpen, closeHelp }) => {
 			<Slider className="help-overlay-slider" {...sliderSettings}>
 				<div>
 					<div className="help-slide">
-						<img className="venndiagram" src={Venndiagram} alt=''/>
-						<div className="help-text">
-							<p>Toggle switches to combine colors and navigate through blocks.</p>
-							<p> Use the arrow keys or swipe to move.</p>
+						<div className="help-row">
+							<img className="venndiagram" src={Venndiagram} alt=''/>
+							<div className="help-text">
+								<p>Toggle switches to combine colors and navigate through blocks.</p>
+								<p> Use the arrow keys or swipe to move.</p>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div>
-					<div className="help-slide-2">
+					<div className="help-slide">
 						<div className="help-row">
 							<img className="help-img" src={gif1} alt=""/>
 							<p className="help-text">
@@ -64,7 +66,7 @@ const HelpOverlay = ({ isHelpOpen, closeHelp }) => {
 					</div>
 				</div>
 				<div>
-					<div className="help-slide-2">
+					<div className="help-slide">
 						<div className="help-row">
 							<img className="help-img" src={gif3} alt=""/>
 							<p className="help-text">

@@ -220,8 +220,10 @@ body {
     z-index: 2;
     background-color: rgba(70, 75, 99, 0.95);
     display: flex;
-    height: 100vh;
-    width: 100vw;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     align-items: center;
     justify-content: center;
     transition: visibility .26s, opacity .25s;
@@ -235,18 +237,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     @include portrait-mobile {
         flex-direction: column;
     }
 }
-.help-slide-2 {
-    @extend .help-slide;
-    flex-direction: column;
-}
 .help-row {
     display: flex;
     align-items: center;
-    @include mobile {
+    @include portrait-mobile {
         flex-direction: column;
     }
 }
