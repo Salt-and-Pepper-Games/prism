@@ -617,11 +617,16 @@ body {
   width: auto;
   margin: 1em 2em;
   border-radius: 1em; }
-  @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
+  @media only screen and (orientation: portrait) {
     .help-img {
       max-height: 30vw;
       max-width: 30vw;
       margin: 0em; } }
+  @media only screen and (max-width: 800px) and (orientation: landscape) {
+    .help-img {
+      max-height: 20vw;
+      max-width: 20vw;
+      margin: .5em; } }
 
 .help-text {
   color: #fffdfc;
