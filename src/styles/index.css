@@ -595,7 +595,7 @@ body {
 .help-overlay-slider {
   background-color: rgba(70, 75, 99, 0);
   opacity: 1;
-  height: 90vh;
+  height: 80vh;
   width: 90vw; }
   @media only screen and (orientation: portrait) {
     .help-overlay-slider {
@@ -635,7 +635,7 @@ body {
   width: 90%; }
   @media only screen and (orientation: portrait), only screen and (max-width: 800px) {
     .help-text {
-      font-size: .75em;
+      font-size: .95em;
       padding: 1em 2em;
       width: 80%;
       margin: 0;

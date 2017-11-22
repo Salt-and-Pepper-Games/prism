@@ -253,7 +253,7 @@ body {
     @extend .help-overlay;
     background-color: rgba(70, 75, 99, 0);
     opacity: 1;
-    height: 90vh;
+    height: 80vh;
     width: 90vw;
     @include portrait-mobile {
         width: 80vw;
@@ -292,7 +292,7 @@ body {
     font-size: 3em;
     width: 90%;
     @include mobile {
-        font-size: .85em;
+        font-size: .95em;
         padding: 1em 2em;
         width: 80%;
         margin: 0;
