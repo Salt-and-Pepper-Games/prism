@@ -599,7 +599,6 @@ body {
   width: 90vw; }
   @media only screen and (orientation: portrait) {
     .help-overlay-slider {
-      height: 75vh;
       width: 80vw; } }
 
 .venndiagram {
