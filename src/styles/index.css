@@ -637,6 +637,7 @@ body {
     .help-text {
       font-size: .75em;
       padding: 1em 2em;
+      width: 80%;
       margin: 0;
       text-align: center;
       line-height: 1em; } }
