@@ -114,13 +114,8 @@ export default class BoardManager {
 						// this.dispatch(uiActionCreators.closeGameMode());
 						// this.dispatch(push(`/`));
 					}
-				} else if (didBgChange) {
-					animFrame.background = bg;
-					if (playerMoves.includes(state.lastAction.type)) {
-						const switchID = GameAudio.play('switch_toggle');
-						GameAudio.volume(state.ui.sound.soundOn ? 2.0 : 0.0, switchID);
-					}
-				} else {
+				} 
+				else {
 					if (playerMoves.includes(state.lastAction.type)) {
 						const moveID = GameAudio.play('move');
 						GameAudio.rate(Math.random() * .2 + .9, moveID);
@@ -128,7 +123,15 @@ export default class BoardManager {
 
 					}
 				}
-			} else if (!didBgChange && !didMove) {
+			} 
+			if (didBgChange) {
+				animFrame.background = bg;
+				if (playerMoves.includes(state.lastAction.type)) {
+					const switchID = GameAudio.play('switch_toggle');
+					GameAudio.volume(state.ui.sound.soundOn ? 2.0 : 0.0, switchID);
+				}
+			} 
+			if (!didBgChange && !didMove) {
 				if (playerMoves.includes(state.lastAction.type)) {
 					const moveBlockedID = GameAudio.play('move_blocked');	
 					console.log("move blocked");
