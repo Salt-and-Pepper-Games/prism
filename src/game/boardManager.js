@@ -117,7 +117,12 @@ export default class BoardManager {
 				} else if (didBgChange) {
 					animFrame.background = bg;
 					if (playerMoves.includes(state.lastAction.type)) {
-						const switchID = GameAudio.play('switch_toggle');
+						let switchID = null;
+						if (prevBg - bg === -1 || prevBg - bg === -2 || prevBg - bg === -4) {
+							switchID = GameAudio.play('switch_on');
+						} else {
+							switchID = GameAudio.play('switch_off');
+						}
 						GameAudio.volume(state.ui.sound.soundOn ? 2.0 : 0.0, switchID);
 					}
 				} else {

@@ -37,7 +37,7 @@ export const loadLevelString = (levelNumber, packName) => {
 			console.log(err);
 		});
 	};
-}
+};
 export const getPackInfo = () => {
 	return dispatch => {
 		dispatch(uiActionCreators.showLoader());
